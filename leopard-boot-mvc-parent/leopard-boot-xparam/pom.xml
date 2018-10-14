@@ -1,0 +1,60 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>io.leopard.boot</groupId>
+		<artifactId>leopard-boot-mvc-parent</artifactId>
+		<version>0.9.13-SNAPSHOT</version>
+	</parent>
+	<artifactId>leopard-boot-xparam</artifactId>
+
+	<name>XParame</name>
+	<description>请求特殊参数。让Controller类像普通的Service类一样定义接口参数，让接口定义更加清晰、方便编写单元测试、方便编写Javadoc。APIdoc可以根据这些特殊参数自动生成文档。</description>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-autoconfigure</artifactId>
+			<version>${springboot.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.leopard.boot</groupId>
+			<artifactId>leopard-boot-json</artifactId>
+			<version>0.9.13-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>io.leopard.boot</groupId>
+			<artifactId>leopard-boot-datatype</artifactId>
+			<version>0.9.13-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>io.leopard.boot</groupId>
+			<artifactId>leopard-boot-lang</artifactId>
+			<version>0.9.13-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.leopard.boot</groupId>
+			<artifactId>leopard-boot-requestbody</artifactId>
+			<version>0.9.13-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+
+</project>
