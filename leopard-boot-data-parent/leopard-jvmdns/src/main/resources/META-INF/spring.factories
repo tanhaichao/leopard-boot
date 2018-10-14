@@ -1,0 +1,3 @@
+# Auto Configure
+org.springframework.boot.env.EnvironmentPostProcessor=\
+io.leopard.jvmdns.JvmdnsEnvironmentPostProcessor
