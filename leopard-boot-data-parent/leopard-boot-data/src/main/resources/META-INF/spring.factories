@@ -1,0 +1,12 @@
+# Auto Configure
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+io.leopard.boot.LeopardAutoConfiguration
+
+org.springframework.context.ApplicationListener=\
+io.leopard.boot.LeopardApplicationListener
+
+# Environment Post Processors
+org.springframework.boot.env.EnvironmentPostProcessor=\
+io.leopard.boot.LeopardEnvironmentPostProcessor
+
+
