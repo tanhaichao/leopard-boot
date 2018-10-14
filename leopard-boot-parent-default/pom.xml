@@ -1,0 +1,233 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.15.RELEASE</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+
+
+	<groupId>io.leopard.boot</groupId>
+	<artifactId>leopard-boot-parent-default</artifactId>
+	<version>0.9.13-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<description>业务系统的Maven Parent，规范、简化Maven依赖配置，避免乱七八糟的类冲突。</description>
+
+	<properties>
+		<leopard.version>0.9.13-SNAPSHOT</leopard.version>
+		<springboot.version>1.5.15.RELEASE</springboot.version>
+		<jdk.version>1.8</jdk.version>
+	</properties>
+
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>3.7</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-logging</groupId>
+				<artifactId>commons-logging</artifactId>
+				<version>1.2</version>
+			</dependency>
+			<!-- -->
+
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<version>2.9.1</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-annotations</artifactId>
+				<version>2.9.1</version>
+				<scope>compile</scope>
+			</dependency>
+
+
+			<!-- - -->
+
+			<dependency>
+				<groupId>io.leopard.boot</groupId>
+				<artifactId>leopard-boot-datatype</artifactId>
+				<version>0.9.13-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>io.leopard.boot</groupId>
+				<artifactId>leopard-boot-lang</artifactId>
+				<version>0.9.13-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>io.leopard.boot</groupId>
+				<artifactId>leopard-boot-data</artifactId>
+				<version>0.9.13-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>io.leopard.boot</groupId>
+				<artifactId>leopard-boot-redis</artifactId>
+				<version>0.9.13-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>io.leopard.boot</groupId>
+				<artifactId>leopard-boot-jdbc</artifactId>
+				<version>0.9.13-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>io.leopard.boot</groupId>
+				<artifactId>leopard-boot-trynb</artifactId>
+				<version>0.9.13-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>io.leopard.boot</groupId>
+				<artifactId>leopard-boot-xparam</artifactId>
+				<version>0.9.13-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>io.leopard.boot</groupId>
+				<artifactId>leopard-boot-passport</artifactId>
+				<version>0.9.13-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>io.leopard.boot</groupId>
+				<artifactId>leopard-boot-reflect</artifactId>
+				<version>0.9.13-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>io.leopard.boot</groupId>
+				<artifactId>leopard-boot-timer</artifactId>
+				<version>0.9.13-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>io.leopard.boot</groupId>
+				<artifactId>leopard-boot-env</artifactId>
+				<version>0.9.13-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>io.leopard.boot</groupId>
+				<artifactId>leopard-boot-servlet</artifactId>
+				<version>0.9.13-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>io.leopard.boot</groupId>
+				<artifactId>leopard-boot-web</artifactId>
+				<version>0.9.13-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>io.leopard.boot</groupId>
+				<artifactId>leopard-boot-mvc-json</artifactId>
+				<version>0.9.13-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>io.leopard.boot</groupId>
+				<artifactId>leopard-boot-web-test</artifactId>
+				<version>0.9.13-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>io.leopard.boot</groupId>
+				<artifactId>leopard-boot-tomcat</artifactId>
+				<version>0.9.13-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>io.leopard.boot</groupId>
+				<artifactId>leopard-boot-jetty</artifactId>
+				<version>0.9.13-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>io.leopard.boot</groupId>
+				<artifactId>leopard-boot-operator</artifactId>
+				<version>0.9.13-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>io.leopard.boot</groupId>
+				<artifactId>leopard-boot-snowflake</artifactId>
+				<version>0.9.13-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>io.leopard.boot</groupId>
+				<artifactId>leopard-boot-pinyin</artifactId>
+				<version>0.9.13-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>io.leopard.boot</groupId>
+				<artifactId>leopard-boot-dynamic-onum</artifactId>
+				<version>0.9.13-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>io.leopard.boot</groupId>
+				<artifactId>leopard-boot-test</artifactId>
+				<version>0.9.13-SNAPSHOT</version>
+				<scope>test</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.3</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<source>${jdk.version}</source>
+					<target>${jdk.version}</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<repositories>
+		<repository>
+			<id>leopard-framework-releases</id>
+			<name>Leopard Framework Releases</name>
+			<url>http://leopard.io/nexus/content/groups/leopard-framework-releases</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>leopard-framework-snapshots</id>
+			<name>Leopard Framework Snapshots</name>
+			<url>http://leopard.io/nexus/content/groups/leopard-framework-snapshots</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>leopard-framework-snapshots</id>
+			<name>Leopard Framework Snapshots</name>
+			<url>http://leopard.io/nexus/content/repositories/framework-snapshots/</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>sonatype-nexus-snapshots</id>
+			<name>Sonatype Nexus Snapshots</name>
+			<url>http://leopard.io/nexus/content/repositories/framework-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+</project>
