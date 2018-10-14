@@ -7,9 +7,7 @@
 		<relativePath>../leopard-boot-parent-default/pom.xml</relativePath>
 	</parent>
 
-	<groupId>io.leopard.boot</groupId>
 	<artifactId>leopard-boot-parent</artifactId>
-	<version>0.9.13-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 
