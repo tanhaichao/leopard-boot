@@ -1,0 +1,68 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>io.leopard.boot</groupId>
+	<artifactId>leopard-boot</artifactId>
+	<version>0.9.13-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<parent>
+		<groupId>io.leopard.depend</groupId>
+		<artifactId>depend-cloud</artifactId>
+		<version>0.9.13</version>
+	</parent>
+
+
+	<properties>
+		<leopard.version>0.9.13-SNAPSHOT</leopard.version>
+		<springboot.version>1.5.15.RELEASE</springboot.version>
+		<jdk.version>1.8</jdk.version>
+	</properties>
+
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<version>2.9.1</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-annotations</artifactId>
+				<version>2.9.1</version>
+				<scope>compile</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-web</artifactId>
+				<version>${springboot.version}</version>
+				<!-- <exclusions> <exclusion> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-tomcat</artifactId> </exclusion> </exclusions> -->
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+
+
+
+	<modules>
+		<module>leopard-boot-data-parent</module>
+		<module>leopard-boot-mvc-parent</module>
+		<module>leopard-boot-parent-default</module>
+		<module>leopard-boot-parent</module>
+		<module>leopard-boot-test-parent</module>
+		<module>leopard-boot-lang-parent</module>
+		<module>leopard-boot-cloud-parent</module>
+		<module>leopard-boot-nonstandard-parent</module>
+	</modules>
+
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>sonatype-nexus-snapshots</id>
+			<name>Sonatype Nexus Snapshots</name>
+			<url>http://leopard.io/nexus/content/repositories/framework-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+</project>
