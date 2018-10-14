@@ -1,0 +1,8 @@
+RequestResponseBodyMethodProcessor.java
+
+
+		HttpServletRequest servletRequest = webRequest.getNativeRequest(HttpServletRequest.class);
+		ServletServerHttpRequest inputMessage = new ServletServerHttpRequest(servletRequest);
+		
+		
+		
