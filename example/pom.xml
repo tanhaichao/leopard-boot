@@ -12,7 +12,9 @@
 	<artifactId>example</artifactId>
 	<packaging>pom</packaging>
 
-
+	<properties>
+		<xiaoniu_env>false</xiaoniu_env>
+	</properties>
 
 	<repositories>
 		<repository>
@@ -21,7 +23,7 @@
 			<url>http://leopard.io/nexus/content/repositories/snapshots/</url>
 		</repository>
 	</repositories>
-	
+
 	<modules>
 		<module>example-web</module>
 		<module>example-service</module>
