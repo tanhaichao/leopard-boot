@@ -27,10 +27,10 @@
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 		</dependency>
-
 		<dependency>
-			<groupId>io.leopard.boot</groupId>
-			<artifactId>leopard-boot-operator</artifactId>
+			<groupId>io.leopard.archetype</groupId>
+			<artifactId>example-service</artifactId>
+			<version>0.9.13-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 

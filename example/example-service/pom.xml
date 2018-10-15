@@ -28,5 +28,10 @@
 			<artifactId>spring-boot-starter-logging</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>io.leopard.archetype</groupId>
+			<artifactId>example-model</artifactId>
+			<version>0.9.13-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 </project>
