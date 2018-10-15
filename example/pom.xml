@@ -10,6 +10,7 @@
 
 	<groupId>io.leopard.archetype</groupId>
 	<artifactId>example</artifactId>
+	<version>0.9.13-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 
