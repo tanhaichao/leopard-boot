@@ -6,7 +6,7 @@
 		<groupId>io.leopard.boot</groupId>
 		<artifactId>leopard-boot-parent</artifactId>
 		<version>0.9.13-SNAPSHOT</version>
-		<relativePath>../leopard-boot-parent/pom.xml</relativePath>		
+		<relativePath>../leopard-boot-parent/pom.xml</relativePath>
 	</parent>
 
 	<artifactId>leopard-boot-example</artifactId>
@@ -16,8 +16,7 @@
 		<module>leopard-boot-example-service</module>
 		<module>leopard-boot-example-web</module>
 		<module>leopard-boot-example-model</module>
-    <module>example</module>
-  </modules>
+	</modules>
 
 
 	<repositories>
