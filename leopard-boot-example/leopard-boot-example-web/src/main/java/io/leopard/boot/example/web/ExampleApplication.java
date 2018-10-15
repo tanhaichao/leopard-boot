@@ -1,5 +1,5 @@
 package io.leopard.boot.example.web;
 
-public class Test {
+public class ExampleApplication {
 
 }
