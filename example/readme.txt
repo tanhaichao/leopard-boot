@@ -1,4 +1,7 @@
 #项目结构
+example #根目录
+	doc	#项目文档
+	
 example-model #枚举
 	com.company.example.onum #枚举包
 		
