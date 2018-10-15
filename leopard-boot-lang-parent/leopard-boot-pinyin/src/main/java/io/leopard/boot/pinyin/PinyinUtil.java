@@ -17,6 +17,22 @@ public class PinyinUtil {
 	}
 
 	/**
+	 * 是否全部字符都能转成拼音(即中文、英文)
+	 * 
+	 * @param content
+	 * @return
+	 */
+	public static boolean isValidCharacters(String content) {
+		for (char c : content.toCharArray()) {
+			Character firstChar = getFirstLetter(c);
+			if (firstChar == null) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
 	 * 获取首字母.
 	 * 
 	 * @param content
