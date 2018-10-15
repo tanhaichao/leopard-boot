@@ -1,3 +1,13 @@
-#Jetty测试类
-com.company.example.web.JettyTest
+#项目结构
+example-model #枚举
+	com.company.example.onum #枚举包
+		
+example-service #Service、Dao模块
+	com.company.example.serializer	#Json序列化器
+	com.company.example.xxx		#按实体类做包名划分
+	com.company.example.util	#util类
+	
+example-web	#Controller模块
+	com.company.example.web.JettyTest	#Jetty测试类
 
+	
