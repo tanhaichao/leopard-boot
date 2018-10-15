@@ -43,7 +43,16 @@
 		</dependencies>
 	</dependencyManagement>
 
+	<scm>
+		<url>https://github.com/tanhaichao/leopard-boot</url>
+		<connection>scm:svn:https://github.com/tanhaichao/leopard-boot/trunk</connection>
+		<developerConnection>scm:svn:https://github.com/tanhaichao/leopard-boot/trunk</developerConnection>
+	</scm>
 
+	<issueManagement>
+		<system>GitHub Issues</system>
+		<url>https://github.com/tanhaichao/leopard-boot/issues</url>
+	</issueManagement>
 
 
 	<modules>
