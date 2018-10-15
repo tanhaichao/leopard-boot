@@ -85,10 +85,11 @@ public class DecimalUtil {
 		if (decimal <= 0) {
 			throw new IllegalArgumentException(name + "必须大于0[" + toString(decimal) + "].");
 		}
-		int power = (int) Math.pow(10, precision);// 10的N次方
-		if (decimal > power) {
-			throw new IllegalArgumentException(name + "不能超过" + power + "[" + toString(decimal) + "].");
-		}
+		// TODO 这里是否有问题?
+		// int power = (int) Math.pow(10, precision);// 10的N次方
+		// if (decimal > power) {
+		// throw new IllegalArgumentException(name + "不能超过" + power + "[" + toString(decimal) + "].");
+		// }
 		if (DecimalUtil.count(decimal) > 6) {
 			throw new IllegalArgumentException(name + "小数点位数不能超过" + precision + "位[" + toString(decimal) + "].");
 		}
