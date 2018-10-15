@@ -1,15 +1,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>io.leopard.boot</groupId>
+		<groupId>io.leopard.boot.exmaple</groupId>
 		<artifactId>leopard-boot-example</artifactId>
 		<version>0.9.13-SNAPSHOT</version>
 	</parent>
 	<artifactId>leopard-boot-example-service</artifactId>
 	<name>Service模块</name>
 	<description>Service、DAO、Util等</description>
-	
-	
+
+
 	<dependencies>
 		<dependency>
 			<groupId>io.leopard.boot</groupId>

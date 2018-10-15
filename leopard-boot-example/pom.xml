@@ -8,6 +8,7 @@
 		<version>0.9.13-SNAPSHOT</version>
 	</parent>
 
+	<groupId>io.leopard.boot.exmaple</groupId>
 	<artifactId>leopard-boot-example</artifactId>
 	<packaging>pom</packaging>
 
