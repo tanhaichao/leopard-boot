@@ -6,4 +6,6 @@
 		<version>0.9.13-SNAPSHOT</version>
 	</parent>
 	<artifactId>leopard-boot-example-service</artifactId>
+	<name>Service模块</name>
+	<description>Service、DAO、Util等</description>
 </project>
