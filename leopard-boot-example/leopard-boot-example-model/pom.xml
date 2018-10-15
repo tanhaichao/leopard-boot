@@ -7,4 +7,12 @@
 	</parent>
 	<artifactId>leopard-boot-example-model</artifactId>
 	<name>枚举、通用Bean等</name>
+
+	<dependencies>
+		<dependency>
+			<groupId>io.leopard.boot</groupId>
+			<artifactId>leopard-boot-datatype</artifactId>
+		</dependency>
+	</dependencies>
+	
 </project>
