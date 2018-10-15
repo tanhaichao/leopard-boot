@@ -15,4 +15,14 @@
 		<module>leopard-boot-example-web</module>
 		<module>leopard-boot-example-model</module>
 	</modules>
+
+
+	<repositories>
+		<repository>
+			<id>leopard-snapshots</id>
+			<name>Leopard Snapshots</name>
+			<url>http://leopard.io/nexus/content/repositories/snapshots/</url>
+		</repository>
+	</repositories>
+
 </project>
