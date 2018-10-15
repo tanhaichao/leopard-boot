@@ -6,6 +6,7 @@
 		<groupId>io.leopard.boot</groupId>
 		<artifactId>leopard-boot-parent</artifactId>
 		<version>0.9.13-SNAPSHOT</version>
+		<relativePath>../leopard-boot-parent/pom.xml</relativePath>		
 	</parent>
 
 	<artifactId>leopard-boot-example</artifactId>
