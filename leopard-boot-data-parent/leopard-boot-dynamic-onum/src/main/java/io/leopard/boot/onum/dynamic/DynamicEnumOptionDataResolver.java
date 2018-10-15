@@ -19,9 +19,10 @@ public class DynamicEnumOptionDataResolver implements OptionDataResolver {
 	private DynamicEnumService dynamicEnumService;
 
 	@Override
-	public List<OptionVO> resolve(String enumId) throws DynamicEnumNotFoundException {
+	public List<OptionVO> resolve(String enumId) {
 		if (!DynamicEnumManager.hasEnum(enumId)) {
-			throw new DynamicEnumNotFoundException(enumId);
+			// throw new DynamicEnumNotFoundException(enumId);
+			return null;
 		}
 		List<DynamicEnumEntity> constantList = dynamicEnumService.list(enumId);
 
