@@ -44,7 +44,7 @@
 					<!--fork : 如果没有该项配置，devtools不会起作用，即应用不会restart -->
 					<fork>true</fork>
 					<addResources>true</addResources>
-					<mainClass>io.leopard.boot.example.web.web.ExampleApplication</mainClass>
+					<mainClass>io.leopard.boot.archetype.example.web.ExampleApplication</mainClass>
 				</configuration>
 				<executions>
 					<execution>
