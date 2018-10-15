@@ -7,4 +7,9 @@
 	</parent>
 	<artifactId>leopard-boot-example-parent</artifactId>
 	<packaging>pom</packaging>
+	<modules>
+		<module>leopard-boot-example-service</module>
+		<module>leopard-boot-example-web</module>
+		<module>leopard-boot-example-model</module>
+	</modules>
 </project>
