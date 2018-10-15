@@ -1,0 +1,58 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>io.leopard.archetype</groupId>
+		<artifactId>example</artifactId>
+		<version>0.9.13-SNAPSHOT</version>
+	</parent>
+	<artifactId>example-web</artifactId>
+	<name>Web模块</name>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>io.leopard.boot</groupId>
+			<artifactId>leopard-boot-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.leopard.boot</groupId>
+			<artifactId>leopard-boot-test</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.leopard.boot</groupId>
+			<artifactId>leopard-boot-jetty</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>io.leopard.boot</groupId>
+			<artifactId>leopard-boot-operator</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<!--fork : 如果没有该项配置，devtools不会起作用，即应用不会restart -->
+					<fork>true</fork>
+					<addResources>true</addResources>
+					<mainClass>com.company.example.web.ExampleApplication</mainClass>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
