@@ -11,6 +11,17 @@
 	<groupId>io.leopard.archetype</groupId>
 	<artifactId>example</artifactId>
 	<packaging>pom</packaging>
+
+
+
+	<repositories>
+		<repository>
+			<id>leopard-snapshots</id>
+			<name>Leopard Snapshots</name>
+			<url>http://leopard.io/nexus/content/repositories/snapshots/</url>
+		</repository>
+	</repositories>
+	
 	<modules>
 		<module>example-web</module>
 	</modules>
