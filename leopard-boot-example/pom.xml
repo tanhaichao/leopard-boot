@@ -7,7 +7,7 @@
 		<version>0.9.13-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>leopard-boot-example-parent</artifactId>
+	<artifactId>leopard-boot-example</artifactId>
 	<packaging>pom</packaging>
 	<modules>
 		<module>leopard-boot-example-service</module>
