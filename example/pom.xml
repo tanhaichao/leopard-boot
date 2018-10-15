@@ -3,18 +3,15 @@
 
 	<parent>
 		<groupId>io.leopard.boot</groupId>
-		<artifactId>leopard-boot-parent</artifactId>
+		<artifactId>leopard-boot-parent-default</artifactId>
 		<version>0.9.13-SNAPSHOT</version>
-		<relativePath>../leopard-boot-parent/pom.xml</relativePath>
+		<relativePath>../leopard-boot-parent-default/pom.xml</relativePath>
 	</parent>
 
 	<groupId>io.leopard.archetype</groupId>
 	<artifactId>example</artifactId>
 	<packaging>pom</packaging>
 
-	<properties>
-		<xiaoniu_env>false</xiaoniu_env>
-	</properties>
 
 	<repositories>
 		<repository>

@@ -8,10 +8,6 @@
 	<artifactId>example-service</artifactId>
 	<name>Service模块</name>
 	<description>Service、DAO、Util等</description>
-	
-	<properties>
-		<xiaoniu_env>false</xiaoniu_env>
-	</properties>
 
 	<dependencies>
 		<dependency>
