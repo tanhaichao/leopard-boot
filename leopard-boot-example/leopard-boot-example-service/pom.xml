@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>io.leopard.boot</groupId>
-		<artifactId>leopard-boot-example-parent</artifactId>
+		<artifactId>leopard-boot-example</artifactId>
 		<version>0.9.13-SNAPSHOT</version>
 	</parent>
 	<artifactId>leopard-boot-example-service</artifactId>

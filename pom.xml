@@ -65,7 +65,7 @@
 		<module>leopard-boot-cloud-parent</module>
 		<module>leopard-boot-nonstandard-parent</module>
 		<module>leopard-boot-document-parent</module>
-		<module>leopard-boot-example-parent</module>
+		<module>leopard-boot-example</module>
 	</modules>
 
 
