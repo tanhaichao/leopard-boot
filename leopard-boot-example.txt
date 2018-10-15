@@ -1,5 +1,7 @@
 mvn archetype:create-from-project
 cd target/generated-sources/archetype
+mvn archetype:create-from-project -Darchetype.properties=./archetype.properties
+
 mvn install
 
 mvn archetype:generate -DarchetypeGroupId=io.leopard.boot -DarchetypeArtifactId=leopard-boot-example-archetype -DarchetypeVersion=0.9.13-SNAPSHOT 
