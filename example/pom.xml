@@ -25,5 +25,6 @@
 	<modules>
 		<module>example-web</module>
 		<module>example-service</module>
+		<module>example-model</module>
 	</modules>
 </project>
