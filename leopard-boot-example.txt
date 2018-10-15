@@ -5,7 +5,7 @@ mvn install
 
 
 
-mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate -DarchetypeCatalog=http://leopard.io/nexus/content/repositories/framework-snapshots/ -DarchetypeGroupId=io.leopard.archetype -DarchetypeArtifactId=example-archetype -DarchetypeVersion=0.9.13-SNAPSHOT -DgroupId=com.company.example -DartifactId=example -Dversion=1.0-SNAPSHOT
+mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate -DarchetypeCatalog=http://leopard.io/nexus/content/repositories/framework-snapshots/ -DarchetypeGroupId=io.leopard.archetype -DarchetypeArtifactId=example-archetype -DarchetypeVersion=0.9.13-SNAPSHOT -DgroupId=com.company.example -DartifactId=example2 -Dversion=1.0-SNAPSHOT
 
 
 mvn archetype:generate -DarchetypeCatalog=internal -DarchetypeGroupId=io.leopard.boot -DarchetypeArtifactId=leopard-boot-example-archetype -DarchetypeVersion=0.9.13-SNAPSHOT -DgroupId=com.company.example -DartifactId=example -Dversion=1.0-SNAPSHOT
