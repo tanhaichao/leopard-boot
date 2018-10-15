@@ -1,6 +1,5 @@
 mvn archetype:create-from-project
 cd target/generated-sources/archetype
-mvn archetype:create-from-project -Darchetype.properties=./archetype.properties
 
 mvn install
 
