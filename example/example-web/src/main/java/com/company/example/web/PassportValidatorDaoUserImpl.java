@@ -11,7 +11,7 @@ import io.leopard.web.passport.PassportGroup;
 import io.leopard.web.passport.PassportValidator;
 
 /**
- * 用户登录认证
+ * 用户登录认证器
  * 
  * @author 谭海潮
  *
