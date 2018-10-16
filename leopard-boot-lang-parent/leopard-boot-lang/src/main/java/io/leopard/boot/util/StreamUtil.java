@@ -1,9 +1,9 @@
 package io.leopard.boot.util;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -41,6 +41,9 @@ public class StreamUtil {
 		// Function<? super T, ? extends K> keyMapper,
 		// Function<? super T, ? extends U> valueMapper,
 		// BinaryOperator<U> mergeFunction
+		if (list == null) {
+			return new LinkedHashMap<KEY, BEAN>();
+		}
 		Map<KEY, BEAN> map = list.stream().collect(Collectors.toMap(keyMapper, key -> key, (bean1, bean2) -> bean1));
 		return map;
 	}
