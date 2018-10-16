@@ -2,6 +2,8 @@ package io.leopard.boot.util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -25,6 +27,22 @@ public class StreamUtil {
 		}
 		List<R> fieldValueList = list.stream().map(mapper).collect(Collectors.toList());
 		return fieldValueList;
+	}
+
+	/**
+	 * List转Map
+	 * 
+	 * @param list
+	 * @param mapper
+	 * @return
+	 */
+	public static <KEY, BEAN> Map<KEY, BEAN> toMap(List<BEAN> list, Function<? super BEAN, ? extends KEY> keyMapper) {
+		// Map<KEY, List<BEAN>> map = list.stream().collect(Collectors.groupingBy(classifier));
+		// Function<? super T, ? extends K> keyMapper,
+		// Function<? super T, ? extends U> valueMapper,
+		// BinaryOperator<U> mergeFunction
+		Map<KEY, BEAN> map = list.stream().collect(Collectors.toMap(keyMapper, key -> key, (bean1, bean2) -> bean1));
+		return map;
 	}
 
 	// public static <R, T> List<R> getNotEmptyFieldValueList(List<T> list, Function<? super T, ? extends R> mapper, List<R> sourceListList) {
