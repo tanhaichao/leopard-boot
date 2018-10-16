@@ -15,10 +15,17 @@
 
 	<repositories>
 		<repository>
-			<id>leopard-snapshots</id>
-			<name>Leopard Snapshots</name>
-			<url>http://leopard.io/nexus/content/repositories/snapshots/</url>
+			<id>leopard-framework-snapshots</id>
+			<name>Leopard Framework Snapshots</name>
+			<url>http://leopard.io/nexus/content/repositories/framework-snapshots/</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
 		</repository>
+
 	</repositories>
 
 	<modules>
