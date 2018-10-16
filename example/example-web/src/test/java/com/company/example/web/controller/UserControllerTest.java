@@ -3,7 +3,7 @@ package com.company.example.web.controller;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.company.example.user.User;
+import com.company.example.web.vo.UserVO;
 
 import io.leopard.json.Json;
 import io.leopard.test.IntegrationTests;
@@ -15,7 +15,7 @@ public class UserControllerTest extends IntegrationTests {
 
 	@Test
 	public void get() {
-		User user = userController.get(1);
+		UserVO user = userController.get(1);
 		Json.printFormat(user, "user");
 	}
 
