@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.company.example.user.User;
 import com.company.example.user.UserService;
 import com.company.example.web.form.UserForm;
+import com.company.example.web.vo.UserVO;
 
 import io.leopard.lang.util.BeanUtil;
 
@@ -44,9 +45,10 @@ public class UserController {
 	 */
 	@RequestMapping
 	@ResponseBody
-	public User get(long uid) {
+	public UserVO get(long uid) {
 		User user = userSerivce.get(uid);
-		return user;
+		UserVO userVO = BeanUtil.convert(user, UserVO.class);
+		return userVO;
 	}
 
 	/**
