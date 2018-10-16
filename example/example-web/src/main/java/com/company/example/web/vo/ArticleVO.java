@@ -2,6 +2,9 @@ package com.company.example.web.vo;
 
 import java.util.Date;
 
+import com.company.example.serializer.NicknameJsonSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 /**
  * 文章
  * 
@@ -18,6 +21,7 @@ public class ArticleVO {
 	/**
 	 * 用户ID
 	 */
+	@JsonSerialize(using = NicknameJsonSerializer.class)
 	private long uid;
 
 	/**

@@ -23,6 +23,10 @@
 			<artifactId>leopard-boot-lang</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>io.leopard.boot</groupId>
+			<artifactId>leopard-boot-mvc-json</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-logging</artifactId>
 		</dependency>
