@@ -5,24 +5,43 @@ public class OnumUtil {
 	/**
 	 * 在里面
 	 * 
-	 * @param onum0
-	 * @param onum1
-	 * @param onums
+	 * @param snum
+	 * @param snums
 	 * @return
 	 */
-	public static <K> boolean isWithin(Onum<K, ?> onum0, Onum<K, ?> onum1, @SuppressWarnings("unchecked") Onum<K, ?>... onums) {
-		if (onum0 == null) {
-			throw new IllegalArgumentException("onum0不允许为空.");
+	public static boolean isWithin(Snum snum, Snum... snums) {
+		if (snum == null) {
+			throw new IllegalArgumentException("snum不允许为空.");
 		}
-		if (onum1 == null) {
-			throw new IllegalArgumentException("onum1不允许为空.");
+		if (snums.length == 0) {
+			throw new IllegalArgumentException("动态参数个数不能为0.");
 		}
-		String key = onum0.getKey().toString();
-		if (onum1.getKey().toString().equals(key)) {
-			return true;
+		String key = snum.getKey();
+		for (Snum snum2 : snums) {
+			if (snum2.getKey().equals(key)) {
+				return true;
+			}
 		}
-		for (Onum<K, ?> onum2 : onums) {
-			if (onum2.getKey().toString().equals(key)) {
+		return false;
+	}
+
+	/**
+	 * 在里面
+	 * 
+	 * @param inum
+	 * @param inums
+	 * @return
+	 */
+	public static boolean isWithin(Inum inum, Inum... inums) {
+		if (inum == null) {
+			throw new IllegalArgumentException("inum不允许为空.");
+		}
+		if (inums.length == 0) {
+			throw new IllegalArgumentException("动态参数个数不能为0.");
+		}
+		int key = inum.getKey();
+		for (Inum inum2 : inums) {
+			if (inum2.getKey() == key) {
 				return true;
 			}
 		}
@@ -32,13 +51,23 @@ public class OnumUtil {
 	/**
 	 * 是否不在里面
 	 * 
-	 * @param onum0
-	 * @param onum1
-	 * @param onums
+	 * @param inum
+	 * @param inums
 	 * @return
 	 */
-	public static <K> boolean isNotWithin(Onum<K, ?> onum0, Onum<K, ?> onum1, @SuppressWarnings("unchecked") Onum<K, ?>... onums) {
-		return !isWithin(onum0, onum1, onums);
+	public static boolean isNotWithin(Inum inum, Inum... inums) {
+		return !isWithin(inum, inums);
+	}
+
+	/**
+	 * 是否不在里面
+	 * 
+	 * @param snum
+	 * @param snums
+	 * @return
+	 */
+	public static boolean isNotWithin(Snum snum, Snum... snums) {
+		return !isWithin(snum, snums);
 	}
 
 }
