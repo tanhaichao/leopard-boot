@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import io.leopard.boot.onum.dynamic.model.DynamicEnumDataVO;
 import io.leopard.boot.onum.dynamic.model.DynamicEnumEntity;
-import io.leopard.boot.onum.dynamic.model.DynamicEnumForm;
+import io.leopard.boot.onum.dynamic.model.DynamicEnumConstantForm;
 import io.leopard.boot.onum.dynamic.model.DynamicEnumVO;
 import io.leopard.boot.onum.dynamic.model.EnumConstantVO;
 import io.leopard.boot.onum.dynamic.model.Operator;
@@ -56,7 +56,7 @@ public class DynamicEnumManageController {
 	 */
 	@RequestMapping("add")
 	@ResponseBody
-	public boolean add(DynamicEnumForm form, HttpServletRequest request) throws DynamicEnumNotFoundException, Exception {
+	public boolean add(DynamicEnumConstantForm form, HttpServletRequest request) throws DynamicEnumNotFoundException, Exception {
 		checkDynamicEnumManageValidator();
 		Operator operator = new Operator();
 		this.dynamicEnumManageValidator.addEnumConstant(form, operator, request);
@@ -144,7 +144,7 @@ public class DynamicEnumManageController {
 	 */
 	@RequestMapping("update")
 	@ResponseBody
-	public boolean update(DynamicEnumForm form, HttpServletRequest request) throws DynamicEnumNotFoundException, DynamicEnumConstantNotFoundException, Exception {
+	public boolean update(DynamicEnumConstantForm form, HttpServletRequest request) throws DynamicEnumNotFoundException, DynamicEnumConstantNotFoundException, Exception {
 		checkDynamicEnumManageValidator();
 		Operator operator = new Operator();
 		this.dynamicEnumManageValidator.updateEnumConstant(form, operator, request);

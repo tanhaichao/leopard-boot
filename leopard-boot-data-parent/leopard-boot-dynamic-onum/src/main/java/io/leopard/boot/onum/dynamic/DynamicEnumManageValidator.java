@@ -2,7 +2,7 @@ package io.leopard.boot.onum.dynamic;
 
 import javax.servlet.http.HttpServletRequest;
 
-import io.leopard.boot.onum.dynamic.model.DynamicEnumForm;
+import io.leopard.boot.onum.dynamic.model.DynamicEnumConstantForm;
 import io.leopard.boot.onum.dynamic.model.Operator;
 
 /**
@@ -19,7 +19,7 @@ public interface DynamicEnumManageValidator {
 	 * @return
 	 * @throws Exception
 	 */
-	void addEnumConstant(DynamicEnumForm form, Operator operator, HttpServletRequest request) throws Exception;
+	void addEnumConstant(DynamicEnumConstantForm form, Operator operator, HttpServletRequest request) throws Exception;
 
 	/**
 	 * 获取动态枚举详情
@@ -51,6 +51,6 @@ public interface DynamicEnumManageValidator {
 	 * @return
 	 * @throws Exception
 	 */
-	void updateEnumConstant(DynamicEnumForm form, Operator operator, HttpServletRequest request) throws Exception;
+	void updateEnumConstant(DynamicEnumConstantForm form, Operator operator, HttpServletRequest request) throws Exception;
 
 }
