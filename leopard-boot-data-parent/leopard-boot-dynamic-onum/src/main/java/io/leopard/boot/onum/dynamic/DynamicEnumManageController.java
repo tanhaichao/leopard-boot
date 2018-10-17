@@ -165,7 +165,7 @@ public class DynamicEnumManageController {
 	/**
 	 * 批量更新
 	 * 
-	 * @constantList 所有元素列表
+	 * @param constantList 所有元素列表
 	 * @return
 	 */
 	@RequestMapping("update")
