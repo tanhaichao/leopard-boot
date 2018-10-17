@@ -16,6 +16,9 @@ public class DynamicEnumDataVO {
 	 */
 	private Date lmodify;
 
+	/**
+	 * 枚举列表
+	 */
 	private List<DynamicEnumVO> enumList;
 
 	public Date getLmodify() {
