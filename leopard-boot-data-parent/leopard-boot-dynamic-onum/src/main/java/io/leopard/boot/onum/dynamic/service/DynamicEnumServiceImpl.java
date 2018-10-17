@@ -127,6 +127,10 @@ public class DynamicEnumServiceImpl implements DynamicEnumService {
 
 	@Override
 	public boolean add(DynamicEnumConstantEntity entity, Operator operator) {
+		Date posttime = new Date();
+		entity.setPosttime(posttime);
+		entity.setPosttime(posttime);
+		entity.setLmodify(lmodify);
 		boolean success = dynamicEnumDao.add(entity, operator);
 		return success;
 	}

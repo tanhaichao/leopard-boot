@@ -1,5 +1,7 @@
 package io.leopard.boot.onum.dynamic.model;
 
+import java.util.Date;
+
 /**
  * 枚举元素
  * 
@@ -36,12 +38,12 @@ public class DynamicEnumConstantEntity {
 	/**
 	 * 创建时间
 	 */
-	private String posttime;
+	private Date posttime;
 
 	/**
 	 * 最后修改时间
 	 */
-	private String lmodify;
+	private Date lmodify;
 
 	// TODO 未实现扩展参数存储
 	public String getEnumId() {
@@ -84,19 +86,19 @@ public class DynamicEnumConstantEntity {
 		this.remark = remark;
 	}
 
-	public String getPosttime() {
+	public Date getPosttime() {
 		return posttime;
 	}
 
-	public void setPosttime(String posttime) {
+	public void setPosttime(Date posttime) {
 		this.posttime = posttime;
 	}
 
-	public String getLmodify() {
+	public Date getLmodify() {
 		return lmodify;
 	}
 
-	public void setLmodify(String lmodify) {
+	public void setLmodify(Date lmodify) {
 		this.lmodify = lmodify;
 	}
 
