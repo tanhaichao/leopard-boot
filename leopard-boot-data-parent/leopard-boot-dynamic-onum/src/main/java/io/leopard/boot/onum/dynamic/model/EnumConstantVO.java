@@ -5,10 +5,22 @@ import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
+/**
+ * 枚举元素
+ * 
+ * @author 谭海潮
+ *
+ */
 public class EnumConstantVO {
 
+	/**
+	 * 枚举元素Key
+	 */
 	private Object key;
 
+	/**
+	 * 枚举元素描述
+	 */
 	private String desc;
 
 	/**
