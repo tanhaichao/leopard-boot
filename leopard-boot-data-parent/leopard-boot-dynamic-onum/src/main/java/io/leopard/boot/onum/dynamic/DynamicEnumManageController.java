@@ -57,7 +57,7 @@ public class DynamicEnumManageController {
 	public boolean add(String enumId, DynamicEnumConstantForm form, HttpServletRequest request) throws DynamicEnumNotFoundException, Exception {
 		checkDynamicEnumManageValidator();
 		Operator operator = new Operator();
-		this.dynamicEnumManageValidator.addEnumConstant(form, operator, request);
+		this.dynamicEnumManageValidator.addEnumConstant(enumId, form, operator, request);
 
 		if (!DynamicEnumManager.hasEnum(enumId)) {
 			throw new DynamicEnumNotFoundException(enumId);
@@ -145,7 +145,7 @@ public class DynamicEnumManageController {
 	public boolean update(String enumId, DynamicEnumConstantForm form, HttpServletRequest request) throws DynamicEnumNotFoundException, DynamicEnumConstantNotFoundException, Exception {
 		checkDynamicEnumManageValidator();
 		Operator operator = new Operator();
-		this.dynamicEnumManageValidator.updateEnumConstant(form, operator, request);
+		this.dynamicEnumManageValidator.updateEnumConstant(enumId, form, operator, request);
 		if (!DynamicEnumManager.hasEnum(enumId)) {
 			throw new DynamicEnumNotFoundException(enumId);
 		}

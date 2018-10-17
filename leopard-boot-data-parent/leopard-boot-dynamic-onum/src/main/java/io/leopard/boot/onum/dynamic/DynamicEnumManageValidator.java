@@ -17,6 +17,7 @@ public interface DynamicEnumManageValidator {
 	 * 
 	 * @param enumId 枚举ID
 	 * @param constant 枚举元素信息
+	 * @param operator 操作人
 	 * @return
 	 * @throws Exception
 	 */
@@ -25,8 +26,8 @@ public interface DynamicEnumManageValidator {
 	/**
 	 * 获取动态枚举详情
 	 * 
-	 * @param enumId
-	 * @param operator
+	 * @param enumId 枚举ID
+	 * @param operator 操作人
 	 * @param request
 	 * @return
 	 * @throws Exception
@@ -54,6 +55,6 @@ public interface DynamicEnumManageValidator {
 	 * @return
 	 * @throws Exception
 	 */
-	void updateEnumConstant(DynamicEnumConstantForm constant, Operator operator, HttpServletRequest request) throws Exception;
+	void updateEnumConstant(String enumId, DynamicEnumConstantForm constant, Operator operator, HttpServletRequest request) throws Exception;
 
 }
