@@ -78,6 +78,7 @@ public class DynamicEnumManageController {
 	}
 
 	/**
+	 * 获取动态枚举详情
 	 * 
 	 * @param enumId 枚举ID
 	 * @return
