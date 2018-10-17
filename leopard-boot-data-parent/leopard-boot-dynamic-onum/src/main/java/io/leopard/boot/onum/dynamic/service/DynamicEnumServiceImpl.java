@@ -148,6 +148,7 @@ public class DynamicEnumServiceImpl implements DynamicEnumService {
 
 	@Override
 	public boolean update(DynamicEnumConstantEntity entity, Operator operator) {
+		entity.setLmodify(new Date());
 		boolean success = dynamicEnumDao.update(entity, operator);
 		return success;
 	}
