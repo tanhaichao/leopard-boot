@@ -165,6 +165,7 @@ public class DynamicEnumManageController {
 	/**
 	 * 批量更新
 	 * 
+	 * @param enumId 枚举ID
 	 * @param constantList 所有元素列表
 	 * @return
 	 */
