@@ -173,7 +173,7 @@ public class DynamicEnumManageController {
 	 * 批量更新
 	 * 
 	 * @param enumId 枚举ID
-	 * @param constantList 所有元素列表
+	 * @param constantList 枚举元素列表(所有)
 	 * @return
 	 * @throws Exception
 	 */
