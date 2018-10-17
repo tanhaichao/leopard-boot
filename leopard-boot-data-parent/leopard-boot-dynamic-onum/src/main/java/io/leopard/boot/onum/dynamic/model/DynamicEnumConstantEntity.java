@@ -28,6 +28,21 @@ public class DynamicEnumConstantEntity {
 	 */
 	private int position;
 
+	/**
+	 * 备注
+	 */
+	private String remark;
+
+	/**
+	 * 创建时间
+	 */
+	private String posttime;
+
+	/**
+	 * 最后修改时间
+	 */
+	private String lmodify;
+
 	// TODO 未实现扩展参数存储
 	public String getEnumId() {
 		return enumId;
@@ -59,6 +74,30 @@ public class DynamicEnumConstantEntity {
 
 	public void setPosition(int position) {
 		this.position = position;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
+	public String getPosttime() {
+		return posttime;
+	}
+
+	public void setPosttime(String posttime) {
+		this.posttime = posttime;
+	}
+
+	public String getLmodify() {
+		return lmodify;
+	}
+
+	public void setLmodify(String lmodify) {
+		this.lmodify = lmodify;
 	}
 
 }

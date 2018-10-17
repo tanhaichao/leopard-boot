@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import io.leopard.boot.onum.dynamic.model.DynamicEnumDataVO;
 import io.leopard.boot.onum.dynamic.model.DynamicEnumInfo;
-import io.leopard.boot.onum.dynamic.model.DynamicEnumConstantVO;
 import io.leopard.lang.inum.Bnum;
 import io.leopard.lang.inum.Inum;
 import io.leopard.lang.inum.Snum;
@@ -90,11 +90,11 @@ public class DynamicEnumManager {
 		return DynamicEnum.allOf(className);
 	}
 
-	public static List<DynamicEnumConstantVO> listByClassName(String className) {
+	public static List<DynamicEnumDataVO.EnumConstantIO> listByClassName(String className) {
 		List<EnumConstant> constantList = DynamicEnum.allOf(className);
-		List<DynamicEnumConstantVO> constantVOList = new ArrayList<>();
+		List<DynamicEnumDataVO.EnumConstantIO> constantVOList = new ArrayList<>();
 		for (EnumConstant constant : constantList) {
-			DynamicEnumConstantVO constantVO = new DynamicEnumConstantVO();
+			DynamicEnumDataVO.EnumConstantIO constantVO = new DynamicEnumDataVO.EnumConstantIO();
 			constantVO.setDesc(constant.getDesc());
 			constantVO.setKey(constant.getKey());
 			constantVO.setParameterMap(constant.getParameterMap());// TODO 这里引用传值是否有问题

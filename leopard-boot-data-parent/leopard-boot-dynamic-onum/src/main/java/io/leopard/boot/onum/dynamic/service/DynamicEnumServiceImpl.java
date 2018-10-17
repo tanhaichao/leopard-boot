@@ -11,11 +11,9 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import io.leopard.boot.onum.dynamic.model.DynamicEnumDataVO;
 import io.leopard.boot.onum.dynamic.model.DynamicEnumConstantEntity;
+import io.leopard.boot.onum.dynamic.model.DynamicEnumDataVO;
 import io.leopard.boot.onum.dynamic.model.DynamicEnumInfo;
-import io.leopard.boot.onum.dynamic.model.DynamicEnumVO;
-import io.leopard.boot.onum.dynamic.model.DynamicEnumConstantVO;
 import io.leopard.boot.onum.dynamic.model.Operator;
 import io.leopard.lang.inum.dynamic.DynamicEnum;
 import io.leopard.lang.inum.dynamic.EnumConstant;
@@ -78,14 +76,14 @@ public class DynamicEnumServiceImpl implements DynamicEnumService {
 	@Override
 	public DynamicEnumDataVO get() {
 		DynamicEnumDataVO sysconfigVO = new DynamicEnumDataVO();
-		List<DynamicEnumVO> enumVOList = new ArrayList<DynamicEnumVO>();
+		List<DynamicEnumDataVO.EnumIO> enumVOList = new ArrayList<DynamicEnumDataVO.EnumIO>();
 		sysconfigVO.setEnumList(enumVOList);
 		for (DynamicEnumInfo enumInfo : DynamicEnumManager.getEnumList()) {
 			String enumId = enumInfo.getEnumId();
 			String className = enumInfo.getBeanClassName();
-			List<DynamicEnumConstantVO> constantVOList = DynamicEnumManager.listByClassName(className);
+			List<DynamicEnumDataVO.EnumConstantIO> constantVOList = DynamicEnumManager.listByClassName(className);
 
-			DynamicEnumVO enumVO = new DynamicEnumVO();
+			DynamicEnumDataVO.EnumIO enumVO = new DynamicEnumDataVO.EnumIO();
 			enumVO.setEnumId(enumId);
 			enumVO.setConstantList(constantVOList);
 			enumVOList.add(enumVO);
