@@ -1,6 +1,7 @@
 package io.leopard.web.mvc.json;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,14 +65,14 @@ public abstract class IdJsonSerializer<T, V> extends AbstractJsonSerializer<Obje
 		if (value instanceof List) {
 			List<V> list = new ArrayList<V>();
 			for (T key : (List<T>) value) {
-				V element = this.get(key);
+				V element = this._get(key);
 				list.add(element);
 			}
 			data = list;
 		}
 		else {
 			if (isNotEmpty(value)) {
-				data = this.get((T) value);
+				data = this._get((T) value);
 			}
 			else {
 				return null;
@@ -103,6 +104,29 @@ public abstract class IdJsonSerializer<T, V> extends AbstractJsonSerializer<Obje
 			return "userList";
 		}
 		return fieldName.replace("Id", "");
+	}
+
+	protected V _get(T value) {
+		Class<?> type = value.getClass();
+		if (type.equals(String.class)) {
+			String str = (String) value;
+			if (StringUtils.isEmpty(str)) {
+				return null;
+			}
+		}
+		else if (type.equals(long.class)) {
+			long num = (long) value;
+			if (num <= 0) {
+				return null;
+			}
+		}
+		else if (type.equals(int.class)) {
+			long num = (long) value;
+			if (num <= 0) {
+				return null;
+			}
+		}
+		return get(value);
 	}
 
 	public abstract V get(T value);
