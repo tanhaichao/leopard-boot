@@ -3,6 +3,12 @@ package io.leopard.boot.onum.dynamic.model;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * 枚举数据
+ * 
+ * @author 谭海潮
+ *
+ */
 public class DynamicEnumDataVO {
 
 	/**
