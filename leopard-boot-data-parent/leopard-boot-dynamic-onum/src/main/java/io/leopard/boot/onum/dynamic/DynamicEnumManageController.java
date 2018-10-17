@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -168,12 +169,13 @@ public class DynamicEnumManageController {
 	 * @param enumId 枚举ID
 	 * @param constantList 所有元素列表
 	 * @return
+	 * @throws Exception
 	 */
 	@RequestMapping("update")
 	@ResponseBody
-	public boolean batchUpdate(String enumId, List<DynamicEnumConstantForm> constantList, HttpServletRequest request) {
+	@Transactional
+	public boolean batchUpdate(String enumId, List<DynamicEnumConstantForm> constantList, HttpServletRequest request) throws Exception {
 		checkDynamicEnumManageValidator();
-		Operator operator = new Operator();
 
 		List<DynamicEnumConstantEntity> constantEntityList = dynamicEnumService.list(enumId);
 		// 数据库中的元素key列表
@@ -185,11 +187,17 @@ public class DynamicEnumManageController {
 		for (DynamicEnumConstantForm form : constantList) {
 			boolean contains = keyList.contains(form.getKey());
 			if (contains) {// 更新
+				Operator operator = new Operator();
+				this.dynamicEnumManageValidator.updateEnumConstant(enumId, form, operator, request);
+
 				DynamicEnumConstantEntity entity = this.dynamicEnumService.get(enumId, form.getKey());
 				BeanUtil.copyProperties(form, entity);
 				dynamicEnumService.update(entity, operator);
 			}
 			else {// 新增
+				Operator operator = new Operator();
+				this.dynamicEnumManageValidator.addEnumConstant(enumId, form, operator, request);
+
 				DynamicEnumConstantEntity entity = BeanUtil.convert(form, DynamicEnumConstantEntity.class);
 				entity.setPosition(position);
 				dynamicEnumService.add(entity, operator);
@@ -199,6 +207,8 @@ public class DynamicEnumManageController {
 
 		// 删除枚举元素
 		for (String key : deleteKeyList) {
+			Operator operator = new Operator();
+			this.dynamicEnumManageValidator.deleteEnumConstant(enumId, key, operator, request);
 			dynamicEnumService.delete(enumId, key, operator);
 		}
 
