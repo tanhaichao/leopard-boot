@@ -169,7 +169,24 @@ public class DynamicEnumManageController {
 	@RequestMapping("update")
 	@ResponseBody
 	public boolean batchUpdate(String enumId, List<DynamicEnumConstantForm> constantList, HttpServletRequest request) {
+		checkDynamicEnumManageValidator();
 
+		List<DynamicEnumEntity> entityList = dynamicEnumService.list(enumId);
+
+		// Operator operator = new Operator();
+		// this.dynamicEnumManageValidator.updateEnumConstant(enumId, form, operator, request);
+		// if (!DynamicEnumManager.hasEnum(enumId)) {
+		// throw new DynamicEnumNotFoundException(enumId);
+		// }
+		// if (!DynamicEnumManager.hasEnumConstant(enumId, form.getKey())) {
+		// throw new DynamicEnumConstantNotFoundException(enumId, form.getKey());
+		// }
+		// DynamicEnumEntity entity = new DynamicEnumEntity();
+		// entity.setEnumId(enumId);
+		// entity.setKey(form.getKey());
+		// entity.setDesc(form.getDesc());
+		// entity.setPosition(form.getPosition());
+		// return dynamicEnumService.update(entity, operator);
 		return false;
 	}
 

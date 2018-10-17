@@ -1,5 +1,11 @@
 package io.leopard.boot.onum.dynamic.model;
 
+/**
+ * 枚举元素
+ * 
+ * @author 谭海潮
+ *
+ */
 public class DynamicEnumEntity {
 
 	/**
