@@ -41,8 +41,6 @@ public interface DynamicEnumService {
 	 */
 	boolean update(DynamicEnumConstantEntity entity, Operator operator);
 
-	boolean rsync();
-
 	DynamicEnumDataVO get();
 
 	/**
@@ -56,7 +54,20 @@ public interface DynamicEnumService {
 
 	List<EnumConstant> resolve(String enumId, Class<?> enumType);
 
-	boolean update(String enumId);
+	/**
+	 * 同步所有枚举
+	 * 
+	 * @return
+	 */
+	boolean rsyncAll();
+
+	/**
+	 * 同步单个枚举
+	 * 
+	 * @param enumId 枚举ID
+	 * @return
+	 */
+	boolean rsync(String enumId);
 
 	// void setEnumList(List<DynamicEnumInfo> enumList);
 

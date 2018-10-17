@@ -79,7 +79,7 @@ public class DynamicEnumSubscriber extends JedisPubSub {
 	 * @return
 	 */
 	public boolean publish() {
-		boolean success = dynamicEnumService.rsync();
+		boolean success = dynamicEnumService.rsyncAll();
 		publish("update");
 		return success;
 	}
@@ -107,6 +107,6 @@ public class DynamicEnumSubscriber extends JedisPubSub {
 			return;
 		}
 		logger.info("subscribe message:" + message + " isMySelf:" + isMySelf);
-		dynamicEnumService.rsync();
+		dynamicEnumService.rsyncAll();
 	}
 }

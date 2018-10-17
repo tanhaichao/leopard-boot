@@ -75,7 +75,9 @@ public class DynamicEnumManageController {
 		entity.setKey(form.getKey());
 		entity.setDesc(form.getDesc());
 		entity.setPosition(form.getPosition());
-		return dynamicEnumService.add(entity, operator);
+		boolean success = dynamicEnumService.add(entity, operator);
+		dynamicEnumService.rsync(enumId);
+		return success;
 	}
 
 	/**
@@ -130,7 +132,9 @@ public class DynamicEnumManageController {
 		if (!DynamicEnumManager.hasEnumConstant(enumId, key)) {
 			throw new DynamicEnumConstantNotFoundException(enumId, key);
 		}
-		return this.dynamicEnumService.delete(enumId, key, operator);
+		boolean success = this.dynamicEnumService.delete(enumId, key, operator);
+		dynamicEnumService.rsync(enumId);
+		return success;
 	}
 
 	/**
@@ -160,7 +164,9 @@ public class DynamicEnumManageController {
 		entity.setKey(form.getKey());
 		entity.setDesc(form.getDesc());
 		entity.setPosition(form.getPosition());
-		return dynamicEnumService.update(entity, operator);
+		boolean success = dynamicEnumService.update(entity, operator);
+		dynamicEnumService.rsync(enumId);
+		return success;
 	}
 
 	/**
@@ -211,22 +217,8 @@ public class DynamicEnumManageController {
 			this.dynamicEnumManageValidator.deleteEnumConstant(enumId, key, operator, request);
 			dynamicEnumService.delete(enumId, key, operator);
 		}
-
-		// Operator operator = new Operator();
-		// this.dynamicEnumManageValidator.updateEnumConstant(enumId, form, operator, request);
-		// if (!DynamicEnumManager.hasEnum(enumId)) {
-		// throw new DynamicEnumNotFoundException(enumId);
-		// }
-		// if (!DynamicEnumManager.hasEnumConstant(enumId, form.getKey())) {
-		// throw new DynamicEnumConstantNotFoundException(enumId, form.getKey());
-		// }
-		// DynamicEnumEntity entity = new DynamicEnumEntity();
-		// entity.setEnumId(enumId);
-		// entity.setKey(form.getKey());
-		// entity.setDesc(form.getDesc());
-		// entity.setPosition(form.getPosition());
-		// return dynamicEnumService.update(entity, operator);
-		return false;
+		dynamicEnumService.rsync(enumId);
+		return true;
 	}
 
 	/**

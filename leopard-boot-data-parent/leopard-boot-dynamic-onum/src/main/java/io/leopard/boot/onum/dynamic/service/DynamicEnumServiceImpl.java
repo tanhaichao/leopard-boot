@@ -29,11 +29,11 @@ public class DynamicEnumServiceImpl implements DynamicEnumService {
 	@PostConstruct
 	public void init() {
 		// new Exception().printStackTrace();
-		this.rsync();
+		this.rsyncAll();
 	}
 
 	@Override
-	public boolean rsync() {
+	public boolean rsyncAll() {
 		for (DynamicEnumInfo enumInfo : DynamicEnumManager.getEnumList()) {
 			String enumId = enumInfo.getEnumId();
 			String className = enumInfo.getBeanClassName();
@@ -54,7 +54,7 @@ public class DynamicEnumServiceImpl implements DynamicEnumService {
 	}
 
 	@Override
-	public boolean update(String enumId) {
+	public boolean rsync(String enumId) {
 		if (StringUtils.isEmpty(enumId)) {
 			throw new IllegalArgumentException("枚举ID不能为空.");
 		}
@@ -128,8 +128,6 @@ public class DynamicEnumServiceImpl implements DynamicEnumService {
 	@Override
 	public boolean add(DynamicEnumConstantEntity entity, Operator operator) {
 		boolean success = dynamicEnumDao.add(entity, operator);
-		String enumId = entity.getEnumId();
-		this.update(enumId);
 		return success;
 	}
 
@@ -141,18 +139,12 @@ public class DynamicEnumServiceImpl implements DynamicEnumService {
 		if (StringUtils.isEmpty(key)) {
 			throw new IllegalArgumentException("枚举元素key不能为空.");
 		}
-		boolean success = dynamicEnumDao.delete(enumId, key, operator);
-		if (success) {
-			this.update(enumId);
-		}
-		return success;
+		return dynamicEnumDao.delete(enumId, key, operator);
 	}
 
 	@Override
 	public boolean update(DynamicEnumConstantEntity entity, Operator operator) {
 		boolean success = dynamicEnumDao.update(entity, operator);
-		String enumId = entity.getEnumId();
-		this.update(enumId);
 		return success;
 	}
 
