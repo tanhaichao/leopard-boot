@@ -51,26 +51,9 @@ public class LeopardMappingJackson2HttpMessageConverter extends MappingJackson2H
 
 	@Override
 	protected void writeInternal(Object object, Type type, HttpOutputMessage outputMessage) throws IOException, HttpMessageNotWritableException {
-		// String json = Json.toFormatJson(object);
-		// outputMessage.getBody().write(json.getBytes());
-
 		this._writeInternal(object, type, outputMessage);
-
 		// System.err.println("writeInternal:" + Json.toFormatJson(object));
 		// super.writeInternal(object, type, outputMessage);// FIXME JSON序列化异常时，JSON会错乱
 	}
-	// @Override
-	// public boolean canRead(Class<?> clazz, MediaType mediaType) {
-	// boolean canRead = super.canRead(clazz, mediaType);
-	// System.err.println("LeopardMappingJackson2HttpMessageConverter:" + clazz.getName() + " canRead:" + canRead);
-	// return canRead;
-	// }
-	//
-	// @Override
-	// public boolean canWrite(Class<?> clazz, MediaType mediaType) {
-	// boolean canWrite = super.canWrite(clazz, mediaType);
-	// System.err.println("LeopardMappingJackson2HttpMessageConverter:" + clazz.getName() + " canWrite:" + canWrite);
-	// return canWrite;
-	// }
 
 }
