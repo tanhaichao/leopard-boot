@@ -7,10 +7,6 @@ package io.leopard.boot.onum.dynamic.model;
  *
  */
 public class DynamicEnumConstantForm {
-	/**
-	 * 枚举ID
-	 */
-	private String enumId;
 
 	/**
 	 * 元素key
@@ -26,14 +22,6 @@ public class DynamicEnumConstantForm {
 	 * 显示位置
 	 */
 	private int position;
-
-	public String getEnumId() {
-		return enumId;
-	}
-
-	public void setEnumId(String enumId) {
-		this.enumId = enumId;
-	}
 
 	public String getKey() {
 		return key;

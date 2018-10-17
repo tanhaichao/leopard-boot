@@ -10,11 +10,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import io.leopard.boot.onum.dynamic.model.DynamicEnumConstantForm;
+import io.leopard.boot.onum.dynamic.model.DynamicEnumConstantVO;
 import io.leopard.boot.onum.dynamic.model.DynamicEnumDataVO;
 import io.leopard.boot.onum.dynamic.model.DynamicEnumEntity;
-import io.leopard.boot.onum.dynamic.model.DynamicEnumConstantForm;
 import io.leopard.boot.onum.dynamic.model.DynamicEnumVO;
-import io.leopard.boot.onum.dynamic.model.DynamicEnumConstantVO;
 import io.leopard.boot.onum.dynamic.model.Operator;
 import io.leopard.boot.onum.dynamic.service.DynamicEnumManager;
 import io.leopard.boot.onum.dynamic.service.DynamicEnumService;
@@ -49,28 +49,26 @@ public class DynamicEnumManageController {
 	 * 添加
 	 * 
 	 * @param enumId 枚举ID
-	 * @param key 元素key
-	 * @param desc 元素描述
 	 * @return
 	 * @throws DynamicEnumNotFoundException
 	 */
 	@RequestMapping("add")
 	@ResponseBody
-	public boolean add(DynamicEnumConstantForm form, HttpServletRequest request) throws DynamicEnumNotFoundException, Exception {
+	public boolean add(String enumId, DynamicEnumConstantForm form, HttpServletRequest request) throws DynamicEnumNotFoundException, Exception {
 		checkDynamicEnumManageValidator();
 		Operator operator = new Operator();
 		this.dynamicEnumManageValidator.addEnumConstant(form, operator, request);
 
-		if (!DynamicEnumManager.hasEnum(form.getEnumId())) {
-			throw new DynamicEnumNotFoundException(form.getEnumId());
+		if (!DynamicEnumManager.hasEnum(enumId)) {
+			throw new DynamicEnumNotFoundException(enumId);
 		}
 
-		if (DynamicEnumManager.hasEnumConstant(form.getEnumId(), form.getKey())) {
-			throw new RuntimeException("枚举元素[enumId:" + form.getEnumId() + " key:" + form.getKey() + "]已存在.");
+		if (DynamicEnumManager.hasEnumConstant(enumId, form.getKey())) {
+			throw new RuntimeException("枚举元素[enumId:" + enumId + " key:" + form.getKey() + "]已存在.");
 		}
 
 		DynamicEnumEntity entity = new DynamicEnumEntity();
-		entity.setEnumId(form.getEnumId());
+		entity.setEnumId(enumId);
 		entity.setKey(form.getKey());
 		entity.setDesc(form.getDesc());
 		entity.setPosition(form.getPosition());
@@ -144,22 +142,35 @@ public class DynamicEnumManageController {
 	 */
 	@RequestMapping("update")
 	@ResponseBody
-	public boolean update(DynamicEnumConstantForm form, HttpServletRequest request) throws DynamicEnumNotFoundException, DynamicEnumConstantNotFoundException, Exception {
+	public boolean update(String enumId, DynamicEnumConstantForm form, HttpServletRequest request) throws DynamicEnumNotFoundException, DynamicEnumConstantNotFoundException, Exception {
 		checkDynamicEnumManageValidator();
 		Operator operator = new Operator();
 		this.dynamicEnumManageValidator.updateEnumConstant(form, operator, request);
-		if (!DynamicEnumManager.hasEnum(form.getEnumId())) {
-			throw new DynamicEnumNotFoundException(form.getEnumId());
+		if (!DynamicEnumManager.hasEnum(enumId)) {
+			throw new DynamicEnumNotFoundException(enumId);
 		}
-		if (!DynamicEnumManager.hasEnumConstant(form.getEnumId(), form.getKey())) {
-			throw new DynamicEnumConstantNotFoundException(form.getEnumId(), form.getKey());
+		if (!DynamicEnumManager.hasEnumConstant(enumId, form.getKey())) {
+			throw new DynamicEnumConstantNotFoundException(enumId, form.getKey());
 		}
 		DynamicEnumEntity entity = new DynamicEnumEntity();
-		entity.setEnumId(form.getEnumId());
+		entity.setEnumId(enumId);
 		entity.setKey(form.getKey());
 		entity.setDesc(form.getDesc());
 		entity.setPosition(form.getPosition());
 		return dynamicEnumService.update(entity, operator);
+	}
+
+	/**
+	 * 批量更新
+	 * 
+	 * @constantList 所有元素列表
+	 * @return
+	 */
+	@RequestMapping("update")
+	@ResponseBody
+	public boolean batchUpdate(String enumId, List<DynamicEnumConstantForm> constantList, HttpServletRequest request) {
+
+		return false;
 	}
 
 	/**
