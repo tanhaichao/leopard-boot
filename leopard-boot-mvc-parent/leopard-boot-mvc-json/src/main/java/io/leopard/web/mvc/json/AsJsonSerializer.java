@@ -227,6 +227,14 @@ public abstract class AsJsonSerializer<T> extends AbstractJsonSerializer<Object>
 		return fieldName.replace("Id", "");
 	}
 
+	/**
+	 * ID为空则返回null 。
+	 * 
+	 * @param value
+	 * @param gen
+	 * @param field
+	 * @return
+	 */
 	protected Object _get(T value, JsonGenerator gen, Field field) {
 		Class<?> type = value.getClass();
 		if (type.equals(String.class)) {
