@@ -9,6 +9,7 @@ import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeanUtils;
@@ -47,7 +48,7 @@ public abstract class AsJsonSerializer<T> extends AbstractJsonSerializer<Object>
 				throw new RuntimeException("属性[" + fieldName + "]没有设置@As");
 			}
 			else {
-				Object data = this.get((T) value, gen, field);
+				Object data = this._get((T) value, gen, field);
 				Object currentValue = gen.getOutputContext().getCurrentValue();
 				if (data != null) {
 					copyProperties(data, currentValue);
@@ -63,13 +64,13 @@ public abstract class AsJsonSerializer<T> extends AbstractJsonSerializer<Object>
 		if (value instanceof List) {
 			List<Object> list = new ArrayList<Object>();
 			for (T key : (List<T>) value) {
-				Object element = this.get(key, gen, field);
+				Object element = this._get(key, gen, field);
 				list.add(BeanUtil.convert(element, asClazz));
 			}
 			data = list;
 		}
 		else {
-			Object element = this.get((T) value, gen, field);
+			Object element = this._get((T) value, gen, field);
 			data = BeanUtil.convert(element, asClazz);
 		}
 		String newFieldName = this.getFieldName(fieldName);
@@ -224,6 +225,29 @@ public abstract class AsJsonSerializer<T> extends AbstractJsonSerializer<Object>
 			return "userList";
 		}
 		return fieldName.replace("Id", "");
+	}
+
+	protected Object _get(T value, JsonGenerator gen, Field field) {
+		Class<?> type = value.getClass();
+		if (type.equals(String.class)) {
+			String str = (String) value;
+			if (StringUtils.isEmpty(str)) {
+				return null;
+			}
+		}
+		else if (type.equals(long.class)) {
+			long num = (long) value;
+			if (num <= 0) {
+				return null;
+			}
+		}
+		else if (type.equals(int.class)) {
+			long num = (long) value;
+			if (num <= 0) {
+				return null;
+			}
+		}
+		return get(value, gen, field);
 	}
 
 	public abstract Object get(T value, JsonGenerator gen, Field field);
