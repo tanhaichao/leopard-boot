@@ -15,11 +15,12 @@ public interface DynamicEnumManageValidator {
 	/**
 	 * 新增枚举元素
 	 * 
-	 * @param form
+	 * @param enumId 枚举ID
+	 * @param constant 枚举元素信息
 	 * @return
 	 * @throws Exception
 	 */
-	void addEnumConstant(DynamicEnumConstantForm form, Operator operator, HttpServletRequest request) throws Exception;
+	void addEnumConstant(String enumId, DynamicEnumConstantForm constant, Operator operator, HttpServletRequest request) throws Exception;
 
 	/**
 	 * 获取动态枚举详情
@@ -35,9 +36,9 @@ public interface DynamicEnumManageValidator {
 	/**
 	 * 删除枚举元素
 	 * 
-	 * @param enumId
-	 * @param key
-	 * @param operator
+	 * @param enumId 枚举ID
+	 * @param key 枚举元素key
+	 * @param operator 操作人
 	 * @param request
 	 * @return
 	 * @throws Exception
@@ -47,10 +48,12 @@ public interface DynamicEnumManageValidator {
 	/**
 	 * 修改
 	 * 
-	 * @param form
+	 * @param enumId 枚举ID
+	 * @param constant 枚举元素信息
+	 * @param operator 操作人
 	 * @return
 	 * @throws Exception
 	 */
-	void updateEnumConstant(DynamicEnumConstantForm form, Operator operator, HttpServletRequest request) throws Exception;
+	void updateEnumConstant(DynamicEnumConstantForm constant, Operator operator, HttpServletRequest request) throws Exception;
 
 }
