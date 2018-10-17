@@ -6,7 +6,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import io.leopard.boot.onum.dynamic.model.DynamicEnumEntity;
+import io.leopard.boot.onum.dynamic.model.DynamicEnumConstantEntity;
 import io.leopard.boot.onum.dynamic.model.Operator;
 import io.leopard.json.Json;
 import io.leopard.test.IntegrationTests;
@@ -21,14 +21,14 @@ public class DynamicEnumServiceImplTest extends IntegrationTests {
 	public void add() {
 		Operator operator = new Operator();
 		operator.setOperator("adminId", 1);
-		DynamicEnumEntity record = new DynamicEnumEntity();
+		DynamicEnumConstantEntity record = new DynamicEnumConstantEntity();
 		record.setKey("a1");
 		record.setDesc("A1");
 		record.setEnumId("Gender");
 
 		this.dynamicEnumService.add(record, operator);
 
-		List<DynamicEnumEntity> recordList = this.dynamicEnumService.list("Gender");
+		List<DynamicEnumConstantEntity> recordList = this.dynamicEnumService.list("Gender");
 		Json.printList(recordList, "recordList");
 	}
 

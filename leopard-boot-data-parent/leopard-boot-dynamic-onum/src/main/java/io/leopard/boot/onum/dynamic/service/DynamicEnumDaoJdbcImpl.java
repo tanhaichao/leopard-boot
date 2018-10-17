@@ -9,7 +9,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import io.leopard.boot.onum.dynamic.model.DynamicEnumEntity;
+import io.leopard.boot.onum.dynamic.model.DynamicEnumConstantEntity;
 import io.leopard.boot.onum.dynamic.model.Operator;
 import io.leopard.jdbc.Jdbc;
 import io.leopard.jdbc.builder.InsertBuilder;
@@ -48,9 +48,9 @@ public class DynamicEnumDaoJdbcImpl implements DynamicEnumDao {
 	// }
 
 	@Override
-	public List<DynamicEnumEntity> list(String enumId) {
+	public List<DynamicEnumConstantEntity> list(String enumId) {
 		String sql = "select * from " + TABLE_NAME + " where enumId=? order by position asc";
-		List<DynamicEnumEntity> constantList = jdbc.queryForList(sql, DynamicEnumEntity.class, enumId);
+		List<DynamicEnumConstantEntity> constantList = jdbc.queryForList(sql, DynamicEnumConstantEntity.class, enumId);
 		return constantList;
 
 		// List<DynamicEnumRecord> constantList = list.stream().filter(e -> enumId.equals(e.getEnumId()))//
@@ -63,7 +63,7 @@ public class DynamicEnumDaoJdbcImpl implements DynamicEnumDao {
 	}
 
 	@Override
-	public boolean add(DynamicEnumEntity record, Operator operator) {
+	public boolean add(DynamicEnumConstantEntity record, Operator operator) {
 		InsertBuilder builder = new InsertBuilder(TABLE_NAME);
 		builder.setString("enumId", record.getEnumId());
 		builder.setString("key", record.getKey());
@@ -80,7 +80,7 @@ public class DynamicEnumDaoJdbcImpl implements DynamicEnumDao {
 	}
 
 	@Override
-	public boolean update(DynamicEnumEntity record, Operator operator) {
+	public boolean update(DynamicEnumConstantEntity record, Operator operator) {
 		UpdateBuilder builder = new UpdateBuilder(TABLE_NAME);
 		builder.setString("desc", record.getDesc());
 		builder.setInt("position", record.getPosition());
@@ -91,9 +91,9 @@ public class DynamicEnumDaoJdbcImpl implements DynamicEnumDao {
 	}
 
 	@Override
-	public List<DynamicEnumEntity> listAll() {
+	public List<DynamicEnumConstantEntity> listAll() {
 		String sql = "select * from " + TABLE_NAME + " order by enumId asc, position asc";
-		return jdbc.queryForList(sql, DynamicEnumEntity.class);
+		return jdbc.queryForList(sql, DynamicEnumConstantEntity.class);
 	}
 
 	@Override
@@ -102,7 +102,7 @@ public class DynamicEnumDaoJdbcImpl implements DynamicEnumDao {
 	}
 
 	@Override
-	public boolean updateAll(List<DynamicEnumEntity> allConstantList) {
+	public boolean updateAll(List<DynamicEnumConstantEntity> allConstantList) {
 		throw new NotImplementedException("not impl.");
 	}
 }

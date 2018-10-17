@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import io.leopard.boot.onum.dynamic.model.DynamicEnumEntity;
+import io.leopard.boot.onum.dynamic.model.DynamicEnumConstantEntity;
 import io.leopard.boot.onum.dynamic.service.DynamicEnumManager;
 import io.leopard.boot.onum.dynamic.service.DynamicEnumService;
 import io.leopard.lang.inum.dynamic.EnumConstant;
@@ -24,7 +24,7 @@ public class DynamicEnumOptionDataResolver implements OptionDataResolver {
 			// throw new DynamicEnumNotFoundException(enumId);
 			return null;
 		}
-		List<DynamicEnumEntity> constantList = dynamicEnumService.list(enumId);
+		List<DynamicEnumConstantEntity> constantList = dynamicEnumService.list(enumId);
 
 		List<EnumConstant> constants = DynamicEnumManager.listByEnumId(enumId);
 
@@ -34,7 +34,7 @@ public class DynamicEnumOptionDataResolver implements OptionDataResolver {
 
 		List<OptionVO> optionVOList = new ArrayList<>();
 		if (constantList != null) {
-			for (DynamicEnumEntity constant : constantList) {
+			for (DynamicEnumConstantEntity constant : constantList) {
 				OptionVO optionVO = new OptionVO();
 				optionVO.setKey(constant.getKey());
 				optionVO.setDesc(constant.getDesc());

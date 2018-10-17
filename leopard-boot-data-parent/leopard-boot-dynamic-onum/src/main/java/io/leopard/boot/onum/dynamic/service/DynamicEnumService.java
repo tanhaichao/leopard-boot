@@ -3,7 +3,7 @@ package io.leopard.boot.onum.dynamic.service;
 import java.util.List;
 
 import io.leopard.boot.onum.dynamic.model.DynamicEnumDataVO;
-import io.leopard.boot.onum.dynamic.model.DynamicEnumEntity;
+import io.leopard.boot.onum.dynamic.model.DynamicEnumConstantEntity;
 import io.leopard.boot.onum.dynamic.model.Operator;
 import io.leopard.lang.inum.dynamic.EnumConstant;
 
@@ -14,7 +14,7 @@ public interface DynamicEnumService {
 	 * @param record
 	 * @return
 	 */
-	boolean add(DynamicEnumEntity record, Operator operator);
+	boolean add(DynamicEnumConstantEntity record, Operator operator);
 
 	/**
 	 * 删除枚举元素
@@ -31,7 +31,7 @@ public interface DynamicEnumService {
 	 * @param enumId
 	 * @return
 	 */
-	List<DynamicEnumEntity> list(String enumId);
+	List<DynamicEnumConstantEntity> list(String enumId);
 
 	/**
 	 * 更新枚举元素
@@ -39,7 +39,7 @@ public interface DynamicEnumService {
 	 * @param record
 	 * @return
 	 */
-	boolean update(DynamicEnumEntity record, Operator operator);
+	boolean update(DynamicEnumConstantEntity record, Operator operator);
 
 	boolean rsync();
 

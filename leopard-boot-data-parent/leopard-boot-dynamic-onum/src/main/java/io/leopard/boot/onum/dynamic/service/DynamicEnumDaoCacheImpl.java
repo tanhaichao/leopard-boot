@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
-import io.leopard.boot.onum.dynamic.model.DynamicEnumEntity;
+import io.leopard.boot.onum.dynamic.model.DynamicEnumConstantEntity;
 import io.leopard.boot.onum.dynamic.model.Operator;
 
 @Repository
@@ -30,13 +30,13 @@ public class DynamicEnumDaoCacheImpl implements DynamicEnumDao {
 
 	@PostConstruct
 	public void init() {
-		List<DynamicEnumEntity> allConstantList = dynamicEnumDaoJdbcImpl.listAll();
+		List<DynamicEnumConstantEntity> allConstantList = dynamicEnumDaoJdbcImpl.listAll();
 		dynamicEnumDaoMemoryImpl.updateAll(allConstantList);
 	}
 
 	@Override
-	public List<DynamicEnumEntity> list(String enumId) {
-		List<DynamicEnumEntity> constantList = dynamicEnumDaoMemoryImpl.list(enumId);
+	public List<DynamicEnumConstantEntity> list(String enumId) {
+		List<DynamicEnumConstantEntity> constantList = dynamicEnumDaoMemoryImpl.list(enumId);
 		if (constantList != null) {
 			Collections.sort(constantList, new DynamicEnumRecordComparator());
 		}
@@ -44,12 +44,12 @@ public class DynamicEnumDaoCacheImpl implements DynamicEnumDao {
 	}
 
 	@Override
-	public List<DynamicEnumEntity> listAll() {
+	public List<DynamicEnumConstantEntity> listAll() {
 		return dynamicEnumDaoJdbcImpl.listAll();
 	}
 
 	@Override
-	public boolean add(DynamicEnumEntity record, Operator operator) {
+	public boolean add(DynamicEnumConstantEntity record, Operator operator) {
 		this.dynamicEnumDaoJdbcImpl.add(record, operator);
 		return dynamicEnumDaoMemoryImpl.add(record, operator);
 	}
@@ -61,7 +61,7 @@ public class DynamicEnumDaoCacheImpl implements DynamicEnumDao {
 	}
 
 	@Override
-	public boolean update(DynamicEnumEntity record, Operator operator) {
+	public boolean update(DynamicEnumConstantEntity record, Operator operator) {
 		dynamicEnumDaoJdbcImpl.update(record, operator);
 		return this.dynamicEnumDaoMemoryImpl.update(record, operator);
 	}
@@ -72,7 +72,7 @@ public class DynamicEnumDaoCacheImpl implements DynamicEnumDao {
 	}
 
 	@Override
-	public boolean updateAll(List<DynamicEnumEntity> allConstantList) {
+	public boolean updateAll(List<DynamicEnumConstantEntity> allConstantList) {
 		throw new NotImplementedException("not impl.");
 	}
 

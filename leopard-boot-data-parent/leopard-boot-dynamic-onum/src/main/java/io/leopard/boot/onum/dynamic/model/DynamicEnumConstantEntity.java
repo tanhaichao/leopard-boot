@@ -6,7 +6,7 @@ package io.leopard.boot.onum.dynamic.model;
  * @author 谭海潮
  *
  */
-public class DynamicEnumEntity {
+public class DynamicEnumConstantEntity {
 
 	/**
 	 * 枚举ID

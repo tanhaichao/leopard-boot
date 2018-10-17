@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import io.leopard.boot.onum.dynamic.model.DynamicEnumEntity;
+import io.leopard.boot.onum.dynamic.model.DynamicEnumConstantEntity;
 import io.leopard.boot.onum.dynamic.model.OptionVO;
 import io.leopard.boot.onum.dynamic.service.DynamicEnumManager;
 import io.leopard.boot.onum.dynamic.service.DynamicEnumService;
@@ -33,7 +33,7 @@ public class DynamicEnumOptionController {
 		if (!DynamicEnumManager.hasEnum(enumId)) {
 			throw new DynamicEnumNotFoundException(enumId);
 		}
-		List<DynamicEnumEntity> constantList = dynamicEnumService.list(enumId);
+		List<DynamicEnumConstantEntity> constantList = dynamicEnumService.list(enumId);
 
 		List<EnumConstant> constants = DynamicEnumManager.listByEnumId(enumId);
 
@@ -43,7 +43,7 @@ public class DynamicEnumOptionController {
 
 		List<OptionVO> optionVOList = new ArrayList<>();
 		if (constantList != null) {
-			for (DynamicEnumEntity constant : constantList) {
+			for (DynamicEnumConstantEntity constant : constantList) {
 				OptionVO optionVO = new OptionVO();
 				optionVO.setKey(constant.getKey());
 				optionVO.setDesc(constant.getDesc());

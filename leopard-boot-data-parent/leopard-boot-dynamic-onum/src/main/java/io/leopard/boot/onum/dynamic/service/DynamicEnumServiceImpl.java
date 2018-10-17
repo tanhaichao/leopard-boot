@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import io.leopard.boot.onum.dynamic.model.DynamicEnumDataVO;
-import io.leopard.boot.onum.dynamic.model.DynamicEnumEntity;
+import io.leopard.boot.onum.dynamic.model.DynamicEnumConstantEntity;
 import io.leopard.boot.onum.dynamic.model.DynamicEnumInfo;
 import io.leopard.boot.onum.dynamic.model.DynamicEnumVO;
 import io.leopard.boot.onum.dynamic.model.DynamicEnumConstantVO;
@@ -60,7 +60,7 @@ public class DynamicEnumServiceImpl implements DynamicEnumService {
 		if (enumInfo == null) {// TODO 需要做这个兼容吗?
 			return false;
 		}
-		List<DynamicEnumEntity> recordList = this.dynamicEnumDao.list(enumId);
+		List<DynamicEnumConstantEntity> recordList = this.dynamicEnumDao.list(enumId);
 
 		String className = enumInfo.getBeanClassName();
 		Class<?> enumType = enumInfo.getEnumType();
@@ -100,14 +100,14 @@ public class DynamicEnumServiceImpl implements DynamicEnumService {
 
 	@Override
 	public List<EnumConstant> resolve(String enumId, Class<?> enumType) {
-		List<DynamicEnumEntity> recordList = this.dynamicEnumDao.list(enumId);
+		List<DynamicEnumConstantEntity> recordList = this.dynamicEnumDao.list(enumId);
 		return toEnumConstantList(recordList, enumType);
 	}
 
-	public List<EnumConstant> toEnumConstantList(List<DynamicEnumEntity> recordList, Class<?> enumType) {
+	public List<EnumConstant> toEnumConstantList(List<DynamicEnumConstantEntity> recordList, Class<?> enumType) {
 		List<EnumConstant> constantList = new ArrayList<>();
 		if (recordList != null) {
-			for (DynamicEnumEntity record : recordList) {
+			for (DynamicEnumConstantEntity record : recordList) {
 				// TODO 扩展参数未支持
 				Object key = DynamicEnumManager.toObjectKey(enumType, record.getKey());
 				EnumConstant constant = new EnumConstant();
@@ -120,7 +120,7 @@ public class DynamicEnumServiceImpl implements DynamicEnumService {
 	}
 
 	@Override
-	public boolean add(DynamicEnumEntity record, Operator operator) {
+	public boolean add(DynamicEnumConstantEntity record, Operator operator) {
 		boolean success = dynamicEnumDao.add(record, operator);
 		String enumId = record.getEnumId();
 		this.update(enumId);
@@ -137,7 +137,7 @@ public class DynamicEnumServiceImpl implements DynamicEnumService {
 	}
 
 	@Override
-	public boolean update(DynamicEnumEntity record, Operator operator) {
+	public boolean update(DynamicEnumConstantEntity record, Operator operator) {
 		boolean success = dynamicEnumDao.update(record, operator);
 		String enumId = record.getEnumId();
 		this.update(enumId);
@@ -145,7 +145,7 @@ public class DynamicEnumServiceImpl implements DynamicEnumService {
 	}
 
 	@Override
-	public List<DynamicEnumEntity> list(String enumId) {
+	public List<DynamicEnumConstantEntity> list(String enumId) {
 		return dynamicEnumDao.list(enumId);
 	}
 }

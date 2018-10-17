@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import io.leopard.boot.onum.dynamic.model.DynamicEnumConstantForm;
 import io.leopard.boot.onum.dynamic.model.DynamicEnumConstantVO;
 import io.leopard.boot.onum.dynamic.model.DynamicEnumDataVO;
-import io.leopard.boot.onum.dynamic.model.DynamicEnumEntity;
+import io.leopard.boot.onum.dynamic.model.DynamicEnumConstantEntity;
 import io.leopard.boot.onum.dynamic.model.DynamicEnumVO;
 import io.leopard.boot.onum.dynamic.model.Operator;
 import io.leopard.boot.onum.dynamic.service.DynamicEnumManager;
@@ -67,7 +67,7 @@ public class DynamicEnumManageController {
 			throw new RuntimeException("枚举元素[enumId:" + enumId + " key:" + form.getKey() + "]已存在.");
 		}
 
-		DynamicEnumEntity entity = new DynamicEnumEntity();
+		DynamicEnumConstantEntity entity = new DynamicEnumConstantEntity();
 		entity.setEnumId(enumId);
 		entity.setKey(form.getKey());
 		entity.setDesc(form.getDesc());
@@ -90,10 +90,10 @@ public class DynamicEnumManageController {
 		if (!DynamicEnumManager.hasEnum(enumId)) {
 			throw new DynamicEnumNotFoundException(enumId);
 		}
-		List<DynamicEnumEntity> constantList = dynamicEnumService.list(enumId);
+		List<DynamicEnumConstantEntity> constantList = dynamicEnumService.list(enumId);
 		List<DynamicEnumConstantVO> constantVOList = new ArrayList<>();
 		if (constantList != null) {
-			for (DynamicEnumEntity constant : constantList) {
+			for (DynamicEnumConstantEntity constant : constantList) {
 				DynamicEnumConstantVO constantVO = new DynamicEnumConstantVO();
 				constantVO.setKey(constant.getKey());
 				constantVO.setDesc(constant.getDesc());
@@ -152,7 +152,7 @@ public class DynamicEnumManageController {
 		if (!DynamicEnumManager.hasEnumConstant(enumId, form.getKey())) {
 			throw new DynamicEnumConstantNotFoundException(enumId, form.getKey());
 		}
-		DynamicEnumEntity entity = new DynamicEnumEntity();
+		DynamicEnumConstantEntity entity = new DynamicEnumConstantEntity();
 		entity.setEnumId(enumId);
 		entity.setKey(form.getKey());
 		entity.setDesc(form.getDesc());
@@ -171,7 +171,7 @@ public class DynamicEnumManageController {
 	public boolean batchUpdate(String enumId, List<DynamicEnumConstantForm> constantList, HttpServletRequest request) {
 		checkDynamicEnumManageValidator();
 
-		List<DynamicEnumEntity> entityList = dynamicEnumService.list(enumId);
+		List<DynamicEnumConstantEntity> entityList = dynamicEnumService.list(enumId);
 
 		// Operator operator = new Operator();
 		// this.dynamicEnumManageValidator.updateEnumConstant(enumId, form, operator, request);
