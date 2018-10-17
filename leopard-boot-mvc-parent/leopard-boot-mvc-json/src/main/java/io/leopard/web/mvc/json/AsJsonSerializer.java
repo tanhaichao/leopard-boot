@@ -243,13 +243,13 @@ public abstract class AsJsonSerializer<T> extends AbstractJsonSerializer<Object>
 				return null;
 			}
 		}
-		else if (type.equals(long.class)) {
+		else if (type.equals(Long.class)) {
 			Long num = (Long) value;
 			if (num <= 0) {
 				return null;
 			}
 		}
-		else if (type.equals(int.class)) {
+		else if (type.equals(Integer.class)) {
 			Integer num = (Integer) value;
 			if (num <= 0) {
 				return null;
