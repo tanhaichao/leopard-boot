@@ -19,9 +19,14 @@ public class DynamicEnumConstantForm {
 	private String desc;
 
 	/**
-	 * 显示位置
+	 * 显示位置(批量修改时忽略此参数，以列表位置为准)
 	 */
 	private int position;
+
+	/**
+	 * 备注
+	 */
+	private String remark;
 
 	public String getKey() {
 		return key;
@@ -45,6 +50,14 @@ public class DynamicEnumConstantForm {
 
 	public void setPosition(int position) {
 		this.position = position;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 
 }

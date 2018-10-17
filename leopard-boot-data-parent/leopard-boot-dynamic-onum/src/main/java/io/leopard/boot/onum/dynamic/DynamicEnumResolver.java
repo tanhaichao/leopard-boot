@@ -11,6 +11,8 @@ import io.leopard.boot.onum.dynamic.model.DynamicEnumDataVO;
 @Deprecated
 public interface DynamicEnumResolver {
 
+	// TODO 多机同步未实现?
+
 	boolean update();
 
 	DynamicEnumDataVO get();
