@@ -12,7 +12,7 @@ public class DynamicEnumVO {
 	/**
 	 * 元素列表
 	 */
-	private List<EnumConstantVO> constantList;
+	private List<DynamicEnumConstantVO> constantList;
 
 	public String getEnumId() {
 		return enumId;
@@ -22,11 +22,11 @@ public class DynamicEnumVO {
 		this.enumId = enumId;
 	}
 
-	public List<EnumConstantVO> getConstantList() {
+	public List<DynamicEnumConstantVO> getConstantList() {
 		return constantList;
 	}
 
-	public void setConstantList(List<EnumConstantVO> constantList) {
+	public void setConstantList(List<DynamicEnumConstantVO> constantList) {
 		this.constantList = constantList;
 	}
 

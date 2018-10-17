@@ -15,7 +15,7 @@ import io.leopard.boot.onum.dynamic.model.DynamicEnumDataVO;
 import io.leopard.boot.onum.dynamic.model.DynamicEnumEntity;
 import io.leopard.boot.onum.dynamic.model.DynamicEnumInfo;
 import io.leopard.boot.onum.dynamic.model.DynamicEnumVO;
-import io.leopard.boot.onum.dynamic.model.EnumConstantVO;
+import io.leopard.boot.onum.dynamic.model.DynamicEnumConstantVO;
 import io.leopard.boot.onum.dynamic.model.Operator;
 import io.leopard.lang.inum.dynamic.DynamicEnum;
 import io.leopard.lang.inum.dynamic.EnumConstant;
@@ -83,7 +83,7 @@ public class DynamicEnumServiceImpl implements DynamicEnumService {
 		for (DynamicEnumInfo enumInfo : DynamicEnumManager.getEnumList()) {
 			String enumId = enumInfo.getEnumId();
 			String className = enumInfo.getBeanClassName();
-			List<EnumConstantVO> constantVOList = DynamicEnumManager.listByClassName(className);
+			List<DynamicEnumConstantVO> constantVOList = DynamicEnumManager.listByClassName(className);
 
 			DynamicEnumVO enumVO = new DynamicEnumVO();
 			enumVO.setEnumId(enumId);

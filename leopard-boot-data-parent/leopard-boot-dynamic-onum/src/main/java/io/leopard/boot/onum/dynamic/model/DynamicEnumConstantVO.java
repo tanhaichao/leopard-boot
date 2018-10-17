@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
  * @author 谭海潮
  *
  */
-public class EnumConstantVO {
+public class DynamicEnumConstantVO {
 
 	/**
 	 * 枚举元素Key

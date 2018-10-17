@@ -14,7 +14,7 @@ import io.leopard.boot.onum.dynamic.model.DynamicEnumDataVO;
 import io.leopard.boot.onum.dynamic.model.DynamicEnumEntity;
 import io.leopard.boot.onum.dynamic.model.DynamicEnumConstantForm;
 import io.leopard.boot.onum.dynamic.model.DynamicEnumVO;
-import io.leopard.boot.onum.dynamic.model.EnumConstantVO;
+import io.leopard.boot.onum.dynamic.model.DynamicEnumConstantVO;
 import io.leopard.boot.onum.dynamic.model.Operator;
 import io.leopard.boot.onum.dynamic.service.DynamicEnumManager;
 import io.leopard.boot.onum.dynamic.service.DynamicEnumService;
@@ -93,10 +93,10 @@ public class DynamicEnumManageController {
 			throw new DynamicEnumNotFoundException(enumId);
 		}
 		List<DynamicEnumEntity> constantList = dynamicEnumService.list(enumId);
-		List<EnumConstantVO> constantVOList = new ArrayList<>();
+		List<DynamicEnumConstantVO> constantVOList = new ArrayList<>();
 		if (constantList != null) {
 			for (DynamicEnumEntity constant : constantList) {
-				EnumConstantVO constantVO = new EnumConstantVO();
+				DynamicEnumConstantVO constantVO = new DynamicEnumConstantVO();
 				constantVO.setKey(constant.getKey());
 				constantVO.setDesc(constant.getDesc());
 				constantVOList.add(constantVO);
