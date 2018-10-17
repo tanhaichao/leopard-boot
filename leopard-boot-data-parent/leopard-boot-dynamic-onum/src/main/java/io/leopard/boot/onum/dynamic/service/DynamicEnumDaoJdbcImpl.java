@@ -63,12 +63,12 @@ public class DynamicEnumDaoJdbcImpl implements DynamicEnumDao {
 	}
 
 	@Override
-	public boolean add(DynamicEnumConstantEntity record, Operator operator) {
+	public boolean add(DynamicEnumConstantEntity entity, Operator operator) {
 		InsertBuilder builder = new InsertBuilder(TABLE_NAME);
-		builder.setString("enumId", record.getEnumId());
-		builder.setString("key", record.getKey());
-		builder.setString("desc", record.getDesc());
-		builder.setInt("position", record.getPosition());
+		builder.setString("enumId", entity.getEnumId());
+		builder.setString("key", entity.getKey());
+		builder.setString("desc", entity.getDesc());
+		builder.setInt("position", entity.getPosition());
 		return jdbc.insertForBoolean(builder);
 		// return false;
 	}
@@ -80,13 +80,13 @@ public class DynamicEnumDaoJdbcImpl implements DynamicEnumDao {
 	}
 
 	@Override
-	public boolean update(DynamicEnumConstantEntity record, Operator operator) {
+	public boolean update(DynamicEnumConstantEntity entity, Operator operator) {
 		UpdateBuilder builder = new UpdateBuilder(TABLE_NAME);
-		builder.setString("desc", record.getDesc());
-		builder.setInt("position", record.getPosition());
+		builder.setString("desc", entity.getDesc());
+		builder.setInt("position", entity.getPosition());
 
-		builder.where.setString("enumId", record.getEnumId());
-		builder.where.setString("key", record.getKey());
+		builder.where.setString("enumId", entity.getEnumId());
+		builder.where.setString("key", entity.getKey());
 		return jdbc.updateForBoolean(builder);
 	}
 
@@ -104,5 +104,11 @@ public class DynamicEnumDaoJdbcImpl implements DynamicEnumDao {
 	@Override
 	public boolean updateAll(List<DynamicEnumConstantEntity> allConstantList) {
 		throw new NotImplementedException("not impl.");
+	}
+
+	@Override
+	public DynamicEnumConstantEntity get(String enumId, String key) {
+		String sql = "select * from " + TABLE_NAME + " where enumId=? and `key`=?";
+		return jdbc.query(sql, DynamicEnumConstantEntity.class, enumId, key);
 	}
 }

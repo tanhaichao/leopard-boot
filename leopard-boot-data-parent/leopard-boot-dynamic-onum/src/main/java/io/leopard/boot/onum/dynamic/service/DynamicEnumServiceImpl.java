@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,9 @@ public class DynamicEnumServiceImpl implements DynamicEnumService {
 
 	@Override
 	public boolean update(String enumId) {
+		if (StringUtils.isEmpty(enumId)) {
+			throw new IllegalArgumentException("枚举ID不能为空.");
+		}
 		DynamicEnumInfo enumInfo = DynamicEnumManager.findDynamicEnumInfo(enumId);
 		if (enumInfo == null) {// TODO 需要做这个兼容吗?
 			return false;
@@ -98,6 +102,10 @@ public class DynamicEnumServiceImpl implements DynamicEnumService {
 
 	@Override
 	public List<EnumConstant> resolve(String enumId, Class<?> enumType) {
+		if (StringUtils.isEmpty(enumId)) {
+			throw new IllegalArgumentException("枚举ID不能为空.");
+		}
+
 		List<DynamicEnumConstantEntity> recordList = this.dynamicEnumDao.list(enumId);
 		return toEnumConstantList(recordList, enumType);
 	}
@@ -118,15 +126,21 @@ public class DynamicEnumServiceImpl implements DynamicEnumService {
 	}
 
 	@Override
-	public boolean add(DynamicEnumConstantEntity record, Operator operator) {
-		boolean success = dynamicEnumDao.add(record, operator);
-		String enumId = record.getEnumId();
+	public boolean add(DynamicEnumConstantEntity entity, Operator operator) {
+		boolean success = dynamicEnumDao.add(entity, operator);
+		String enumId = entity.getEnumId();
 		this.update(enumId);
 		return success;
 	}
 
 	@Override
 	public boolean delete(String enumId, String key, Operator operator) {
+		if (StringUtils.isEmpty(enumId)) {
+			throw new IllegalArgumentException("枚举ID不能为空.");
+		}
+		if (StringUtils.isEmpty(key)) {
+			throw new IllegalArgumentException("枚举元素key不能为空.");
+		}
 		boolean success = dynamicEnumDao.delete(enumId, key, operator);
 		if (success) {
 			this.update(enumId);
@@ -135,9 +149,9 @@ public class DynamicEnumServiceImpl implements DynamicEnumService {
 	}
 
 	@Override
-	public boolean update(DynamicEnumConstantEntity record, Operator operator) {
-		boolean success = dynamicEnumDao.update(record, operator);
-		String enumId = record.getEnumId();
+	public boolean update(DynamicEnumConstantEntity entity, Operator operator) {
+		boolean success = dynamicEnumDao.update(entity, operator);
+		String enumId = entity.getEnumId();
 		this.update(enumId);
 		return success;
 	}
@@ -145,5 +159,16 @@ public class DynamicEnumServiceImpl implements DynamicEnumService {
 	@Override
 	public List<DynamicEnumConstantEntity> list(String enumId) {
 		return dynamicEnumDao.list(enumId);
+	}
+
+	@Override
+	public DynamicEnumConstantEntity get(String enumId, String key) {
+		if (StringUtils.isEmpty(enumId)) {
+			throw new IllegalArgumentException("枚举ID不能为空.");
+		}
+		if (StringUtils.isEmpty(key)) {
+			throw new IllegalArgumentException("枚举元素key不能为空.");
+		}
+		return dynamicEnumDao.get(enumId, key);
 	}
 }

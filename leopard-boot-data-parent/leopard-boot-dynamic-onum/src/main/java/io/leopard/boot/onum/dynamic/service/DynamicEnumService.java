@@ -2,8 +2,8 @@ package io.leopard.boot.onum.dynamic.service;
 
 import java.util.List;
 
-import io.leopard.boot.onum.dynamic.model.DynamicEnumDataVO;
 import io.leopard.boot.onum.dynamic.model.DynamicEnumConstantEntity;
+import io.leopard.boot.onum.dynamic.model.DynamicEnumDataVO;
 import io.leopard.boot.onum.dynamic.model.Operator;
 import io.leopard.lang.inum.dynamic.EnumConstant;
 
@@ -11,16 +11,16 @@ public interface DynamicEnumService {
 	/**
 	 * 添加元素
 	 * 
-	 * @param record
+	 * @param entity
 	 * @return
 	 */
-	boolean add(DynamicEnumConstantEntity record, Operator operator);
+	boolean add(DynamicEnumConstantEntity entity, Operator operator);
 
 	/**
 	 * 删除枚举元素
 	 * 
-	 * @param enumId
-	 * @param key
+	 * @param enumId 枚举ID
+	 * @param key 枚举元素key
 	 * @return
 	 */
 	boolean delete(String enumId, String key, Operator operator);
@@ -28,7 +28,7 @@ public interface DynamicEnumService {
 	/**
 	 * 根据枚举ID查询所有元素记录
 	 * 
-	 * @param enumId
+	 * @param enumId 枚举ID
 	 * @return
 	 */
 	List<DynamicEnumConstantEntity> list(String enumId);
@@ -36,14 +36,23 @@ public interface DynamicEnumService {
 	/**
 	 * 更新枚举元素
 	 * 
-	 * @param record
+	 * @param entity
 	 * @return
 	 */
-	boolean update(DynamicEnumConstantEntity record, Operator operator);
+	boolean update(DynamicEnumConstantEntity entity, Operator operator);
 
 	boolean rsync();
 
 	DynamicEnumDataVO get();
+
+	/**
+	 * 获取枚举元素
+	 * 
+	 * @param enumId 枚举ID
+	 * @param key 枚举元素key
+	 * @return
+	 */
+	DynamicEnumConstantEntity get(String enumId, String key);
 
 	List<EnumConstant> resolve(String enumId, Class<?> enumType);
 

@@ -76,4 +76,9 @@ public class DynamicEnumDaoCacheImpl implements DynamicEnumDao {
 		throw new NotImplementedException("not impl.");
 	}
 
+	@Override
+	public DynamicEnumConstantEntity get(String enumId, String key) {
+		return dynamicEnumDaoJdbcImpl.get(enumId, key);
+	}
+
 }

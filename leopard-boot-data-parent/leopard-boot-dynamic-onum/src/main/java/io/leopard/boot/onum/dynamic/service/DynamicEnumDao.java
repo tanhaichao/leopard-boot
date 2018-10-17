@@ -11,34 +11,43 @@ public interface DynamicEnumDao {
 	/**
 	 * 添加元素
 	 * 
-	 * @param record
+	 * @param entity
 	 * @return
 	 */
-	boolean add(DynamicEnumConstantEntity record, Operator operator);
+	boolean add(DynamicEnumConstantEntity entity, Operator operator);
 
 	/**
 	 * 删除枚举元素
 	 * 
-	 * @param enumId
-	 * @param key
+	 * @param enumId 枚举ID
+	 * @param key 枚举元素key
 	 * @return
 	 */
 	boolean delete(String enumId, String key, Operator operator);
 
 	/**
-	 * 更新枚举元素
+	 * 获取枚举元素
 	 * 
-	 * @param record
+	 * @param enumId 枚举ID
+	 * @param key 枚举元素key
 	 * @return
 	 */
-	boolean update(DynamicEnumConstantEntity record, Operator operator);
+	DynamicEnumConstantEntity get(String enumId, String key);
+
+	/**
+	 * 更新枚举元素
+	 * 
+	 * @param entity
+	 * @return
+	 */
+	boolean update(DynamicEnumConstantEntity entity, Operator operator);
 
 	boolean updateAll(List<DynamicEnumConstantEntity> allConstantList);
 
 	/**
 	 * 根据枚举ID查询所有元素记录
 	 * 
-	 * @param enumId
+	 * @param enumId 枚举ID
 	 * @return
 	 */
 	List<DynamicEnumConstantEntity> list(String enumId);

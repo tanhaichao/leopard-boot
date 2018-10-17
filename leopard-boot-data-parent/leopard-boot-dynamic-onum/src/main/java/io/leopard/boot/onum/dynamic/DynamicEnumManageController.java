@@ -10,14 +10,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import io.leopard.boot.onum.dynamic.model.DynamicEnumConstantEntity;
 import io.leopard.boot.onum.dynamic.model.DynamicEnumConstantForm;
 import io.leopard.boot.onum.dynamic.model.DynamicEnumConstantVO;
 import io.leopard.boot.onum.dynamic.model.DynamicEnumDataVO;
-import io.leopard.boot.onum.dynamic.model.DynamicEnumConstantEntity;
 import io.leopard.boot.onum.dynamic.model.DynamicEnumVO;
 import io.leopard.boot.onum.dynamic.model.Operator;
 import io.leopard.boot.onum.dynamic.service.DynamicEnumManager;
 import io.leopard.boot.onum.dynamic.service.DynamicEnumService;
+import io.leopard.boot.util.StreamUtil;
+import io.leopard.lang.util.BeanUtil;
 
 /**
  * 动态枚举管理
@@ -170,8 +172,34 @@ public class DynamicEnumManageController {
 	@ResponseBody
 	public boolean batchUpdate(String enumId, List<DynamicEnumConstantForm> constantList, HttpServletRequest request) {
 		checkDynamicEnumManageValidator();
+		Operator operator = new Operator();
 
-		List<DynamicEnumConstantEntity> entityList = dynamicEnumService.list(enumId);
+		List<DynamicEnumConstantEntity> constantEntityList = dynamicEnumService.list(enumId);
+		// 数据库中的元素key列表
+		List<String> keyList = StreamUtil.getFieldValueList(constantEntityList, DynamicEnumConstantEntity::getKey);
+		// 需要删除的元素key列表
+		List<String> deleteKeyList = StreamUtil.getDeletedFieldValueList(constantList, DynamicEnumConstantForm::getKey, keyList);
+
+		int position = 1;
+		for (DynamicEnumConstantForm form : constantList) {
+			boolean contains = keyList.contains(form.getKey());
+			if (contains) {// 更新
+				DynamicEnumConstantEntity entity = this.dynamicEnumService.get(enumId, form.getKey());
+				BeanUtil.copyProperties(form, entity);
+				dynamicEnumService.update(entity, operator);
+			}
+			else {// 新增
+				DynamicEnumConstantEntity entity = BeanUtil.convert(form, DynamicEnumConstantEntity.class);
+				entity.setPosition(position);
+				dynamicEnumService.add(entity, operator);
+			}
+			position++;
+		}
+
+		// 删除枚举元素
+		for (String key : deleteKeyList) {
+			dynamicEnumService.delete(enumId, key, operator);
+		}
 
 		// Operator operator = new Operator();
 		// this.dynamicEnumManageValidator.updateEnumConstant(enumId, form, operator, request);

@@ -102,4 +102,9 @@ public class DynamicEnumDaoMemoryImpl implements DynamicEnumDao {
 		this.enumMap.putAll(enumMap);
 		return false;
 	}
+
+	@Override
+	public DynamicEnumConstantEntity get(String enumId, String key) {
+		throw new NotImplementedException("not impl.");
+	}
 }
