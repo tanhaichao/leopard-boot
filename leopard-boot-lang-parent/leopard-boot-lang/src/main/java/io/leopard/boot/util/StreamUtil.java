@@ -96,8 +96,9 @@ public class StreamUtil {
 			return sourceList;
 		}
 		List<R> fieldValueList = getFieldValueList(list, mapper);
-		sourceList.removeAll(fieldValueList);
-		return sourceList;
+		List<R> sourceList2 = new ArrayList<>(sourceList);
+		sourceList2.removeAll(fieldValueList);
+		return sourceList2;
 	}
 
 }
