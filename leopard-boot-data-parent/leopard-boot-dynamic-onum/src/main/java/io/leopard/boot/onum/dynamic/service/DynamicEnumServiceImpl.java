@@ -127,6 +127,9 @@ public class DynamicEnumServiceImpl implements DynamicEnumService {
 
 	@Override
 	public boolean add(DynamicEnumConstantEntity entity, Operator operator) {
+		if (StringUtils.isEmpty(entity.getEnumId())) {
+			throw new IllegalArgumentException("枚举ID不能为空.");
+		}
 		Date posttime = new Date();
 		entity.setPosttime(posttime);
 		entity.setLmodify(posttime);
