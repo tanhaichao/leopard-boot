@@ -2,6 +2,12 @@ package io.leopard.boot.onum.dynamic.model;
 
 import java.util.List;
 
+/**
+ * 动态枚举表单
+ * 
+ * @author 谭海潮
+ *
+ */
 public class DynamicEnumForm {
 	/**
 	 * 枚举ID
