@@ -1,7 +1,9 @@
 package io.leopard.boot.onum.dynamic;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -201,6 +203,7 @@ public class DynamicEnumManageController {
 		int position = 1;
 		for (DynamicEnumConstantForm constantForm : constantList) {
 			boolean contains = keyList.contains(constantForm.getKey());
+			// System.err.println("key:" + key + " contains:" + contains + " keyList:" + keyList);
 			if (contains) {// 更新
 				Operator operator = new Operator();
 				this.dynamicEnumManageValidator.updateEnumConstant(enumId, constantForm, operator, request);
