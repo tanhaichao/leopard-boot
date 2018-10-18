@@ -25,8 +25,14 @@ public class DynamicEnumOptionDataResolver implements OptionDataResolver {
 			return null;
 		}
 		List<DynamicEnumConstantEntity> constantList = dynamicEnumService.list(enumId);
+		if (constantList == null) {
+			return null;
+		}
 
 		List<EnumConstant> constants = DynamicEnumManager.listByEnumId(enumId);
+		if (constants == null) {
+			throw new RuntimeException("枚举[" + enumId + "]在类中的数据找不到.");
+		}
 
 		if (constantList.size() != constants.size()) {
 			throw new RuntimeException("枚举[" + enumId + "]元素数量不一致.");
