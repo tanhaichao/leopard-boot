@@ -69,6 +69,12 @@ public class DynamicEnumManager {
 		}
 	}
 
+	/**
+	 * 判断枚举元素是否存在
+	 * @param enumId 枚举ID
+	 * @param key 枚举元素key
+	 * @return
+	 */
 	public static boolean hasEnumConstant(String enumId, String key) {
 		List<EnumConstant> constantList = listByEnumId(enumId);
 		if (constantList != null) {
