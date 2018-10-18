@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -182,8 +183,10 @@ public class DynamicEnumManageController {
 	@Transactional
 	public boolean batchUpdate(DynamicEnumForm form, HttpServletRequest request) throws DynamicEnumNotFoundException, Exception {
 		checkDynamicEnumManageValidator();
-
 		String enumId = form.getEnumId();
+		if (StringUtils.isEmpty(enumId)) {
+			throw new IllegalArgumentException("枚举ID不能为空.");
+		}
 		List<DynamicEnumConstantForm> constantList = form.getConstantList();
 		if (!DynamicEnumManager.hasEnum(enumId)) {
 			throw new DynamicEnumNotFoundException(enumId);

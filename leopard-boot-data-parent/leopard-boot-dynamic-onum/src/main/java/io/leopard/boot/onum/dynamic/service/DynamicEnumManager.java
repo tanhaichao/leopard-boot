@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
+
 import io.leopard.boot.onum.dynamic.model.DynamicEnumDataVO;
 import io.leopard.boot.onum.dynamic.model.DynamicEnumInfo;
 import io.leopard.lang.inum.Bnum;
@@ -37,6 +39,9 @@ public class DynamicEnumManager {
 	}
 
 	public static void addBean(String enumId, String beanClassName) {
+		if (StringUtils.isEmpty(enumId)) {
+			throw new IllegalArgumentException("枚举ID不能为空.");
+		}
 		beanMap.put(enumId, beanClassName);
 	}
 
@@ -47,6 +52,9 @@ public class DynamicEnumManager {
 	 * @return
 	 */
 	public static boolean hasEnum(String enumId) {
+		if (StringUtils.isEmpty(enumId)) {
+			throw new IllegalArgumentException("枚举ID不能为空.");
+		}
 		return beanMap.containsKey(enumId);
 	}
 
@@ -57,6 +65,9 @@ public class DynamicEnumManager {
 	 * @return
 	 */
 	public static String getBeanClassName(String enumId) {
+		if (StringUtils.isEmpty(enumId)) {
+			throw new IllegalArgumentException("枚举ID不能为空.");
+		}
 		return beanMap.get(enumId);
 	}
 
