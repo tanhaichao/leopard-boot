@@ -107,7 +107,8 @@ public class OptionController {
 			return null;
 		}
 		List<OptionVO> optionVOList = optionDataResolver.resolve(enumId);
-		if (optionVOList == null || optionVOList.isEmpty()) {
+		// 允许返回empty list
+		if (optionVOList == null) {
 			return null;
 		}
 		List<Map<String, Object>> optionList = new ArrayList<>();
