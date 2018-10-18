@@ -214,6 +214,7 @@ public class DynamicEnumManageController {
 				this.dynamicEnumManageValidator.addEnumConstant(enumId, constantForm, operator, request);
 
 				DynamicEnumConstantEntity entity = BeanUtil.convert(constantForm, DynamicEnumConstantEntity.class);
+				entity.setEnumId(enumId);
 				entity.setPosition(position);
 				dynamicEnumService.add(entity, operator);
 			}
