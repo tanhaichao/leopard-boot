@@ -122,6 +122,7 @@ public class LeopardBeanPropertyRowMapper<T> implements RowMapper<T> {
 		if (String.class.equals(requiredType)) {
 			value = rs.getString(index);
 		}
+		//TODO 对象类型未支持null
 		else if (boolean.class.equals(requiredType) || Boolean.class.equals(requiredType)) {
 			value = rs.getBoolean(index);
 		}
