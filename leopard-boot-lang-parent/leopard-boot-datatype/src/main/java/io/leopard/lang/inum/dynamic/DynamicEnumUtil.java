@@ -16,7 +16,8 @@ public class DynamicEnumUtil {
 				return constructor;
 			}
 		}
-		throw new RuntimeException("获取不到动态枚举[" + clazz.getName() + "]默认构造函数.");
+		return null;
+		// throw new RuntimeException("获取不到动态枚举[" + clazz.getName() + "]默认构造函数.");
 	}
 
 	@SuppressWarnings("unchecked")
@@ -28,12 +29,17 @@ public class DynamicEnumUtil {
 		for (EnumConstant constant : list) {
 			E instance;
 			try {
-				// instance = (E) clazz.newInstance();
-				Object[] initargs = new Object[constructor.getParameterTypes().length];
-				if (initargs.length > 0) {
-					initargs[0] = constant.getKey();
+				if (constructor == null) {
+					instance = clazz.newInstance();
 				}
-				instance = (E) constructor.newInstance(initargs);
+				else {
+					// instance = (E) clazz.newInstance();
+					Object[] initargs = new Object[constructor.getParameterTypes().length];
+					if (initargs.length > 0) {
+						initargs[0] = constant.getKey();
+					}
+					instance = (E) constructor.newInstance(initargs);
+				}
 			}
 			catch (InstantiationException e) {
 				throw new RuntimeException(e.getMessage(), e);
@@ -66,12 +72,17 @@ public class DynamicEnumUtil {
 
 		E instance;
 		try {
-			// instance = (E) clazz.newInstance();
-			Object[] initargs = new Object[constructor.getParameterTypes().length];
-			if (initargs.length > 0) {
-				initargs[0] = constant.getKey();
+			if (constructor == null) {
+				instance = clazz.newInstance();
 			}
-			instance = (E) constructor.newInstance(initargs);
+			else {
+				// instance = (E) clazz.newInstance();
+				Object[] initargs = new Object[constructor.getParameterTypes().length];
+				if (initargs.length > 0) {
+					initargs[0] = constant.getKey();
+				}
+				instance = (E) constructor.newInstance(initargs);
+			}
 		}
 		catch (InstantiationException e) {
 			throw new RuntimeException(e.getMessage(), e);
