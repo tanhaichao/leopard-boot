@@ -25,8 +25,9 @@ public class DynamicEnumOptionDataResolver implements OptionDataResolver {
 			return null;
 		}
 		List<DynamicEnumConstantEntity> constantList = dynamicEnumService.list(enumId);
+		List<OptionVO> optionVOList = new ArrayList<>();
 		if (constantList == null) {
-			return null;
+			return optionVOList;
 		}
 
 		List<EnumConstant> constants = DynamicEnumManager.listByEnumId(enumId);
@@ -38,7 +39,6 @@ public class DynamicEnumOptionDataResolver implements OptionDataResolver {
 			throw new RuntimeException("枚举[" + enumId + "]元素数量不一致.");
 		}
 
-		List<OptionVO> optionVOList = new ArrayList<>();
 		if (constantList != null) {
 			for (DynamicEnumConstantEntity constant : constantList) {
 				OptionVO optionVO = new OptionVO();
