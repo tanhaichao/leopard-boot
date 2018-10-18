@@ -15,6 +15,7 @@ import io.leopard.boot.onum.dynamic.model.DynamicEnumConstantEntity;
 import io.leopard.boot.onum.dynamic.model.DynamicEnumConstantForm;
 import io.leopard.boot.onum.dynamic.model.DynamicEnumConstantVO;
 import io.leopard.boot.onum.dynamic.model.DynamicEnumDataVO;
+import io.leopard.boot.onum.dynamic.model.DynamicEnumForm;
 import io.leopard.boot.onum.dynamic.model.DynamicEnumVO;
 import io.leopard.boot.onum.dynamic.model.Operator;
 import io.leopard.boot.onum.dynamic.service.DynamicEnumManager;
@@ -181,8 +182,11 @@ public class DynamicEnumManageController {
 	@RequestMapping("batchUpdate")
 	@ResponseBody
 	@Transactional
-	public boolean batchUpdate(String enumId, List<DynamicEnumConstantForm> constantList, HttpServletRequest request) throws Exception {
+	public boolean batchUpdate(DynamicEnumForm form, HttpServletRequest request) throws Exception {
 		checkDynamicEnumManageValidator();
+
+		String enumId = form.getEnumId();
+		List<DynamicEnumConstantForm> constantList = form.getConstantList();
 
 		List<DynamicEnumConstantEntity> constantEntityList = dynamicEnumService.list(enumId);
 		// 数据库中的元素key列表
@@ -191,21 +195,21 @@ public class DynamicEnumManageController {
 		List<String> deleteKeyList = StreamUtil.getDeletedFieldValueList(constantList, DynamicEnumConstantForm::getKey, keyList);
 
 		int position = 1;
-		for (DynamicEnumConstantForm form : constantList) {
-			boolean contains = keyList.contains(form.getKey());
+		for (DynamicEnumConstantForm constantForm : constantList) {
+			boolean contains = keyList.contains(constantForm.getKey());
 			if (contains) {// 更新
 				Operator operator = new Operator();
-				this.dynamicEnumManageValidator.updateEnumConstant(enumId, form, operator, request);
+				this.dynamicEnumManageValidator.updateEnumConstant(enumId, constantForm, operator, request);
 
-				DynamicEnumConstantEntity entity = this.dynamicEnumService.get(enumId, form.getKey());
+				DynamicEnumConstantEntity entity = this.dynamicEnumService.get(enumId, constantForm.getKey());
 				BeanUtil.copyProperties(form, entity);
 				dynamicEnumService.update(entity, operator);
 			}
 			else {// 新增
 				Operator operator = new Operator();
-				this.dynamicEnumManageValidator.addEnumConstant(enumId, form, operator, request);
+				this.dynamicEnumManageValidator.addEnumConstant(enumId, constantForm, operator, request);
 
-				DynamicEnumConstantEntity entity = BeanUtil.convert(form, DynamicEnumConstantEntity.class);
+				DynamicEnumConstantEntity entity = BeanUtil.convert(constantForm, DynamicEnumConstantEntity.class);
 				entity.setPosition(position);
 				dynamicEnumService.add(entity, operator);
 			}
