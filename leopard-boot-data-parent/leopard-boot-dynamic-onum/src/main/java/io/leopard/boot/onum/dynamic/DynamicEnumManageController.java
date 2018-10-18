@@ -67,7 +67,7 @@ public class DynamicEnumManageController {
 		}
 
 		if (DynamicEnumManager.hasEnumConstant(enumId, form.getKey())) {
-			throw new RuntimeException("枚举元素[enumId:" + enumId + " key:" + form.getKey() + "]已存在.");
+			throw new DynamicEnumConstantExistedException(enumId, form.getKey());
 		}
 
 		DynamicEnumConstantEntity entity = new DynamicEnumConstantEntity();
