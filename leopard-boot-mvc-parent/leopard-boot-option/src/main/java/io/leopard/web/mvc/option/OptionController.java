@@ -98,7 +98,7 @@ public class OptionController {
 	/**
 	 * 解析动态枚举
 	 * 
-	 * @param enumId
+	 * @param enumId 枚举ID
 	 * @return
 	 * @throws Exception
 	 */
@@ -134,6 +134,14 @@ public class OptionController {
 		return fieldList;
 	}
 
+	/**
+	 * 批量获取枚举数据
+	 * 
+	 * @param idList 枚举ID列表
+	 * @return
+	 * @throws OptionNotFoundException
+	 * @throws Exception
+	 */
 	@RequestMapping("enum/list")
 	@ResponseBody
 	public Map<String, List<OptionVO>> list(List<String> idList) throws OptionNotFoundException, Exception {
