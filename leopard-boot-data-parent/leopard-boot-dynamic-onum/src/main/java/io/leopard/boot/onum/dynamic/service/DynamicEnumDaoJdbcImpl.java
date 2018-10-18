@@ -13,6 +13,8 @@ import io.leopard.boot.onum.dynamic.model.DynamicEnumConstantEntity;
 import io.leopard.boot.onum.dynamic.model.Operator;
 import io.leopard.jdbc.Jdbc;
 import io.leopard.jdbc.builder.InsertBuilder;
+import io.leopard.jdbc.builder.NullInsertBuilder;
+import io.leopard.jdbc.builder.NullUpdateBuilder;
 import io.leopard.jdbc.builder.UpdateBuilder;
 
 @Repository
@@ -64,11 +66,14 @@ public class DynamicEnumDaoJdbcImpl implements DynamicEnumDao {
 
 	@Override
 	public boolean add(DynamicEnumConstantEntity entity, Operator operator) {
-		InsertBuilder builder = new InsertBuilder(TABLE_NAME);
+		InsertBuilder builder = new NullInsertBuilder(TABLE_NAME);
 		builder.setString("enumId", entity.getEnumId());
 		builder.setString("key", entity.getKey());
 		builder.setString("desc", entity.getDesc());
+		builder.setString("remark", entity.getRemark());
 		builder.setInt("position", entity.getPosition());
+		builder.setDate("posttime", entity.getPosttime());
+		builder.setDate("lmodify", entity.getLmodify());
 		return jdbc.insertForBoolean(builder);
 		// return false;
 	}
@@ -81,9 +86,11 @@ public class DynamicEnumDaoJdbcImpl implements DynamicEnumDao {
 
 	@Override
 	public boolean update(DynamicEnumConstantEntity entity, Operator operator) {
-		UpdateBuilder builder = new UpdateBuilder(TABLE_NAME);
+		UpdateBuilder builder = new NullUpdateBuilder(TABLE_NAME);
 		builder.setString("desc", entity.getDesc());
 		builder.setInt("position", entity.getPosition());
+		builder.setString("remark", entity.getRemark());
+		builder.setDate("lmodify", entity.getLmodify());
 
 		builder.where.setString("enumId", entity.getEnumId());
 		builder.where.setString("key", entity.getKey());
