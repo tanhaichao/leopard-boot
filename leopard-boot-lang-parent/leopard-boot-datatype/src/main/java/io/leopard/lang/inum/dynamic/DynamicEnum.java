@@ -153,6 +153,7 @@ public class DynamicEnum<KEYTYPE> implements Onum<KEYTYPE, String> {
 
 	@Override
 	public String toString() {
-		return "key:" + this.key + " desc:" + this.desc + " parameters:" + this.constant.getParameterMap();
+		// return "key:" + this.key + " desc:" + this.desc + " parameters:" + this.constant.getParameterMap();
+		return "key:" + this.key + " desc:" + this.desc;
 	}
 }

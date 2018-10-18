@@ -1,6 +1,7 @@
 package io.leopard.lang.inum.dynamic;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,53 +28,28 @@ public class DynamicEnumUtil {
 		List<EnumConstant> list = DynamicEnum.allOf(clazz.getName());
 		List<E> result = new ArrayList<>();
 		for (EnumConstant constant : list) {
-			E instance;
-			try {
-				if (constructor == null) {
-					instance = clazz.newInstance();
-				}
-				else {
-					// instance = (E) clazz.newInstance();
-					Object[] initargs = new Object[constructor.getParameterTypes().length];
-					if (initargs.length > 0) {
-						initargs[0] = constant.getKey();
-					}
-					instance = (E) constructor.newInstance(initargs);
-				}
-			}
-			catch (InstantiationException e) {
-				throw new RuntimeException(e.getMessage(), e);
-			}
-			catch (IllegalAccessException e) {
-				throw new RuntimeException(e.getMessage(), e);
-			}
-			catch (InvocationTargetException e) {
-				throw new RuntimeException(e.getMessage(), e);
-			}
+			E instance = newInstance(clazz, constructor, constant);
 			result.add(instance);
 		}
 		return result;
 	}
 
-	/**
-	 * 根据ID转换为枚举(元素不存在会抛异常).
-	 * 
-	 * @param id
-	 * @param clazz
-	 * @return
-	 */
 	@SuppressWarnings("unchecked")
-	public static <E extends DynamicEnum<?>> E toEnum(Object key, Class<E> clazz) {
-		EnumConstant constant = DynamicEnum.getConstant(clazz.getName(), key);
-		if (constant == null) {
-			throw new EnumConstantInvalidException("枚举元素[" + key + "]不存在[" + clazz.getName() + "].");
-		}
-		Constructor<?> constructor = findConstructor(clazz);
-
+	protected static <E extends DynamicEnum<?>> E newInstance(Class<E> clazz, Constructor<?> constructor, EnumConstant constant) {
 		E instance;
 		try {
 			if (constructor == null) {
 				instance = clazz.newInstance();
+				{
+					Field keyField = DynamicEnum.class.getDeclaredField("key");
+					keyField.setAccessible(true);
+					keyField.set(instance, constant.getKey());
+				}
+				{
+					Field descField = DynamicEnum.class.getDeclaredField("desc");
+					descField.setAccessible(true);
+					descField.set(instance, constant.getDesc());
+				}
 			}
 			else {
 				// instance = (E) clazz.newInstance();
@@ -93,6 +69,30 @@ public class DynamicEnumUtil {
 		catch (InvocationTargetException e) {
 			throw new RuntimeException(e.getMessage(), e);
 		}
+		catch (NoSuchFieldException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		catch (SecurityException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		return instance;
+	}
+
+	/**
+	 * 根据ID转换为枚举(元素不存在会抛异常).
+	 * 
+	 * @param id
+	 * @param clazz
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public static <E extends DynamicEnum<?>> E toEnum(Object key, Class<E> clazz) {
+		EnumConstant constant = DynamicEnum.getConstant(clazz.getName(), key);
+		if (constant == null) {
+			throw new EnumConstantInvalidException("枚举元素[" + key + "]不存在[" + clazz.getName() + "].");
+		}
+		Constructor<?> constructor = findConstructor(clazz);
+		E instance = newInstance(clazz, constructor, constant);
 		return instance;
 	}
 }
