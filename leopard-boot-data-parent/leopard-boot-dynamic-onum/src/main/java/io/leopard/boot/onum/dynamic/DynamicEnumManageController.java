@@ -180,11 +180,14 @@ public class DynamicEnumManageController {
 	@RequestMapping("batchUpdate")
 	@ResponseBody
 	@Transactional
-	public boolean batchUpdate(DynamicEnumForm form, HttpServletRequest request) throws Exception {
+	public boolean batchUpdate(DynamicEnumForm form, HttpServletRequest request) throws DynamicEnumNotFoundException, Exception {
 		checkDynamicEnumManageValidator();
 
 		String enumId = form.getEnumId();
 		List<DynamicEnumConstantForm> constantList = form.getConstantList();
+		if (!DynamicEnumManager.hasEnum(enumId)) {
+			throw new DynamicEnumNotFoundException(enumId);
+		}
 
 		List<DynamicEnumConstantEntity> constantEntityList = dynamicEnumService.list(enumId);
 		// 数据库中的元素key列表
