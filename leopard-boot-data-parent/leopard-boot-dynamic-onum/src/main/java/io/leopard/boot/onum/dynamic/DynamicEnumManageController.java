@@ -53,11 +53,12 @@ public class DynamicEnumManageController {
 	 * 
 	 * @param enumId 枚举ID
 	 * @return
-	 * @throws Exception
+	 * @throws DynamicEnumNotFoundException
+	 * @throws DynamicEnumConstantExistedException
 	 */
 	@RequestMapping("add")
 	@ResponseBody
-	public boolean add(String enumId, DynamicEnumConstantForm form, HttpServletRequest request) throws Exception {
+	public boolean add(String enumId, DynamicEnumConstantForm form, HttpServletRequest request) throws DynamicEnumNotFoundException, DynamicEnumConstantExistedException, Exception {
 		checkDynamicEnumManageValidator();
 		Operator operator = new Operator();
 		this.dynamicEnumManageValidator.addEnumConstant(enumId, form, operator, request);
