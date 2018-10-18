@@ -6,11 +6,11 @@ package io.leopard.core.exception;
  * @author 阿海
  * 
  */
-public class ExistException extends LeopardException {
+public class ExistedException extends LeopardException {
 
 	private static final long serialVersionUID = 1L;
 
-	public ExistException(String message) {
+	public ExistedException(String message) {
 		super(message);
 	}
 }
