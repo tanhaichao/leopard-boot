@@ -177,7 +177,7 @@ public class DynamicEnumManageController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping("update")
+	@RequestMapping("batchUpdate")
 	@ResponseBody
 	@Transactional
 	public boolean batchUpdate(String enumId, List<DynamicEnumConstantForm> constantList, HttpServletRequest request) throws Exception {
