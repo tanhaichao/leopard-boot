@@ -18,6 +18,12 @@ import io.leopard.lang.inum.JsonField;
 import io.leopard.lang.inum.Onum;
 import io.leopard.lang.inum.SubEnum;
 
+/**
+ * 枚举数据查询(用于下拉框显示)
+ * 
+ * @author 谭海潮
+ *
+ */
 @Controller
 public class OptionController {
 
@@ -33,6 +39,14 @@ public class OptionController {
 	// return data;
 	// }
 
+	/**
+	 * 查询单个枚举数据
+	 * 
+	 * @param enumId 枚举ID
+	 * @return
+	 * @throws OptionNotFoundException
+	 * @throws Exception
+	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@RequestMapping("enum/{enumId}")
 	@ResponseBody
