@@ -2,6 +2,7 @@ package io.leopard.jdbc;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -136,11 +137,25 @@ public class LeopardBeanPropertyRowMapper<T> implements RowMapper<T> {
 		else if (long.class.equals(requiredType) || Long.class.equals(requiredType)) {
 			value = rs.getLong(index);
 		}
-		else if (float.class.equals(requiredType) || Float.class.equals(requiredType)) {
+		else if (float.class.equals(requiredType)) {
 			value = rs.getFloat(index);
 		}
-		else if (double.class.equals(requiredType) || Double.class.equals(requiredType) || Number.class.equals(requiredType)) {
+		else if (double.class.equals(requiredType)) {
 			value = rs.getDouble(index);
+		}
+		else if (Float.class.equals(requiredType)) {
+			BigDecimal decimal = rs.getBigDecimal(index);
+			if (decimal == null) {
+				return null;
+			}
+			return decimal.floatValue();
+		}
+		else if (Double.class.equals(requiredType) || Number.class.equals(requiredType)) {
+			BigDecimal decimal = rs.getBigDecimal(index);
+			if (decimal == null) {
+				return null;
+			}
+			return decimal.doubleValue();
 		}
 		else if (byte[].class.equals(requiredType)) {
 			value = rs.getBytes(index);
