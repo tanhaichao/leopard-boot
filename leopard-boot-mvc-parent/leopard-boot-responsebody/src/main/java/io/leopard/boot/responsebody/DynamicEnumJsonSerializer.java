@@ -29,6 +29,7 @@ public class DynamicEnumJsonSerializer extends StdSerializer<DynamicEnum<?>> {
 
 	@Override
 	public void serialize(DynamicEnum<?> onum, JsonGenerator generator, SerializerProvider provider) throws IOException {
+		// System.err.println("DynamicEnumJsonSerializer serialize:" + onum);
 		generator.writeStartObject();
 		generator.writeFieldName("key");
 		generator.writeObject(onum.getKey());
