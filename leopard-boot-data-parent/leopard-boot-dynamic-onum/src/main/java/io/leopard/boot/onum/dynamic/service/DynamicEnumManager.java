@@ -43,13 +43,19 @@ public class DynamicEnumManager {
 	/**
 	 * 是否有动态枚举
 	 * 
-	 * @param enumId
+	 * @param enumId 枚举ID
 	 * @return
 	 */
 	public static boolean hasEnum(String enumId) {
 		return beanMap.containsKey(enumId);
 	}
 
+	/**
+	 * 根据枚举ID获取类型
+	 * 
+	 * @param enumId 枚举ID
+	 * @return
+	 */
 	public static String getBeanClassName(String enumId) {
 		return beanMap.get(enumId);
 	}
@@ -71,6 +77,7 @@ public class DynamicEnumManager {
 
 	/**
 	 * 判断枚举元素是否存在
+	 * 
 	 * @param enumId 枚举ID
 	 * @param key 枚举元素key
 	 * @return
