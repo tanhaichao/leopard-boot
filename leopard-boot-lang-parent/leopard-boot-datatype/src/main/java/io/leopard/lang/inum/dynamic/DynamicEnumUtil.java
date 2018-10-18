@@ -16,7 +16,7 @@ public class DynamicEnumUtil {
 				return constructor;
 			}
 		}
-		throw new RuntimeException("获取不到动态枚举默认构造函数.");
+		throw new RuntimeException("获取不到动态枚举[" + clazz.getName() + "]默认构造函数.");
 	}
 
 	@SuppressWarnings("unchecked")
