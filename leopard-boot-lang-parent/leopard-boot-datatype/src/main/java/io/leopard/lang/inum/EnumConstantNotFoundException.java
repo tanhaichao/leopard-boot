@@ -10,8 +10,28 @@ public class EnumConstantNotFoundException extends EnumConstantInvalidException 
 
 	private static final long serialVersionUID = 1L;
 
+	private Object key;
+
+	private Class<?> enumClazz;
+
 	public EnumConstantNotFoundException(Object key, Class<?> enumClazz) {
 		super("枚举" + enumClazz.getSimpleName() + "元素[" + key + "]不存在[" + enumClazz.getName() + "].");
+	}
+
+	public Object getKey() {
+		return key;
+	}
+
+	public void setKey(Object key) {
+		this.key = key;
+	}
+
+	public Class<?> getEnumClazz() {
+		return enumClazz;
+	}
+
+	public void setEnumClazz(Class<?> enumClazz) {
+		this.enumClazz = enumClazz;
 	}
 
 }
