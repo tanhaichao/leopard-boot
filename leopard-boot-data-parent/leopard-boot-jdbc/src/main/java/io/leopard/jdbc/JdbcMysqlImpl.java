@@ -35,7 +35,11 @@ import io.leopard.lang.Paging;
 import io.leopard.lang.PagingImpl;
 import io.leopard.lang.datatype.Month;
 import io.leopard.lang.datatype.OnlyDate;
+import io.leopard.lang.inum.Bnum;
+import io.leopard.lang.inum.Inum;
 import io.leopard.lang.inum.Onum;
+import io.leopard.lang.inum.Snum;
+import io.leopard.lang.inum.dynamic.DynamicEnum;
 
 /**
  * Jdbc接口MySQL实现.
@@ -628,7 +632,36 @@ public class JdbcMysqlImpl implements Jdbc {
 				builder.setDate(fieldName, (Date) obj);
 			}
 			else if (List.class.equals(type)) {
-				builder.setString(fieldName, obj.toString());
+				builder.setList(fieldName, (List<?>) obj);
+				// builder.setString(fieldName, obj.toString());
+			}
+			else if (type.isEnum()) {
+				if (Snum.class.isAssignableFrom(type)) {
+					builder.setSnum(fieldName, (Snum) obj);
+				}
+				else if (Inum.class.isAssignableFrom(type)) {
+					builder.setEnum(fieldName, (Inum) obj);// TODO ?
+				}
+				else if (Bnum.class.isAssignableFrom(type)) {
+					builder.setEnum(fieldName, (Bnum) obj);// TODO ?
+				}
+				else {
+					throw new RuntimeException("未知枚举类型[" + type.getName() + "].");
+				}
+			}
+			else if (DynamicEnum.class.isAssignableFrom(type)) {
+				if (Snum.class.isAssignableFrom(type)) {
+					builder.setSnum(fieldName, (Snum) obj);
+				}
+				else if (Inum.class.isAssignableFrom(type)) {
+					builder.setEnum(fieldName, (Inum) obj);// TODO ?
+				}
+				else if (Bnum.class.isAssignableFrom(type)) {
+					builder.setEnum(fieldName, (Bnum) obj);// TODO ?
+				}
+				else {
+					throw new RuntimeException("未知动态枚举类型[" + type.getName() + "].");
+				}
 			}
 			else {
 				throw new InvalidDataAccessApiUsageException("未知数据类型[" + type.getName() + "].");
