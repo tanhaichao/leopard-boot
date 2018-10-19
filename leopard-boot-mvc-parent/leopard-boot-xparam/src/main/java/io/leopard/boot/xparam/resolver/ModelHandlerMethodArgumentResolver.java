@@ -267,8 +267,8 @@ public class ModelHandlerMethodArgumentResolver extends AbstractNamedValueMethod
 					return null;
 				}
 				else {
-					throw new NumberFormatException("参数(" + fieldName + ")枚举元素[" + value + "]不存在[" + type.getSimpleName() + "].");
-					// throw e;
+					// throw new NumberFormatException("参数(" + fieldName + ")枚举元素[" + value + "]不存在[" + type.getSimpleName() + "].");
+					throw e;
 				}
 			}
 		}
