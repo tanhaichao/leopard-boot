@@ -10,8 +10,14 @@ public class EnumConstantNotFoundException extends EnumConstantInvalidException 
 
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * 枚举元素key
+	 */
 	private Object key;
 
+	/**
+	 * 枚举类
+	 */
 	private Class<?> enumClazz;
 
 	public EnumConstantNotFoundException(Object key, Class<?> enumClazz) {
