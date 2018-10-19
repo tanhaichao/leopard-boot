@@ -30,7 +30,7 @@ public class DataSourceBuilder {
 	}
 
 	public static String getJdbcUrl(String host, int port, String database) {
-		String jdbcUrl = "jdbc:mysql://" + host + ":" + port + "/" + database + "?useUnicode=true&characterEncoding=UTF8&zeroDateTimeBehavior=convertToNull";// UTF8,utf8mb4
+		String jdbcUrl = "jdbc:mysql://" + host + ":" + port + "/" + database + "?useUnicode=true&characterEncoding=UTF8&useSSL=false&zeroDateTimeBehavior=convertToNull";// UTF8,utf8mb4
 		return jdbcUrl;
 	}
 
