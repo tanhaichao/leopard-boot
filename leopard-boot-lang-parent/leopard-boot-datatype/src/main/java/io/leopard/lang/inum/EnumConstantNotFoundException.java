@@ -22,6 +22,8 @@ public class EnumConstantNotFoundException extends EnumConstantInvalidException 
 
 	public EnumConstantNotFoundException(Object key, Class<?> enumClazz) {
 		super("枚举" + enumClazz.getSimpleName() + "元素[" + key + "]不存在[" + enumClazz.getName() + "].");
+		this.key = key;
+		this.enumClazz = enumClazz;
 	}
 
 	public Object getKey() {
