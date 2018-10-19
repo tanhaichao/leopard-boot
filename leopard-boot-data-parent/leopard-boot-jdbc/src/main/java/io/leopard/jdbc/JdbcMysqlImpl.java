@@ -23,6 +23,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 
 import io.leopard.jdbc.builder.InsertBuilder;
+import io.leopard.jdbc.builder.NullInsertBuilder;
 import io.leopard.jdbc.builder.ReplaceBuilder;
 import io.leopard.jdbc.builder.SqlBuilder;
 import io.leopard.jdbc.datasource.JdbcDataSource;
@@ -588,7 +589,7 @@ public class JdbcMysqlImpl implements Jdbc {
 
 	@Override
 	public boolean insert(String tableName, Object bean) {
-		InsertBuilder builder = new InsertBuilder(tableName);
+		InsertBuilder builder = new NullInsertBuilder(tableName);
 
 		Field[] fields = bean.getClass().getDeclaredFields();
 		for (Field field : fields) {
