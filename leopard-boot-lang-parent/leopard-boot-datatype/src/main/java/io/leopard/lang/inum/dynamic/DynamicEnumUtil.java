@@ -1,8 +1,6 @@
 package io.leopard.lang.inum.dynamic;
 
-import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +38,6 @@ public class DynamicEnumUtil {
 		return result;
 	}
 
-	@SuppressWarnings("unchecked")
 	protected static <E extends DynamicEnum<?>> E newInstance(Class<E> clazz, EnumConstant constant) {
 		E instance;
 		try {
