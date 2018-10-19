@@ -2,7 +2,7 @@ package io.leopard.jdbc.onum;
 
 import java.lang.reflect.Field;
 
-import io.leopard.lang.inum.EnumConstantInvalidException;
+import io.leopard.lang.inum.EnumConstantNotFoundException;
 import io.leopard.lang.inum.EnumUtil;
 
 /**
@@ -32,7 +32,8 @@ public class OnumResolverImpl implements OnumResolver {
 		}
 		if (onum == null) {
 			// System.err.println("key:" + key.getClass().getName());
-			throw new EnumConstantInvalidException("枚举元素[" + key + "]不存在[" + clazz.getName() + "].");
+			// throw new EnumConstantInvalidException("枚举元素[" + key + "]不存在[" + clazz.getName() + "].");
+			throw new EnumConstantNotFoundException(key, clazz);
 		}
 		return onum;
 	}
