@@ -38,6 +38,7 @@ public class ErrorUtil {
 	 * @param e
 	 * @return
 	 */
+	@Deprecated
 	public static String parseMessage(Throwable e) {
 		String message = _parseMessage(e);
 		if (message == null) {
@@ -107,7 +108,10 @@ public class ErrorUtil {
 	 * @param message
 	 * @return
 	 */
-	protected static String fillterDebugInfo(String message) {
+	public static String fillterDebugInfo(String message) {
+		if (message == null) {
+			return message;
+		}
 		message = message.replaceAll("\\[[^\\[]*?\\]", "");
 		return message.replaceAll("\\[.*?\\]", "");
 		// return message;
