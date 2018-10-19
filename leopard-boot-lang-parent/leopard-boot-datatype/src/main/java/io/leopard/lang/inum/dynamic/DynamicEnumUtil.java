@@ -21,7 +21,13 @@ public class DynamicEnumUtil {
 		// throw new RuntimeException("获取不到动态枚举[" + clazz.getName() + "]默认构造函数.");
 	}
 
-	@SuppressWarnings("unchecked")
+	public static <E extends DynamicEnum<?>> void print(Class<E> clazz) {
+		List<E> constantList = values(clazz);
+		for (E constant : constantList) {
+			System.err.println("key:" + constant.getKey() + " desc:" + constant.getDesc());
+		}
+	}
+
 	public static <E extends DynamicEnum<?>> List<E> values(Class<E> clazz) {
 		Constructor<?> constructor = findConstructor(clazz);
 		// System.err.println("constructor:" + constructor.toGenericString());
