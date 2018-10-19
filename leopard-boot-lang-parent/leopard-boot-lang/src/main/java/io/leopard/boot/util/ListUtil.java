@@ -2,6 +2,7 @@ package io.leopard.boot.util;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -577,6 +578,32 @@ public class ListUtil {
 			list.add(str);
 		}
 		return list;
+	}
+
+	/**
+	 * 检查元素是否唯一
+	 * 
+	 * @param list
+	 */
+	public static void checkUniqueElement(List<?> list) {
+		checkUniqueElement(list, "列表不唯一.");
+	}
+
+	/**
+	 * 检查元素是否唯一
+	 * 
+	 * @param list
+	 * @message 错误提示信息
+	 */
+	public static void checkUniqueElement(List<?> list, String message) {
+		if (list == null || list.isEmpty()) {
+			return;
+		}
+		Set<?> set = new HashSet<>(list);
+		boolean unique = list.size() == set.size();
+		if (!unique) {
+			throw new IllegalArgumentException(message);
+		}
 	}
 
 	/**
