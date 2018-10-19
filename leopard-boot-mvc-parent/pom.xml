@@ -22,5 +22,6 @@
 		<module>leopard-boot-fileupload</module>
 		<module>leopard-boot-mvc-json</module>
 		<module>leopard-boot-option</module>
+		<module>leopard-boot-role</module>
 	</modules>
 </project>
