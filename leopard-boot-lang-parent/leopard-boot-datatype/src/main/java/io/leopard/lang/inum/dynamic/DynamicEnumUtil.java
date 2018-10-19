@@ -4,7 +4,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.leopard.lang.inum.EnumConstantInvalidException;
+import io.leopard.lang.inum.EnumConstantNotFoundException;
 
 public class DynamicEnumUtil {
 
@@ -87,7 +87,7 @@ public class DynamicEnumUtil {
 	public static <E extends DynamicEnum<?>> E toEnum(Object key, Class<E> clazz) {
 		EnumConstant constant = DynamicEnum.getConstant(clazz.getName(), key);
 		if (constant == null) {
-			throw new EnumConstantInvalidException("枚举元素[" + key + "]不存在[" + clazz.getName() + "].");
+			throw new EnumConstantNotFoundException(key, clazz);
 		}
 		// Constructor<?> constructor = findConstructor(clazz);
 		E instance = newInstance(clazz, constant);
