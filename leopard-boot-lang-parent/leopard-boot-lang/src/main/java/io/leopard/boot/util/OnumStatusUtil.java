@@ -36,7 +36,7 @@ public class OnumStatusUtil {
 	 * @param statusList 状态列表
 	 * @throws StatusForbiddenException
 	 */
-	public static <E extends Onum<?, String>> void isWithin(E currentStatus, E errorStatus, @SuppressWarnings("unchecked") E... statusList) throws StatusForbiddenException {
+	public static <E extends Onum<?, String>> void within(E currentStatus, E errorStatus, @SuppressWarnings("unchecked") E... statusList) throws StatusForbiddenException {
 		if (currentStatus == null) {
 			throw new StatusForbiddenException("当前状态不允许为空.");
 		}
