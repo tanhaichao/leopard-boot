@@ -6,6 +6,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,6 +35,8 @@ import io.leopard.lang.util.BeanUtil;
 @Controller
 @RequestMapping("/dynamicEnum/manage/")
 public class DynamicEnumManageController {
+
+	protected Log logger = LogFactory.getLog(this.getClass());
 
 	@Autowired
 	private DynamicEnumService dynamicEnumService;
@@ -201,13 +205,12 @@ public class DynamicEnumManageController {
 		int position = 1;
 		for (DynamicEnumConstantForm constantForm : constantList) {
 			boolean contains = keyList.contains(constantForm.getKey());
-			// System.err.println("key:" + key + " contains:" + contains + " keyList:" + keyList);
+			// logger.info("batchUpdate key:" + constantForm.getKey() + " contains:" + contains + " keyList:" + keyList);
 			if (contains) {// 更新
 				Operator operator = new Operator();
 				this.dynamicEnumManageValidator.updateEnumConstant(enumId, constantForm, operator, request);
-
 				DynamicEnumConstantEntity entity = this.dynamicEnumService.get(enumId, constantForm.getKey());
-				BeanUtil.copyProperties(form, entity);
+				BeanUtil.copyProperties(constantForm, entity);
 				dynamicEnumService.update(entity, operator);
 			}
 			else {// 新增
