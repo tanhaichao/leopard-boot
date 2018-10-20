@@ -51,9 +51,9 @@ public class PassportInterceptor implements HandlerInterceptor {
 			return true;
 		}
 
-		if (uri.indexOf("/enum/") == -1) {
-			logger.info("preHandle:" + uri);
-		}
+		// if (uri.indexOf("/enum/") == -1) {
+		// logger.info("preHandle:" + uri);
+		// }
 		List<PassportValidator> passportValidatorList = passportValidatorFinder.find(request, handler);
 		for (PassportValidator validator : passportValidatorList) {
 			Object account = PassportUtil.validateAndStore(validator, request, response);
