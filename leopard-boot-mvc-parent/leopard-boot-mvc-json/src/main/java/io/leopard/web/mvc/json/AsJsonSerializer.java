@@ -236,6 +236,9 @@ public abstract class AsJsonSerializer<T> extends AbstractJsonSerializer<Object>
 	 * @return
 	 */
 	protected Object _get(T value, JsonGenerator gen, Field field) {
+		if (value == null) {
+			return null;
+		}
 		Class<?> type = value.getClass();
 		if (type.equals(String.class)) {
 			String str = (String) value;
