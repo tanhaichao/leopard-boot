@@ -11,6 +11,7 @@ import io.leopard.lang.inum.Onum;
  */
 public class OnumStatusUtil {
 
+	
 	/**
 	 * 判断当前状态是等于某个状态
 	 * 
