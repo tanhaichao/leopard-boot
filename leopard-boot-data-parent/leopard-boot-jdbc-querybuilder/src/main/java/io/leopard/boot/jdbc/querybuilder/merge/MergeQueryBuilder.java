@@ -16,8 +16,14 @@ public class MergeQueryBuilder extends SearchBuilder {
 
 	private static final String UNION_TABLE_ALIAS = "a";// 表别名
 
-	public MergeQueryBuilder() {
+	private List<String> columnNameList;
+
+	public MergeQueryBuilder(String... columnNames) {
 		this.tableAlias = UNION_TABLE_ALIAS + ".";
+		columnNameList = new ArrayList<>();
+		for (String columnName : columnNames) {
+			columnNameList.add(columnName);
+		}
 	}
 
 	/**
@@ -26,7 +32,7 @@ public class MergeQueryBuilder extends SearchBuilder {
 	private List<TableQuery> tableQueryList = new ArrayList<>();
 
 	public TableQuery addTable(String tableName) {
-		TableQuery table = new TableQuery(tableName);
+		TableQuery table = new TableQuery(tableName, columnNameList);
 		tableQueryList.add(table);
 		return table;
 	}

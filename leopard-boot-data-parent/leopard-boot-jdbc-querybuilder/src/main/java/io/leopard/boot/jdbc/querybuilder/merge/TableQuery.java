@@ -1,6 +1,7 @@
 package io.leopard.boot.jdbc.querybuilder.merge;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -20,8 +21,11 @@ public class TableQuery {
 	 */
 	private String tableName;
 
-	public TableQuery(String tableName) {
+	List<String> columnNameList;
+
+	public TableQuery(String tableName, List<String> columnNameList) {
 		this.tableName = tableName;
+		this.columnNameList = columnNameList;
 	}
 
 	/**
@@ -29,57 +33,52 @@ public class TableQuery {
 	 */
 	private Map<String, String> columnMap = new LinkedHashMap<>();
 
-	public TableQuery column(String alias) {
-		if (StringUtils.isEmpty(alias)) {
-			throw new IllegalArgumentException("alias不能为空.");
-		}
-		columnMap.put(alias, null);
-		return this;
-	}
-
-	public TableQuery columns(String... columnNames) {
-		for (String columnName : columnNames) {
-			this.column(columnName);
-		}
-		return this;
-	}
-
-	public TableQuery column(String alias, String columnName) {
+	public TableQuery alias(String columnName, String alias) {
 		if (StringUtils.isEmpty(alias)) {
 			throw new IllegalArgumentException("alias不能为空.");
 		}
 		if (StringUtils.isEmpty(columnName)) {
 			throw new IllegalArgumentException("columnName不能为空.");
 		}
-		columnMap.put(alias, "`" + columnName + "`");
+		columnMap.put(columnName, "`" + alias + "`");
 		return this;
 	}
 
-	public TableQuery column(String alias, Snum snum) {
-		if (StringUtils.isEmpty(alias)) {
-			throw new IllegalArgumentException("alias不能为空.");
+	public TableQuery literal(String columnName, String str) {
+		columnMap.put(columnName, str);
+		return this;
+	}
+
+	/**
+	 * 设置字面量
+	 * 
+	 * @param alias
+	 * @param snum
+	 * @return
+	 */
+	public TableQuery literal(String columnName, Snum snum) {
+		if (StringUtils.isEmpty(columnName)) {
+			throw new IllegalArgumentException("列名不能为空.");
 		}
-		columnMap.put(alias, "'" + snum.getKey() + "'");
+		columnMap.put(columnName, "'" + snum.getKey() + "'");
 		return this;
 	}
 
 	public String toSql() {
-		if (columnMap.isEmpty()) {
-			throw new IllegalArgumentException("列名不允许为空.");
-		}
+
 		StringBuilder sb = new StringBuilder();
 		sb.append("select ");
 		int index = 0;
-		for (Entry<String, String> entry : columnMap.entrySet()) {
-			String alias = entry.getKey();
-			String value = entry.getValue();
+		for (String columnName : columnNameList) {
+			String value = columnMap.get(columnName);
+			// System.err.println("columnName:" + columnName + " value:" + value);
 			if (index > 0) {
 				sb.append(", ");
 			}
 			if (value != null) {
 				sb.append(value).append(" as ");
 			}
-			sb.append("`" + alias + "`");
+			sb.append("`" + columnName + "`");
 			index++;
 		}
 		sb.append(" from `" + tableName + "`");
