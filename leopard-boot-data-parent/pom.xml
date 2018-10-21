@@ -17,5 +17,6 @@
 
 		<module>leopard-boot-snowflake</module>
 		<module>leopard-boot-dynamic-onum</module>
+		<module>leopard-boot-jdbc-querybuilder</module>
 	</modules>
 </project>
