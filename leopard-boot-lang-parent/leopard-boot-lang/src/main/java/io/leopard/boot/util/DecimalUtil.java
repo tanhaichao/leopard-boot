@@ -213,7 +213,7 @@ public class DecimalUtil {
 	}
 
 	/**
-	 * 提供精确的减法运算。
+	 * 提供精确的减法运算(v1-v2)。
 	 * 
 	 * @param v1 被减数
 	 * @param v2 减数
