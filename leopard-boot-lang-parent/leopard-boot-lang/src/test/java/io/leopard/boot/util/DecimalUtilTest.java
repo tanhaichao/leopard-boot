@@ -11,4 +11,10 @@ public class DecimalUtilTest {
 		DecimalUtil.isSecure(100.0);
 	}
 
+	@Test
+	public void subtract() {
+		double num = DecimalUtil.subtract(1, 2);
+		System.out.println("num:" + num);
+	}
+
 }
