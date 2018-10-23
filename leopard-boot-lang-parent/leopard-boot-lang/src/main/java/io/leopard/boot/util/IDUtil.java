@@ -22,7 +22,7 @@ public class IDUtil {
 	 * @param message 异常提示信息
 	 * @return
 	 */
-	public static <R, T> void isUniqueIdIgnoreEmpty(List<T> list, Function<? super T, ? extends R> mapper, String message) {
+	public static <R, T> void checkUniqueIdIgnoreEmpty(List<T> list, Function<? super T, ? extends R> mapper, String message) {
 		if (list == null || list.isEmpty()) {
 			return;
 		}

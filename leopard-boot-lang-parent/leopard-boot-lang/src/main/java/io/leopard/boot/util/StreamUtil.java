@@ -17,14 +17,14 @@ import java.util.stream.Collectors;
 public class StreamUtil {
 
 	/**
-	 * 检查元素是否唯一(忽略空值)
+	 * 检查元素是否唯一
 	 * 
 	 * @param list
 	 * @param mapper
 	 * @param message 异常提示信息
 	 * @return
 	 */
-	public static <R, T> void checkUniqueIdIgnoreEmpty(List<T> list, Function<? super T, ? extends R> mapper, String message) {
+	public static <R, T> void checkUniqueElement(List<T> list, Function<? super T, ? extends R> mapper, String message) {
 		if (list == null || list.isEmpty()) {
 			return;
 		}
