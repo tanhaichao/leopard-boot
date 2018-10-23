@@ -35,8 +35,10 @@ public class IDUtil {
 			}
 		}
 		Set<R> idSet = new HashSet<>(idList);
-		boolean unique = list.size() == idSet.size();
+		boolean unique = idList.size() == idSet.size();
 		if (!unique) {
+			// System.err.println("idList:" + idList);
+			// System.err.println("idSet:" + idSet);
 			throw new IllegalArgumentException(message);
 		}
 	}
