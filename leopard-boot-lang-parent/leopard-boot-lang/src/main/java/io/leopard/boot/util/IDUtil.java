@@ -1,5 +1,6 @@
 package io.leopard.boot.util;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -14,6 +15,22 @@ import java.util.stream.Collectors;
  *
  */
 public class IDUtil {
+
+	/**
+	 * 获取ID属性列表
+	 * 
+	 * @param list
+	 * @param mapper
+	 * @return
+	 */
+	public static <R, T> List<R> getIdList(List<T> list, Function<? super T, ? extends R> mapper) {
+		if (list == null) {
+			return new ArrayList<>();
+		}
+		List<R> idList = list.stream().map(mapper).collect(Collectors.toList());
+		return idList;
+	}
+
 	/**
 	 * 检查元素是否唯一(忽略空值)
 	 * 

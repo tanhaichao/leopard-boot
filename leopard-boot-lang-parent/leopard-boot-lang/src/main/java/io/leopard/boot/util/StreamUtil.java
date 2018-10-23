@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -16,24 +15,24 @@ import java.util.stream.Collectors;
  */
 public class StreamUtil {
 
-	/**
-	 * 检查元素是否唯一
-	 * 
-	 * @param list
-	 * @param mapper
-	 * @param message 异常提示信息
-	 * @return
-	 */
-	public static <R, T> void checkUniqueElement(List<T> list, Function<? super T, ? extends R> mapper, String message) {
-		if (list == null || list.isEmpty()) {
-			return;
-		}
-		Set<R> fieldValueSet = list.stream().map(mapper).collect(Collectors.toSet());
-		boolean unique = list.size() == fieldValueSet.size();
-		if (!unique) {
-			throw new IllegalArgumentException(message);
-		}
-	}
+	// /**
+	// * 检查元素是否唯一
+	// *
+	// * @param list
+	// * @param mapper
+	// * @param message 异常提示信息
+	// * @return
+	// */
+	// public static <R, T> void checkUniqueElement(List<T> list, Function<? super T, ? extends R> mapper, String message) {
+	// if (list == null || list.isEmpty()) {
+	// return;
+	// }
+	// Set<R> fieldValueSet = list.stream().map(mapper).collect(Collectors.toSet());
+	// boolean unique = list.size() == fieldValueSet.size();
+	// if (!unique) {
+	// throw new IllegalArgumentException(message);
+	// }
+	// }
 
 	/**
 	 * 获取某个属性列表
