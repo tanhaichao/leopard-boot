@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public class StreamUtil {
 
 	/**
-	 * 检查元素是否唯一
+	 * 检查元素是否唯一(忽略空值)
 	 * 
 	 * @param list
 	 * @param mapper
