@@ -15,6 +15,7 @@ public class RelatedQueryBuilder extends SearchBuilder {
 	protected String generateSelectSQL(StatementParameter param) {
 		String selectSql = "select * from (" + subSelectSql + ") aa";
 		String searchSql = generateSearchSQL(param);
+		// System.err.println("searchSql:"+searchSql);
 		return selectSql + searchSql;
 	}
 
