@@ -8,13 +8,11 @@ import org.springframework.util.StringUtils;
 public class CountSqlParser {
 
 	protected final String sql;
-
 	private final StatementParameter param;
 
 	protected String countSql;
 
 	private Integer start;
-
 	private Integer size;
 
 	public CountSqlParser(String sql, StatementParameter param) {
@@ -25,15 +23,12 @@ public class CountSqlParser {
 	}
 
 	private static final Pattern LIMIT_PATTERN = Pattern.compile(" limit .*$", Pattern.CASE_INSENSITIVE);
-
 	private static final Pattern ORDERBY_PATTERN = Pattern.compile(" order by .*$", Pattern.CASE_INSENSITIVE);
 
 	protected void parse() {
 		String sql = this.sql;
 		sql = sql.replaceFirst("select .*? from", "select count(*) from");
-		if (this.sql.equals(sql)) {
-			sql = sql.replaceFirst("SELECT .*? FROM", "SELECT count(*) FROM");
-		}
+		sql = sql.replaceFirst("SELECT .*? FROM", "SELECT count(*) FROM");
 		this.parsePostfix(sql);
 	}
 
