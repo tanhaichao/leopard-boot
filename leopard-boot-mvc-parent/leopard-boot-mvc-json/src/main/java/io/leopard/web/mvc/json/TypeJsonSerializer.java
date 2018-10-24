@@ -55,7 +55,7 @@ public abstract class TypeJsonSerializer<KEY, VALUE, TYPE> extends AdditionalFie
 			return null;
 		}
 
-		VALUE value = this.getData(type, id);
+		VALUE value = this.get(type, id);
 		AdditionalField<VALUE> field = new AdditionalField<VALUE>();
 		field.setFieldName(additionalFieldName);
 		field.setValue(value);
@@ -83,5 +83,5 @@ public abstract class TypeJsonSerializer<KEY, VALUE, TYPE> extends AdditionalFie
 	 * 
 	 * @return
 	 */
-	protected abstract VALUE getData(TYPE type, KEY id);
+	protected abstract VALUE get(TYPE type, KEY id);
 }
