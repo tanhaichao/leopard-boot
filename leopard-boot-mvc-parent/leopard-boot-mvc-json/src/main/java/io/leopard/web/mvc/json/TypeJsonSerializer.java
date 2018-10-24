@@ -20,6 +20,34 @@ import io.leopard.web.mvc.json.model.AdditionalField;
 public abstract class TypeJsonSerializer<KEY, VALUE, TYPE> extends AdditionalFieldJsonSerializer<KEY, VALUE> {
 	protected static Log logger = LogFactory.getLog(TypeJsonSerializer.class);
 
+	/**
+	 * 类型属性名称
+	 */
+	protected String typeFieldName;
+
+	/**
+	 * 追加的属性名称
+	 * 
+	 * @return
+	 */
+	protected String additionalFieldName;
+
+	/**
+	 * 
+	 * @param typeFieldName 类型属性名称
+	 * @param additionalFieldName 追加的属性名称
+	 */
+	public TypeJsonSerializer(String typeFieldName, String additionalFieldName) {
+		if (StringUtils.isEmpty(typeFieldName)) {
+			throw new RuntimeException("类型属性名称不能为空.");
+		}
+		if (StringUtils.isEmpty(additionalFieldName)) {
+			throw new RuntimeException("追加的属性名称不能为空.");
+		}
+		this.typeFieldName = typeFieldName;
+		this.additionalFieldName = additionalFieldName;
+	}
+
 	@Override
 	protected AdditionalField<VALUE> getAdditionalField(KEY id, JsonGenerator gen) throws Exception {
 		TYPE type = parseType(gen);
@@ -27,10 +55,9 @@ public abstract class TypeJsonSerializer<KEY, VALUE, TYPE> extends AdditionalFie
 			return null;
 		}
 
-		String fieldName = this.getAdditionalFieldName(type);
 		VALUE value = this.getData(type, id);
 		AdditionalField<VALUE> field = new AdditionalField<VALUE>();
-		field.setFieldName(fieldName);
+		field.setFieldName(additionalFieldName);
 		field.setValue(value);
 		return field;
 	}
@@ -39,10 +66,6 @@ public abstract class TypeJsonSerializer<KEY, VALUE, TYPE> extends AdditionalFie
 	 * 解析类型
 	 */
 	protected TYPE parseType(JsonGenerator gen) throws NoSuchFieldException, SecurityException, IllegalAccessException {
-		String typeFieldName = this.getTypeFieldName();
-		if (StringUtils.isEmpty(typeFieldName)) {
-			throw new RuntimeException("类型属性名称不能为空.");
-		}
 		Object currentValue = gen.getOutputContext().getCurrentValue();
 		if (currentValue == null) {
 			return null;
@@ -54,20 +77,6 @@ public abstract class TypeJsonSerializer<KEY, VALUE, TYPE> extends AdditionalFie
 		TYPE type = (TYPE) field.get(currentValue);
 		return type;
 	}
-
-	/**
-	 * 获取类型属性名称
-	 * 
-	 * @return
-	 */
-	protected abstract String getTypeFieldName();
-
-	/**
-	 * 获取追加的属性名称
-	 * 
-	 * @return
-	 */
-	protected abstract String getAdditionalFieldName(TYPE type);
 
 	/**
 	 * 获取附加属性值
