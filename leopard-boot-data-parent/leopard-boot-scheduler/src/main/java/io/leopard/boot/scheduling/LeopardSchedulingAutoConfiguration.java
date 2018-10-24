@@ -9,10 +9,11 @@ import org.springframework.scheduling.config.TaskManagementConfigUtils;
 
 public class LeopardSchedulingAutoConfiguration {
 
-	@Conditional(SchedulerCondition.class)
+	@Conditional(HasTimerCondition.class)
 	@Bean(name = TaskManagementConfigUtils.SCHEDULED_ANNOTATION_PROCESSOR_BEAN_NAME)
 	@Role(BeanDefinition.ROLE_INFRASTRUCTURE)
 	public ScheduledAnnotationBeanPostProcessor scheduledAnnotationProcessor() {
+		// new Exception("new ScheduledAnnotationBeanPostProcessor").printStackTrace();
 		return new ScheduledAnnotationBeanPostProcessor();
 	}
 

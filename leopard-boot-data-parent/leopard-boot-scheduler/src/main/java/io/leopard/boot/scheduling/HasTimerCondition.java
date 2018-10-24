@@ -10,7 +10,13 @@ import org.springframework.context.annotation.Condition;
 import org.springframework.context.annotation.ConditionContext;
 import org.springframework.core.type.AnnotatedTypeMetadata;
 
-public class SchedulerCondition implements Condition {
+/**
+ * 判断是否有定时器的Bean
+ * 
+ * @author 谭海潮
+ *
+ */
+public class HasTimerCondition implements Condition {
 
 	protected Log logger = LogFactory.getLog(this.getClass());
 
