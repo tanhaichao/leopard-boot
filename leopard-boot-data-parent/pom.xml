@@ -19,5 +19,6 @@
 		<module>leopard-boot-dynamic-onum</module>
 		<module>leopard-boot-jdbc-querybuilder</module>
 		<module>leopard-boot-scheduler</module>
+		<module>leopard-boot-condition</module>
 	</modules>
 </project>
