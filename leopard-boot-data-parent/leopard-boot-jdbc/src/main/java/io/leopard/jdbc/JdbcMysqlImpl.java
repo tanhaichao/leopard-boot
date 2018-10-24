@@ -493,9 +493,6 @@ public class JdbcMysqlImpl implements Jdbc {
 	}
 
 	@Override
-	/**
-	 * @see io.leopard.data.jdbc.Jdbc#updateForBoolean(String, Object...)
-	 */
 	public boolean updateForBoolean(String sql, Object... params) {
 		return this.updateForBoolean(sql, toStatementParameter(sql, params));
 	}
@@ -540,6 +537,11 @@ public class JdbcMysqlImpl implements Jdbc {
 	@Override
 	public int update(SqlBuilder builder) {
 		return this.update(builder.getSql(), builder.getParam());
+	}
+
+	@Override
+	public int update(String sql, Object... params) {
+		return this.update(sql, toStatementParameter(sql, params));
 	}
 
 	@Override

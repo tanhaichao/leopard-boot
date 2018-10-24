@@ -525,9 +525,17 @@ public interface Jdbc {
 	 * 执行更新sql.
 	 * 
 	 * @param sql
-	 * @return 成功返回1,失败返回0.
+	 * @return 返回更新成功的记录数
 	 */
 	int update(String sql);
+
+	/**
+	 * 执行更新sql.
+	 * 
+	 * @param sql
+	 * @return 返回更新成功的记录数
+	 */
+	int update(String sql, Object... params);
 
 	/**
 	 * 执行插入sql,并返回id.
@@ -603,4 +611,5 @@ public interface Jdbc {
 	<T> Page<T> queryForPage(String sql, Class<T> elementType, StatementParameter param, int start, int size);
 
 	void destroy();
+
 }

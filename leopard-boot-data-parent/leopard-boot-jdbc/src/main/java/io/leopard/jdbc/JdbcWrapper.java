@@ -363,4 +363,9 @@ public class JdbcWrapper implements Jdbc {
 		this.getJdbc().destroy();
 	}
 
+	@Override
+	public int update(String sql, Object... params) {
+		return this.getJdbc().update(sql, params);
+	}
+
 }
