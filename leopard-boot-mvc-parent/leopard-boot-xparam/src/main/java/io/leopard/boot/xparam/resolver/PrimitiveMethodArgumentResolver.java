@@ -1,6 +1,8 @@
 package io.leopard.boot.xparam.resolver;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +30,22 @@ import io.leopard.boot.requestbody.RequestBodyParser;
 public class PrimitiveMethodArgumentResolver extends AbstractNamedValueMethodArgumentResolver implements XParamResolver {
 	protected Log logger = LogFactory.getLog(this.getClass());
 
+	private static final Set<Class<?>> SUPPORT_TYPE_SET = new HashSet<>();
+	static {
+		SUPPORT_TYPE_SET.add(long.class);
+		SUPPORT_TYPE_SET.add(Long.class);
+		SUPPORT_TYPE_SET.add(int.class);
+		SUPPORT_TYPE_SET.add(Integer.class);
+		SUPPORT_TYPE_SET.add(float.class);
+		SUPPORT_TYPE_SET.add(Float.class);
+		SUPPORT_TYPE_SET.add(double.class);
+		SUPPORT_TYPE_SET.add(Double.class);
+		SUPPORT_TYPE_SET.add(boolean.class);
+		SUPPORT_TYPE_SET.add(Boolean.class);
+		SUPPORT_TYPE_SET.add(Date.class);
+		SUPPORT_TYPE_SET.add(String.class);
+	}
+
 	@Override
 	public boolean supportsParameter(MethodParameter parameter) {
 		RequestParam ann = parameter.getParameterAnnotation(RequestParam.class);
@@ -37,28 +55,7 @@ public class PrimitiveMethodArgumentResolver extends AbstractNamedValueMethodArg
 		// logger.info("supportsParameter name:" + parameter.getParameterName() + " clazz:" + parameter.getParameterType());
 
 		Class<?> clazz = parameter.getParameterType();
-		if (clazz.equals(long.class) || clazz.equals(Long.class)) {
-			return true;
-		}
-		else if (clazz.equals(int.class) || clazz.equals(Integer.class)) {
-			return true;
-		}
-		else if (clazz.equals(double.class) || clazz.equals(Double.class)) {
-			return true;
-		}
-		else if (clazz.equals(float.class) || clazz.equals(Float.class)) {
-			return true;
-		}
-		else if (clazz.equals(boolean.class) || clazz.equals(Boolean.class)) {
-			return true;
-		}
-		else if (clazz.equals(Date.class)) {
-			return true;
-		}
-		else if (clazz.equals(String.class)) {
-			return true;
-		}
-		return false;
+		return SUPPORT_TYPE_SET.contains(clazz);
 	}
 
 	@Override
