@@ -368,4 +368,14 @@ public class JdbcWrapper implements Jdbc {
 		return this.getJdbc().update(sql, params);
 	}
 
+	@Override
+	public <V extends Number> Map<String, V> queryForMap(String sql, Class<V> valueClazz) {
+		return this.getJdbc().queryForMap(sql, valueClazz);
+	}
+
+	@Override
+	public <V extends Number> Map<String, V> queryForMap(String sql, Class<V> valueClazz, Object... params) {
+		return this.getJdbc().queryForMap(sql, valueClazz, params);
+	}
+
 }
