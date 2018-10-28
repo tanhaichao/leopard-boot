@@ -818,4 +818,24 @@ public class JdbcMysqlImpl implements Jdbc {
 			// TODO
 		}
 	}
+
+	@Override
+	public <V extends Number> Map<String, V> queryForMap(String sql, Class<V> valueClazz) {
+		try {
+			return this.getJdbcTemplate().queryForObject(sql, new CountColumnMapRowMapper<>());
+		}
+		catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+
+	@Override
+	public <V extends Number> Map<String, V> queryForMap(String sql, Class<V> valueClazz, Object... params) {
+		try {
+			return this.getJdbcTemplate().queryForObject(sql, new CountColumnMapRowMapper<>(), toStatementParameter(sql, params));
+		}
+		catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
 }

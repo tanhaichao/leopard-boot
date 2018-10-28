@@ -610,6 +610,22 @@ public interface Jdbc {
 	 */
 	<T> Page<T> queryForPage(String sql, Class<T> elementType, StatementParameter param, int start, int size);
 
+	/**
+	 * 根据sql查询数据，返回Map对象.
+	 * 
+	 * @param sql
+	 * @param valueClazz Map的Value类型
+	 */
+	<V extends Number> Map<String, V> queryForMap(String sql, Class<V> valueClazz);
+
+	/**
+	 * 根据sql查询数据，返回Map对象.
+	 * 
+	 * @param sql
+	 * @param valueClazz Map的Value类型
+	 */
+	<V extends Number> Map<String, V> queryForMap(String sql, Class<V> valueClazz, Object... params);
+
 	void destroy();
 
 }
