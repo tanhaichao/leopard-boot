@@ -117,12 +117,39 @@ public class ModelHandlerMethodArgumentResolver extends AbstractNamedValueMethod
 		return bean;
 	}
 
+	@SuppressWarnings("unchecked")
 	protected Object toList(String fieldName, Class<?> subType, HttpServletRequest req) {
-		if (true) {
-			String[] values = req.getParameterValues(fieldName);
-			if (values == null) {
-				return null;
+		String[] values = req.getParameterValues(fieldName);
+		if (values == null) {
+			return null;
+		}
+		if (subType.equals(String.class)) {
+			List<String> list = new ArrayList<>();
+			for (String value : values) {
+				list.add(value);
 			}
+			return list;
+		}
+		else if (subType.equals(Integer.class)) {
+			throw new NotImplementedException("List<Integer>未实现.");
+		}
+		else if (subType.equals(Long.class)) {
+			throw new NotImplementedException("List<Long>未实现.");
+		}
+		else if (subType.equals(Float.class)) {
+			throw new NotImplementedException("List<Float>未实现.");
+		}
+		else if (subType.equals(Double.class)) {
+			throw new NotImplementedException("List<Double>未实现.");
+		}
+		else if (subType.equals(Boolean.class)) {
+			throw new NotImplementedException("List<Boolean>未实现.");
+		}
+		else if (subType.equals(Date.class)) {
+			throw new NotImplementedException("List<Date>未实现.");
+		}
+		else {
+			@SuppressWarnings("rawtypes")
 			List list = new ArrayList<>();
 			for (String json : values) {
 				Object element = Json.toObject(json, subType, true);
@@ -130,43 +157,6 @@ public class ModelHandlerMethodArgumentResolver extends AbstractNamedValueMethod
 			}
 			return list;
 		}
-		String json;
-		{
-			String[] values = ParamListHandlerMethodArgumentResolver.getParameterValues(req, fieldName);
-			// logger.info("toList fieldName:" + fieldName + " values:" + StringUtils.join(values, ", "));
-			if (values == null) {
-				return null;
-			}
-			json = values[0];
-		}
-		return UnderlineJson.toListObject(json, subType);
-
-		// if (subType.equals(String.class)) {
-		// List<String> list = new ArrayList<String>();
-		// for (String value : values) {
-		// list.add(value);
-		// }
-		// return list;
-		// }
-		// else if (subType.equals(Integer.class)) {
-		// throw new NotImplementedException("List<Integer>未实现.");
-		// }
-		// else if (subType.equals(Long.class)) {
-		// throw new NotImplementedException("List<Long>未实现.");
-		// }
-		// else if (subType.equals(Float.class)) {
-		// throw new NotImplementedException("List<Float>未实现.");
-		// }
-		// else if (subType.equals(Double.class)) {
-		// throw new NotImplementedException("List<Double>未实现.");
-		// }
-		// else if (subType.equals(Boolean.class)) {
-		// throw new NotImplementedException("List<Boolean>未实现.");
-		// }
-		// else if (subType.equals(Date.class)) {
-		// throw new NotImplementedException("List<Date>未实现.");
-		// }
-		// return ParamListHandlerMethodArgumentResolver.toList(subType, values);
 	}
 
 	private static Object toObject(String value, Class<?> type, String fieldName) {
