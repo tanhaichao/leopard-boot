@@ -22,7 +22,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.multipart.MultipartFile;
 
-import io.leopard.boot.requestbody.RequestBodyParser;
 import io.leopard.json.Json;
 import io.leopard.lang.datatype.Month;
 import io.leopard.lang.datatype.OnlyDate;
@@ -102,8 +101,8 @@ public class ModelHandlerMethodArgumentResolver extends AbstractNamedValueMethod
 				throw new NotImplementedException("Set类型未实现[" + fieldName + ":" + clazz.getName() + "].");
 			}
 			else {
-				String value = RequestBodyParser.getParameter(req, fieldName);
-				// String value = req.getParameter(fieldName);
+				// String value = RequestBodyParser.getParameter(req, fieldName);
+				String value = req.getParameter(fieldName);
 				// logger.info("fieldName:" + fieldName + " value:" + value);
 				if (value == null) {
 					continue;
@@ -123,40 +122,47 @@ public class ModelHandlerMethodArgumentResolver extends AbstractNamedValueMethod
 		if (values == null) {
 			return null;
 		}
-		if (subType.equals(String.class)) {
-			List<String> list = new ArrayList<>();
-			for (String value : values) {
-				list.add(value);
-			}
-			return list;
+		@SuppressWarnings("rawtypes")
+		List list = new ArrayList<>();
+		for (String json : values) {
+			Object element = toObject(json, subType, fieldName);
+			list.add(element);
 		}
-		else if (subType.equals(Integer.class)) {
-			throw new NotImplementedException("List<Integer>未实现.");
-		}
-		else if (subType.equals(Long.class)) {
-			throw new NotImplementedException("List<Long>未实现.");
-		}
-		else if (subType.equals(Float.class)) {
-			throw new NotImplementedException("List<Float>未实现.");
-		}
-		else if (subType.equals(Double.class)) {
-			throw new NotImplementedException("List<Double>未实现.");
-		}
-		else if (subType.equals(Boolean.class)) {
-			throw new NotImplementedException("List<Boolean>未实现.");
-		}
-		else if (subType.equals(Date.class)) {
-			throw new NotImplementedException("List<Date>未实现.");
-		}
-		else {
-			@SuppressWarnings("rawtypes")
-			List list = new ArrayList<>();
-			for (String json : values) {
-				Object element = Json.toObject(json, subType, true);
-				list.add(element);
-			}
-			return list;
-		}
+		return list;
+		// if (subType.equals(String.class)) {
+		// List<String> list = new ArrayList<>();
+		// for (String value : values) {
+		// list.add(value);
+		// }
+		// return list;
+		// }
+		// else if (subType.equals(Integer.class)) {
+		// throw new NotImplementedException("List<Integer>未实现.");
+		// }
+		// else if (subType.equals(Long.class)) {
+		// throw new NotImplementedException("List<Long>未实现.");
+		// }
+		// else if (subType.equals(Float.class)) {
+		// throw new NotImplementedException("List<Float>未实现.");
+		// }
+		// else if (subType.equals(Double.class)) {
+		// throw new NotImplementedException("List<Double>未实现.");
+		// }
+		// else if (subType.equals(Boolean.class)) {
+		// throw new NotImplementedException("List<Boolean>未实现.");
+		// }
+		// else if (subType.equals(Date.class)) {
+		// throw new NotImplementedException("List<Date>未实现.");
+		// }
+		// else {
+		// @SuppressWarnings("rawtypes")
+		// List list = new ArrayList<>();
+		// for (String json : values) {
+		// Object element = Json.toObject(json, subType, true);
+		// list.add(element);
+		// }
+		// return list;
+		// }
 	}
 
 	private static Object toObject(String value, Class<?> type, String fieldName) {

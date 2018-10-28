@@ -69,7 +69,7 @@ public class RequestBodyController implements AssertController {
 		assertManager.add("/leopardboot/RequestBody/uid").name("uid默认为0").data(0);
 		assertManager.add("/leopardboot/RequestBody/uid").name("uid默认为0").data(2);
 		assertManager.add("/leopardboot/RequestBody/uid").requestBody("{\"uid\":3}").name("uid默认为0").data(3);
-		assertManager.add("/leopardboot/RequestBody/updateArticle").requestBody("{\"uid\":3}").name("uid默认为0").data(3);
+		// assertManager.add("/leopardboot/RequestBody/updateArticle").requestBody("{\"uid\":3}").name("uid默认为0").data(3);
 	}
 
 }

@@ -35,6 +35,7 @@ public class RequestBodyHttpServletRequestWrapper extends HttpServletRequestWrap
 	@Override
 	public String[] getParameterValues(String name) {
 		Object value = requestBody.get(name);
+		System.err.println("getParameterValues name:" + name + " value:" + value);
 		if (value != null) {
 			if (value instanceof List) {
 				return toStrings(name, (List) value);
