@@ -49,7 +49,7 @@ public class StatQueryBuilder {
 		StatementParameter param = new StatementParameter();
 		String sql = select.toString() + search.generateWhereSQL(param);
 		if (groupby != null) {
-			sql += "group by " + groupby;
+			sql += " group by " + groupby;
 		}
 		sql += " limit ?,?";
 		System.err.println("select:" + sql);
