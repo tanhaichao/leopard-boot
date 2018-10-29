@@ -47,10 +47,11 @@ public class StatQueryBuilder {
 
 	public <T> Page<T> queryForPage(Jdbc jdbc, Class<T> elementType, int start, int size) {
 		StatementParameter param = new StatementParameter();
-		String sql = select.toString() + search.generateWhereSQL(param) + " limit ?,?";
+		String sql = select.toString() + search.generateWhereSQL(param);
 		if (groupby != null) {
 			sql += "group by " + groupby;
 		}
+		sql += " limit ?,?";
 		System.err.println("select:" + sql);
 		param.setInt(start);
 		param.setInt(size);

@@ -11,6 +11,14 @@ public class StatSearchBuilder extends SearchBuilder {
 	}
 
 	@Override
+	protected String columnName(String fieldName) {
+		if (fieldName.indexOf(".") != -1) {
+			return fieldName;
+		}
+		return super.columnName(fieldName);
+	}
+
+	@Override
 	protected String generateWhereSQL(StatementParameter param) {
 		return super.generateWhereSQL(param);
 	}

@@ -286,7 +286,7 @@ public abstract class SearchBuilder {
 				whereSQL.append(" ").append(sql);
 			}
 			else {
-				whereSQL.append("`" + fieldName + "`").append("=?");
+				whereSQL.append(columnName(fieldName)).append("=?");
 				param.setObject(value.getClass(), value);
 			}
 		}
@@ -298,7 +298,7 @@ public abstract class SearchBuilder {
 			throw new IllegalArgumentException("list参数不能为空.");
 		}
 		StringBuilder sql = new StringBuilder();
-		sql.append("`" + fieldName + "`").append(" in (");
+		sql.append(columnName(fieldName)).append(" in (");
 		for (Object obj : list) {
 			String str = (String) obj;
 			str = escapeSQLParam(str);
@@ -317,10 +317,14 @@ public abstract class SearchBuilder {
 			if (whereSQL.length() > 0) {
 				whereSQL.append(" and ");
 			}
-			whereSQL.append(this.tableAlias + "`" + fieldName + "`").append(" like '%" + escapeSQLParam(value) + "%'");
+			whereSQL.append(this.tableAlias + columnName(fieldName)).append(" like '%" + escapeSQLParam(value) + "%'");
 		}
 
 		return whereSQL.toString();
+	}
+
+	protected String columnName(String fieldName) {
+		return "`" + fieldName + "`";
 	}
 
 	/**
