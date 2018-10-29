@@ -1,6 +1,8 @@
 package io.leopard.boot.jdbc.querybuilder.stat;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import io.leopard.jdbc.Jdbc;
 import io.leopard.jdbc.StatementParameter;
@@ -30,8 +32,6 @@ public class StatQueryBuilder {
 	 */
 	private StatSearchBuilder search;
 
-	private String groupby;
-
 	public StatQueryBuilder(StatSearchBuilder search, CounterBuilder counter) {
 		this.search = search;
 		this.counter = counter;
@@ -41,16 +41,23 @@ public class StatQueryBuilder {
 		return select.append(str);
 	}
 
-	public void groupby(String groupby) {
-		this.groupby = groupby;
+	protected String replaceWhereExpression(String sql, StatementParameter param) {
+		String regex = "\\{where\\}";
+		Pattern p = Pattern.compile(regex);
+		Matcher m = p.matcher(sql);
+		StringBuffer sb = new StringBuffer();
+		while (m.find()) {
+			String where = search.generateWhereSQL(param);
+			m.appendReplacement(sb, where);// FIXME 这里是否需要过滤正则表达式特殊字符?
+		}
+		m.appendTail(sb);
+		return sb.toString();
 	}
 
 	public <T> Page<T> queryForPage(Jdbc jdbc, Class<T> elementType, int start, int size) {
 		StatementParameter param = new StatementParameter();
-		String sql = select.toString() + search.generateWhereSQL(param);
-		if (groupby != null) {
-			sql += " group by " + groupby;
-		}
+		String sql = select.toString();
+		sql = replaceWhereExpression(sql, param);
 		sql += " limit ?,?";
 		System.err.println("select:" + sql);
 		param.setInt(start);
