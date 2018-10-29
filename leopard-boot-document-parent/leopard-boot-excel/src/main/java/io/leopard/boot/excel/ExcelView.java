@@ -16,6 +16,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.AbstractUrlBasedView;
 
+import jxl.CellView;
 import jxl.Workbook;
 import jxl.format.CellFormat;
 import jxl.write.Label;
@@ -97,10 +98,10 @@ public class ExcelView extends ModelAndView {
 			Label label = new Label(i + columnCount, 0, columnNames[i], cf);
 			sheet.addCell(label);
 
-			// CellView cellView = new CellView();
-			// cellView.setAutosize(true); // 设置自动大小
+			CellView cellView = new CellView();
+			cellView.setAutosize(true); // 设置自动大小
 			// cellView.setSize(d);
-			// sheet.setColumnView(i, cellView);
+			sheet.setColumnView(i, cellView);
 		}
 	}
 
