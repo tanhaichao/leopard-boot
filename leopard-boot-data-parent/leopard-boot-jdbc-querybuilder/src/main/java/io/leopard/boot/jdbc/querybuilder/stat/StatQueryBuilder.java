@@ -6,6 +6,8 @@ import java.util.regex.Pattern;
 
 import io.leopard.boot.util.StringUtil;
 import io.leopard.jdbc.Jdbc;
+import io.leopard.jdbc.LeopardBeanPropertyRowMapper;
+import io.leopard.jdbc.PageableRowMapperResultSetExtractor;
 import io.leopard.jdbc.StatementParameter;
 import io.leopard.lang.Page;
 import io.leopard.lang.PageImpl;
@@ -24,18 +26,12 @@ public class StatQueryBuilder {
 	private StringBuilder select = new StringBuilder();
 
 	/**
-	 * 记录条数统计
-	 */
-	CounterBuilder counter;
-
-	/**
 	 * 搜索条件
 	 */
 	private StatSearchBuilder search;
 
-	public StatQueryBuilder(StatSearchBuilder search, CounterBuilder counter) {
+	public StatQueryBuilder(StatSearchBuilder search) {
 		this.search = search;
-		this.counter = counter;
 	}
 
 	public StringBuilder append(String str) {
@@ -59,20 +55,19 @@ public class StatQueryBuilder {
 		StatementParameter param = new StatementParameter();
 		String sql = select.toString();
 		sql = replaceWhereExpression(sql, param);
-		sql += " limit ?,?";
 		System.err.println("select:" + sql);
-		param.setInt(start);
-		param.setInt(size);
-		List<T> list = jdbc.queryForList(sql, elementType, param);
 
-		int totalCount = counter.count(jdbc);
-
+		PageableRowMapperResultSetExtractor<T> extractor = new PageableRowMapperResultSetExtractor<T>(new LeopardBeanPropertyRowMapper<T>(elementType), start, size);
+		List<T> list = jdbc.getJdbcTemplate().query(sql, param.getArgs(), extractor);
+		int totalCount = extractor.getCount();
 		PageImpl<T> page = new PageImpl<T>();
 		page.setTotalCount(totalCount);
 		page.setList(list);
-		page.setNextPage(PageImpl.hasNextPage(totalCount, start, size));
+
 		page.setPageSize(size);
+		page.setNextPage(PageImpl.hasNextPage(totalCount, start, size));
 
 		return page;
+
 	}
 }
