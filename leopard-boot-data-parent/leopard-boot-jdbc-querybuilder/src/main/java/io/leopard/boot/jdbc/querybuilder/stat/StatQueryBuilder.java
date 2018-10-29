@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import io.leopard.boot.util.StringUtil;
 import io.leopard.jdbc.Jdbc;
 import io.leopard.jdbc.StatementParameter;
 import io.leopard.lang.Page;
@@ -48,7 +49,7 @@ public class StatQueryBuilder {
 		StringBuffer sb = new StringBuffer();
 		while (m.find()) {
 			String where = search.generateWhereSQL(param);
-			m.appendReplacement(sb, where);// FIXME 这里是否需要过滤正则表达式特殊字符?
+			m.appendReplacement(sb, StringUtil.escapePattern(where));
 		}
 		m.appendTail(sb);
 		return sb.toString();
