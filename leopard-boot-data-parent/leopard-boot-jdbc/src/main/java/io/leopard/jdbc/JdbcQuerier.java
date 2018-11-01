@@ -2,6 +2,8 @@ package io.leopard.jdbc;
 
 import java.util.Date;
 
+import io.leopard.jdbc.exception.RecordNotFoundException;
+
 public class JdbcQuerier {
 	/**
 	 * 下一条记录
@@ -30,7 +32,7 @@ public class JdbcQuerier {
 		String sql = "select `" + posttimeFieldName + "` from `" + tableName + "` where `" + idFieldName + "`=?";
 		Date posttime = jdbc.queryForDate(sql, id);
 		if (posttime == null) {
-			return null;
+			throw new RecordNotFoundException("记录[tableName:" + tableName + " id:" + id + "]不存在.");
 		}
 		String nextSql = "select * from `` where `" + posttimeFieldName + "`>=? order by `" + posttimeFieldName + " asc, `" + idFieldName + "` asc`' limit 1";
 		return jdbc.query(nextSql, elementType, posttime);
@@ -55,7 +57,7 @@ public class JdbcQuerier {
 		String sql = "select `" + posttimeFieldName + "` from `" + tableName + "` where `" + idFieldName + "`=?";
 		Date posttime = jdbc.queryForDate(sql, id);
 		if (posttime == null) {
-			return null;
+			throw new RecordNotFoundException("记录[tableName:" + tableName + " id:" + id + "]不存在.");
 		}
 		String nextSql = "select * from `` where `" + posttimeFieldName + "`<=? order by `" + posttimeFieldName + " desc, `" + idFieldName + "` desc`' limit 1";
 		return jdbc.query(nextSql, elementType, posttime);
