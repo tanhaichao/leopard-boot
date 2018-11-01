@@ -30,6 +30,22 @@ public interface ArticleDao extends IDelete<Article, String> {
 	boolean delete(String articleId, long opuid, Date lmodify);
 
 	/**
+	 * 下一条文章
+	 * 
+	 * @param articleId 文章ID
+	 * @return
+	 */
+	Article next(String articleId);
+
+	/**
+	 * 上一条文章
+	 * 
+	 * @param articleId 文章ID
+	 * @return
+	 */
+	Article previous(String articleId);
+
+	/**
 	 * 更新文章
 	 * 
 	 * @param article

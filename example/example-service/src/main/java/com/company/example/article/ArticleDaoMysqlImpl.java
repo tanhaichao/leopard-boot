@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import io.leopard.jdbc.Jdbc;
+import io.leopard.jdbc.JdbcQuerier;
 
 @Repository
 public class ArticleDaoMysqlImpl implements ArticleDao {
@@ -33,6 +34,17 @@ public class ArticleDaoMysqlImpl implements ArticleDao {
 	@Override
 	public boolean update(Article article) {
 		return jdbc.update("article", article, "articleId");
+	}
+
+	@Override
+	public Article next(String articleId) {
+		return JdbcQuerier.next(jdbc, "article", "articleId", articleId, Article.class);
+	}
+
+	@Override
+	public Article previous(String articleId) {
+		return JdbcQuerier.previous(jdbc, "article", "articleId", articleId, Article.class);
+
 	}
 
 }

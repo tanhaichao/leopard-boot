@@ -40,4 +40,14 @@ public class ArticleServiceImpl implements ArticleService {
 	public boolean update(Article article) {
 		return articleDao.update(article);
 	}
+
+	@Override
+	public Article next(String articleId) {
+		return articleDao.next(articleId);
+	}
+
+	@Override
+	public Article previous(String articleId) {
+		return articleDao.previous(articleId);
+	}
 }
