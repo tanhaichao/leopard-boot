@@ -569,7 +569,7 @@ public interface Jdbc {
 	 * 
 	 * @param tableName 表名
 	 * @param bean
-	 * @param primaryKeyFieldNames 主键属性名称
+	 * @param primaryKeyFieldNames 主键属性名称。为空时，则默认使用第一个属性作为主键
 	 * @return
 	 */
 	boolean update(String tableName, Object bean, String... primaryKeyFieldNames);
