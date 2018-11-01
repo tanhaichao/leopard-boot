@@ -82,6 +82,34 @@ public class ArticleController {
 	}
 
 	/**
+	 * 上一条文章
+	 * 
+	 * @param articleId 文章ID
+	 * @return
+	 */
+	@RequestMapping
+	@ResponseBody
+	public ArticleVO previous(String articleId) {
+		Article article = articleSerivce.previous(articleId);
+		ArticleVO articleVO = BeanUtil.convert(article, ArticleVO.class);
+		return articleVO;
+	}
+
+	/**
+	 * 下一条文章
+	 * 
+	 * @param articleId 文章ID
+	 * @return
+	 */
+	@RequestMapping
+	@ResponseBody
+	public ArticleVO next(String articleId) {
+		Article article = articleSerivce.next(articleId);
+		ArticleVO articleVO = BeanUtil.convert(article, ArticleVO.class);
+		return articleVO;
+	}
+
+	/**
 	 * 删除
 	 * 
 	 * @param sessUid 当前登录用户ID
