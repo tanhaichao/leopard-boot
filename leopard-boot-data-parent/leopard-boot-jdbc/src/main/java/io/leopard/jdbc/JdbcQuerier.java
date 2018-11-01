@@ -38,6 +38,16 @@ public class JdbcQuerier {
 		return jdbc.query(nextSql, elementType, posttime);
 	}
 
+	/**
+	 * 上一条
+	 * 
+	 * @param jdbc
+	 * @param tableName 表名
+	 * @param idFieldName ID属性名称
+	 * @param id ID值
+	 * @param elementType 返回值类型
+	 * @return
+	 */
 	public static <T> T previous(Jdbc jdbc, String tableName, String idFieldName, String id, Class<T> elementType) {
 		return previous(jdbc, tableName, idFieldName, id, elementType, "posttime");
 	}
