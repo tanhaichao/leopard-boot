@@ -378,4 +378,9 @@ public class JdbcWrapper implements Jdbc {
 		return this.getJdbc().queryForMap(sql, valueClazz, params);
 	}
 
+	@Override
+	public boolean update(String tableName, Object bean, String... primaryKeyFieldNames) {
+		return this.getJdbc().update(tableName, bean, primaryKeyFieldNames);
+	}
+
 }

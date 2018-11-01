@@ -7,8 +7,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.sql.DataSource;
 
@@ -22,10 +24,13 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 
+import io.leopard.jdbc.builder.AbstractSqlBuilder;
 import io.leopard.jdbc.builder.InsertBuilder;
 import io.leopard.jdbc.builder.NullInsertBuilder;
+import io.leopard.jdbc.builder.NullUpdateBuilder;
 import io.leopard.jdbc.builder.ReplaceBuilder;
 import io.leopard.jdbc.builder.SqlBuilder;
+import io.leopard.jdbc.builder.UpdateBuilder;
 import io.leopard.jdbc.datasource.JdbcDataSource;
 import io.leopard.jdbc.logger.JdbcLogger;
 import io.leopard.jdbc.logger.JdbcLoggerImpl;
@@ -612,62 +617,7 @@ public class JdbcMysqlImpl implements Jdbc {
 			catch (IllegalAccessException e) {
 				throw new InvalidDataAccessApiUsageException(e.getMessage());
 			}
-			if (String.class.equals(type)) {
-				builder.setString(fieldName, (String) obj);
-			}
-			else if (boolean.class.equals(type) || Boolean.class.equals(type)) {
-				builder.setBool(fieldName, (Boolean) obj);
-			}
-			else if (int.class.equals(type) || Integer.class.equals(type)) {
-				builder.setInt(fieldName, (Integer) obj);
-			}
-			else if (long.class.equals(type) || Long.class.equals(type)) {
-				builder.setLong(fieldName, (Long) obj);
-			}
-			else if (float.class.equals(type) || Float.class.equals(type)) {
-				builder.setFloat(fieldName, (Float) obj);
-			}
-			else if (double.class.equals(type) || Double.class.equals(type)) {
-				builder.setDouble(fieldName, (Double) obj);
-			}
-			else if (Date.class.equals(type)) {
-				builder.setDate(fieldName, (Date) obj);
-			}
-			else if (List.class.equals(type)) {
-				builder.setList(fieldName, (List<?>) obj);
-				// builder.setString(fieldName, obj.toString());
-			}
-			else if (type.isEnum()) {
-				if (Snum.class.isAssignableFrom(type)) {
-					builder.setSnum(fieldName, (Snum) obj);
-				}
-				else if (Inum.class.isAssignableFrom(type)) {
-					builder.setEnum(fieldName, (Inum) obj);// TODO ?
-				}
-				else if (Bnum.class.isAssignableFrom(type)) {
-					builder.setEnum(fieldName, (Bnum) obj);// TODO ?
-				}
-				else {
-					throw new RuntimeException("未知枚举类型[" + type.getName() + "].");
-				}
-			}
-			else if (DynamicEnum.class.isAssignableFrom(type)) {
-				if (Snum.class.isAssignableFrom(type)) {
-					builder.setSnum(fieldName, (Snum) obj);
-				}
-				else if (Inum.class.isAssignableFrom(type)) {
-					builder.setEnum(fieldName, (Inum) obj);// TODO ?
-				}
-				else if (Bnum.class.isAssignableFrom(type)) {
-					builder.setEnum(fieldName, (Bnum) obj);// TODO ?
-				}
-				else {
-					throw new RuntimeException("未知动态枚举类型[" + type.getName() + "].");
-				}
-			}
-			else {
-				throw new InvalidDataAccessApiUsageException("未知数据类型[" + type.getName() + "].");
-			}
+			this.setFieldValue(builder, type, fieldName, obj);
 		}
 		return this.insertForBoolean(builder);
 	}
@@ -836,6 +786,111 @@ public class JdbcMysqlImpl implements Jdbc {
 		}
 		catch (EmptyResultDataAccessException e) {
 			return null;
+		}
+	}
+
+	@Override
+	public boolean update(String tableName, Object bean, String... primaryKeyFieldNames) {
+		Class<?> clazz = bean.getClass();
+		Field[] fields = clazz.getDeclaredFields();
+		if (fields.length == 0) {
+			throw new RuntimeException("对象[" + clazz.getName() + "]的属性列表不能为空.");
+		}
+
+		Set<String> primaryKeyFieldNameSet = new LinkedHashSet<>();
+		if (primaryKeyFieldNames.length == 0) {// 没有设置主键，则获取第一个
+			primaryKeyFieldNameSet.add(fields[0].getName());
+		}
+		else {
+			for (String primaryKeyFieldName : primaryKeyFieldNames) {
+				primaryKeyFieldNameSet.add(primaryKeyFieldName);
+			}
+		}
+
+		UpdateBuilder builder = new NullUpdateBuilder(tableName);
+
+		for (Field field : fields) {
+			String fieldName = field.getName();
+
+			// TODO 除了主键没有其他字段，要报错
+			Class<?> type = field.getType();
+			field.setAccessible(true);
+			Object obj;
+			try {
+				obj = field.get(bean);
+			}
+			catch (IllegalAccessException e) {
+				throw new InvalidDataAccessApiUsageException(e.getMessage());
+			}
+			if (primaryKeyFieldNameSet.contains(fieldName)) {// 设置主键
+				this.setFieldValue(builder.where, type, fieldName, obj);
+			}
+			else {
+				this.setFieldValue(builder, type, fieldName, obj);
+				continue;
+			}
+		}
+		// builder.where.set
+		return this.updateForBoolean(builder);
+
+	}
+
+	protected void setFieldValue(AbstractSqlBuilder builder, Class<?> type, String fieldName, Object obj) {
+		if (String.class.equals(type)) {
+			builder.setString(fieldName, (String) obj);
+		}
+		else if (boolean.class.equals(type) || Boolean.class.equals(type)) {
+			builder.setBool(fieldName, (Boolean) obj);
+		}
+		else if (int.class.equals(type) || Integer.class.equals(type)) {
+			builder.setInt(fieldName, (Integer) obj);
+		}
+		else if (long.class.equals(type) || Long.class.equals(type)) {
+			builder.setLong(fieldName, (Long) obj);
+		}
+		else if (float.class.equals(type) || Float.class.equals(type)) {
+			builder.setFloat(fieldName, (Float) obj);
+		}
+		else if (double.class.equals(type) || Double.class.equals(type)) {
+			builder.setDouble(fieldName, (Double) obj);
+		}
+		else if (Date.class.equals(type)) {
+			builder.setDate(fieldName, (Date) obj);
+		}
+		else if (List.class.equals(type)) {
+			builder.setList(fieldName, (List<?>) obj);
+			// builder.setString(fieldName, obj.toString());
+		}
+		else if (type.isEnum()) {
+			if (Snum.class.isAssignableFrom(type)) {
+				builder.setSnum(fieldName, (Snum) obj);
+			}
+			else if (Inum.class.isAssignableFrom(type)) {
+				builder.setEnum(fieldName, (Inum) obj);// TODO ?
+			}
+			else if (Bnum.class.isAssignableFrom(type)) {
+				builder.setEnum(fieldName, (Bnum) obj);// TODO ?
+			}
+			else {
+				throw new RuntimeException("未知枚举类型[" + type.getName() + "].");
+			}
+		}
+		else if (DynamicEnum.class.isAssignableFrom(type)) {
+			if (Snum.class.isAssignableFrom(type)) {
+				builder.setSnum(fieldName, (Snum) obj);
+			}
+			else if (Inum.class.isAssignableFrom(type)) {
+				builder.setEnum(fieldName, (Inum) obj);// TODO ?
+			}
+			else if (Bnum.class.isAssignableFrom(type)) {
+				builder.setEnum(fieldName, (Bnum) obj);// TODO ?
+			}
+			else {
+				throw new RuntimeException("未知动态枚举类型[" + type.getName() + "].");
+			}
+		}
+		else {
+			throw new InvalidDataAccessApiUsageException("未知数据类型[" + type.getName() + "].");
 		}
 	}
 }

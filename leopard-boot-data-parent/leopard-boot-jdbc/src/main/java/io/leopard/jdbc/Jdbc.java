@@ -555,7 +555,24 @@ public interface Jdbc {
 	 */
 	int[] batchUpdate(String[] sqls);
 
+	/**
+	 * 添加一条记录
+	 * 
+	 * @param tableName 表名
+	 * @param bean
+	 * @return
+	 */
 	boolean insert(String tableName, Object bean);
+
+	/**
+	 * 更新一条记录
+	 * 
+	 * @param tableName 表名
+	 * @param bean
+	 * @param primaryKeyFieldNames 主键属性名称
+	 * @return
+	 */
+	boolean update(String tableName, Object bean, String... primaryKeyFieldNames);
 
 	boolean insertByBean(String sql, Object bean);
 
