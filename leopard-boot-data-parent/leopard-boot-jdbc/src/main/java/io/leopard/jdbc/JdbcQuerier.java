@@ -34,7 +34,7 @@ public class JdbcQuerier {
 		if (posttime == null) {
 			throw new RecordNotFoundException("记录[tableName:" + tableName + " id:" + id + "]不存在.");
 		}
-		String nextSql = "select * from `` where `" + posttimeFieldName + "`>=? order by `" + posttimeFieldName + " asc, `" + idFieldName + "` asc`' limit 1";
+		String nextSql = "select * from `" + tableName + "` where `" + posttimeFieldName + "`>=? order by `" + posttimeFieldName + "` asc, `" + idFieldName + "` asc limit 1";
 		return jdbc.query(nextSql, elementType, posttime);
 	}
 
@@ -59,7 +59,7 @@ public class JdbcQuerier {
 		if (posttime == null) {
 			throw new RecordNotFoundException("记录[tableName:" + tableName + " id:" + id + "]不存在.");
 		}
-		String nextSql = "select * from `` where `" + posttimeFieldName + "`<=? order by `" + posttimeFieldName + " desc, `" + idFieldName + "` desc`' limit 1";
+		String nextSql = "select * from `" + tableName + "` where `" + posttimeFieldName + "`<=? order by `" + posttimeFieldName + "` desc, `" + idFieldName + "` desc limit 1";
 		return jdbc.query(nextSql, elementType, posttime);
 	}
 }
