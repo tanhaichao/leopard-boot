@@ -23,4 +23,12 @@ public interface ArticleService {
 	 * 根据主键删除文章
 	 */
 	boolean delete(String articleId, long opuid);
+
+	/**
+	 * 更新文章
+	 * 
+	 * @param article
+	 * @return
+	 */
+	boolean update(Article article);
 }

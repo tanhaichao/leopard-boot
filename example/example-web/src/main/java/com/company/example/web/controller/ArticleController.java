@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.company.example.article.Article;
+import com.company.example.article.ArticleNotFoundException;
 import com.company.example.article.ArticleService;
 import com.company.example.web.form.ArticleForm;
 import com.company.example.web.vo.ArticleListVO;
@@ -92,4 +93,24 @@ public class ArticleController {
 	public boolean delete(long sessUid, String articleId) {
 		return articleSerivce.delete(articleId, 0);
 	}
+
+	/**
+	 * 更新文章
+	 * 
+	 * @param articleId 文章ID
+	 * @param form 表单信息
+	 * @return
+	 * @throws ArticleNotFoundException
+	 */
+	@RequestMapping
+	@ResponseBody
+	public boolean update(long sessUid, String articleId, ArticleForm form) throws ArticleNotFoundException {
+		Article article = articleSerivce.get(articleId);
+		if (article == null) {
+			throw new ArticleNotFoundException(articleId);
+		}
+		BeanUtil.copyProperties(form, article);
+		return articleSerivce.update(article);
+	}
+
 }

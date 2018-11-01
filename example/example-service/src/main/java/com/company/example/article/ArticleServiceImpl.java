@@ -35,4 +35,9 @@ public class ArticleServiceImpl implements ArticleService {
 		CheckUtil.isArticleId(articleId);
 		return articleDao.delete(articleId, opuid, new Date());
 	}
+
+	@Override
+	public boolean update(Article article) {
+		return articleDao.update(article);
+	}
 }
