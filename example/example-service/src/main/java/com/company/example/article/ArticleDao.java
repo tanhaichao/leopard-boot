@@ -28,4 +28,12 @@ public interface ArticleDao extends IDelete<Article, String> {
 	 */
 	@Override
 	boolean delete(String articleId, long opuid, Date lmodify);
+
+	/**
+	 * 更新文章
+	 * 
+	 * @param article
+	 * @return
+	 */
+	boolean update(Article article);
 }

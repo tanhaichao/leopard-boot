@@ -30,4 +30,9 @@ public class ArticleDaoMysqlImpl implements ArticleDao {
 		return jdbc.updateForBoolean(sql, lmodify, articleId);
 	}
 
+	@Override
+	public boolean update(Article article) {
+		return jdbc.update("article", article, "articleId");
+	}
+
 }
