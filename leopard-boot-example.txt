@@ -1,3 +1,6 @@
+./shell/example.sh
+
+
 mvn archetype:create-from-project
 cd target/generated-sources/archetype
 
