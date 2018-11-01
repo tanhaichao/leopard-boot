@@ -380,6 +380,14 @@ public interface Jdbc {
 	java.util.Date queryForDate(String sql);
 
 	/**
+	 * 根据sql查询数据，返回Date对象.
+	 * 
+	 * @param sql sql
+	 * @return 查询的数据
+	 */
+	java.util.Date queryForDate(String sql, Object... params);
+
+	/**
 	 * 
 	 * 根据sql查询数据，返回Date对象.
 	 * 

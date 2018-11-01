@@ -893,4 +893,9 @@ public class JdbcMysqlImpl implements Jdbc {
 			throw new InvalidDataAccessApiUsageException("未知数据类型[" + type.getName() + "].");
 		}
 	}
+
+	@Override
+	public Date queryForDate(String sql, Object... params) {
+		return this.queryForDate(sql, this.toStatementParameter(sql, params));
+	}
 }

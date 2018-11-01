@@ -383,4 +383,9 @@ public class JdbcWrapper implements Jdbc {
 		return this.getJdbc().update(tableName, bean, primaryKeyFieldNames);
 	}
 
+	@Override
+	public Date queryForDate(String sql, Object... params) {
+		return this.getJdbc().queryForDate(sql, params);
+	}
+
 }
