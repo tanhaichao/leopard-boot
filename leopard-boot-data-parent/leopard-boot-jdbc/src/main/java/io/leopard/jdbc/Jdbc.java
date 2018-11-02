@@ -544,7 +544,15 @@ public interface Jdbc {
 	 * @return 返回更新成功的记录数
 	 */
 	int update(String sql, Object... params);
-
+	/**
+	 * 更新一条记录
+	 * 
+	 * @param tableName 表名
+	 * @param bean
+	 * @param primaryKeyFieldNames 主键属性名称。为空时，则默认使用第一个属性作为主键
+	 * @return
+	 */
+	boolean updateByBean(String tableName, Object bean, String... primaryKeyFieldNames);
 	/**
 	 * 执行插入sql,并返回id.
 	 * 
@@ -572,15 +580,7 @@ public interface Jdbc {
 	 */
 	boolean insert(String tableName, Object bean);
 
-	/**
-	 * 更新一条记录
-	 * 
-	 * @param tableName 表名
-	 * @param bean
-	 * @param primaryKeyFieldNames 主键属性名称。为空时，则默认使用第一个属性作为主键
-	 * @return
-	 */
-	boolean update(String tableName, Object bean, String... primaryKeyFieldNames);
+
 
 	boolean insertByBean(String sql, Object bean);
 

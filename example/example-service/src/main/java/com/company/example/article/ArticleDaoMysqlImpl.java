@@ -33,7 +33,7 @@ public class ArticleDaoMysqlImpl implements ArticleDao {
 
 	@Override
 	public boolean update(Article article) {
-		return jdbc.update("article", article, "articleId");
+		return jdbc.updateByBean("article", article, "articleId");
 	}
 
 	@Override

@@ -379,8 +379,8 @@ public class JdbcWrapper implements Jdbc {
 	}
 
 	@Override
-	public boolean update(String tableName, Object bean, String... primaryKeyFieldNames) {
-		return this.getJdbc().update(tableName, bean, primaryKeyFieldNames);
+	public boolean updateByBean(String tableName, Object bean, String... primaryKeyFieldNames) {
+		return this.getJdbc().updateByBean(tableName, bean, primaryKeyFieldNames);
 	}
 
 	@Override

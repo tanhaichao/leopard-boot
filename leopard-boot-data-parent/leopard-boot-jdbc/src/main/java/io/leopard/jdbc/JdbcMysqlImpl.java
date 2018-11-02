@@ -790,7 +790,7 @@ public class JdbcMysqlImpl implements Jdbc {
 	}
 
 	@Override
-	public boolean update(String tableName, Object bean, String... primaryKeyFieldNames) {
+	public boolean updateByBean(String tableName, Object bean, String... primaryKeyFieldNames) {
 		Class<?> clazz = bean.getClass();
 		Field[] fields = clazz.getDeclaredFields();
 		if (fields.length == 0) {
