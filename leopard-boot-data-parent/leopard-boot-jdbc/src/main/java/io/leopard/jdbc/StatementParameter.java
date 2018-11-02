@@ -1,5 +1,6 @@
 package io.leopard.jdbc;
 
+import java.io.Serializable;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -25,7 +26,9 @@ import io.leopard.lang.inum.Snum;
  * @author 阿海
  * 
  */
-public class StatementParameter {
+public class StatementParameter implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private final List<Object> list = new ArrayList<Object>();
 
