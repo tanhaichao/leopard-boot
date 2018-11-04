@@ -1,5 +1,7 @@
 package io.leopard.jdbc.builder;
 
+import org.springframework.util.StringUtils;
+
 import io.leopard.jdbc.StatementParameter;
 
 public class UpdateBuilder extends AbstractSqlBuilder implements SqlBuilder {
@@ -9,10 +11,12 @@ public class UpdateBuilder extends AbstractSqlBuilder implements SqlBuilder {
 
 	/**
 	 * 
-	 * @param tableName
-	 *            表名称.
+	 * @param tableName 表名称.
 	 */
 	public UpdateBuilder(String tableName) {
+		if (StringUtils.isEmpty(tableName)) {
+			throw new IllegalArgumentException("参数tableName不能为空.");
+		}
 		this.tableName = tableName;
 	}
 
