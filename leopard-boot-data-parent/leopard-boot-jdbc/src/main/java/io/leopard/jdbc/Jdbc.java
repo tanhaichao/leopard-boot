@@ -544,6 +544,7 @@ public interface Jdbc {
 	 * @return 返回更新成功的记录数
 	 */
 	int update(String sql, Object... params);
+
 	/**
 	 * 更新一条记录
 	 * 
@@ -553,6 +554,7 @@ public interface Jdbc {
 	 * @return
 	 */
 	boolean updateByBean(String tableName, Object bean, String... primaryKeyFieldNames);
+
 	/**
 	 * 执行插入sql,并返回id.
 	 * 
@@ -580,11 +582,8 @@ public interface Jdbc {
 	 */
 	boolean insert(String tableName, Object bean);
 
-
-
-	boolean insertByBean(String sql, Object bean);
-
-	boolean updateByBean(String sql, Object bean);
+	// boolean insertByBean(String sql, Object bean);
+	// boolean updateByBean(String sql, Object bean);
 
 	<T> Paging<T> queryForPaging(String sql, Class<T> elementType);
 

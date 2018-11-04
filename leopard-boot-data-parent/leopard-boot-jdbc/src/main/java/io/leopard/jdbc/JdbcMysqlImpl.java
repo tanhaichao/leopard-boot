@@ -593,10 +593,10 @@ public class JdbcMysqlImpl implements Jdbc {
 		return this.insertForBoolean(sql, toStatementParameter(sql, params));
 	}
 
-	@Override
-	public boolean insertByBean(String sql, Object bean) {
-		return this.insertForBoolean(sql, SqlParserUtil.toInsertParameter(sql, bean));
-	}
+	// @Override
+	// public boolean insertByBean(String sql, Object bean) {
+	// return this.insertForBoolean(sql, SqlParserUtil.toInsertParameter(sql, bean));
+	// }
 
 	@Override
 	public boolean insert(String tableName, Object bean) {
@@ -622,10 +622,10 @@ public class JdbcMysqlImpl implements Jdbc {
 		return this.insertForBoolean(builder);
 	}
 
-	@Override
-	public boolean updateByBean(String sql, Object bean) {
-		return this.updateForBoolean(sql, SqlParserUtil.toUpdateParameter(sql, bean));
-	}
+	// @Override
+	// public boolean updateByBean(String sql, Object bean) {
+	// return this.updateForBoolean(sql, SqlParserUtil.toUpdateParameter(sql, bean));
+	// }
 
 	@Override
 	public <T> Paging<T> queryForPaging(String sql, Class<T> elementType) {
