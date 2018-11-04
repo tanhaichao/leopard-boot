@@ -2,6 +2,8 @@ package io.leopard.boot.util;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
+import java.util.List;
+import java.util.function.ToDoubleFunction;
 
 /**
  * 小数运算工具类.
@@ -285,5 +287,9 @@ public class DecimalUtil {
 	private static String toString(double decimal) {
 		// TODO 还没有处理精度问题
 		return new BigDecimal(decimal).toString();
+	}
+
+	public static <T> double sumDouble(List<T> list, ToDoubleFunction<? super T> mapper) {
+		return list.stream().mapToDouble(mapper).sum();
 	}
 }
