@@ -8,6 +8,7 @@ import org.apache.commons.logging.LogFactory;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 
+import io.leopard.boot.util.IDUtil;
 import io.leopard.web.mvc.json.model.AdditionalField;
 
 /**
@@ -54,7 +55,9 @@ public abstract class TypeJsonSerializer<KEY, VALUE, TYPE> extends AdditionalFie
 		if (type == null) {
 			return null;
 		}
-
+		if (IDUtil.isEmptyId(id)) {
+			return null;
+		}
 		VALUE value = this.get(type, id);
 		AdditionalField<VALUE> field = new AdditionalField<VALUE>();
 		field.setFieldName(additionalFieldName);
