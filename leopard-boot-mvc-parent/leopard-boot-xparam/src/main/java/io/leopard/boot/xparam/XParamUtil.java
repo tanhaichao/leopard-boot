@@ -79,4 +79,8 @@ public class XParamUtil {
 		// ParameterNameDiscoverer parameterNameDiscoverer = null;
 		return parameterNameDiscoverer.getParameterNames(method);
 	}
+
+	public static String[] getParameterNames(Method method) {
+		return parameterNameDiscoverer.getParameterNames(method);
+	}
 }
