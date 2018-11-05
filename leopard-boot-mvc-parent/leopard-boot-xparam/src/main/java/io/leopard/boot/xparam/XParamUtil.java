@@ -1,6 +1,8 @@
 package io.leopard.boot.xparam;
 
 import java.lang.reflect.Method;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -82,5 +84,14 @@ public class XParamUtil {
 
 	public static String[] getParameterNames(Method method) {
 		return parameterNameDiscoverer.getParameterNames(method);
+	}
+
+	public static Set<String> getParameterNameSet(Method method) {
+		String[] names = parameterNameDiscoverer.getParameterNames(method);
+		Set<String> nameSet = new LinkedHashSet<>();
+		for (String name : names) {
+			nameSet.add(name);
+		}
+		return nameSet;
 	}
 }
