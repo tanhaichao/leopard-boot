@@ -2,6 +2,8 @@ package com.company.example.user;
 
 import java.util.Date;
 
+import com.company.example.onum.Gender;
+
 /**
  * 用户
  * 
@@ -19,6 +21,11 @@ public class User {
 	 * 昵称
 	 */
 	private String nickname;
+
+	/**
+	 * 性别
+	 */
+	private Gender gender;
 
 	/**
 	 * 添加时间
@@ -44,6 +51,14 @@ public class User {
 
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
+	}
+
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
 	}
 
 	public Date getPosttime() {
