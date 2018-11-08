@@ -15,4 +15,7 @@ example-service #Service、Dao模块
 example-web	#Controller模块
 	com.company.example.web.JettyTest	#Jetty测试类
 
+#表结构
+	doc/sql/example.sql
+	
 	
