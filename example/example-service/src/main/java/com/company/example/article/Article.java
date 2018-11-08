@@ -26,14 +26,14 @@ public class Article {
 	private String title;
 
 	/**
-	 * 内容
-	 */
-	private String content;
-
-	/**
 	 * 是否已删除
 	 */
 	private boolean deleted;
+
+	/**
+	 * 内容
+	 */
+	private String content;
 
 	/**
 	 * 发表时间
