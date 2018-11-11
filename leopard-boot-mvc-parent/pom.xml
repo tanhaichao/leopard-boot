@@ -23,5 +23,6 @@
 		<module>leopard-boot-mvc-json</module>
 		<module>leopard-boot-option</module>
 		<module>leopard-boot-role</module>
+		<module>leopard-boot-captcha</module>
 	</modules>
 </project>
