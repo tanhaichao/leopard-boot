@@ -29,7 +29,7 @@ public class PassportValidatorWrapper implements PassportValidator {
 	}
 
 	@Override
-	public boolean showLoginBox(HttpServletRequest request, HttpServletResponse response) {
+	public boolean showLoginBox(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		return passportValidator.showLoginBox(request, response);
 	}
 

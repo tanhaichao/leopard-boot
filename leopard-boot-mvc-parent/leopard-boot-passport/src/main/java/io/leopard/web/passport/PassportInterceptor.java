@@ -1,6 +1,5 @@
 package io.leopard.web.passport;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
@@ -18,11 +17,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import freemarker.core.ParseException;
 import freemarker.template.Configuration;
-import freemarker.template.MalformedTemplateNameException;
 import freemarker.template.Template;
-import freemarker.template.TemplateNotFoundException;
 import io.leopard.boot.servlet.util.RequestUtil;
 
 /**
@@ -76,13 +72,9 @@ public class PassportInterceptor implements HandlerInterceptor {
 	 * @param request
 	 * @param response
 	 * @return
-	 * @throws IOException
-	 * @throws ParseException
-	 * @throws MalformedTemplateNameException
-	 * @throws TemplateNotFoundException
+	 * @throws Exception
 	 */
-	protected boolean showLoginBox(PassportValidator validator, HttpServletRequest request, HttpServletResponse response)
-			throws TemplateNotFoundException, MalformedTemplateNameException, ParseException, IOException {
+	protected boolean showLoginBox(PassportValidator validator, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String sessionAttributeName = PassportUtil.getSessionAttributeName(validator);
 
 		String ip = RequestUtil.getProxyIp(request);

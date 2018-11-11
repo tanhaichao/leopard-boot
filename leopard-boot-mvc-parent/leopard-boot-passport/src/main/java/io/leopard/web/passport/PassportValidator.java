@@ -39,7 +39,7 @@ public interface PassportValidator {
 	 * 
 	 * @return 已实现登陆框返回true，未实现返回false
 	 */
-	boolean showLoginBox(HttpServletRequest request, HttpServletResponse response);
+	boolean showLoginBox(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 	/**
 	 * 登陆验证.
