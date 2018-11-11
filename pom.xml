@@ -68,6 +68,7 @@
 		<module>example</module>
 		<module>leopard-business-parent</module>
 		<module>leopard-boot-kit-parent</module>
+		<module>leopard-boot-template-parent</module>
 	</modules>
 
 
