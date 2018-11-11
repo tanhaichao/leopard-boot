@@ -1,4 +1,4 @@
 # Auto Configure
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-io.xiaoniu.niuframe.NiuframeAutoConfiguration
+io.leopard.boot.freemarker.LeopardFreemarkerAutoConfiguration
 
