@@ -67,6 +67,7 @@
 		<module>leopard-boot-document-parent</module>
 		<module>example</module>
 		<module>leopard-business-parent</module>
+		<module>leopard-boot-kit-parent</module>
 	</modules>
 
 
