@@ -6,6 +6,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import org.springframework.web.bind.annotation.Mapping;
+
 /**
  * 虚拟主机
  * 
@@ -15,6 +17,7 @@ import java.lang.annotation.Target;
 @Target({ ElementType.METHOD, ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
+@Mapping
 public @interface Vhost {
 
 	/**
@@ -22,6 +25,12 @@ public @interface Vhost {
 	 * 
 	 * @return
 	 */
-	String[] value() default {};
+	String[] value();
 
+	/**
+	 * 是否优先匹配
+	 * 
+	 * @return
+	 */
+	boolean firstLookup() default true;
 }

@@ -12,7 +12,7 @@ import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
  * @author 谭海潮
  *
  */
-public class LeopardContextPathRequestMappingHandlerMapping extends LeopardRequestMappingHandlerMapping {
+public class LeopardContextPathRequestMappingHandlerMapping extends ExtensibleRequestMappingHandlerMapping {
 	@Value("${leopard.context-path:}") // 默认为空
 	private String contextPath;
 
@@ -49,7 +49,7 @@ public class LeopardContextPathRequestMappingHandlerMapping extends LeopardReque
 		if (StringUtils.isEmpty(contextPath)) {
 			return false;
 		}
-		if (handlerType.getName().startsWith("io.xiaoniu.")) {// TODO 暂时写死
+		if (handlerType.getName().startsWith("io.xiaoniu.")) {// FIXME 暂时写死
 			return false;
 		}
 		return true;
