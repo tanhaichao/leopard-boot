@@ -4,6 +4,8 @@ import java.text.DecimalFormat;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.stereotype.Component;
+
 import freemarker.template.TemplateModelException;
 
 /**
@@ -12,7 +14,7 @@ import freemarker.template.TemplateModelException;
  * @author 阿海
  *
  */
-
+@Component
 public class TimeTemplateMethod extends AbstractTemplateMethod {
 
 	@Override

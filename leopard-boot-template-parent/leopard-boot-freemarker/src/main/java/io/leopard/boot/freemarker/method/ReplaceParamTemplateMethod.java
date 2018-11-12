@@ -7,11 +7,20 @@ import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.stereotype.Component;
+
 import freemarker.template.TemplateMethodModelEx;
 import freemarker.template.TemplateModelException;
 import io.leopard.boot.freemarker.RequestHolder;
 import io.leopard.boot.freemarker.TemplateVariable;
 
+/**
+ * 替换URL参数
+ * 
+ * @author 谭海潮
+ *
+ */
+@Component
 public class ReplaceParamTemplateMethod implements TemplateMethodModelEx, TemplateVariable {
 
 	@Override

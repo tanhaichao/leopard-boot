@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.stereotype.Component;
+
 import freemarker.template.TemplateModelException;
 
 /**
@@ -13,7 +15,7 @@ import freemarker.template.TemplateModelException;
  * @author 阿海
  *
  */
-
+@Component
 public class TimeAgoTemplateMethod extends AbstractTemplateMethod {
 
 	@Override
