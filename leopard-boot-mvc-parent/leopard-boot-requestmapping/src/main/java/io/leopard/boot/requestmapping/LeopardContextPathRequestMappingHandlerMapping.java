@@ -61,9 +61,6 @@ public class LeopardContextPathRequestMappingHandlerMapping extends ExtensibleRe
 					return enable;
 				}
 			}
-			// if (handlerType.getName().startsWith("io.xiaoniu.")) {// FIXME 暂时写死
-			// return false;
-			// }
 		}
 		return true;
 	}
