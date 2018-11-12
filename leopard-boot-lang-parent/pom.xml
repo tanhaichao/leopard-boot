@@ -18,5 +18,6 @@
 		<module>leopard-boot-timer</module>
 		<module>leopard-boot-env</module>
 		<module>leopard-boot-httpnb</module>
+		<module>leopard-boot-annotations</module>
 	</modules>
 </project>
