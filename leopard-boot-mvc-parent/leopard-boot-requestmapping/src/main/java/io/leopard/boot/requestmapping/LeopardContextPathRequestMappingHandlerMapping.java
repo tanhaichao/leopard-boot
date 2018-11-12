@@ -1,7 +1,9 @@
 package io.leopard.boot.requestmapping;
 
 import java.lang.reflect.Method;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
@@ -15,6 +17,9 @@ import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 public class LeopardContextPathRequestMappingHandlerMapping extends ExtensibleRequestMappingHandlerMapping {
 	@Value("${leopard.context-path:}") // 默认为空
 	private String contextPath;
+
+	@Autowired(required = false)
+	private List<ContextPathSwitchgear> contextPathSwitchgears;
 
 	// protected Set<String> addContextPath(Set<String> patterns) {
 	// Set<String> patternSet = new LinkedHashSet<>();
@@ -49,8 +54,16 @@ public class LeopardContextPathRequestMappingHandlerMapping extends ExtensibleRe
 		if (StringUtils.isEmpty(contextPath)) {
 			return false;
 		}
-		if (handlerType.getName().startsWith("io.xiaoniu.")) {// FIXME 暂时写死
-			return false;
+		if (contextPathSwitchgears != null) {
+			for (ContextPathSwitchgear switchgear : contextPathSwitchgears) {
+				Boolean enable = switchgear.isEnableContextPath(method, handlerType);
+				if (enable != null) {
+					return enable;
+				}
+			}
+			// if (handlerType.getName().startsWith("io.xiaoniu.")) {// FIXME 暂时写死
+			// return false;
+			// }
 		}
 		return true;
 	}
