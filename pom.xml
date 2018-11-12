@@ -69,6 +69,7 @@
 		<module>leopard-business-parent</module>
 		<module>leopard-boot-kit-parent</module>
 		<module>leopard-boot-template-parent</module>
+		<module>leopard-boot-pay-parent</module>
 	</modules>
 
 
