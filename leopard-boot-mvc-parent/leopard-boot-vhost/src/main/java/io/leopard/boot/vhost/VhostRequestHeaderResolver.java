@@ -41,7 +41,7 @@ public class VhostRequestHeaderResolver implements RequestHeaderResolver {
 				headerMatcherList.add(new ExtensiveDomainRequestHeaderMatcher(host, vhost.firstLookup()));
 			}
 			else {
-				headerMatcherList.add(new HostRequestHeaderMatcher(host));
+				headerMatcherList.add(new HostRequestHeaderMatcher(host, vhost.firstLookup()));
 			}
 		}
 	}

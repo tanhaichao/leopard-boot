@@ -10,11 +10,14 @@ public class HostRequestHeaderMatcher implements RequestHeaderMatcher {
 
 	private String host;
 
-	public HostRequestHeaderMatcher(String host) {
+	private boolean firstLookup;
+
+	public HostRequestHeaderMatcher(String host, boolean firstLookup) {
 		if (StringUtils.isEmpty(host)) {
 			throw new IllegalArgumentException("host不能为空.");
 		}
 		this.host = host;
+		this.firstLookup = firstLookup;
 	}
 
 	@Override
@@ -30,7 +33,7 @@ public class HostRequestHeaderMatcher implements RequestHeaderMatcher {
 
 	@Override
 	public boolean isFirstLookup() {
-		return true;
+		return firstLookup;
 	}
 
 }
