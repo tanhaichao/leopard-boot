@@ -1,15 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>io.leopard.boot</groupId>
-    <artifactId>leopard-boot</artifactId>
-    <version>0.9.13-SNAPSHOT</version>
-  </parent>
-  <artifactId>leopard-boot-pay-parent</artifactId>
-  <packaging>pom</packaging>
-
-
-  	<description>第三方支付</description>
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>io.leopard.boot</groupId>
+		<artifactId>leopard-boot</artifactId>
+		<version>0.9.13-SNAPSHOT</version>
+	</parent>
+	<artifactId>leopard-boot-pay-parent</artifactId>
+	<packaging>pom</packaging>
+	<description>第三方支付</description>
+	
 	<modules>
 		<module>leopard-boot-pay-weixin</module>
 		<module>leopard-boot-pay-alipay</module>
