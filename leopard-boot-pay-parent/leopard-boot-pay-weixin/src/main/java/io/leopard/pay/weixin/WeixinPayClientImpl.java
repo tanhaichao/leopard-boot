@@ -20,9 +20,9 @@ import com.github.binarywang.wxpay.exception.WxPayException;
 import com.github.binarywang.wxpay.service.WxPayService;
 import com.github.binarywang.wxpay.service.impl.WxPayServiceImpl;
 
+import io.leopard.boot.util.DecimalUtil;
 import io.leopard.jdbc.Jdbc;
 import io.leopard.json.Json;
-import io.leopard.lang.DecimalUtil;
 import io.leopard.lang.inum.EnumConstantInvalidException;
 import io.leopard.lang.inum.EnumUtil;
 
