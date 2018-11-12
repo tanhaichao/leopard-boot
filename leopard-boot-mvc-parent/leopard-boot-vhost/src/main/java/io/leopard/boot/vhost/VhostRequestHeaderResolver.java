@@ -36,7 +36,7 @@ public class VhostRequestHeaderResolver implements RequestHeaderResolver {
 		}
 		// List<String> hostList = new ArrayList<>();
 		for (String host : vhost.value()) {
-			logger.warn("host:" + host);
+			// logger.warn("host:" + host);
 			if (host.startsWith("*.")) {// 泛域名
 				headerMatcherList.add(new ExtensiveDomainRequestHeaderMatcher(host, vhost.firstLookup()));
 			}
@@ -72,7 +72,7 @@ public class VhostRequestHeaderResolver implements RequestHeaderResolver {
 		if (vhost == null) {
 			return null;
 		}
-		System.err.println("vhost:" + vhost.toString());
+		// System.err.println("vhost:" + vhost.toString());
 		return vhost.value();
 	}
 

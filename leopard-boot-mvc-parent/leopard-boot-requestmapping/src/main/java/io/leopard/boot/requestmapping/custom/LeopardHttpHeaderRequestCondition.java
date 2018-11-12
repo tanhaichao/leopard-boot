@@ -12,14 +12,14 @@ public class LeopardHttpHeaderRequestCondition implements RequestCondition<Leopa
 	private Set<RequestHeaderMatcher> headerMatcherList;
 
 	public LeopardHttpHeaderRequestCondition(Set<RequestHeaderMatcher> headerMatcherList) {
-		System.err.println("new LeopardHttpHeaderRequestCondition:" + headerMatcherList);
+		// System.err.println("new LeopardHttpHeaderRequestCondition:" + headerMatcherList);
 		this.headerMatcherList = headerMatcherList;
 	}
 
 	@Override
 	public LeopardHttpHeaderRequestCondition combine(LeopardHttpHeaderRequestCondition other) {
-		new Exception("combine").printStackTrace();
-		System.err.println("combine:" + other);
+		// new Exception("combine").printStackTrace();
+		// System.err.println("combine:" + other);
 		// 不做合并
 		Set<RequestHeaderMatcher> set = new LinkedHashSet<>(this.headerMatcherList);
 		set.addAll(other.headerMatcherList);
@@ -42,8 +42,8 @@ public class LeopardHttpHeaderRequestCondition implements RequestCondition<Leopa
 
 	@Override
 	public LeopardHttpHeaderRequestCondition getMatchingCondition(HttpServletRequest request) {
-		System.err.println("getMatchingCondition:" + request);
-		new Exception("getMatchingCondition").printStackTrace();
+		// System.err.println("getMatchingCondition:" + request);
+		// new Exception("getMatchingCondition").printStackTrace();
 		for (RequestHeaderMatcher headerMatcher : headerMatcherList) {
 			boolean matched = headerMatcher.match(request);
 			if (!matched) {
