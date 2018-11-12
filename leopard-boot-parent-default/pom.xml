@@ -69,6 +69,11 @@
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
+				<artifactId>leopard-boot-exception</artifactId>
+				<version>0.9.13-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-data</artifactId>
 				<version>0.9.13-SNAPSHOT</version>
 			</dependency>
