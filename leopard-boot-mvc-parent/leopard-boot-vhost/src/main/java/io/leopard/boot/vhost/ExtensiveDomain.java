@@ -81,8 +81,8 @@ public class ExtensiveDomain {
 		if (!nonList.isEmpty()) {
 			int index = 0;
 			for (String domain : nonList) {
-				String ignoreDomai = this.nonIgnoreList.get(index);
-				if (serverName.endsWith(ignoreDomai)) {
+				String ignoreDomain = this.nonIgnoreList.get(index);
+				if (serverName.endsWith(ignoreDomain)) {
 					continue;
 				}
 				if (!serverName.endsWith(domain)) {

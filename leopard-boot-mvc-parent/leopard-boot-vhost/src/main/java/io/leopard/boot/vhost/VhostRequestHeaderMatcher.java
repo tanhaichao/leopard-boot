@@ -1,5 +1,8 @@
 package io.leopard.boot.vhost;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
@@ -13,29 +16,53 @@ import io.leopard.boot.requestmapping.custom.RequestHeaderMatcher;
  * @author 谭海潮
  *
  */
-public class ExtensiveDomainRequestHeaderMatcher implements RequestHeaderMatcher {
+public class VhostRequestHeaderMatcher implements RequestHeaderMatcher {
 	protected Log logger = LogFactory.getLog(this.getClass());
 
 	ExtensiveDomain domain = new ExtensiveDomain();
 
-	private String domainPattern;
+	/**
+	 * 域名列表
+	 */
+	private List<String> hostList = new ArrayList<>();
 
 	private boolean firstLookup;
 
-	public ExtensiveDomainRequestHeaderMatcher(String domainPattern, boolean firstLookup) {
-		this.domain.addExtensiveDomain(domainPattern);
-		this.domainPattern = domainPattern;
+	public VhostRequestHeaderMatcher(boolean firstLookup) {
 		this.firstLookup = firstLookup;
+	}
+
+	/**
+	 * 添加泛域名
+	 * 
+	 * @param domain
+	 */
+	public void addExtensiveDomain(String domainPattern) {
+		this.domain.addExtensiveDomain(domainPattern);
+	}
+
+	/**
+	 * 普通域名
+	 * 
+	 * @param host
+	 */
+	public void addHost(String host) {
+		hostList.add(host);
 	}
 
 	@Override
 	public String getHeader() {
-		return "Host=" + domainPattern;
+		throw new RuntimeException("not impl.");
 	}
 
 	@Override
 	public boolean match(HttpServletRequest request) {
 		String serverName = request.getServerName();
+		for (String host : hostList) {
+			if (host.equals(serverName)) {
+				return true;
+			}
+		}
 		boolean matched = domain.match(serverName);
 		logger.info("match serverName:" + serverName + " matched:" + matched);
 		return matched;

@@ -29,21 +29,25 @@ public class VhostRequestHeaderResolver implements RequestHeaderResolver {
 		if (method == null) {
 			return;
 		}
-
 		Vhost vhost = findVhost(method);
 		if (vhost == null) {
 			return;
 		}
+
+		VhostRequestHeaderMatcher matcher = new VhostRequestHeaderMatcher(vhost.firstLookup());
 		// List<String> hostList = new ArrayList<>();
 		for (String host : vhost.value()) {
 			// logger.warn("host:" + host);
 			if (host.startsWith("*.")) {// 泛域名
-				headerMatcherList.add(new ExtensiveDomainRequestHeaderMatcher(host, vhost.firstLookup()));
+				matcher.addExtensiveDomain(host);
 			}
 			else {
-				headerMatcherList.add(new HostRequestHeaderMatcher(host, vhost.firstLookup()));
+				matcher.addHost(host);
 			}
 		}
+
+		headerMatcherList.add(matcher);
+
 	}
 
 	protected Vhost findVhost(Method method) {
