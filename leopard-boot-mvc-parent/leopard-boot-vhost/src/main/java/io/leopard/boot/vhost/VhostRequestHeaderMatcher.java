@@ -28,8 +28,18 @@ public class VhostRequestHeaderMatcher implements RequestHeaderMatcher {
 
 	private boolean firstLookup;
 
-	public VhostRequestHeaderMatcher(boolean firstLookup) {
+	public VhostRequestHeaderMatcher(String[] hosts, boolean firstLookup) {
 		this.firstLookup = firstLookup;
+
+		for (String host : hosts) {
+			// logger.warn("host:" + host);
+			if (host.startsWith("*.")) {// 泛域名
+				this.addExtensiveDomain(host);
+			}
+			else {
+				this.addHost(host);
+			}
+		}
 	}
 
 	/**

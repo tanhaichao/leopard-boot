@@ -33,19 +33,8 @@ public class VhostRequestHeaderResolver implements RequestHeaderResolver {
 		if (vhost == null) {
 			return;
 		}
-
-		VhostRequestHeaderMatcher matcher = new VhostRequestHeaderMatcher(vhost.firstLookup());
+		VhostRequestHeaderMatcher matcher = new VhostRequestHeaderMatcher(vhost.value(), vhost.firstLookup());
 		// List<String> hostList = new ArrayList<>();
-		for (String host : vhost.value()) {
-			// logger.warn("host:" + host);
-			if (host.startsWith("*.")) {// 泛域名
-				matcher.addExtensiveDomain(host);
-			}
-			else {
-				matcher.addHost(host);
-			}
-		}
-
 		headerMatcherList.add(matcher);
 
 	}
