@@ -23,7 +23,7 @@ public class RequestUtil {
 	private static final Log logger = LogFactory.getLog(RequestUtil.class);
 
 	/**
-	 * 获取代理服务器IP. .
+	 * 获取代理服务器IP.
 	 * 
 	 * @param request
 	 * @return
