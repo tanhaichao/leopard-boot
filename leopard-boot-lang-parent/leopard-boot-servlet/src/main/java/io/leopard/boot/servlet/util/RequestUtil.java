@@ -87,6 +87,22 @@ public class RequestUtil {
 	// // return null;
 	// // }
 	// }
+
+	/**
+	 * 判断当前请求是否https.
+	 * 
+	 * @param request
+	 * @return
+	 */
+	public static boolean isHttps(HttpServletRequest request) {
+		String protocol = request.getProtocol();
+		if ("https".equalsIgnoreCase(protocol)) {
+			return true;
+		}
+		boolean isHttps = "true".equals(request.getHeader("isHttps"));
+		return isHttps;
+	}
+
 	/**
 	 * 获取域名.
 	 * 
@@ -105,7 +121,7 @@ public class RequestUtil {
 		// }
 		// return sb.toString();
 
-		boolean isHttps = "true".equals(request.getHeader("isHttps"));
+		boolean isHttps = isHttps(request);
 		StringBuilder sb = new StringBuilder(48);
 		int port = request.getServerPort();
 
