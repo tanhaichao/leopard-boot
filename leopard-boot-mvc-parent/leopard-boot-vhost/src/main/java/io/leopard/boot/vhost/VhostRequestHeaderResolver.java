@@ -33,7 +33,17 @@ public class VhostRequestHeaderResolver implements RequestHeaderResolver {
 		if (vhost == null) {
 			return;
 		}
+
+		VhostExcludeUrls vhostExcludeUrls = method.getAnnotation(VhostExcludeUrls.class);
 		VhostRequestHeaderMatcher matcher = new VhostRequestHeaderMatcher(vhost.value(), vhost.firstLookup());
+		if (vhostExcludeUrls != null) {
+			for (VhostExcludeUrl vhostExcludeUrl : vhostExcludeUrls.value()) {
+				for (String excludeUrl : vhostExcludeUrl.value()) {
+					// System.err.println("excludeUrl:" + excludeUrl);
+					matcher.addExcludeUrl(excludeUrl);
+				}
+			}
+		}
 		// List<String> hostList = new ArrayList<>();
 		headerMatcherList.add(matcher);
 

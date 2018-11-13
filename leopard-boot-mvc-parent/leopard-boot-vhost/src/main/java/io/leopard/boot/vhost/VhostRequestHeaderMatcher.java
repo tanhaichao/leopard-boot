@@ -26,6 +26,11 @@ public class VhostRequestHeaderMatcher implements RequestHeaderMatcher {
 	 */
 	private List<String> hostList = new ArrayList<>();
 
+	/**
+	 * 排除的URL列表
+	 */
+	private List<String> excludeUrlList = new ArrayList<>();
+
 	private boolean firstLookup;
 
 	public VhostRequestHeaderMatcher(String[] hosts, boolean firstLookup) {
@@ -40,6 +45,15 @@ public class VhostRequestHeaderMatcher implements RequestHeaderMatcher {
 				this.addHost(host);
 			}
 		}
+	}
+
+	/**
+	 * 添加排除的URL
+	 * 
+	 * @param excludeUrl
+	 */
+	public void addExcludeUrl(String excludeUrl) {
+		excludeUrlList.add(excludeUrl);
 	}
 
 	/**
@@ -67,6 +81,14 @@ public class VhostRequestHeaderMatcher implements RequestHeaderMatcher {
 
 	@Override
 	public boolean match(HttpServletRequest request) {
+		if (!excludeUrlList.isEmpty()) {
+			String url = request.getRequestURI();
+			url = url.replaceAll("/+", "/");
+			// TODO 未过滤contextPath
+			if (excludeUrlList.contains(url)) {
+				return false;
+			}
+		}
 		String serverName = request.getServerName();
 		for (String host : hostList) {
 			if (host.equals(serverName)) {
