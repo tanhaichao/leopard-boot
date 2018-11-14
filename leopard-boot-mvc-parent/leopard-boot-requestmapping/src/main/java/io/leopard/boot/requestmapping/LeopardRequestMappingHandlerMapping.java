@@ -3,7 +3,9 @@ package io.leopard.boot.requestmapping;
 import java.lang.reflect.AnnotatedElement;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.annotation.AnnotatedElementUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +20,8 @@ public class LeopardRequestMappingHandlerMapping extends RequestMappingHandlerMa
 	@Value("${mvc.restful:true}") // 默认为true
 	private boolean restful;
 
+	@Autowired(required = false)
+	private List<RequestMappingInfoCombiner> combinerList;
 	// @Autowired
 	// private RequestMappingInfoBuilder requestMappingInfoBuilder;
 
@@ -39,6 +43,13 @@ public class LeopardRequestMappingHandlerMapping extends RequestMappingHandlerMa
 			RequestMappingInfo typeInfo = createRequestMappingInfo(handlerType);
 			if (typeInfo != null) {
 				info = typeInfo.combine(info);
+			}
+		}
+		if (info != null) {
+			if (combinerList != null) {
+				for (RequestMappingInfoCombiner combiner : combinerList) {
+					info = combiner.combine(info, method, handlerType);
+				}
 			}
 		}
 		return info;
