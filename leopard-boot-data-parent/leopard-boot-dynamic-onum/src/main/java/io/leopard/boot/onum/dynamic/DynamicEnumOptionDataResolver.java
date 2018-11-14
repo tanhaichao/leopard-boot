@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 import io.leopard.boot.onum.dynamic.model.DynamicEnumConstantEntity;
 import io.leopard.boot.onum.dynamic.service.DynamicEnumManager;
 import io.leopard.boot.onum.dynamic.service.DynamicEnumService;
-import io.leopard.lang.inum.dynamic.EnumConstant;
 import io.leopard.web.mvc.option.OptionDataResolver;
 import io.leopard.web.mvc.option.OptionVO;
 
@@ -30,14 +29,14 @@ public class DynamicEnumOptionDataResolver implements OptionDataResolver {
 			return optionVOList;
 		}
 
-		List<EnumConstant> constants = DynamicEnumManager.listByEnumId(enumId);
-		if (constants == null) {
-			throw new RuntimeException("枚举[" + enumId + "]在类中的数据找不到.");
-		}
-
-		if (constantList.size() != constants.size()) {
-			throw new RuntimeException("枚举[" + enumId + "]元素数量不一致.");
-		}
+		// List<EnumConstant> constants = DynamicEnumManager.listByEnumId(enumId);
+		// if (constants == null) {
+		// throw new RuntimeException("枚举[" + enumId + "]在类中的数据找不到.");
+		// }
+		//
+		// if (constantList.size() != constants.size()) {
+		// throw new RuntimeException("枚举[" + enumId + "]元素数量不一致.");
+		// }
 
 		if (constantList != null) {
 			for (DynamicEnumConstantEntity constant : constantList) {
