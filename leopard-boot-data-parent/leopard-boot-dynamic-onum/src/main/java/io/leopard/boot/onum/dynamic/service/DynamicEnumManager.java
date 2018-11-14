@@ -87,7 +87,7 @@ public class DynamicEnumManager {
 	}
 
 	/**
-	 * 判断枚举元素是否存在
+	 * 判断枚举元素是否存在(从Java类中判断)
 	 * 
 	 * @param enumId 枚举ID
 	 * @param key 枚举元素key

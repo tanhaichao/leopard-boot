@@ -66,4 +66,24 @@ public interface DynamicEnumDao {
 	 */
 	Date getLastModifyTime();
 	// void loadData();
+
+	/**
+	 * 启用
+	 * 
+	 * @param enumId 枚举ID
+	 * @param key 元素key
+	 * @param operator
+	 * @return
+	 */
+	boolean enable(String enumId, String key, Operator operator);
+
+	/**
+	 * 禁用
+	 * 
+	 * @param enumId 枚举ID
+	 * @param key 元素key
+	 * @param operator
+	 * @return
+	 */
+	boolean disable(String enumId, String key, Operator operator);
 }

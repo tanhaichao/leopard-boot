@@ -119,6 +119,45 @@ public class DynamicEnumManageController {
 	}
 
 	/**
+	 * 启用元素
+	 * 
+	 * @param enumId
+	 * @param key
+	 * @return
+	 * @throws DynamicEnumNotFoundException
+	 */
+	public boolean enable(String enumId, String key) throws DynamicEnumNotFoundException {
+		checkDynamicEnumManageValidator();
+		Operator operator = new Operator();
+		// this.dynamicEnumManageValidator.deleteEnumConstant(enumId, key, operator, request);
+		if (!DynamicEnumManager.hasEnum(enumId)) {
+			throw new DynamicEnumNotFoundException(enumId);
+		}
+		boolean success = this.dynamicEnumService.enable(enumId, key, operator);
+		dynamicEnumService.rsync(enumId);
+		return success;
+	}
+
+	/**
+	 * 禁用元素
+	 * 
+	 * @param enumId
+	 * @param key
+	 * @return
+	 * @throws DynamicEnumNotFoundException
+	 */
+	public boolean disable(String enumId, String key) throws DynamicEnumNotFoundException {
+		checkDynamicEnumManageValidator();
+		Operator operator = new Operator();
+		if (!DynamicEnumManager.hasEnum(enumId)) {
+			throw new DynamicEnumNotFoundException(enumId);
+		}
+		boolean success = this.dynamicEnumService.disable(enumId, key, operator);
+		dynamicEnumService.rsync(enumId);
+		return success;
+	}
+
+	/**
 	 * 删除元素
 	 * 
 	 * @param enumId 枚举ID

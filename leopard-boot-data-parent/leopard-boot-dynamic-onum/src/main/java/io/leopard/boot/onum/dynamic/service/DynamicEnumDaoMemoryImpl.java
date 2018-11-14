@@ -107,4 +107,38 @@ public class DynamicEnumDaoMemoryImpl implements DynamicEnumDao {
 	public DynamicEnumConstantEntity get(String enumId, String key) {
 		throw new NotImplementedException("not impl.");
 	}
+
+	@Override
+	public boolean enable(String enumId, String key, Operator operator) {
+		List<DynamicEnumConstantEntity> constantList = enumMap.get(enumId);
+		if (constantList == null) {
+			throw new RuntimeException("动态枚举[" + enumId + "]不存在.");
+		}
+		Iterator<DynamicEnumConstantEntity> iterator = constantList.iterator();
+		while (iterator.hasNext()) {
+			DynamicEnumConstantEntity constant = iterator.next();
+			if (constant.getKey().equals(key)) {
+				constant.setDisable(false);
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public boolean disable(String enumId, String key, Operator operator) {
+		List<DynamicEnumConstantEntity> constantList = enumMap.get(enumId);
+		if (constantList == null) {
+			throw new RuntimeException("动态枚举[" + enumId + "]不存在.");
+		}
+		Iterator<DynamicEnumConstantEntity> iterator = constantList.iterator();
+		while (iterator.hasNext()) {
+			DynamicEnumConstantEntity constant = iterator.next();
+			if (constant.getKey().equals(key)) {
+				constant.setDisable(true);
+				return true;
+			}
+		}
+		return false;
+	}
 }

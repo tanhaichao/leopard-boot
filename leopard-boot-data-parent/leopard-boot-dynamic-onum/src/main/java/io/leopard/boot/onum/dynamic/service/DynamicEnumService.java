@@ -26,6 +26,26 @@ public interface DynamicEnumService {
 	boolean delete(String enumId, String key, Operator operator);
 
 	/**
+	 * 启用
+	 * 
+	 * @param enumId 枚举ID
+	 * @param key 元素key
+	 * @param operator
+	 * @return
+	 */
+	boolean enable(String enumId, String key, Operator operator);
+
+	/**
+	 * 禁用
+	 * 
+	 * @param enumId 枚举ID
+	 * @param key 元素key
+	 * @param operator
+	 * @return
+	 */
+	boolean disable(String enumId, String key, Operator operator);
+
+	/**
 	 * 根据枚举ID查询所有元素记录
 	 * 
 	 * @param enumId 枚举ID

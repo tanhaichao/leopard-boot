@@ -89,6 +89,18 @@ public class DynamicEnumDaoJdbcImpl implements DynamicEnumDao {
 	}
 
 	@Override
+	public boolean enable(String enumId, String key, Operator operator) {
+		String sql = "update " + TABLE_NAME + " set disable=0 where enumId=? and `key`=?";
+		return jdbc.updateForBoolean(sql, enumId, key);
+	}
+
+	@Override
+	public boolean disable(String enumId, String key, Operator operator) {
+		String sql = "update " + TABLE_NAME + " set disable=1 where enumId=? and `key`=?";
+		return jdbc.updateForBoolean(sql, enumId, key);
+	}
+
+	@Override
 	public boolean update(DynamicEnumConstantEntity entity, Operator operator) {
 		UpdateBuilder builder = new NullUpdateBuilder(TABLE_NAME);
 		builder.setString("desc", entity.getDesc());

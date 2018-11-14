@@ -186,4 +186,26 @@ public class DynamicEnumServiceImpl implements DynamicEnumService {
 		}
 		return dynamicEnumDao.get(enumId, key);
 	}
+
+	@Override
+	public boolean enable(String enumId, String key, Operator operator) {
+		if (StringUtils.isEmpty(enumId)) {
+			throw new IllegalArgumentException("枚举ID不能为空.");
+		}
+		if (StringUtils.isEmpty(key)) {
+			throw new IllegalArgumentException("枚举元素key不能为空.");
+		}
+		return dynamicEnumDao.enable(enumId, key, operator);
+	}
+
+	@Override
+	public boolean disable(String enumId, String key, Operator operator) {
+		if (StringUtils.isEmpty(enumId)) {
+			throw new IllegalArgumentException("枚举ID不能为空.");
+		}
+		if (StringUtils.isEmpty(key)) {
+			throw new IllegalArgumentException("枚举元素key不能为空.");
+		}
+		return dynamicEnumDao.disable(enumId, key, operator);
+	}
 }

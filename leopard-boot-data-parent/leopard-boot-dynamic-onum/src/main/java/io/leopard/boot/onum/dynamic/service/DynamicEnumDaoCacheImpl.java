@@ -81,4 +81,16 @@ public class DynamicEnumDaoCacheImpl implements DynamicEnumDao {
 		return dynamicEnumDaoJdbcImpl.get(enumId, key);
 	}
 
+	@Override
+	public boolean enable(String enumId, String key, Operator operator) {
+		dynamicEnumDaoJdbcImpl.enable(enumId, key, operator);
+		return this.dynamicEnumDaoMemoryImpl.enable(enumId, key, operator);
+	}
+
+	@Override
+	public boolean disable(String enumId, String key, Operator operator) {
+		dynamicEnumDaoJdbcImpl.disable(enumId, key, operator);
+		return this.dynamicEnumDaoMemoryImpl.disable(enumId, key, operator);
+	}
+
 }
