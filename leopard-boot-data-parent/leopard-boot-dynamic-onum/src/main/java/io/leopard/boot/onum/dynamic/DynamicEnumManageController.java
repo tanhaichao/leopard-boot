@@ -121,8 +121,8 @@ public class DynamicEnumManageController {
 	/**
 	 * 启用元素
 	 * 
-	 * @param enumId
-	 * @param key
+	 * @param enumId 枚举ID
+	 * @param key 枚举元素key
 	 * @return
 	 * @throws DynamicEnumNotFoundException
 	 */
@@ -143,8 +143,8 @@ public class DynamicEnumManageController {
 	/**
 	 * 禁用元素
 	 * 
-	 * @param enumId
-	 * @param key
+	 * @param enumId 枚举ID
+	 * @param key 枚举元素key
 	 * @return
 	 * @throws DynamicEnumNotFoundException
 	 */
