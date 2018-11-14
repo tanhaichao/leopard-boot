@@ -113,16 +113,20 @@ public class DynamicEnumServiceImpl implements DynamicEnumService {
 	@Override
 	public List<DynamicEnumConstantEntity> listEnableEnumConstant(String enumId) {
 		List<DynamicEnumConstantEntity> recordList = this.list(enumId);
-		if (recordList != null) {
-			Iterator<DynamicEnumConstantEntity> iterator = recordList.iterator();
-			while (iterator.hasNext()) {
-				DynamicEnumConstantEntity constant = iterator.next();
-				if (constant.isDisable()) {
-					iterator.remove();
-				}
+		if (recordList == null) {
+			return null;
+		}
+
+		List<DynamicEnumConstantEntity> enableList = new ArrayList<>();
+		Iterator<DynamicEnumConstantEntity> iterator = recordList.iterator();
+		while (iterator.hasNext()) {
+			DynamicEnumConstantEntity constant = iterator.next();
+			if (!constant.isDisable()) {
+				enableList.add(constant);
 			}
 		}
-		return recordList;
+		return enableList;
+
 	}
 
 	protected List<EnumConstant> getEnumConstantList(String enumId, Class<?> enumType) {
