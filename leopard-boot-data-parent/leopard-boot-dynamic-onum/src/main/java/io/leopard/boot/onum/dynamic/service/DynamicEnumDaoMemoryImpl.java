@@ -1,7 +1,6 @@
 package io.leopard.boot.onum.dynamic.service;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -22,7 +21,13 @@ public class DynamicEnumDaoMemoryImpl implements DynamicEnumDao {
 
 	@Override
 	public List<DynamicEnumConstantEntity> list(String enumId) {
-		return Collections.unmodifiableList(enumMap.get(enumId));
+		List<DynamicEnumConstantEntity> list = enumMap.get(enumId);
+		if (list == null) {
+			return null;
+		}
+		// Collections.copy(dest, src);
+		return new ArrayList<>(list);
+		// return Collections.unmodifiableList(enumMap.get(enumId));
 	}
 
 	@Override
