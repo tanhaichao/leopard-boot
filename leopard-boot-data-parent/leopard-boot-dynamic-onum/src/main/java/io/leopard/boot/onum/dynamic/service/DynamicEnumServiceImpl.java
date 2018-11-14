@@ -126,7 +126,7 @@ public class DynamicEnumServiceImpl implements DynamicEnumService {
 	}
 
 	protected List<EnumConstant> getEnumConstantList(String enumId, Class<?> enumType) {
-		List<DynamicEnumConstantEntity> recordList = this.listEnableEnumConstant(enumId);
+		List<DynamicEnumConstantEntity> recordList = this.list(enumId);
 		List<EnumConstant> constantList = new ArrayList<>();
 		if (recordList != null) {
 			for (DynamicEnumConstantEntity record : recordList) {
