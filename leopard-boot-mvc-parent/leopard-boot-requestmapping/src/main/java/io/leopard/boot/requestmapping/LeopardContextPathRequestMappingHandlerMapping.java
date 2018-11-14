@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 
 /**
@@ -47,10 +46,6 @@ public class LeopardContextPathRequestMappingHandlerMapping extends ExtensibleRe
 			// // patterns.clear();
 			// // patterns.addAll(patternSet);
 			// // System.err.println("default patterns:" + info.getPatternsCondition().getPatterns());
-		}
-
-		if (true) {
-			info.getMethodsCondition().getMethods().add(RequestMethod.GET);
 		}
 		return info;
 	}
