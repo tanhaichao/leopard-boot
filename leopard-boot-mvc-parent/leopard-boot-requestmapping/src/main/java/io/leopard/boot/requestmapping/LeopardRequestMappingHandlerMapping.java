@@ -48,7 +48,10 @@ public class LeopardRequestMappingHandlerMapping extends RequestMappingHandlerMa
 		if (info != null) {
 			if (combinerList != null) {
 				for (RequestMappingInfoCombiner combiner : combinerList) {
-					info = combiner.combine(info, method, handlerType);
+					RequestMappingInfo info2 = combiner.combine(info, method, handlerType);
+					if (info2 != null) {
+						info = info2;
+					}
 				}
 			}
 		}
