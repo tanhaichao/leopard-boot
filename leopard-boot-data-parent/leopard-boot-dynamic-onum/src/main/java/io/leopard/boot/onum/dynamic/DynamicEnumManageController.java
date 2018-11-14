@@ -126,6 +126,8 @@ public class DynamicEnumManageController {
 	 * @return
 	 * @throws DynamicEnumNotFoundException
 	 */
+	@RequestMapping("enable")
+	@ResponseBody
 	public boolean enable(String enumId, String key) throws DynamicEnumNotFoundException {
 		checkDynamicEnumManageValidator();
 		Operator operator = new Operator();
@@ -146,6 +148,8 @@ public class DynamicEnumManageController {
 	 * @return
 	 * @throws DynamicEnumNotFoundException
 	 */
+	@RequestMapping("disable")
+	@ResponseBody
 	public boolean disable(String enumId, String key) throws DynamicEnumNotFoundException {
 		checkDynamicEnumManageValidator();
 		Operator operator = new Operator();
