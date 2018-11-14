@@ -7,11 +7,12 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 
 @Configuration
 @ComponentScan
-public class RequestMappingAutoConfiguration extends WebMvcRegistrationsAdapter {
+public class LeopardRequestMappingAutoConfiguration extends WebMvcRegistrationsAdapter {
 
 	@Override
 	public RequestMappingHandlerMapping getRequestMappingHandlerMapping() {
-		return new LeopardContextPathRequestMappingHandlerMapping();
+		return new ExtensibleRequestMappingHandlerMapping();
+		// return new LeopardContextPathRequestMappingHandlerMapping();
 		// return new LeopardRequestMappingHandlerMapping();
 	}
 

@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
  * @author 谭海潮
  *
  */
+@Deprecated
 public class LeopardContextPathRequestMappingHandlerMapping extends ExtensibleRequestMappingHandlerMapping {
 	@Value("${leopard.context-path:}") // 默认为空
 	private String contextPath;
