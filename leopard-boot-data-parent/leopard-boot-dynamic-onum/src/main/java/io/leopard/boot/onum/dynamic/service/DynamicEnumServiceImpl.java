@@ -114,6 +114,9 @@ public class DynamicEnumServiceImpl implements DynamicEnumService {
 		List<EnumConstant> constantList = new ArrayList<>();
 		if (recordList != null) {
 			for (DynamicEnumConstantEntity record : recordList) {
+				if (record.isDisable()) {
+					continue;
+				}
 				// TODO 扩展参数未支持
 				Object key = DynamicEnumManager.toObjectKey(enumType, record.getKey());
 				EnumConstant constant = new EnumConstant();
