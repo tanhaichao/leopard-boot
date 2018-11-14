@@ -24,7 +24,7 @@ public class DynamicEnumOptionDataResolver implements OptionDataResolver {
 			// throw new DynamicEnumNotFoundException(enumId);
 			return null;
 		}
-		List<DynamicEnumConstantEntity> constantList = dynamicEnumService.list(enumId);
+		List<DynamicEnumConstantEntity> constantList = dynamicEnumService.listEnableEnumConstant(enumId);
 		List<OptionVO> optionVOList = new ArrayList<>();
 		if (constantList == null) {
 			return optionVOList;

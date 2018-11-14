@@ -2,6 +2,7 @@ package io.leopard.boot.onum.dynamic.service;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -62,11 +63,11 @@ public class DynamicEnumServiceImpl implements DynamicEnumService {
 		if (enumInfo == null) {// TODO 需要做这个兼容吗?
 			return false;
 		}
-		List<DynamicEnumConstantEntity> recordList = this.dynamicEnumDao.list(enumId);
+		// List<DynamicEnumConstantEntity> recordList = this.dynamicEnumDao.list(enumId);
 
 		String className = enumInfo.getBeanClassName();
 		Class<?> enumType = enumInfo.getEnumType();
-		List<EnumConstant> constantList = this.toEnumConstantList(recordList, enumType);
+		List<EnumConstant> constantList = this.getEnumConstantList(enumId, enumType);
 		// System.out.println("className:" + className);
 		// Json.printList(constantList, "constantList");
 		DynamicEnum.setEnumConstantList(className, constantList);
@@ -106,17 +107,29 @@ public class DynamicEnumServiceImpl implements DynamicEnumService {
 			throw new IllegalArgumentException("枚举ID不能为空.");
 		}
 
-		List<DynamicEnumConstantEntity> recordList = this.dynamicEnumDao.list(enumId);
-		return toEnumConstantList(recordList, enumType);
+		return getEnumConstantList(enumId, enumType);
 	}
 
-	public List<EnumConstant> toEnumConstantList(List<DynamicEnumConstantEntity> recordList, Class<?> enumType) {
+	@Override
+	public List<DynamicEnumConstantEntity> listEnableEnumConstant(String enumId) {
+		List<DynamicEnumConstantEntity> recordList = this.list(enumId);
+		if (recordList != null) {
+			Iterator<DynamicEnumConstantEntity> iterator = recordList.iterator();
+			while (iterator.hasNext()) {
+				DynamicEnumConstantEntity constant = iterator.next();
+				if (constant.isDisable()) {
+					iterator.remove();
+				}
+			}
+		}
+		return recordList;
+	}
+
+	protected List<EnumConstant> getEnumConstantList(String enumId, Class<?> enumType) {
+		List<DynamicEnumConstantEntity> recordList = this.listEnableEnumConstant(enumId);
 		List<EnumConstant> constantList = new ArrayList<>();
 		if (recordList != null) {
 			for (DynamicEnumConstantEntity record : recordList) {
-				if (record.isDisable()) {
-					continue;
-				}
 				// TODO 扩展参数未支持
 				Object key = DynamicEnumManager.toObjectKey(enumType, record.getKey());
 				EnumConstant constant = new EnumConstant();

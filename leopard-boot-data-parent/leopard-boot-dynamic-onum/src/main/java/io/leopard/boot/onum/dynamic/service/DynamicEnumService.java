@@ -69,6 +69,14 @@ public interface DynamicEnumService {
 	 */
 	boolean rsync(String enumId);
 
+	/**
+	 * 只返回已启用的元素
+	 * 
+	 * @param enumId
+	 * @return
+	 */
+	List<DynamicEnumConstantEntity> listEnableEnumConstant(String enumId);
+
 	// void setEnumList(List<DynamicEnumInfo> enumList);
 
 }
