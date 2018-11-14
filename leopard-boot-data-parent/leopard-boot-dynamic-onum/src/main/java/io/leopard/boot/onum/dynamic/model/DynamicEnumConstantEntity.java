@@ -31,6 +31,11 @@ public class DynamicEnumConstantEntity {
 	private int position;
 
 	/**
+	 * 是否禁用
+	 */
+	private boolean disable;
+
+	/**
 	 * 备注
 	 */
 	private String remark;
@@ -100,6 +105,14 @@ public class DynamicEnumConstantEntity {
 
 	public void setLmodify(Date lmodify) {
 		this.lmodify = lmodify;
+	}
+
+	public boolean isDisable() {
+		return disable;
+	}
+
+	public void setDisable(boolean disable) {
+		this.disable = disable;
 	}
 
 }
