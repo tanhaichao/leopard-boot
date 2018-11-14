@@ -38,7 +38,7 @@ public class LeopardContextPathRequestMappingHandlerMapping extends ExtensibleRe
 		if (info != null) {
 			boolean isEnableContextPath = isEnableContextPath(method, handlerType);
 			if (isEnableContextPath) {
-				RequestMappingInfo context = RequestMappingInfo.paths(contextPath).options(this.getConfig()).build();
+				RequestMappingInfo context = RequestMappingInfo.paths(contextPath).build();
 				info = context.combine(info);
 			}
 			// Set<String> patterns = info.getPatternsCondition().getPatterns();
