@@ -12,6 +12,12 @@ import io.leopard.boot.onum.dynamic.service.DynamicEnumService;
 import io.leopard.web.mvc.option.OptionDataResolver;
 import io.leopard.web.mvc.option.OptionVO;
 
+/**
+ * 提供数据给/enum/xxx接口
+ * 
+ * @author 谭海潮
+ *
+ */
 @Component
 public class DynamicEnumOptionDataResolver implements OptionDataResolver {
 	@Autowired
