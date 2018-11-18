@@ -1,4 +1,4 @@
-package com.company.example.user;
+package io.leopard.archetype.example.user;
 
 import java.util.Date;
 

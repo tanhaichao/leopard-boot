@@ -1,8 +1,4 @@
-package com.company.example.article;
-
-import java.util.Date;
-
-import io.leopard.data4j.cache.api.uid.IDelete;
+package io.leopard.archetype.example.article;
 
 /**
  * 文章
@@ -10,24 +6,23 @@ import io.leopard.data4j.cache.api.uid.IDelete;
  * @author 谭海潮
  *
  */
-public interface ArticleDao extends IDelete<Article, String> {
+public interface ArticleService {
 	/**
 	 * 添加文章
 	 */
-	@Override
+
 	boolean add(Article article);
 
 	/**
 	 * 根据主键查询文章
 	 */
-	@Override
+
 	Article get(String articleId);
 
 	/**
 	 * 根据主键删除文章
 	 */
-	@Override
-	boolean delete(String articleId, long opuid, Date lmodify);
+	boolean delete(String articleId, long opuid);
 
 	/**
 	 * 下一条文章

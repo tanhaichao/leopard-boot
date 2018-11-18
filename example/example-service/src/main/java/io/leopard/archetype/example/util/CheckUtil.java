@@ -1,6 +1,6 @@
 package io.leopard.archetype.example.util;
 
-import com.company.example.article.ArticleIdInvalidException;
+import io.leopard.archetype.example.article.ArticleIdInvalidException;
 
 /**
  * 参数合法性检查

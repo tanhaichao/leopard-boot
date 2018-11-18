@@ -1,11 +1,10 @@
-package com.company.example.serializer;
+package io.leopard.archetype.example.serializer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.company.example.serializer.NicknameJsonSerializer.UserIO;
-import com.company.example.user.User;
-import com.company.example.user.UserService;
-
+import io.leopard.archetype.example.serializer.NicknameJsonSerializer.UserIO;
+import io.leopard.archetype.example.user.User;
+import io.leopard.archetype.example.user.UserService;
 import io.leopard.web.mvc.json.IdJsonSerializer;
 
 /**

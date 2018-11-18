@@ -1,4 +1,4 @@
-package com.company.example.article;
+package io.leopard.archetype.example.article;
 
 import io.leopard.core.exception.NotFoundException;
 
