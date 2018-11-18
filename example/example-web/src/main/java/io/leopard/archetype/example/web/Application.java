@@ -5,7 +5,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 import io.leopard.boot.LeopardApplication;
 
-@ComponentScan(basePackages = { "com.company.example" })
+@ComponentScan(basePackages = { "io.leopard.archetype.example" })
 public class Application extends LeopardApplication {
 
 	public static void main(String[] args) {
