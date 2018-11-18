@@ -1,4 +1,4 @@
-package com.company.example.web.vo;
+package io.leopard.archetype.example.web.vo;
 
 import java.util.Date;
 

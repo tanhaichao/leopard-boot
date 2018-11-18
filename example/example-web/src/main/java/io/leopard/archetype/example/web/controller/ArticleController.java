@@ -1,4 +1,4 @@
-package com.company.example.web.controller;
+package io.leopard.archetype.example.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.company.example.article.Article;
 import com.company.example.article.ArticleNotFoundException;
 import com.company.example.article.ArticleService;
-import com.company.example.web.form.ArticleForm;
-import com.company.example.web.vo.ArticleListVO;
-import com.company.example.web.vo.ArticleVO;
 
+import io.leopard.archetype.example.web.form.ArticleForm;
+import io.leopard.archetype.example.web.vo.ArticleListVO;
+import io.leopard.archetype.example.web.vo.ArticleVO;
 import io.leopard.jdbc.Jdbc;
 import io.leopard.jdbc.builder.QueryBuilder;
 import io.leopard.lang.Page;

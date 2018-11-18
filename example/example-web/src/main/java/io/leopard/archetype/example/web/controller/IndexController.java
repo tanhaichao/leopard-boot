@@ -1,4 +1,4 @@
-package com.company.example.web.controller;
+package io.leopard.archetype.example.web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

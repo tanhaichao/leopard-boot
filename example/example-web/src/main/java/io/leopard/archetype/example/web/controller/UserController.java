@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.company.example.user.User;
 import com.company.example.user.UserService;
-import com.company.example.web.form.UserForm;
-import com.company.example.web.vo.UserVO;
 
+import io.leopard.archetype.example.web.form.UserForm;
+import io.leopard.archetype.example.web.vo.UserVO;
 import io.leopard.lang.util.BeanUtil;
 
 /**

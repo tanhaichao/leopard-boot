@@ -1,4 +1,4 @@
-package com.company.example.web.form;
+package io.leopard.archetype.example.web.form;
 
 /**
  * 用户

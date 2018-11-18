@@ -1,4 +1,4 @@
-package com.company.example.web;
+package io.leopard.archetype.example.web;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

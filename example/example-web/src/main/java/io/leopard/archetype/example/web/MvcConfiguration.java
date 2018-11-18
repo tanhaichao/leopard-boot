@@ -1,4 +1,4 @@
-package com.company.example.web;
+package io.leopard.archetype.example.web;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
