@@ -1,4 +1,4 @@
-package com.company.example.web.controller;
+package io.leopard.archetype.example.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

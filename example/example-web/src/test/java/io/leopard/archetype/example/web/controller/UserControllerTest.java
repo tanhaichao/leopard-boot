@@ -1,11 +1,10 @@
-package com.company.example.web.controller;
+package io.leopard.archetype.example.web.controller;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.company.example.web.vo.UserVO;
 
-import io.leopard.archetype.example.web.controller.UserController;
 import io.leopard.json.Json;
 import io.leopard.test.IntegrationTests;
 
