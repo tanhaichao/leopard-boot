@@ -1,7 +1,10 @@
-package com.company.example.article;
+package io.leopard.archetype.example.article;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.company.example.article.Article;
+import com.company.example.article.ArticleServiceImpl;
 
 import io.leopard.json.Json;
 import io.leopard.test.IntegrationTests;

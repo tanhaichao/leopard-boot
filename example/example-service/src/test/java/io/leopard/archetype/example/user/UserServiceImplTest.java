@@ -1,7 +1,10 @@
-package com.company.example.user;
+package io.leopard.archetype.example.user;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.company.example.user.User;
+import com.company.example.user.UserServiceImpl;
 
 import io.leopard.json.Json;
 import io.leopard.test.IntegrationTests;
