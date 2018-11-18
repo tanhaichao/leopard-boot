@@ -43,7 +43,7 @@
 					<!--fork : 如果没有该项配置，devtools不会起作用，即应用不会restart -->
 					<fork>true</fork>
 					<addResources>true</addResources>
-					<mainClass>com.company.example.web.Application</mainClass>
+					<mainClass>com.company.archetype.example.web.Application</mainClass>
 				</configuration>
 				<executions>
 					<execution>
