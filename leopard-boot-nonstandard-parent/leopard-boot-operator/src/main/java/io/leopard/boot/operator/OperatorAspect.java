@@ -13,6 +13,7 @@ import org.aspectj.lang.annotation.Before;
 // @Component
 public class OperatorAspect {
 
+	//TODO 测试，暂时写死
 	@Before("execution(* (cn.nineox.zhaotong.scp..*Service).add(..))")
 	public void add(JoinPoint joinPoint) {
 		EntityInfo entityInfo = new EntityInfo(joinPoint);

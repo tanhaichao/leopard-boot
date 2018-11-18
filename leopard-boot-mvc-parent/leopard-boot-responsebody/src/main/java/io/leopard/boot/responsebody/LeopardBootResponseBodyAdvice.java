@@ -46,7 +46,7 @@ public class LeopardBootResponseBodyAdvice implements ResponseBodyAdvice<Object>
 		}
 		else {
 			entity = new ResponseEntity();
-			entity.setStatus("200");//FIXME 这里要改成success
+			entity.setStatus("200");// FIXME 这里要改成success
 			entity.setData(body);
 		}
 		return entity;
