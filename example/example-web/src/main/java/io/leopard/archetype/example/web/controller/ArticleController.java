@@ -5,10 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.company.example.article.Article;
-import com.company.example.article.ArticleNotFoundException;
-import com.company.example.article.ArticleService;
-
+import io.leopard.archetype.example.article.Article;
+import io.leopard.archetype.example.article.ArticleNotFoundException;
+import io.leopard.archetype.example.article.ArticleService;
 import io.leopard.archetype.example.web.form.ArticleForm;
 import io.leopard.archetype.example.web.vo.ArticleListVO;
 import io.leopard.archetype.example.web.vo.ArticleVO;

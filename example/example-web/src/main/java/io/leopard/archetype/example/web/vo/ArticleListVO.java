@@ -2,8 +2,9 @@ package io.leopard.archetype.example.web.vo;
 
 import java.util.Date;
 
-import com.company.example.serializer.NicknameJsonSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import io.leopard.archetype.example.serializer.NicknameJsonSerializer;
 
 /**
  * 文章

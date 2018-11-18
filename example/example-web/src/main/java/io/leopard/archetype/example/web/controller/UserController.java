@@ -5,9 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.company.example.user.User;
-import com.company.example.user.UserService;
-
+import io.leopard.archetype.example.user.User;
+import io.leopard.archetype.example.user.UserService;
 import io.leopard.archetype.example.web.form.UserForm;
 import io.leopard.archetype.example.web.vo.UserVO;
 import io.leopard.lang.util.BeanUtil;
