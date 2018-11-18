@@ -2,7 +2,7 @@ package com.company.example.user;
 
 import java.util.Date;
 
-import com.company.archetype.example.onum.Gender;
+import io.leopard.archetype.example.onum.Gender;
 
 /**
  * 用户
