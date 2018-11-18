@@ -18,7 +18,7 @@ public class ProjectResource extends FileSystemResource {
 		super(getFile(path));
 	}
 
-	protected static File getFile(String path) throws FileNotFoundException {
+	public static File getFile(String path) throws FileNotFoundException {
 		String userDir = System.getProperty("user.dir");
 		java.io.File webappRootDir = new File(userDir);
 		// TODO 必须符合多模块开发规范
