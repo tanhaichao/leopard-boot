@@ -6,8 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import com.company.example.util.CheckUtil;
-
+import io.leopard.archetype.example.util.CheckUtil;
 import io.leopard.boot.util.StringUtil;
 
 @Service

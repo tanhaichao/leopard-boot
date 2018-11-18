@@ -1,4 +1,4 @@
-package com.company.example.util;
+package io.leopard.archetype.example.util;
 
 import io.leopard.boot.util.LeopardValidUtil;
 import io.leopard.boot.util.UuidUtil;

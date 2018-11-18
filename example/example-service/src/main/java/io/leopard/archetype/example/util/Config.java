@@ -1,4 +1,4 @@
-package com.company.example.util;
+package io.leopard.archetype.example.util;
 
 /**
  * 系统配置类
