@@ -109,6 +109,10 @@ public class DynamicEnumManageController {
 				DynamicEnumConstantVO constantVO = new DynamicEnumConstantVO();
 				constantVO.setKey(constant.getKey());
 				constantVO.setDesc(constant.getDesc());
+				constantVO.setDisable(constant.isDisable());
+				constantVO.setPosttime(constant.getPosttime());
+				constantVO.setLmodify(constant.getLmodify());
+				constantVO.setRemark(constant.getRemark());
 				constantVOList.add(constantVO);
 			}
 		}
