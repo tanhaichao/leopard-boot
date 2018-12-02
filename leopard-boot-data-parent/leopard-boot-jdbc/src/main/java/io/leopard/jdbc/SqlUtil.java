@@ -144,4 +144,17 @@ public class SqlUtil {
 		sb.deleteCharAt(sb.length() - 1);
 		return sb.toString();
 	}
+
+	public static String toInByLong(List<Long> list) {
+		StringBuilder sb = new StringBuilder();
+		int index = 0;
+		for (Long number : list) {
+			if (index > 0) {
+				sb.append(",");
+			}
+			sb.append(number);
+			index++;
+		}
+		return sb.toString();
+	}
 }
