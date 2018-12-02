@@ -85,7 +85,8 @@ public class EntityInfo {
 			field = parameterClazz.getDeclaredField(fieldName);
 		}
 		catch (NoSuchFieldException e) {
-			throw new RuntimeException(e.getMessage(), e);
+			// throw new RuntimeException(e.getMessage(), e);
+			return false;
 		}
 		catch (SecurityException e) {
 			throw new RuntimeException(e.getMessage(), e);
