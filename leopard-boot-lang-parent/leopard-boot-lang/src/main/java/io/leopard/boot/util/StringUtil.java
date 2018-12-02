@@ -276,7 +276,7 @@ public class StringUtil {// NOPMD
 	 * @param minlen 位数
 	 * @return String
 	 */
-	public static String fixed(int number, int minlen) {
+	public static String fixed(long number, int minlen) {
 		String result = String.valueOf(number);
 		while (result.length() < minlen) {
 			result = "0" + result;
