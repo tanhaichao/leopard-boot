@@ -106,6 +106,7 @@ public class EntityInfo {
 			field = parameterClazz.getDeclaredField(fieldName);
 		}
 		catch (NoSuchFieldException e) {
+			// TODO 这里要抛异常
 			return false;
 		}
 		catch (SecurityException e) {
