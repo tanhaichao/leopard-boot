@@ -57,7 +57,7 @@ public class ServerIpUtil {
 		return getServerIp(networkInterface);
 	}
 
-	public static String getServerIp(NetworkInterface networkInterface) throws SocketException {
+	public static String getServerIp(NetworkInterface networkInterface) {
 		List<String> subIpList = listSubIp(networkInterface);
 		List<String> ipList = listAllIp(networkInterface);
 		// System.out.println("ipList:" + ipList);
