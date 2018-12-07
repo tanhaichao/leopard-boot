@@ -13,6 +13,7 @@ public class LeopardRequestMappingAutoConfiguration extends WebMvcRegistrationsA
 	public RequestMappingHandlerMapping getRequestMappingHandlerMapping() {
 		ExtensibleRequestMappingHandlerMapping mapping = new ExtensibleRequestMappingHandlerMapping();
 		mapping.setUseSuffixPatternMatch(false);
+		mapping.setUseTrailingSlashMatch(false);
 		return mapping;
 		// return new LeopardContextPathRequestMappingHandlerMapping();
 		// return new LeopardRequestMappingHandlerMapping();
