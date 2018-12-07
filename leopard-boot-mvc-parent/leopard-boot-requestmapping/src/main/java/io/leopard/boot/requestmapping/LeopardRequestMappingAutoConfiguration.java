@@ -16,8 +16,6 @@ public class LeopardRequestMappingAutoConfiguration extends WebMvcRegistrationsA
 		mapping.setUseTrailingSlashMatch(false);
 		mapping.setUseRegisteredSuffixPatternMatch(false);
 		return mapping;
-		// return new LeopardContextPathRequestMappingHandlerMapping();
-		// return new LeopardRequestMappingHandlerMapping();
 	}
 
 }
