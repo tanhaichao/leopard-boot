@@ -18,12 +18,12 @@ public class ContextPathRequestMappingInfoCombiner implements RequestMappingInfo
 	private List<ContextPathSwitchgear> contextPathSwitchgears;
 
 	@Override
-	public RequestMappingInfo combine(RequestMappingInfo info, Method method, Class<?> handlerType) {
+	public RequestMappingInfo combine(RequestMappingInfo.BuilderConfiguration options, RequestMappingInfo info, Method method, Class<?> handlerType) {
 		boolean isEnableContextPath = isEnableContextPath(method, handlerType);
 		if (!isEnableContextPath) {
 			return null;
 		}
-		RequestMappingInfo context = RequestMappingInfo.paths(contextPath).build();
+		RequestMappingInfo context = RequestMappingInfo.paths(contextPath).options(options).build();
 		return context.combine(info);
 	}
 

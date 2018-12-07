@@ -12,6 +12,6 @@ import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
  */
 public interface RequestMappingInfoCombiner {
 
-	RequestMappingInfo combine(RequestMappingInfo info, Method method, Class<?> handlerType);
+	RequestMappingInfo combine(RequestMappingInfo.BuilderConfiguration options, RequestMappingInfo info, Method method, Class<?> handlerType);
 
 }

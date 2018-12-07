@@ -47,10 +47,11 @@ public class LeopardRequestMappingHandlerMapping extends RequestMappingHandlerMa
 		}
 		if (info != null) {
 			if (combinerList != null) {
+				RequestMappingInfo.BuilderConfiguration options = this.getConfig();
 				// System.err.println("combinerList:" combinerList.size());
 				for (RequestMappingInfoCombiner combiner : combinerList) {
 					// System.err.println("combiner:" + combiner);
-					RequestMappingInfo info2 = combiner.combine(info, method, handlerType);
+					RequestMappingInfo info2 = combiner.combine(options, info, method, handlerType);
 					if (info2 != null) {
 						info = info2;
 					}
