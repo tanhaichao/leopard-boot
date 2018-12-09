@@ -10,6 +10,8 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.util.StringUtils;
+
 public class RequestBodyFilter implements Filter {
 
 	@Override
@@ -18,7 +20,7 @@ public class RequestBodyFilter implements Filter {
 		// 打印请求Url
 		String requestBody = request.getParameter("requestBody");
 		// System.err.println("RequestBodyFilter:" + requestBody);
-		if (requestBody == null) {
+		if (StringUtils.isEmpty(requestBody)) {
 			chain.doFilter(req, res);
 		}
 		else {
