@@ -1,5 +1,6 @@
 package io.leopard.boot.xparam.resolver;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
@@ -117,7 +118,7 @@ public class ModelHandlerMethodArgumentResolver extends AbstractNamedValueMethod
 	}
 
 	@SuppressWarnings("unchecked")
-	protected Object toList(String fieldName, Class<?> subType, HttpServletRequest req) {
+	protected Object toList(String fieldName, Class<?> subType, HttpServletRequest req) throws IOException {
 		String[] values = req.getParameterValues(fieldName);
 		if (values == null) {
 			return null;
@@ -165,7 +166,7 @@ public class ModelHandlerMethodArgumentResolver extends AbstractNamedValueMethod
 		// }
 	}
 
-	private static Object toObject(String value, Class<?> type, String fieldName) {
+	private static Object toObject(String value, Class<?> type, String fieldName) throws IOException {
 		if (String.class.equals(type)) {
 			return value;
 		}

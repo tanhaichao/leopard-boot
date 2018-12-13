@@ -1,5 +1,6 @@
 package io.leopard.boot.xparam.resolver;
 
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,16 +52,16 @@ public class UnderlineJson {
 		return mapper;
 	}
 
-	public static <T> T toObject(String json, Class<T> clazz) {
+	public static <T> T toObject(String json, Class<T> clazz) throws IOException {
 		if (json == null || json.length() == 0) {
 			return null;
 		}
-		try {
-			return getObjectMapper().readValue(json, clazz);
-		}
-		catch (Exception e) {
-			throw new JsonException(e.getMessage(), e);
-		}
+		// try {
+		return getObjectMapper().readValue(json, clazz);
+		// }
+		// catch (Exception e) {
+		// throw new JsonException(e.getMessage(), e);
+		// }
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
