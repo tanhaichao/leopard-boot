@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +35,7 @@ import io.leopard.jdbc.builder.UpdateBuilder;
 import io.leopard.jdbc.datasource.JdbcDataSource;
 import io.leopard.jdbc.logger.JdbcLogger;
 import io.leopard.jdbc.logger.JdbcLoggerImpl;
+import io.leopard.jdbc.mapper.CountResultSetExtractor;
 import io.leopard.lang.Page;
 import io.leopard.lang.PageImpl;
 import io.leopard.lang.Paging;
@@ -897,5 +899,15 @@ public class JdbcMysqlImpl implements Jdbc {
 	@Override
 	public Date queryForDate(String sql, Object... params) {
 		return this.queryForDate(sql, this.toStatementParameter(sql, params));
+	}
+
+	@Override
+	public <K, V extends Number> Map<K, V> countForMap(String sql, Class<V> keyClazz, Class<V> valueClazz, Object... params) {
+		try {
+			return this.getJdbcTemplate().query(sql, new CountResultSetExtractor<>(), toStatementParameter(sql, params));
+		}
+		catch (EmptyResultDataAccessException e) {
+			return new LinkedHashMap<>();
+		}
 	}
 }
