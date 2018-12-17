@@ -652,4 +652,12 @@ public interface Jdbc {
 
 	void destroy();
 
+	/**
+	 * 统计数据
+	 * 
+	 * @param sql
+	 * @param valueClazz
+	 * @return
+	 */
+	<K, V extends Number> Map<K, V> countForMap(String sql, Class<V> keyClazz, Class<V> valueClazz, Object... params);
 }

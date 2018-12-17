@@ -388,4 +388,9 @@ public class JdbcWrapper implements Jdbc {
 		return this.getJdbc().queryForDate(sql, params);
 	}
 
+	@Override
+	public <K, V extends Number> Map<K, V> countForMap(String sql, Class<V> keyClazz, Class<V> valueClazz, Object... params) {
+		return this.getJdbc().countForMap(sql, keyClazz, valueClazz, params);
+	}
+
 }
