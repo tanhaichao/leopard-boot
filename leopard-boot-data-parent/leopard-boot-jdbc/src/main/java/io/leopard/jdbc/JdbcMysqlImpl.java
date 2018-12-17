@@ -904,7 +904,7 @@ public class JdbcMysqlImpl implements Jdbc {
 	@Override
 	public <K, V extends Number> Map<K, V> countForMap(String sql, Class<V> keyClazz, Class<V> valueClazz, Object... params) {
 		try {
-			return this.getJdbcTemplate().query(sql, new CountResultSetExtractor<>(), toStatementParameter(sql, params));
+			return this.getJdbcTemplate().query(sql, new CountResultSetExtractor<K, V>(keyClazz, valueClazz));
 		}
 		catch (EmptyResultDataAccessException e) {
 			return new LinkedHashMap<>();
