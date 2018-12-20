@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
@@ -33,6 +34,12 @@ public class StreamUtil {
 	// throw new IllegalArgumentException(message);
 	// }
 	// }
+
+	public static <T> List<T> filterList(List<T> list, Predicate<? super T> predicate) {
+		// result = bookList.stream().filter((Book b) -> ids.contains(b.getId())).collect(Collectors.toList());
+		// Stream<T> filter(predicate)
+		return list.stream().filter(predicate).collect(Collectors.toList());
+	}
 
 	/**
 	 * 获取某个属性列表
