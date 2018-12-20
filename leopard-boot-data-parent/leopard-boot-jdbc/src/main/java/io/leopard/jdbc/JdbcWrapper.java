@@ -393,4 +393,9 @@ public class JdbcWrapper implements Jdbc {
 		return this.getJdbc().countForMap(sql, keyClazz, valueClazz, params);
 	}
 
+	@Override
+	public List<Long> queryForLongs(String sql, Object... params) {
+		return this.getJdbc().queryForLongs(sql, params);
+	}
+
 }

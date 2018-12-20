@@ -175,6 +175,11 @@ public class JdbcMysqlImpl implements Jdbc {
 	}
 
 	@Override
+	public List<Long> queryForLongs(String sql, Object... params) {
+		return this.queryForLongs(sql, this.toStatementParameter(sql, params));
+	}
+
+	@Override
 	public List<Long> queryForLongs(String sql, StatementParameter param) {
 		List<Long> list = jdbcTemplate.query(sql, param.getArgs(), new RowMapper<Long>() {
 			@Override

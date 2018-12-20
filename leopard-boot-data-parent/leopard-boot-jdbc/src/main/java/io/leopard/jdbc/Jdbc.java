@@ -215,6 +215,15 @@ public interface Jdbc {
 	List<Long> queryForLongs(String sql, StatementParameter param);
 
 	/**
+	 * 根据sql查询数据，返回long的List.
+	 * 
+	 * @param sql 查询数据的sql
+	 * @param params 参数列表
+	 * @return 查询的数据
+	 */
+	List<Long> queryForLongs(String sql, Object... params);
+
+	/**
 	 * 根据sql查询数据，返回Long的List.
 	 * 
 	 * @param sql sql
