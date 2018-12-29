@@ -46,8 +46,9 @@ public class UploadClientFileSystemImpl extends AbstractUploadClient {
 		byte[] data = IOUtils.toByteArray(input);
 		FileUtils.writeByteArrayToFile(file, data);
 
-		uri = uri.replace("//", "/");
-		return uploadServerDomain + "/" + uri;
+		String url = uploadServerDomain + "/" + uri;
+		url = url.replace("//", "/");
+		return url;
 	}
 
 	@Override
