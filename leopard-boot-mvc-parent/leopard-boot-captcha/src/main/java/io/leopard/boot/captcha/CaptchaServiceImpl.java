@@ -8,6 +8,7 @@ import javax.annotation.PostConstruct;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -21,11 +22,13 @@ public class CaptchaServiceImpl implements CaptchaService {
 
 	protected Log logger = LogFactory.getLog(this.getClass());
 
+	@Autowired
 	protected Jdbc jdbc;
 
+	@Autowired
 	protected Redis redis;
 
-	private String tableName;
+	private String tableName = "captcha";
 
 	public void setJdbc(Jdbc jdbc) {
 		this.jdbc = jdbc;
