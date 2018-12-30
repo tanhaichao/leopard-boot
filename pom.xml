@@ -70,6 +70,7 @@
 		<module>leopard-boot-kit-parent</module>
 		<module>leopard-boot-template-parent</module>
 		<module>leopard-boot-pay-parent</module>
+		<module>leopard-boot-message-parent</module>
 	</modules>
 
 
