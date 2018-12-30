@@ -8,16 +8,17 @@ import javax.annotation.PostConstruct;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import io.leopard.boot.captcha.CaptchaInvalidException;
+import io.leopard.boot.captcha.FrequencyException;
 import io.leopard.boot.util.DateUtil;
 import io.leopard.core.exception.forbidden.CaptchaWrongException;
 import io.leopard.jdbc.Jdbc;
 import io.leopard.redis.Redis;
-import io.leopard.web.captcha.CaptchaInvalidException;
-import io.leopard.web.captcha.FrequencyException;
 
-//@Service
+@Service
 public class CaptchaServiceImpl implements CaptchaService {
 
 	protected Log logger = LogFactory.getLog(this.getClass());

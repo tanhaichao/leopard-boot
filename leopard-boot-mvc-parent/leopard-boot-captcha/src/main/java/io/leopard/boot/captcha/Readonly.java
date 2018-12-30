@@ -1,4 +1,4 @@
-package io.leopard.web.captcha;
+package io.leopard.boot.captcha;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

@@ -1,4 +1,4 @@
-package io.leopard.web.captcha;
+package io.leopard.boot.captcha;
 
 /**
  * 访问太频繁.
