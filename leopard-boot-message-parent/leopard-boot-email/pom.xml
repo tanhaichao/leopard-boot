@@ -7,6 +7,7 @@
 	</parent>
 	<artifactId>leopard-boot-email</artifactId>
 	<description>邮件</description>
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework</groupId>
