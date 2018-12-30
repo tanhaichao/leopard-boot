@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.core.MethodParameter;
+import org.springframework.stereotype.Component;
 
 import io.leopard.boot.xparam.XParam;
 
@@ -14,6 +15,7 @@ import io.leopard.boot.xparam.XParam;
  * @author 阿海
  * 
  */
+@Component
 public class SessCaptchaXParam implements XParam {
 
 	protected Log logger = LogFactory.getLog(this.getClass());
