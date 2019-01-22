@@ -27,6 +27,9 @@ public class PassportUtil {
 	 * @return
 	 */
 	public static boolean isNeedCheckLogin(PassportValidator validator, HttpServletRequest request, Object handler) {
+		if (!(handler instanceof HandlerMethod)) {
+			return true;
+		}
 		HandlerMethod method = (HandlerMethod) handler;
 		Nologin nologin = method.getMethodAnnotation(Nologin.class);
 		if (nologin != null) {
