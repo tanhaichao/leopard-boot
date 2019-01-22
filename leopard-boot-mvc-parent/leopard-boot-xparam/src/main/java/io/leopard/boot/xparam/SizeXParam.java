@@ -20,7 +20,7 @@ public class SizeXParam implements XParam {
 	public Object getValue(HttpServletRequest request, MethodParameter parameter) {
 		int size = XParamUtil.toInt(request.getParameter("size"));
 		if (size <= 0) {
-			size = this.getSize(parameter);
+			size = this.getDefaultSizeByAnnotation(parameter);
 		}
 		if (size <= 0) {
 			size = 10;
@@ -29,8 +29,14 @@ public class SizeXParam implements XParam {
 		return size;
 	}
 
-	// TODO ahai 增加缓存
-	protected int getSize(MethodParameter parameter) {
+	/**
+	 * 根据注解获取默认分页大小
+	 * 
+	 * @param parameter
+	 * @return
+	 */
+	protected int getDefaultSizeByAnnotation(MethodParameter parameter) {
+		// TODO ahai 增加缓存
 		if (this.getKey().equalsIgnoreCase(parameter.getParameterName())) {
 			None none = parameter.getParameterAnnotation(None.class);
 			if (none == null) {
