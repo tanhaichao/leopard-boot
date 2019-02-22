@@ -75,7 +75,7 @@ public class OtherJdbcRegistrar implements EnvironmentAware, ImportBeanDefinitio
 	}
 
 	protected void registerDataSourceBean(String datasourceName, BeanDefinitionRegistry registry) {
-		System.err.println("datasourceName:" + datasourceName);
+		// System.err.println("datasourceName:" + datasourceName);
 		String url = env.getProperty("spring.datasource." + datasourceName + ".url");
 		String username = env.getProperty("spring.datasource." + datasourceName + ".username");
 		String password = env.getProperty("spring.datasource." + datasourceName + ".password");
