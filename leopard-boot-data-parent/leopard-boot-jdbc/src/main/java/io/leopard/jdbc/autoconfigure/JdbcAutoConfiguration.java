@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import io.leopard.jdbc.Jdbc;
@@ -19,6 +20,7 @@ import io.leopard.jdbc.transaction.LeopardTransactionManager;
 public class JdbcAutoConfiguration {
 
 	@Bean(name = "dataSource", initMethod = "init", destroyMethod = "destroy")
+	@Primary
 	public DataSource dataSource(JdbcProperties jdbcConfig) {
 		int idleConnectionTestPeriod = 60;
 		String user = jdbcConfig.getUsername();
@@ -35,6 +37,7 @@ public class JdbcAutoConfiguration {
 	}
 
 	@Bean
+	@Primary
 	public PlatformTransactionManager transactionManager(DataSource dataSource) {
 		LeopardTransactionManager transactionManager = new LeopardTransactionManager();
 		transactionManager.setDataSource(dataSource);
@@ -42,6 +45,7 @@ public class JdbcAutoConfiguration {
 	}
 
 	@Bean(name = "jdbc", destroyMethod = "destroy")
+	@Primary
 	public Jdbc jdbc(DataSource dataSource) {
 		JdbcMysqlImpl jdbc = new JdbcMysqlImpl();
 		jdbc.setDataSource(dataSource);
