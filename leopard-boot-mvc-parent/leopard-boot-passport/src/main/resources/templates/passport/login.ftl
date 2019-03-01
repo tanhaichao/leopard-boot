@@ -23,7 +23,7 @@
 <div class="view-container"   >
 <div id="account_login" class="account-box-wrapper">
     <div class="account-box">
-        <form class="login-form" action="/passport/login" method="post">
+        <form class="login-form" method="post">
         	<input type="hidden" name="url" value="${url}"/>
         	<input type="hidden" name="type" value="${type!}"/>
             <div class="account-form-title"><label>登录</label></div>
