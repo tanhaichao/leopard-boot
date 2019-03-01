@@ -14,6 +14,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -42,6 +43,13 @@ public class PassportInterceptor implements HandlerInterceptor {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+		if (!(handler instanceof HandlerMethod)) {
+			String requestMethod = request.getMethod();
+			if ("OPTIONS".equalsIgnoreCase(requestMethod)) {
+				return true;// 忽略OPTIONS请求
+			}
+		}
+
 		String uri = request.getRequestURI();
 		if ("/passport/login".equals(uri)) {// 忽略自己
 			return true;
