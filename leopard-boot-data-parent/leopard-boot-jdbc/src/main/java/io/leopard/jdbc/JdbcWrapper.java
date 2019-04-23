@@ -20,6 +20,13 @@ public class JdbcWrapper implements Jdbc {
 
 	protected Jdbc jdbc;
 
+	public JdbcWrapper() {
+	}
+
+	public JdbcWrapper(Jdbc jdbc) {
+		this.jdbc = jdbc;
+	}
+
 	public Jdbc getJdbc() {
 		return jdbc;
 	}
