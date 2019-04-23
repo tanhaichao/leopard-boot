@@ -13,4 +13,9 @@ public class TrynbAutoConfiguration {
 	public TrynbExceptionHandler TrynbExceptionHandler() {
 		return new TrynbExceptionHandler();
 	}
+
+	@Bean
+	public ErrorController ErrorController() {
+		return new ErrorController();
+	}
 }
