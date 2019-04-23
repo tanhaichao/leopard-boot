@@ -18,7 +18,7 @@ import io.leopard.lang.Paging;
 
 public class JdbcWrapper implements Jdbc {
 
-	private Jdbc jdbc;
+	protected Jdbc jdbc;
 
 	public Jdbc getJdbc() {
 		return jdbc;
