@@ -12,6 +12,7 @@ import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.Environment;
 import org.springframework.core.type.AnnotationMetadata;
+import org.springframework.util.StringUtils;
 
 import io.leopard.boot.spring.util.EnvironmentUtil;
 import io.leopard.redis.RedisImpl;
@@ -55,6 +56,7 @@ public class RedisRegistrar implements EnvironmentAware, ImportBeanDefinitionReg
 		String host = env.getProperty(name + ".redis.host");
 		String port = env.getProperty(name + ".redis.port");
 		String password = env.getProperty(name + ".redis.password");
+		String maxActive = env.getProperty(name + ".redis.maxActive");
 
 		GenericBeanDefinition beanDefinition = new GenericBeanDefinition();
 		beanDefinition.setBeanClass(RedisImpl.class);
@@ -66,6 +68,9 @@ public class RedisRegistrar implements EnvironmentAware, ImportBeanDefinitionReg
 		MutablePropertyValues mpv = beanDefinition.getPropertyValues();
 		mpv.addPropertyValue("server", host + ":" + port);
 		mpv.addPropertyValue("password", password);
+		if (!StringUtils.isEmpty(maxActive)) {
+			mpv.addPropertyValue("maxActive", Integer.parseInt(maxActive));
+		}
 
 		String beanNaname;
 		if ("app".equals(name)) {
