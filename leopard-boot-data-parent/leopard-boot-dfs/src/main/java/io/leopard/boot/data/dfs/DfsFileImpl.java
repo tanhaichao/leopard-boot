@@ -8,7 +8,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.stereotype.Repository;
 
+//FIXME 临时固定使用文件系统存储
+@Repository
 public class DfsFileImpl implements Dfs, InitializingBean, DisposableBean {
 
 	protected Log logger = LogFactory.getLog(this.getClass());
