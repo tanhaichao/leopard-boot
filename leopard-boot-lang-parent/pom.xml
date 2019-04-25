@@ -19,5 +19,6 @@
 		<module>leopard-boot-env</module>
 		<module>leopard-boot-httpnb</module>
 		<module>leopard-boot-annotations</module>
+		<module>leopard-boot-spring-util</module>
 	</modules>
 </project>
