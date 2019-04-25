@@ -12,6 +12,16 @@ import io.leopard.core.exception.invalid.UsernameInvalidException;
 public class LeopardCheckUtil {
 
 	// private static final Log logger = LogFactory.getLog(LeopardCheckUtil.class);
+	/**
+	 * 是否合法的用户名..
+	 * 
+	 * @param username
+	 */
+	public static void isUsername(String username) {
+		if (!LeopardValidUtil.isValidUsername(username)) {
+			throw new UsernameInvalidException(username);
+		}
+	}
 
 	/**
 	 * 是否合法的用户名..
