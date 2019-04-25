@@ -73,7 +73,7 @@ public class RedisRegistrar implements EnvironmentAware, ImportBeanDefinitionReg
 		}
 
 		String beanNaname;
-		if ("app".equals(name)) {
+		if ("app".equals(name) || "redis".equals(name)) {
 			beanNaname = "redis";
 		}
 		else {
