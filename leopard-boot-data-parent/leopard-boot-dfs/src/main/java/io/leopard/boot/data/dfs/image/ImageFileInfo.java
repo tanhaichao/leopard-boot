@@ -1,4 +1,4 @@
-package io.leopard.boot.data.dfs.service.image;
+package io.leopard.boot.data.dfs.image;
 
 public class ImageFileInfo {
 

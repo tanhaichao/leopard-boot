@@ -1,4 +1,4 @@
-package io.leopard.boot.data.dfs.service.image;
+package io.leopard.boot.data.dfs.image;
 
 import org.springframework.util.Base64Utils;
 import org.springframework.util.StringUtils;

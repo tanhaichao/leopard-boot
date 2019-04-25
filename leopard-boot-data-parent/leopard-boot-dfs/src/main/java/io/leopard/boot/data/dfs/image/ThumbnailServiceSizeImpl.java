@@ -1,4 +1,4 @@
-package io.leopard.boot.data.dfs.service.image;
+package io.leopard.boot.data.dfs.image;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -10,53 +10,47 @@ import org.springframework.stereotype.Service;
 
 import io.leopard.boot.data.dfs.service.DfsService;
 import net.coobird.thumbnailator.Thumbnails;
-import net.coobird.thumbnailator.geometry.Positions;
 
 @Service
-public class ThumbnailServiceCropImpl implements ThumbnailService {
+public class ThumbnailServiceSizeImpl implements ThumbnailService {
 
 	@Autowired
 	private DfsService dfsService;
 
 	@Override
 	public byte[] read(String filename) throws IOException {
-		String filename2 = filename.replace("_crop.jpg", ".jpg");
-
-		ImageFileInfo imageFileInfo = ThumbnailUtil.parse(filename2);
+		ImageFileInfo imageFileInfo = ThumbnailUtil.parse(filename);
 		if (imageFileInfo == null) {
 			throw new FileNotFoundException("非法文件名[" + filename + "]");
 		}
 		String originalName = imageFileInfo.getOriginalName();
 		byte[] data = dfsService.read(originalName);
 		long uid = 0;
-		return this.crop(uid, originalName, imageFileInfo.getSize(), data);
+		return this.small(uid, originalName, imageFileInfo.getSize(), data);
 	}
 
-	protected byte[] crop(long uid, String uri, String size, byte[] data) throws IOException {
-		if (data.length <= 0) {
-			throw new IllegalArgumentException("图片文件不能为空.");
-		}
+	protected byte[] small(long uid, String uri, String size, byte[] data) throws IOException {
 		String[] list = size.split("x");
 		int width = Integer.parseInt(list[0]);
 		int height = Integer.parseInt(list[1]);
 		ByteArrayOutputStream output = new ByteArrayOutputStream();
 		ByteArrayInputStream input = new ByteArrayInputStream(data);
-		// Thumbnails.of(input).size(width, height).toOutputStream(output);
-
-		Thumbnails.of(input).crop(Positions.CENTER).size(width, height).keepAspectRatio(true).toOutputStream(output);
+		Thumbnails.of(input).size(width, height).toOutputStream(output);
 
 		// http://rensanning.iteye.com/blog/1545708 Java生成缩略图之Thumbnailator
 
 		// Thumbnails.of(input).asBufferedImage();
 		// ImageIO.getImageReader(writer)
-		String uri2 = uri.replaceFirst(".jpg", "_" + size + "_crop.jpg");
+		String uri2 = uri.replaceFirst(".jpg", "_" + size + ".jpg");
 		byte[] data2 = output.toByteArray();
+		if (data2.length <= 0) {
+			throw new FileNotFoundException("怎么压缩后的图片会为空[" + uri2 + "]?");
+		}
 		dfsService.write(uri2, data2, uid);
 		return data2;
 	}
 
-	public boolean isCropFilename(String filename) {
-		return filename.endsWith("_crop.jpg");
+	public boolean isSizeFilename(String filename) {
+		return ThumbnailUtil.isMatcher(filename);
 	}
-
 }
