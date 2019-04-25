@@ -4,15 +4,18 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import io.leopard.boot.data.dfs.service.DfsService;
 
 @Service
+@Primary
 public class ThumbnailServiceImpl implements ThumbnailService {
 
 	@Autowired
 	private ThumbnailService thumbnailServiceSizeImpl;
+
 	@Autowired
 	private ThumbnailService thumbnailServiceCropImpl;
 
