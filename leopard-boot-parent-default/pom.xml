@@ -69,6 +69,11 @@
 				<artifactId>apns</artifactId>
 				<version>1.0.0.Beta3</version>
 			</dependency>
+			<dependency>
+				<groupId>com.baidu</groupId>
+				<artifactId>bccs-api-lib</artifactId>
+				<version>1.1.2</version>
+			</dependency>
 			<!-- - -->
 
 			<dependency>
