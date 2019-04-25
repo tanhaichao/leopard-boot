@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
 import io.leopard.redis.util.IJedisPool;
@@ -86,7 +85,7 @@ public class RedisImpl extends AbstractRedis implements Redis {
 		public Object execute(Jedis jedis);
 	}
 
-	@PostConstruct
+	// @PostConstruct
 	@Override
 	public void init() {
 		System.err.println("RedisImpl init server:" + server);
