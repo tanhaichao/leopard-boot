@@ -9,6 +9,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.SerializerProvider;
 
 public class ImageSerializer extends AbstractJsonSerializer<String> {
+
 	@Autowired
 	private ImageUrlConverter imageUrlConverter;
 
