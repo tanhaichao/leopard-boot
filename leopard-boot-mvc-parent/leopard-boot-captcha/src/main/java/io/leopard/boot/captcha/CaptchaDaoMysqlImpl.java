@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import io.leopard.jdbc.Jdbc;
 import io.leopard.jdbc.builder.InsertBuilder;
 
-@Repository
+@Repository("leopardBootCaptchaDaoMysqlImpl")
 public class CaptchaDaoMysqlImpl implements CaptchaDao {
 
 	private Jdbc jdbc;
