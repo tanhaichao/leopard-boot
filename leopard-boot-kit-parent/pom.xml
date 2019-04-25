@@ -10,5 +10,7 @@
 	<modules>
 		<module>leopard-boot-password</module>
 		<module>leopard-boot-counter</module>
+		<module>leopard-boot-kit-rank</module>
+		<module>leopard-boot-kit-token</module>
 	</modules>
 </project>
