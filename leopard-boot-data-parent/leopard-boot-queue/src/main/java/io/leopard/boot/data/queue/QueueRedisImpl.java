@@ -5,12 +5,10 @@ import java.util.TimerTask;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.DisposableBean;
-import org.springframework.beans.factory.InitializingBean;
 
 import io.leopard.redis.RedisImpl;
 
-public class QueueRedisImpl implements Queue, InitializingBean, DisposableBean {
+public class QueueRedisImpl implements Queue {
 
 	private Log logger = LogFactory.getLog(this.getClass());
 
@@ -19,6 +17,8 @@ public class QueueRedisImpl implements Queue, InitializingBean, DisposableBean {
 	protected String server;
 
 	protected String password;
+	protected int maxActive = 16;
+	protected int timeout = 1000 * 10;
 
 	public String getServer() {
 		return server;
@@ -36,13 +36,27 @@ public class QueueRedisImpl implements Queue, InitializingBean, DisposableBean {
 		this.password = password;
 	}
 
-	@Override
-	public void afterPropertiesSet() throws Exception {
-		redis = new RedisImpl(server, 16, 1000 * 10);
+	public int getMaxActive() {
+		return maxActive;
+	}
+
+	public void setMaxActive(int maxActive) {
+		this.maxActive = maxActive;
+	}
+
+	public int getTimeout() {
+		return timeout;
+	}
+
+	public void setTimeout(int timeout) {
+		this.timeout = timeout;
+	}
+
+	public void init() {
+		redis = new RedisImpl(server, maxActive, timeout);
 		redis.init();
 	}
 
-	@Override
 	public void destroy() {
 		redis.destroy();
 	}
