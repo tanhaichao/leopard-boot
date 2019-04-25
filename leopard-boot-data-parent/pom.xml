@@ -21,5 +21,6 @@
 		<module>leopard-boot-scheduler</module>
 		<module>leopard-boot-condition</module>
 		<module>leopard-boot-queue</module>
+		<module>leopard-boot-dfs</module>
 	</modules>
 </project>
