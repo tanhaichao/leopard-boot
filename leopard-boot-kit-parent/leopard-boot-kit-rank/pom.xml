@@ -6,6 +6,8 @@
 		<version>0.9.13-SNAPSHOT</version>
 	</parent>
 	<artifactId>leopard-boot-kit-rank</artifactId>
+
+	<description>排名</description>
 	<dependencies>
 		<dependency>
 			<groupId>io.leopard.boot</groupId>

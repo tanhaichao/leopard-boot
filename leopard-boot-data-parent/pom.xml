@@ -20,5 +20,6 @@
 		<module>leopard-boot-jdbc-querybuilder</module>
 		<module>leopard-boot-scheduler</module>
 		<module>leopard-boot-condition</module>
+		<module>leopard-boot-queue</module>
 	</modules>
 </project>

@@ -6,6 +6,7 @@
 		<version>0.9.13-SNAPSHOT</version>
 	</parent>
 	<artifactId>leopard-boot-queue</artifactId>
+	<description>消息队列</description>
 	<dependencies>
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
