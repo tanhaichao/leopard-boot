@@ -9,12 +9,12 @@ import io.leopard.redis.Redis;
 import io.leopard.redis.RedisImpl;
 
 @Configuration
-@ConditionalOnProperty(prefix = "app.redis", name = "host", matchIfMissing = false)
+@ConditionalOnProperty(prefix = "session.redis", name = "host", matchIfMissing = false)
 @EnableConfigurationProperties(RedisProperties.class)
-public class RedisAutoConfiguration {
+public class SessionRedisAutoConfiguration {
 
-	@Bean(name = "redis", initMethod = "init", destroyMethod = "destroy")
-	public Redis redis(RedisProperties redisConfig) {
+	@Bean(name = "sessionRedis", initMethod = "init", destroyMethod = "destroy")
+	public Redis sessionRedis(RedisProperties redisConfig) {
 		String server = redisConfig.parseServer();
 		RedisImpl redis = new RedisImpl();
 		redis.setServer(server);
