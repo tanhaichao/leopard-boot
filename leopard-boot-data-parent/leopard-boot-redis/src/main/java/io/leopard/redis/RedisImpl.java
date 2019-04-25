@@ -88,7 +88,7 @@ public class RedisImpl extends AbstractRedis implements Redis {
 	// @PostConstruct
 	@Override
 	public void init() {
-		System.err.println("RedisImpl init server:" + server);
+		// System.err.println("RedisImpl init server:" + server);
 		try {
 			this.pool = RedisUtil.createJedisPool(server, timeout, maxActive, password);
 		}
