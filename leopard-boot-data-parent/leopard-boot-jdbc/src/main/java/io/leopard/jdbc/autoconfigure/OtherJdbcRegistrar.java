@@ -14,6 +14,7 @@ import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.Environment;
 import org.springframework.core.type.AnnotationMetadata;
 
+import io.leopard.boot.spring.util.EnvironmentUtil;
 import io.leopard.jdbc.JdbcMysqlImpl;
 import io.leopard.jdbc.datasource.MysqlDsnDataSource;
 import io.leopard.jdbc.transaction.LeopardTransactionManager;

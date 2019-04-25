@@ -57,5 +57,10 @@
 			<version>${springboot.version}</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>io.leopard.boot</groupId>
+			<artifactId>leopard-boot-spring-util</artifactId>
+			<version>0.9.13-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 </project>
