@@ -1,5 +1,6 @@
 package io.leopard.boot.util;
 
+import io.leopard.core.exception.invalid.PassportInvalidException;
 import io.leopard.core.exception.invalid.UidInvalidException;
 import io.leopard.core.exception.invalid.UsernameInvalidException;
 
@@ -20,6 +21,17 @@ public class LeopardCheckUtil {
 	public static void isUsername(String username) {
 		if (!LeopardValidUtil.isValidUsername(username)) {
 			throw new UsernameInvalidException(username);
+		}
+	}
+
+	/**
+	 * 是否合法的passport .
+	 * 
+	 * @param passport
+	 */
+	public static void isValidPassport(String passport) {
+		if (!LeopardValidUtil.isValidPassport(passport)) {
+			throw new PassportInvalidException(passport);
 		}
 	}
 
