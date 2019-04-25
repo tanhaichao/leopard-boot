@@ -27,5 +27,9 @@
 			<artifactId>leopard-boot-json</artifactId>
 			<version>0.9.13-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
 	</dependencies>
 </project>
