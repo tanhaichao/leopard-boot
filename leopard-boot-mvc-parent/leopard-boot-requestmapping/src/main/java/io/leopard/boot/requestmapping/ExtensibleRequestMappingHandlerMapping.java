@@ -29,6 +29,9 @@ public class ExtensibleRequestMappingHandlerMapping extends LeopardRequestMappin
 	@Autowired
 	private RequestHeaderResolver requestHeaderResolver;
 
+	@Autowired
+	private PathLookupHandler pathLookupHandler;
+
 	@Override
 	protected RequestCondition<?> getCustomMethodCondition(Method method) {
 		Set<RequestHeaderMatcher> headerMatcherList = new LinkedHashSet<>();
@@ -57,8 +60,28 @@ public class ExtensibleRequestMappingHandlerMapping extends LeopardRequestMappin
 		return mapping;
 	}
 
+	// @Override
+	// protected HandlerMethod getHandlerInternal(HttpServletRequest request) throws Exception {
+	// System.err.println("getHandlerInternal:" + request.getRequestURI());
+	// return super.getHandlerInternal(request);
+	// }
+	//
+	// @Override
+	// protected HandlerMethod handleNoMatch(Set<RequestMappingInfo> infos, String lookupPath, HttpServletRequest request) throws ServletException {
+	// System.err.println("handleNoMatch:" + request.getRequestURI());
+	// return super.handleNoMatch(infos, lookupPath, request);
+	// }
+
 	@Override
 	protected HandlerMethod lookupHandlerMethod(String lookupPath, HttpServletRequest request) throws Exception {
+		// System.err.println("lookupHandlerMethod:" + request.getRequestURI());
+		{
+			boolean ignore = pathLookupHandler.isIgnore(lookupPath, request);
+			if (ignore) {
+				return null;
+			}
+		}
+
 		if (!firstLookupRequestMappingInfoSet.isEmpty()) {
 			for (Entry<RequestMappingInfo, HandlerMethod> entry : getHandlerMethods().entrySet()) {
 				if (firstLookupRequestMappingInfoSet.contains(entry.getKey())) {
@@ -72,6 +95,7 @@ public class ExtensibleRequestMappingHandlerMapping extends LeopardRequestMappin
 				}
 			}
 		}
+
 		return super.lookupHandlerMethod(lookupPath, request);
 	}
 
