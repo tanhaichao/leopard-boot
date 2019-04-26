@@ -13,13 +13,15 @@ import org.springframework.web.method.HandlerMethod;
 @Primary
 public class PathLookupHandlerImpl implements PathLookupHandler {
 
-	@Autowired
+	@Autowired(required = false)
 	private List<PathLookupHandler> list;
 
 	@Override
 	public HandlerMethod transform(String lookupPath, HttpServletRequest request, HandlerMethod method) throws Exception {
-		for (PathLookupHandler handler : list) {
-			method = handler.transform(lookupPath, request, method);
+		if (list != null) {
+			for (PathLookupHandler handler : list) {
+				method = handler.transform(lookupPath, request, method);
+			}
 		}
 		return method;
 	}
