@@ -18,7 +18,7 @@ public interface RequestHeaderMatcher {
 	String getHeader();
 
 	/**
-	 * 是否有限匹配
+	 * 是否优先匹配
 	 * 
 	 * @return
 	 */
