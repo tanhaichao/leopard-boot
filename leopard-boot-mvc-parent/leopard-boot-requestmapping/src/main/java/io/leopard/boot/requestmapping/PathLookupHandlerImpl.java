@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
+import org.springframework.web.method.HandlerMethod;
 
 @Component
 @Primary
@@ -16,15 +17,11 @@ public class PathLookupHandlerImpl implements PathLookupHandler {
 	private List<PathLookupHandler> list;
 
 	@Override
-	public boolean isIgnore(String lookupPath, HttpServletRequest request) throws Exception {
+	public HandlerMethod transform(String lookupPath, HttpServletRequest request, HandlerMethod method) throws Exception {
 		for (PathLookupHandler handler : list) {
-			boolean ignore = handler.isIgnore(lookupPath, request);
-			System.err.println("isIgnore handler:" + handler);
-			if (ignore) {
-				return true;
-			}
+			method = handler.transform(lookupPath, request, method);
 		}
-		return false;
+		return method;
 	}
 
 }

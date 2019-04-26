@@ -2,6 +2,8 @@ package io.leopard.boot.requestmapping;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.web.method.HandlerMethod;
+
 public interface PathLookupHandler {
 
 	/**
@@ -12,6 +14,6 @@ public interface PathLookupHandler {
 	 * @return
 	 * @throws Exception
 	 */
-	boolean isIgnore(String lookupPath, HttpServletRequest request) throws Exception;
+	HandlerMethod transform(String lookupPath, HttpServletRequest request, HandlerMethod method) throws Exception;
 
 }

@@ -75,12 +75,6 @@ public class ExtensibleRequestMappingHandlerMapping extends LeopardRequestMappin
 	@Override
 	protected HandlerMethod lookupHandlerMethod(String lookupPath, HttpServletRequest request) throws Exception {
 		// System.err.println("lookupHandlerMethod:" + request.getRequestURI());
-		{
-			boolean ignore = pathLookupHandler.isIgnore(lookupPath, request);
-			if (ignore) {
-				return null;
-			}
-		}
 
 		if (!firstLookupRequestMappingInfoSet.isEmpty()) {
 			for (Entry<RequestMappingInfo, HandlerMethod> entry : getHandlerMethods().entrySet()) {
@@ -89,14 +83,16 @@ public class ExtensibleRequestMappingHandlerMapping extends LeopardRequestMappin
 					if (match != null) {
 						if (match.getCustomCondition() != null) {
 							handleMatch(match, lookupPath, request);
-							return entry.getValue();
+							HandlerMethod method = entry.getValue();
+							return this.pathLookupHandler.transform(lookupPath, request, method);
 						}
 					}
 				}
 			}
 		}
 
-		return super.lookupHandlerMethod(lookupPath, request);
+		HandlerMethod method = super.lookupHandlerMethod(lookupPath, request);
+		return this.pathLookupHandler.transform(lookupPath, request, method);
 	}
 
 }
