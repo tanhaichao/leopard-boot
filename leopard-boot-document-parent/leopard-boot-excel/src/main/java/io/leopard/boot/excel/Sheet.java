@@ -43,6 +43,31 @@ public class Sheet {
 		}
 	}
 
+	/**
+	 * 添加列
+	 * 
+	 * @param columnName 列名
+	 * @param width 宽度,最大255
+	 * @throws WriteException
+	 */
+	public void addColumn(String columnName, int width) throws WriteException {
+		if (width > 255) {
+			throw new IllegalArgumentException("宽度最大为255[" + width + "].");
+		}
+		int columnCount = this.sheet.getColumns();
+
+		WritableFont wf = new WritableFont(WritableFont.TIMES, 11, WritableFont.BOLD);
+		CellFormat cf = new WritableCellFormat(wf);
+		Label label = new Label(columnCount, 0, columnName, cf);
+		sheet.addCell(label);
+
+		// CellView cellView = new CellView();
+		// cellView.setAutosize(true); // 设置自动大小
+		// cellView.setSize(width);
+		sheet.setColumnView(columnCount, width);
+		// sheet.setColumnView(columnCount - 1, width);
+	}
+
 	public Row addRow() {
 		Row row = new Row(sheet, currentRow);
 		currentRow++;

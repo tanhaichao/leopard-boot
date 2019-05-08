@@ -79,29 +79,23 @@ public class ExcelView extends ModelAndView {
 		return new Sheet(workbook, sheetName);
 	}
 
+	/**
+	 * 添加列
+	 * 
+	 * @param columnName 列名
+	 * @param width 宽度,最大255
+	 * @throws WriteException
+	 */
+	public void addColumn(String columnName, int width) throws WriteException {
+		if (this.sheet == null) {
+			this.sheet = new Sheet(workbook, sheetName);
+		}
+		this.sheet.addColumn(columnName, width);
+	}
+
 	public void addColumnName(String... columnNames) throws WriteException {
 		this.sheet = new Sheet(workbook, sheetName);
 		this.sheet.addColumnName(columnNames);
-		// int columnCount = this.sheet.getColumns();
-		// // System.err.println("columnCount:" + columnCount);
-		// for (int i = 0; i < columnNames.length; i++) {
-		// // 通过函数WritableFont（）设置字体样式
-		// // 第一个参数表示所选字体
-		// // 第二个参数表示字体大小
-		// // 第三个参数表示粗体样式，有BOLD和NORMAL两种样式
-		// // 第四个参数表示是否斜体,此处true表示为斜体
-		// // 第五个参数表示下划线样式
-		// // 第六个参数表示颜色样式，此处为Red
-		// WritableFont wf = new WritableFont(WritableFont.TIMES, 11, WritableFont.BOLD);
-		// CellFormat cf = new WritableCellFormat(wf);
-		// Label label = new Label(i + columnCount, 0, columnNames[i], cf);
-		// sheet.addCell(label);
-		//
-		// CellView cellView = new CellView();
-		// cellView.setAutosize(true); // 设置自动大小
-		// // cellView.setSize(d);
-		// sheet.setColumnView(i, cellView);
-		// }
 	}
 
 	public String getFileName() {
