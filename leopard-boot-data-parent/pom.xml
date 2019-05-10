@@ -22,5 +22,6 @@
 		<module>leopard-boot-condition</module>
 		<module>leopard-boot-queue</module>
 		<module>leopard-boot-dfs</module>
+		<module>leopard-boot-logdb</module>
 	</modules>
 </project>
