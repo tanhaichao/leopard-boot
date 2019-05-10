@@ -11,5 +11,6 @@
 		<module>leopard-boot-tomcat</module>
 		<module>leopard-boot-test</module>
 		<module>leopard-boot-jetty</module>
+		<module>leopard-boot-treedata</module>
 	</modules>
 </project>
