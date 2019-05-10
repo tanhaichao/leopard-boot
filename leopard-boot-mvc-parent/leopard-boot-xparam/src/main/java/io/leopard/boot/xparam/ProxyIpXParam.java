@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Service;
 
+import io.leopard.boot.servlet.util.RequestUtil;
+
 /**
  * 获取离服务器最近的机器IP.
  * 
@@ -26,6 +28,10 @@ public class ProxyIpXParam implements XParam {
 	 * @return
 	 */
 	public static String getProxyIp(HttpServletRequest request) {
+		String ip = request.getHeader("Ali-Cdn-Real-Ip");
+		if (ip != null && RequestUtil.isValidIp(ip)) {
+			return ip;
+		}
 		String proxyIp = request.getHeader("X-Real-IP");
 		if (proxyIp == null) {
 			proxyIp = request.getHeader("RealIP");

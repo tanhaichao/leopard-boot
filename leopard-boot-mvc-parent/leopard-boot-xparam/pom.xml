@@ -22,6 +22,12 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
+			<groupId>io.leopard.boot</groupId>
+			<artifactId>leopard-boot-servlet</artifactId>
+			<version>0.9.13-SNAPSHOT</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 		</dependency>
