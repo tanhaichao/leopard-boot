@@ -58,8 +58,9 @@ public class LogDaoLog4jImpl implements LogDao {
 
 		String conversionPattern = "%d{yyyy-MM-dd HH:mm:ss} - [%c] - %m%n";
 
-		org.apache.log4j.PatternLayout layout = new PatternLayout();
-		layout.setConversionPattern(conversionPattern);
+		PatternLayout layout = new PatternLayout(conversionPattern);
+		// org.apache.log4j.PatternLayout layout = new PatternLayout();
+		// layout.setConversionPattern(conversionPattern);
 
 		appender = new DailyAutoRollingFileAppender();
 		// DailyRollingFileAppender newAppender = new DailyRollingFileAppender();
