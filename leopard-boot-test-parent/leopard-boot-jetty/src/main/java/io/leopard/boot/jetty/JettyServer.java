@@ -9,6 +9,10 @@ public class JettyServer {
 		run(application, 80);
 	}
 
+	public static void start() {
+		run();
+	}
+
 	public static void run() {
 		run(80);
 	}
@@ -17,7 +21,8 @@ public class JettyServer {
 		Class<?> application;
 		try {
 			application = Class.forName("io.leopard.boot.LeopardApplication");
-		} catch (ClassNotFoundException e) {
+		}
+		catch (ClassNotFoundException e) {
 			throw new RuntimeException(e.getMessage(), e);
 		}
 		run(application, port);
