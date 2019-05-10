@@ -201,7 +201,7 @@ public class CaptchaServiceImpl implements CaptchaService {
 		else {
 			content = content.replace("{seccode}", seccode);
 		}
-		// CaptchaDebugger.debug(seccode, content);
+		CaptchaDebugger.debug(seccode, content);
 		return seccode;
 	}
 
