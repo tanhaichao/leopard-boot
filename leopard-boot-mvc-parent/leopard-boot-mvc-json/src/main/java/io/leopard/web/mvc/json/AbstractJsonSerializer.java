@@ -3,6 +3,7 @@ package io.leopard.web.mvc.json;
 import java.io.IOException;
 import java.lang.reflect.Field;
 
+import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
@@ -31,7 +32,18 @@ public abstract class AbstractJsonSerializer<T> extends JsonSerializer<T> {
 			if (autowired == null) {
 				continue;
 			}
-			Object bean = this.findBean(field.getType());
+			Object bean;
+			try {
+				bean = this.findBean(field.getType());
+			}
+			catch (NoSuchBeanDefinitionException e) {
+				if (autowired.required()) {
+					throw e;
+				}
+				else {
+					bean = null;
+				}
+			}
 			field.setAccessible(true);
 			try {
 				field.set(this, bean);

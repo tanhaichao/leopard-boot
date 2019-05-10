@@ -26,5 +26,6 @@
 		<module>leopard-boot-captcha</module>
 		<module>leopard-boot-view</module>
 		<module>leopard-boot-vhost</module>
+		<module>leopard-boot-translate</module>
 	</modules>
 </project>
