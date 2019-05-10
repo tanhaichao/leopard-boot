@@ -11,15 +11,43 @@ public class Log4jUtil {
 			return logDao;
 		}
 
+		boolean isEnableLog4j = isEnableLog4j();
+		if (isEnableLog4j) {
+			logDao = new LogDaoLog4jImpl();
+		}
+		else {
+			logDao = new LogDaoInterfaceImpl();
+		}
+
+		return logDao;
+	}
+
+	private static boolean isEnableLog4j() {
 		try {
 			Class.forName("org.apache.log4j.Logger");
 			logDao = new LogDaoLog4jImpl();
 		}
 		catch (ClassNotFoundException e) {
-			logDao = new LogDaoInterfaceImpl();
+			return false;
 		}
 
-		return logDao;
+		Class<?> clazz;
+		try {
+			clazz = Class.forName("org.apache.log4j.FileAppender");
+		}
+		catch (ClassNotFoundException e) {
+			return false;
+		}
+		try {
+			clazz.getDeclaredField("fileName");
+		}
+		catch (NoSuchFieldException e) {
+			return false;
+		}
+		catch (SecurityException e) {
+			return false;
+		}
+		return true;
 	}
 
 	public static Log getLogger(String name, Level level, String filename) {

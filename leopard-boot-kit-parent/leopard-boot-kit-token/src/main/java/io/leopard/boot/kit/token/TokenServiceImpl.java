@@ -4,34 +4,36 @@ import java.util.Date;
 import java.util.Random;
 import java.util.UUID;
 
-import javax.annotation.PostConstruct;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;
 
 import io.leopard.boot.util.EncryptUtil;
 import io.leopard.core.exception.forbidden.TokenWrongException;
-import io.leopard.jdbc.Jdbc;
 
+@Repository("leopardBootTokenService")
 public class TokenServiceImpl implements TokenService {
 
 	protected Log logger = LogFactory.getLog(this.getClass());
 
-	protected Jdbc jdbc;
+	// @Autowired
+	// protected Jdbc jdbc;
+	//
+	// public void setJdbc(Jdbc jdbc) {
+	// this.jdbc = jdbc;
+	// }
 
-	public void setJdbc(Jdbc jdbc) {
-		this.jdbc = jdbc;
-	}
-
+	@Autowired
 	protected TokenDao tokenDao;
 
-	@PostConstruct
-	public void init() {
-		TokenDaoMysqlImpl tokenDaoMysqlImpl = new TokenDaoMysqlImpl();
-		tokenDaoMysqlImpl.setJdbc(jdbc);
-		this.tokenDao = tokenDaoMysqlImpl;
-	}
+	// @PostConstruct
+	// public void init() {
+	// TokenDaoMysqlImpl tokenDaoMysqlImpl = new TokenDaoMysqlImpl();
+	// tokenDaoMysqlImpl.setJdbc(jdbc);
+	// this.tokenDao = tokenDaoMysqlImpl;
+	// }
 
 	@Override
 	public String add(String account, String category, String target, String token) {
@@ -97,10 +99,10 @@ public class TokenServiceImpl implements TokenService {
 
 	@Override
 	public Token last(String account, String category, String target) {
-		Jdbc jdbc = ((TokenDaoMysqlImpl) tokenDao).getJdbc();
-		if (jdbc == null) {
-			throw new NullPointerException("jdbc还没有初始化.");
-		}
+		// Jdbc jdbc = ((TokenDaoMysqlImpl) tokenDao).getJdbc();
+		// if (jdbc == null) {
+		// throw new NullPointerException("jdbc还没有初始化.");
+		// }
 
 		Assert.hasText(account, "参数account不能为空");
 		Assert.hasText(category, "参数category不能为空");

@@ -1,19 +1,24 @@
 package io.leopard.boot.kit.token;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import io.leopard.jdbc.Jdbc;
 import io.leopard.jdbc.builder.InsertBuilder;
 
+@Repository("leopardBootTokenDaoMysqlImpl")
 public class TokenDaoMysqlImpl implements TokenDao {
 
+	@Autowired
 	private Jdbc jdbc;
 
-	public void setJdbc(Jdbc jdbc) {
-		this.jdbc = jdbc;
-	}
-
-	public Jdbc getJdbc() {
-		return jdbc;
-	}
+	// public void setJdbc(Jdbc jdbc) {
+	// this.jdbc = jdbc;
+	// }
+	//
+	// public Jdbc getJdbc() {
+	// return jdbc;
+	// }
 
 	@Override
 	public boolean add(Token token) {

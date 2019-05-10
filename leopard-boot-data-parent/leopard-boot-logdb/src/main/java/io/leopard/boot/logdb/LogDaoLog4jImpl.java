@@ -1,5 +1,6 @@
 package io.leopard.boot.logdb;
 
+import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -39,7 +40,13 @@ public class LogDaoLog4jImpl implements LogDao {
 	private void addAppender(Logger logger, Level level, String filename, boolean bufferedIO) {
 		org.apache.log4j.Level log4jLevel = toLog4jLevel(level);
 
-		Appender appender = this.getAppender(filename, log4jLevel, bufferedIO);
+		Appender appender;
+		try {
+			appender = this.getAppender(filename, log4jLevel, bufferedIO);
+		}
+		catch (IOException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
 
 		logger.setLevel(log4jLevel);
 		logger.addAppender(appender);
@@ -47,7 +54,7 @@ public class LogDaoLog4jImpl implements LogDao {
 
 	private static Map<String, DailyAutoRollingFileAppender> appenderMap = new ConcurrentHashMap<String, DailyAutoRollingFileAppender>();
 
-	protected Appender getAppender(String filename, org.apache.log4j.Level log4jLevel, boolean bufferedIO) {
+	protected Appender getAppender(String filename, org.apache.log4j.Level log4jLevel, boolean bufferedIO) throws IOException {
 		String key = filename + ":" + log4jLevel.toInt() + ":" + bufferedIO;
 
 		DailyAutoRollingFileAppender appender = appenderMap.get(key);
@@ -62,12 +69,12 @@ public class LogDaoLog4jImpl implements LogDao {
 		// org.apache.log4j.PatternLayout layout = new PatternLayout();
 		// layout.setConversionPattern(conversionPattern);
 
-		appender = new DailyAutoRollingFileAppender();
+		appender = new DailyAutoRollingFileAppender(layout, filename, ".yyyyMMdd");
 		// DailyRollingFileAppender newAppender = new DailyRollingFileAppender();
 		appender.setThreshold(log4jLevel);
-		appender.setLayout(layout);
-		appender.setDatePattern(".yyyyMMdd");
-		appender.setFile(filename);
+		// appender.setLayout(layout);
+		// appender.setDatePattern(".yyyyMMdd");
+		// appender.setFile(filename);
 		appender.setBufferSize(10);// 8192
 		appender.setBufferedIO(bufferedIO);
 		appender.activateOptions();

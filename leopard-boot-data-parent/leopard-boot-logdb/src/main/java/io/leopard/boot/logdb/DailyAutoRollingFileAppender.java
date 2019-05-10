@@ -1,12 +1,14 @@
 package io.leopard.boot.logdb;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Date;
 
 import org.apache.commons.lang3.SystemUtils;
 import org.apache.log4j.DailyRollingFileAppender;
+import org.apache.log4j.Layout;
 import org.apache.log4j.helpers.LogLog;
 
 public class DailyAutoRollingFileAppender extends DailyRollingFileAppender implements LogRollOver {
@@ -18,6 +20,10 @@ public class DailyAutoRollingFileAppender extends DailyRollingFileAppender imple
 	private Field rcField;
 
 	private Field scheduledFilenameField;
+
+	public DailyAutoRollingFileAppender(Layout layout, String filename, String datePattern) throws IOException {
+		super(layout, filename, datePattern);
+	}
 
 	@Override
 	public void activateOptions() {
