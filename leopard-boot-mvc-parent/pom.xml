@@ -10,6 +10,7 @@
 	<modules>
 		<module>leopard-boot-trynb</module>
 		<module>leopard-boot-chart</module>
+		<module>leopard-boot-convert</module>
 		<module>leopard-boot-web</module>
 		<module>leopard-boot-passport</module>
 		<module>leopard-boot-xparam</module>
