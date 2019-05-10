@@ -207,6 +207,16 @@
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
+				<artifactId>leopard-boot-mock</artifactId>
+				<version>0.9.13-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>io.leopard.boot</groupId>
+				<artifactId>leopard-boot-chart</artifactId>
+				<version>0.9.13-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-operator</artifactId>
 				<version>0.9.13-SNAPSHOT</version>
 			</dependency>

@@ -5,7 +5,7 @@
 		<artifactId>leopard-boot-test-parent</artifactId>
 		<version>0.9.13-SNAPSHOT</version>
 	</parent>
-	<artifactId>leopard-treedata</artifactId>
+	<artifactId>leopard-boot-treedata</artifactId>
 	<description>树形数据</description>
 
 	<dependencies>

@@ -12,5 +12,6 @@
 		<module>leopard-boot-test</module>
 		<module>leopard-boot-jetty</module>
 		<module>leopard-boot-treedata</module>
+		<module>leopard-boot-mock</module>
 	</modules>
 </project>

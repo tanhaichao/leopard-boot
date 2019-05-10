@@ -5,7 +5,7 @@
 		<artifactId>leopard-boot-test-parent</artifactId>
 		<version>0.9.13-SNAPSHOT</version>
 	</parent>
-	<artifactId>leopard-mock</artifactId>
+	<artifactId>leopard-boot-mock</artifactId>
 	<name>Leopard-Mock</name>
 	<description>规范、简化Mock代码编写。提供自动属性Mock功能。</description>
 
