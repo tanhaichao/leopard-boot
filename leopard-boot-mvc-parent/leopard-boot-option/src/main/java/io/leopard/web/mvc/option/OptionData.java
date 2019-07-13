@@ -14,6 +14,10 @@ public class OptionData {
 
 	private static Map<String, OptionInfo> data = new LinkedHashMap<>();
 
+	public static void init() {
+		data.clear();
+	}
+
 	public static List<OptionInfo> list() {
 		return new ArrayList<>(data.values());
 	}

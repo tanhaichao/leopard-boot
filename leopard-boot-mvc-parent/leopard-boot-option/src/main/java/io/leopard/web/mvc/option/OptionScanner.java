@@ -40,6 +40,7 @@ public class OptionScanner extends ClassPathBeanDefinitionScanner {
 	@Override
 	public Set<BeanDefinitionHolder> doScan(String... basePackages) {
 		Set<BeanDefinitionHolder> beanDefinitions = super.doScan(basePackages);
+		OptionData.init();
 		for (BeanDefinitionHolder holder : beanDefinitions) {
 			GenericBeanDefinition definition = (GenericBeanDefinition) holder.getBeanDefinition();
 			String id = getValue(definition);
