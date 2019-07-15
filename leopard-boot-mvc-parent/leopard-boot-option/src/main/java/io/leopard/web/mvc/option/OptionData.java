@@ -15,6 +15,7 @@ public class OptionData {
 	private static Map<String, OptionInfo> data = new LinkedHashMap<>();
 
 	public static void init() {
+		// EnumUtil.clearCache();
 		data.clear();
 	}
 
@@ -24,9 +25,11 @@ public class OptionData {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static void load(String id, String className) {
+		// System.err.println("Thread.currentThread().getContextClassLoader():" + Thread.currentThread().getContextClassLoader().getClass().getName());
 		Class<? extends Enum> clazz;
 		try {
-			clazz = (Class<? extends Enum>) Class.forName(className);
+			clazz = (Class<? extends Enum>) Thread.currentThread().getContextClassLoader().loadClass(className);
+			// clazz = (Class<? extends Enum>) Class.forName(className);
 		}
 		catch (ClassNotFoundException e) {
 			throw new RuntimeException(e.getMessage(), e);
