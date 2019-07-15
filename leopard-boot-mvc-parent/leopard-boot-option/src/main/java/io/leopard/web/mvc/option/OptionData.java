@@ -15,7 +15,7 @@ public class OptionData {
 	private static Map<String, OptionInfo> data = new LinkedHashMap<>();
 
 	public static void init() {
-		// EnumUtil.clearCache();
+		EnumUtil.clearCache();
 		data.clear();
 	}
 

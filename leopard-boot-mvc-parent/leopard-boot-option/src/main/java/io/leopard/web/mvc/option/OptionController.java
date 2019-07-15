@@ -63,7 +63,8 @@ public class OptionController {
 		// TODO 缓存
 		Class<? extends Enum> clazz;
 		try {
-			clazz = (Class<? extends Enum>) Class.forName(optionInfo.getClassName());
+			clazz = (Class<? extends Enum>) Thread.currentThread().getContextClassLoader().loadClass(optionInfo.getClassName());
+			// clazz = (Class<? extends Enum>) Class.forName(optionInfo.getClassName());
 		}
 		catch (ClassNotFoundException e) {
 			throw new RuntimeException(e.getMessage(), e);
