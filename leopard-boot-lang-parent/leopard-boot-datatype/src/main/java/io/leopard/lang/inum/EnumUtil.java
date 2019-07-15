@@ -18,6 +18,13 @@ public class EnumUtil {
 	// Map<枚举类名,Map<元素key, 元素>>
 	protected static final Map<String, Map<Object, Enum<?>>> cache = new ConcurrentHashMap<String, Map<Object, Enum<?>>>();
 
+	/**
+	 * 清空缓存
+	 */
+	public static void clearCache() {
+		cache.clear();
+	}
+
 	public static <E extends Enum<E>> void add(Object key, E onum) {
 		String className = onum.getClass().getName();
 		Map<Object, Enum<?>> constantMap = cache.get(className);
