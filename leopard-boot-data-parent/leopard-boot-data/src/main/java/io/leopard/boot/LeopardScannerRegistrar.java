@@ -33,6 +33,9 @@ public class LeopardScannerRegistrar implements ImportBeanDefinitionRegistrar {
 		// System.exit(0);
 		// AutoConfigurationPackages.register(registry, "com.baidu");
 		ClassPathBeanDefinitionScanner scanner = new ClassPathBeanDefinitionScanner(registry);
+
+		scanner.setBeanNameGenerator(new LeopardBeanNameGenerator());
+
 		scanner.scan(packages);
 	}
 
