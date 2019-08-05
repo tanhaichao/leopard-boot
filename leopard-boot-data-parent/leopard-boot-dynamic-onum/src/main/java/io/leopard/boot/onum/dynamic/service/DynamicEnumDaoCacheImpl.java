@@ -9,6 +9,7 @@ import javax.annotation.PostConstruct;
 import org.apache.commons.lang3.NotImplementedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
+import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.stereotype.Repository;
 
 import io.leopard.boot.onum.dynamic.model.DynamicEnumConstantEntity;
@@ -30,7 +31,19 @@ public class DynamicEnumDaoCacheImpl implements DynamicEnumDao {
 
 	@PostConstruct
 	public void init() {
-		List<DynamicEnumConstantEntity> allConstantList = dynamicEnumDaoJdbcImpl.listAll();
+		List<DynamicEnumConstantEntity> allConstantList;
+		try {
+			allConstantList = dynamicEnumDaoJdbcImpl.listAll();
+		}
+		catch (BadSqlGrammarException e) {
+			String message = e.getMessage();
+			if (message.endsWith("dynamic_enum' doesn't exist")) {// 兼容初始化时表不存在
+				return;
+			}
+			else {
+				throw e;
+			}
+		}
 		dynamicEnumDaoMemoryImpl.updateAll(allConstantList);
 	}
 
