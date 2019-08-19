@@ -5,7 +5,6 @@ import java.util.Map.Entry;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.NoUniqueBeanDefinitionException;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -14,17 +13,17 @@ import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.annotation.Primary;
 
-public class LeopardBeanFactoryAware implements BeanFactoryAware {
+public class LeopardBeanFactoryAware {// implements BeanFactoryAware {
 
 	private static BeanFactory beanFactory;
 
-	@Override
-	public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
-		if (LeopardBeanFactoryAware.beanFactory != null) {
-			// RuntimeException e = new RuntimeException("beanFactory已初始化.");
-			// e.printStackTrace();
-			return;
-		}
+	// @Override
+	public static void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+		// if (LeopardBeanFactoryAware.beanFactory != null) {
+		// RuntimeException e = new RuntimeException("beanFactory已初始化.");
+		// e.printStackTrace();
+		// // throw e;
+		// }
 
 		// System.err.println("setBeanFactory:" + beanFactory);
 		LeopardBeanFactoryAware.beanFactory = beanFactory;
