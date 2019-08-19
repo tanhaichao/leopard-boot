@@ -99,6 +99,9 @@ public abstract class IdJsonSerializer<T, V> extends AbstractJsonSerializer<Obje
 		if ("uid".equals(fieldName)) {
 			return "user";
 		}
+		if ("pid".equals(fieldName)) {
+			return "parent";
+		}
 		if ("uidList".equals(fieldName)) {
 			return "userList";
 		}
