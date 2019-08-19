@@ -17,7 +17,7 @@ public class LeopardApplicationListener implements ApplicationListener<Applicati
 
 	@Override
 	public void onApplicationEvent(ApplicationEvent event) {
-		System.err.println("LeopardApplicationListener onApplicationEvent:" + event.getClass().getName());
+		// System.err.println("LeopardApplicationListener onApplicationEvent:" + event.getClass().getName());
 		if (event instanceof ApplicationEnvironmentPreparedEvent) {
 			onApplicationEnvironmentPreparedEvent((ApplicationEnvironmentPreparedEvent) event);
 		}
