@@ -11,4 +11,8 @@ public class PageImplTest {
 		Assert.assertTrue(PageImpl.hasNextPage(11, 0, 10));
 	}
 
+	@Test
+	public void time() {
+		System.out.println(System.currentTimeMillis());
+	}
 }
