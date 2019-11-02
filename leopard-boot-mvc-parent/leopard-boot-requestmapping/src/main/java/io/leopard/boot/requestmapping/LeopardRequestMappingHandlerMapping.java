@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.web.BasicErrorController;
 import org.springframework.core.annotation.AnnotatedElementUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -99,7 +100,14 @@ public class LeopardRequestMappingHandlerMapping extends RequestMappingHandlerMa
 	protected String[] parsePatterns(RequestMapping requestMapping, Method method) {
 		String[] patterns;
 		if (method != null && requestMapping.path().length == 0) {
-			patterns = new String[] { this.createPattern(method.getName()) };
+			Class<?> clazz = method.getDeclaringClass();
+			if (clazz.equals(BasicErrorController.class)) {
+				// TODO
+				patterns = new String[0];
+			}
+			else {
+				patterns = new String[] { this.createPattern(method.getName()) };
+			}
 		}
 		else {
 			patterns = resolveEmbeddedValuesInPatterns(requestMapping.path());

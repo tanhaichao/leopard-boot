@@ -34,6 +34,7 @@ public class ContextPathRequestMappingInfoCombiner implements RequestMappingInfo
 		if (contextPathSwitchgears != null) {
 			for (ContextPathSwitchgear switchgear : contextPathSwitchgears) {
 				Boolean enable = switchgear.isEnableContextPath(method, handlerType);
+				System.err.println("switchgear:" + switchgear.getClass().getName() + " " + enable);
 				if (enable != null) {
 					return enable;
 				}
