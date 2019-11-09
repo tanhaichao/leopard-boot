@@ -6,10 +6,14 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 public abstract class AbstractUploadClient implements UploadClient {
+
+	protected Log logger = LogFactory.getLog(this.getClass());
 
 	@Override
 	public String add(String dir, MultipartFile file) throws IOException {

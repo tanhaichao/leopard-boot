@@ -40,15 +40,18 @@ public class UploadClientFileSystemImpl extends AbstractUploadClient {
 		else {
 			uri = dir + "/" + filename;
 		}
-		System.out.println("uri:" + uri + " lenght:" + lenght);
 		File file = new File(new File(uploadDir), uri);
+		logger.info("uri:" + uri + " lenght:" + lenght + " path:" + file.getAbsolutePath());
 
 		byte[] data = IOUtils.toByteArray(input);
 		FileUtils.writeByteArrayToFile(file, data);
 
-		String url = uploadServerDomain + "/" + uri;
-		url = url.replace("//", "/");
-		return url;
+		StringBuilder sb = new StringBuilder(uploadServerDomain);
+		if (!uploadServerDomain.endsWith("/")) {
+			sb.append("/");
+		}
+		sb.append(uri.replace("//", "/"));
+		return sb.toString();
 	}
 
 	@Override
