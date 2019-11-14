@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 import javax.servlet.http.HttpServletRequest;
 
 import freemarker.ext.beans.StringModel;
+import freemarker.template.SimpleNumber;
 
 public abstract class AbstractExecuteTemplateMethod extends AbstractTemplateMethod {
 
@@ -20,7 +21,14 @@ public abstract class AbstractExecuteTemplateMethod extends AbstractTemplateMeth
 			if (types[i].equals(String.class)) {
 				methodArgs[i] = args[i];
 			}
+			else if (types[i].equals(int.class) || types[i].equals(Integer.class)) {
+				methodArgs[i] = ((SimpleNumber) args[i]).getAsNumber();
+			}
+			else if (types[i].equals(long.class) || types[i].equals(Long.class)) {
+				methodArgs[i] = ((SimpleNumber) args[i]).getAsNumber();
+			}
 			else {
+				// System.err.println("types[i]:" + types[i].getName());
 				methodArgs[i] = ((StringModel) args[i]).getWrappedObject();
 			}
 		}
