@@ -417,8 +417,8 @@ public class StringUtil {// NOPMD
 	/**
 	 * 获取字符串缩写
 	 * 
-	 * @param len 长度
 	 * @param content 内容
+	 * @param length 长度
 	 * @return
 	 */
 	public static String getShortString(String content, int length) {
@@ -445,6 +445,40 @@ public class StringUtil {// NOPMD
 		if (k == 0) { // 表示名称已超出范围，则用...表示
 			result.append("...");
 		}
+		return result.toString();
+	}
+
+	/**
+	 * 获取字符串缩写(不返回...)
+	 * 
+	 * @param content 内容
+	 * @param length 长度
+	 * @return
+	 */
+	public static String getShortString2(String content, int length) {
+		if (StringUtils.isEmpty(content)) {
+			return content;
+		}
+		// String str = content;
+		StringBuilder result = new StringBuilder();
+		int k = length;
+		for (int i = 0; i < content.length(); i++) {
+			if (k <= 0) {
+				break;
+			}
+			String temp = content.substring(i, i + 1);
+			int len = StringUtil.getBytes(temp);
+			if (len == 2) {
+				k = k - 2;
+			}
+			else {
+				k--;
+			}
+			result.append(temp);
+		}
+		// if (k == 0) { // 表示名称已超出范围，则用...表示
+		// result.append("...");
+		// }
 		return result.toString();
 	}
 
