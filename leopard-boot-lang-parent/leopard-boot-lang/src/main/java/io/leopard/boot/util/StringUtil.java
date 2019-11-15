@@ -459,7 +459,6 @@ public class StringUtil {// NOPMD
 		if (StringUtils.isEmpty(content)) {
 			return content;
 		}
-		// String str = content;
 		StringBuilder result = new StringBuilder();
 		int k = length;
 		for (int i = 0; i < content.length(); i++) {
