@@ -421,18 +421,18 @@ public class StringUtil {// NOPMD
 	 * @param content 内容
 	 * @return
 	 */
-	public static String getShortString(int length, String content) {
+	public static String getShortString(String content, int length) {
 		if (StringUtils.isEmpty(content)) {
-			return null;
+			return content;
 		}
-		String str = content;
+		// String str = content;
 		StringBuilder result = new StringBuilder();
 		int k = length;
-		for (int i = 0; i < str.length(); i++) {
+		for (int i = 0; i < content.length(); i++) {
 			if (k <= 0) {
 				break;
 			}
-			String temp = str.substring(i, i + 1);
+			String temp = content.substring(i, i + 1);
 			int len = getBytes(temp);
 			if (len == 2) {
 				k = k - 2;
