@@ -465,7 +465,7 @@ public class StringUtil {// NOPMD
 			if (k <= 0) {
 				break;
 			}
-			String temp = content.substring(i, i + 1);
+			String temp = content.substring(i, i + 1);// TODO 性能优化
 			int len = StringUtil.getBytes(temp);
 			if (len == 2) {
 				k = k - 2;
