@@ -17,6 +17,9 @@ public abstract class AbstractExecuteTemplateMethod extends AbstractTemplateMeth
 			throw new RuntimeException("找不到execute方法.");
 		}
 		Class<?>[] types = method.getParameterTypes();
+		if (types.length != args.length) {
+			throw new RuntimeException("参数数量不匹配[" + types.length + " " + args.length + "].");
+		}
 		Object[] methodArgs = new Object[types.length];
 		for (int i = 0; i < types.length; i++) {
 
