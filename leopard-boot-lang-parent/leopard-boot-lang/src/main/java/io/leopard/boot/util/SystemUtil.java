@@ -5,8 +5,6 @@ import java.io.InputStream;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.SystemUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * SystemUtil(功能未确定).
@@ -16,7 +14,7 @@ import org.apache.commons.logging.LogFactory;
  * 
  */
 public final class SystemUtil {
-	private static final Log logger = LogFactory.getLog(SystemUtil.class);
+	// private static final Log logger = LogFactory.getLog(SystemUtil.class);
 
 	/**
 	 * 执行shell命令</br>
@@ -53,8 +51,9 @@ public final class SystemUtil {
 	 * 
 	 * @param cmd
 	 * @return 输出信息.
+	 * @throws IOException
 	 */
-	public static String execShell(final String cmd) {
+	public static String execShell(final String cmd) throws IOException {
 		return execShell(cmd, true);
 	}
 
@@ -64,23 +63,28 @@ public final class SystemUtil {
 	 * @param cmd Shell命令
 	 * @param wait 是否输出结果
 	 * @return 返回的结果
+	 * @throws IOException
 	 */
-	public static String execShell(final String cmd, final boolean wait) {
-		String msg = "";
-		try {
-			// cmd = "/bin/sh " + cmd;
-			Process pro = Runtime.getRuntime().exec(cmd);
-			if (wait) {
-				InputStream input = pro.getErrorStream();
-				msg = IOUtils.toString(input);
-				input.close();
-			}
+	public static String execShell(final String cmd, final boolean wait) throws IOException {
+		// String msg = "";
+		// try {
+		// cmd = "/bin/sh " + cmd;
+		Process pro = Runtime.getRuntime().exec(cmd);
+		if (wait) {
+			InputStream input = pro.getErrorStream();
+			String msg = IOUtils.toString(input, "UTF-8");
+			input.close();
+			return msg;
+
 		}
-		catch (IOException e) {
-			msg = e.getMessage();
-			logger.error(e.getMessage(), e);
+		else {
+			return null;
 		}
-		return msg;
+		// }
+		// catch (IOException e) {
+		// msg = e.getMessage();
+		// logger.error(e.getMessage(), e);
+		// }
 	}
 
 	public static String getStackMessage(final StackTraceElement[] stacks) {
@@ -117,7 +121,8 @@ public final class SystemUtil {
 			Thread.sleep(mills);
 		}
 		catch (InterruptedException e) {
-			logger.error(e.getMessage(), e);
+			// logger.error(e.getMessage(), e);
+			throw new RuntimeException(e.getMessage(), e);
 		}
 	}
 
