@@ -22,8 +22,10 @@ public abstract class AbstractExecuteTemplateMethod extends AbstractTemplateMeth
 		}
 		Object[] methodArgs = new Object[types.length];
 		for (int i = 0; i < types.length; i++) {
-
-			if (types[i].equals(String.class)) {
+			if (args[i] == null) {
+				methodArgs[i] = null;
+			}
+			else if (types[i].equals(String.class)) {
 				methodArgs[i] = args[i];
 			}
 			else if (types[i].equals(int.class) || types[i].equals(Integer.class)) {
@@ -50,7 +52,18 @@ public abstract class AbstractExecuteTemplateMethod extends AbstractTemplateMeth
 				}
 			}
 			else if (types[i].equals(Object.class)) {
-				methodArgs[i] = args[i];
+				if (args[i] instanceof String) {
+					methodArgs[i] = args[i];
+				}
+				else if (args[i] instanceof BigDecimal) {
+					throw new RuntimeException("暂时不支持该类型.");
+				}
+				else if (args[i] instanceof SimpleNumber) {
+					throw new RuntimeException("暂时不支持该类型.");
+				}
+				else {
+					methodArgs[i] = ((StringModel) args[i]).getWrappedObject();
+				}
 			}
 			else {
 				// TODO 什么情况下会来到这里?
