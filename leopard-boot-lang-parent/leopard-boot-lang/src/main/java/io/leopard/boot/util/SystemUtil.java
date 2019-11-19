@@ -21,29 +21,31 @@ public final class SystemUtil {
 	 * 
 	 * @param cmd 需要执行的命令
 	 * @return 输出执行后的结果
+	 * @throws IOException
 	 */
-	public static String execShell2(final String cmd) {
-		String msg = "";
+	public static String execShell2(final String cmd) throws IOException {
+		String msg;
 		// cmd = "/bin/sh " + cmd;
-		try {
-			Process pro = Runtime.getRuntime().exec(cmd);
+		// try {
+		Process pro = Runtime.getRuntime().exec(cmd);
+		if (true) {
+			InputStream input = pro.getInputStream();
+			msg = IOUtils.toString(input, "UTF-8");
+			input.close();
+		}
+		if (msg == null || msg.length() == 0) {
 			if (true) {
-				InputStream input = pro.getInputStream();
-				msg = IOUtils.toString(input);
+				InputStream input = pro.getErrorStream();
+				msg = IOUtils.toString(input, "UTF-8");
 				input.close();
 			}
-			if (msg == null || msg.length() == 0) {
-				if (true) {
-					InputStream input = pro.getErrorStream();
-					msg = IOUtils.toString(input);
-					input.close();
-				}
-			}
-		}
-		catch (IOException e) {
-			throw new RuntimeException(e.getMessage(), e);
 		}
 		return msg;
+		// }
+		// catch (IOException e) {
+		// throw new RuntimeException(e.getMessage(), e);
+		// }
+		// return msg;
 	}
 
 	/**
