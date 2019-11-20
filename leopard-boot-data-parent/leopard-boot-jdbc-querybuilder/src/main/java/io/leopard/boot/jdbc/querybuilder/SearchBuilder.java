@@ -450,9 +450,14 @@ public abstract class SearchBuilder {
 		// if (orderFieldName != null && orderFieldName.length() > 0) {
 		if (orderList != null && !orderList.isEmpty()) {
 			sb.append(" order by");
+			int index = 0;
 			for (Orderby orderby : orderList) {
+				if (index > 0) {
+					sb.append(",");
+				}
 				// sb.append(" order by " + orderby.getFieldName() + " " + orderby.getDirection());
 				sb.append(" " + this.tableAlias + orderby.getFieldName() + " " + orderby.getDirection());
+				index++;
 			}
 		}
 		// }
