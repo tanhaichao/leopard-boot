@@ -174,7 +174,7 @@ public class QueryStringBuilder {
 		for (Entry<String, ?> entry : params.entrySet()) {
 			String name = entry.getKey();
 			Object value = entry.getValue();
-			if (value instanceof String) {
+			if (value == null || value instanceof String) {
 				setParameter(name, (String) value);
 			}
 			else if (value instanceof String[]) {
