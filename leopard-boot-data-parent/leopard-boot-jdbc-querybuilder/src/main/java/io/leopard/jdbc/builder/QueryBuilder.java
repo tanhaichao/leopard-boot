@@ -26,10 +26,7 @@ public class QueryBuilder {
 
 	private TimeRange range;
 
-	private String orderFieldName;
-
-	// 按desc 还是asc
-	private String orderDirection;
+	private List<Orderby> orderList;
 
 	private String groupbyFieldName;
 
@@ -216,8 +213,11 @@ public class QueryBuilder {
 	}
 
 	public QueryBuilder order(String fieldName, String orderDirection) {
-		this.orderFieldName = fieldName;
-		this.orderDirection = orderDirection;
+		if (orderList == null) {
+			orderList = new ArrayList<>();
+		}
+		Orderby orderby = new Orderby(fieldName, orderDirection);
+		orderList.add(orderby);
 		return this;
 	}
 
@@ -443,8 +443,11 @@ public class QueryBuilder {
 			if (groupbyFieldName != null && groupbyFieldName.length() > 0) {
 				sb.append(" group by " + groupbyFieldName);
 			}
-			if (orderFieldName != null && orderFieldName.length() > 0) {
-				sb.append(" order by " + orderFieldName + " " + orderDirection);
+			// if (orderFieldName != null && orderFieldName.length() > 0) {
+			if (orderList != null) {
+				for (Orderby orderby : orderList) {
+					sb.append(" order by " + orderby.getFieldName() + " " + orderby.getDirection());
+				}
 			}
 			sb.append(" limit ?,?");
 			param.setInt(limitStart);

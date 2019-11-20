@@ -10,6 +10,7 @@ import org.springframework.util.StringUtils;
 
 import io.leopard.jdbc.Jdbc;
 import io.leopard.jdbc.StatementParameter;
+import io.leopard.jdbc.builder.Orderby;
 import io.leopard.lang.Page;
 import io.leopard.lang.Paging;
 import io.leopard.lang.datatype.TimeRange;
@@ -37,10 +38,7 @@ public abstract class SearchBuilder {
 
 	private String groupbyFieldName;
 
-	private String orderFieldName;
-
-	// 按desc 还是asc
-	private String orderDirection;
+	private List<Orderby> orderList;
 
 	private Integer limitStart;
 
@@ -226,8 +224,11 @@ public abstract class SearchBuilder {
 	}
 
 	public SearchBuilder order(String fieldName, String orderDirection) {
-		this.orderFieldName = fieldName;
-		this.orderDirection = orderDirection;
+		if (orderList == null) {
+			orderList = new ArrayList<>();
+		}
+		Orderby orderby = new Orderby(fieldName, orderDirection);
+		orderList.add(orderby);
 		return this;
 	}
 
@@ -446,9 +447,14 @@ public abstract class SearchBuilder {
 			sb.append(" group by " + this.tableAlias + groupbyFieldName);
 		}
 
-		if (orderFieldName != null && orderFieldName.length() > 0) {
-			sb.append(" order by " + this.tableAlias + orderFieldName + " " + orderDirection);
+		// if (orderFieldName != null && orderFieldName.length() > 0) {
+		if (orderList != null) {
+			for (Orderby orderby : orderList) {
+				// sb.append(" order by " + orderby.getFieldName() + " " + orderby.getDirection());
+				sb.append(" order by " + this.tableAlias + orderby.getFieldName() + " " + orderby.getDirection());
+			}
 		}
+		// }
 		sb.append(" limit ?,?");
 		param.setInt(limitStart);
 		param.setInt(limitSize);
