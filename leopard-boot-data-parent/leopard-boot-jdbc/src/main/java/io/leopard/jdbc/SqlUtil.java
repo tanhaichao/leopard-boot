@@ -1,13 +1,81 @@
 package io.leopard.jdbc;
 
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
+import org.springframework.util.StringUtils;
 
 import io.leopard.lang.datatype.Month;
 import io.leopard.lang.datatype.OnlyDate;
 
 public class SqlUtil {
+
+	/**
+	 * 用于MySQL全文检索中文编码.
+	 * 
+	 * @param strings
+	 * @return
+	 */
+	public static String getSearchx(String... strings) {
+		StringBuilder sb = new StringBuilder();
+		for (String string : strings) {
+			if (StringUtils.hasLength(string)) {
+				if (sb.length() > 0) {
+					sb.append(" ");
+				}
+				sb.append(string);
+			}
+		}
+		return getIntString(sb.toString());
+	}
+
+	/**
+	 * 用于MySQL全文检索中文编码.
+	 * <p>
+	 * 
+	 * @param str
+	 * @return
+	 */
+	public static String getIntString(final String str) {
+		if (str == null) {
+			return "";
+		}
+		byte[] bytes;
+		try {
+			bytes = str.toLowerCase().getBytes("GBK");
+		}
+		catch (UnsupportedEncodingException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+		StringBuilder sb = new StringBuilder();
+		int iscn = 0;
+		for (int i = 0; i < bytes.length; i++) {
+			int j = bytes[i];
+			if (bytes[i] < 0) {
+				j = j * (-1);
+				if (j < 10) {
+					sb.append('0');
+				}
+				sb.append(j);
+				iscn++;
+				if (iscn == 2) {
+					sb.append(' ');
+					iscn = 0;
+				}
+			}
+			else {
+				byte[] b = new byte[] { bytes[i] };
+				for (int n = 0; n < b.length; n++) {
+					String str1 = "000" + b[n];
+					str1 = str1.substring(str1.length() - 4);
+					sb.append(str1).append(' ');
+				}
+			}
+		}
+		return sb.toString();
+	}
 
 	/**
 	 * 获取拼接参数后的sql.
