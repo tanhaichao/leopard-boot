@@ -446,8 +446,13 @@ public class QueryBuilder {
 			// if (orderFieldName != null && orderFieldName.length() > 0) {
 			if (orderList != null && !orderList.isEmpty()) {
 				sb.append(" order by");
+				int index = 0;
 				for (Orderby orderby : orderList) {
+					if (index > 0) {
+						sb.append(",");
+					}
 					sb.append(" " + orderby.getFieldName() + " " + orderby.getDirection());
+					index++;
 				}
 			}
 			sb.append(" limit ?,?");
