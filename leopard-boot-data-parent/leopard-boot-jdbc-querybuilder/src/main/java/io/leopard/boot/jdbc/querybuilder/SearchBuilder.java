@@ -448,10 +448,11 @@ public abstract class SearchBuilder {
 		}
 
 		// if (orderFieldName != null && orderFieldName.length() > 0) {
-		if (orderList != null) {
+		if (orderList != null && !orderList.isEmpty()) {
+			sb.append(" order by");
 			for (Orderby orderby : orderList) {
 				// sb.append(" order by " + orderby.getFieldName() + " " + orderby.getDirection());
-				sb.append(" order by " + this.tableAlias + orderby.getFieldName() + " " + orderby.getDirection());
+				sb.append(" " + this.tableAlias + orderby.getFieldName() + " " + orderby.getDirection());
 			}
 		}
 		// }

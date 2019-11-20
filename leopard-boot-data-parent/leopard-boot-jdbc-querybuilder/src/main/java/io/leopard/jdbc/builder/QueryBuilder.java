@@ -444,9 +444,10 @@ public class QueryBuilder {
 				sb.append(" group by " + groupbyFieldName);
 			}
 			// if (orderFieldName != null && orderFieldName.length() > 0) {
-			if (orderList != null) {
+			if (orderList != null && !orderList.isEmpty()) {
+				sb.append(" order by");
 				for (Orderby orderby : orderList) {
-					sb.append(" order by " + orderby.getFieldName() + " " + orderby.getDirection());
+					sb.append(" " + orderby.getFieldName() + " " + orderby.getDirection());
 				}
 			}
 			sb.append(" limit ?,?");
