@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import freemarker.ext.beans.StringModel;
 import freemarker.template.SimpleNumber;
 import freemarker.template.SimpleScalar;
 import freemarker.template.TemplateMethodModelEx;
@@ -27,7 +28,7 @@ public class SetUrlParameterTemplateMethod implements TemplateMethodModelEx, Tem
 
 	@Override
 	public Object exec(@SuppressWarnings("rawtypes") List args) throws TemplateModelException {
-		String url = args.get(0).toString();
+		String url = toString(args.get(0));
 		String name = args.get(1).toString();
 		String value = toString(args.get(2));// .toString();
 		String newUrl = QueryStringBuilder.buildByUrl(url).setParameter(name, value).toUrl();
@@ -44,6 +45,9 @@ public class SetUrlParameterTemplateMethod implements TemplateMethodModelEx, Tem
 		}
 		else if (obj instanceof SimpleNumber) {
 			return ((SimpleNumber) obj).getAsNumber().toString();
+		}
+		else if (obj instanceof StringModel) {
+			return ((StringModel) obj).getAsString();
 		}
 		else {
 			throw new IllegalArgumentException("未知参数类型[" + obj.getClass().getName() + "].");

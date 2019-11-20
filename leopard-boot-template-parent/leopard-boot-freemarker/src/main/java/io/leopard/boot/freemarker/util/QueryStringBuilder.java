@@ -54,6 +54,9 @@ public class QueryStringBuilder {
 	// }
 
 	public static QueryStringBuilder buildByUrl(String url) {
+		if (url == null) {
+			return new QueryStringBuilder((String) null);
+		}
 		// URL oUrl = new URL(url);
 		int index = url.indexOf("?");
 		if (index == -1) {

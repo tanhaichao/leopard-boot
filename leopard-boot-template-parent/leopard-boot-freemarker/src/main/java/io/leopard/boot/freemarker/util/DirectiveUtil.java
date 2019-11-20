@@ -17,6 +17,14 @@ import freemarker.template.SimpleScalar;
  */
 public class DirectiveUtil {
 
+	public static String getString(Map<?, ?> params, String parameterName) {
+		Object value = params.get(parameterName);
+		if (value == null) {
+			return null;
+		}
+		return value.toString();
+	}
+
 	/**
 	 * 获取指令的动态参数
 	 * 
