@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import freemarker.template.TemplateModelException;
 
 /**
- * 前段时间.
+ * 多久以前的时间.
  * 
  * @author 阿海
  *
