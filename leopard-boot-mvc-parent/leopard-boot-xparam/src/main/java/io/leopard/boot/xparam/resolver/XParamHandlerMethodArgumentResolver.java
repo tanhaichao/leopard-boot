@@ -39,6 +39,8 @@ public class XParamHandlerMethodArgumentResolver extends AbstractNamedValueMetho
 
 	@Override
 	public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+		DATA.clear();
+
 		// new Exception().printStackTrace();
 		ListableBeanFactory factory = (ListableBeanFactory) beanFactory;
 		Map<String, XParam> map = factory.getBeansOfType(XParam.class);
