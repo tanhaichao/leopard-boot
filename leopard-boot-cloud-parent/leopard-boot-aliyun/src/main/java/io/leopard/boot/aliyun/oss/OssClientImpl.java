@@ -2,15 +2,11 @@ package io.leopard.boot.aliyun.oss;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
 
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import com.aliyun.openservices.oss.OSSClient;
 import com.aliyun.openservices.oss.model.ObjectMetadata;
@@ -21,6 +17,7 @@ public class OssClientImpl extends AbstractOssClient {
 
 	// private static final String endpoint = "http://oss.aliyuncs.com";
 	// private static final String endpoint = "http://oss-cn-shenzhen.aliyuncs.com";
+	// private static final String endpoint = "http://oss-cn-shanghai.aliyuncs.com";
 
 	@Value("${aliyun.oss.endpoint}")
 	private String endpoint;
@@ -33,6 +30,18 @@ public class OssClientImpl extends AbstractOssClient {
 
 	@Value("${aliyun.oss.secretAccessKey}")
 	private String secretAccessKey;
+
+	/**
+	 * 访问域名
+	 */
+	@Value("${leopard.upload.domain}")
+	private String uploadServerDomain;
+
+	/**
+	 * 根目录，默认为/
+	 */
+	@Value("${aliyun.oss.rootDirectory:/}")
+	private String rootDirectory;
 
 	public void setBucketName(String bucketName) {
 		this.bucketName = bucketName;
@@ -48,9 +57,25 @@ public class OssClientImpl extends AbstractOssClient {
 
 	@PostConstruct
 	public void init() {
+		if (!rootDirectory.startsWith("/")) {
+			throw new IllegalArgumentException("aliyun.oss.rootDirectory必须以/开始");
+		}
 		// System.out.println("bucketName:" + bucketName);
 		// System.out.println("accessKeyId:" + accessKeyId);
 		// System.out.println("secretAccessKey:" + secretAccessKey);
+	}
+
+	/**
+	 * 加上rootDirectory;
+	 * 
+	 * @param uri
+	 * @return
+	 */
+	protected String joinRootDirectory(String uri) {
+		uri = this.rootDirectory + "/" + uri;
+		uri = uri.replace("//", "/");
+		uri = uri.replaceFirst("^/", "");
+		return uri;
 	}
 
 	@Override
@@ -58,7 +83,7 @@ public class OssClientImpl extends AbstractOssClient {
 		if (input == null) {
 			throw new NullPointerException("input不能为空.");
 		}
-		
+
 		OSSClient client = new OSSClient(endpoint, accessKeyId, secretAccessKey);
 		// System.err.println("endpoint:" + endpoint);
 		ObjectMetadata meta = new ObjectMetadata();
@@ -74,10 +99,17 @@ public class OssClientImpl extends AbstractOssClient {
 		else {
 			uri = dir + "/" + filename;
 		}
-		System.out.println("uri:" + uri + " lenght:" + lenght);
+		uri = joinRootDirectory(uri);
+		logger.info("uri:" + uri + " lenght:" + lenght);
 		PutObjectResult result = client.putObject(bucketName, uri, input, meta);
-		System.out.println(result.getETag());
-		return "/" + uri;
+		logger.info(result.getETag());
+		// return "/" + uri;
+		StringBuilder sb = new StringBuilder(uploadServerDomain);
+		if (!uploadServerDomain.endsWith("/")) {
+			sb.append("/");
+		}
+		sb.append(uri.replace("//", "/"));
+		return sb.toString();
 	}
 
 	@Override
