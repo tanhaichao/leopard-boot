@@ -18,11 +18,12 @@ public class StartXParam implements XParam {
 
 	@Autowired
 	private PageIdXParam pageIdXParam;
+
 	@Autowired
 	private SizeXParam sizeXParam;
 
 	@Override
-	public Object getValue(HttpServletRequest request, MethodParameter parameter) {
+	public Object getValue(HttpServletRequest request, MethodParameter parameter) throws Exception {
 		String value = request.getParameter("start");
 
 		int start;
