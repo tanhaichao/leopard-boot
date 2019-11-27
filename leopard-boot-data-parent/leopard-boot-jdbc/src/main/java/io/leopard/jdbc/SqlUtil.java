@@ -10,6 +10,12 @@ import org.springframework.util.StringUtils;
 import io.leopard.lang.datatype.Month;
 import io.leopard.lang.datatype.OnlyDate;
 
+/**
+ * SQL工具类
+ * 
+ * @author 谭海潮
+ *
+ */
 public class SqlUtil {
 
 	/**
