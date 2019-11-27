@@ -2,15 +2,19 @@ package io.leopard.boot.xparam;
 
 import java.lang.reflect.Method;
 import java.util.LinkedHashSet;
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.propertyeditors.CustomBooleanEditor;
 import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
 import org.springframework.core.MethodParameter;
 import org.springframework.core.ParameterNameDiscoverer;
+import org.springframework.web.bind.MissingPathVariableException;
+import org.springframework.web.servlet.HandlerMapping;
 
 public class XParamUtil {
 
@@ -74,6 +78,17 @@ public class XParamUtil {
 		return proxyIp;
 	}
 
+	public static String getPathVariableValue(String variableName, HttpServletRequest request, MethodParameter parameter) throws MissingPathVariableException {
+		@SuppressWarnings("unchecked")
+		Map<String, String> uriTemplateVars = (Map<String, String>) request.getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
+		String projectId = uriTemplateVars.get(variableName);
+		if (StringUtils.isEmpty(projectId)) {
+			// throw new MissingPathVariableException(variableName, parameter);
+			return null;
+		}
+		return projectId;
+	}
+
 	static ParameterNameDiscoverer parameterNameDiscoverer = new LocalVariableTableParameterNameDiscoverer();
 
 	public static String[] getParameterNames(MethodParameter parameter) {
@@ -94,4 +109,5 @@ public class XParamUtil {
 		}
 		return nameSet;
 	}
+
 }
