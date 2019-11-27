@@ -43,6 +43,12 @@ public class OssClientImpl extends AbstractOssClient {
 	@Value("${aliyun.oss.rootDirectory:/}")
 	private String rootDirectory;
 
+	/**
+	 * 目录hash长度
+	 */
+	@Value("${aliyun.oss.directoryHashLength:0}")
+	private int directoryHashLength;
+
 	public void setBucketName(String bucketName) {
 		this.bucketName = bucketName;
 	}
@@ -78,6 +84,25 @@ public class OssClientImpl extends AbstractOssClient {
 		return uri;
 	}
 
+	/**
+	 * 目录hash
+	 * 
+	 * @param filename
+	 * @return
+	 */
+	protected String directoryHash(String filename) {
+		if (directoryHashLength <= 0) {
+			return filename;
+		}
+		int index = filename.lastIndexOf(".");
+		String name = filename.substring(0, index);
+		if (name.length() <= directoryHashLength) {
+			return filename;
+		}
+		String subdirectory = name.substring(0, directoryHashLength);
+		return subdirectory + "/" + name + filename.substring(index);
+	}
+
 	@Override
 	public String add(InputStream input, String dir, String filename, long lenght, String contentType) throws IOException {
 		if (input == null) {
@@ -92,6 +117,8 @@ public class OssClientImpl extends AbstractOssClient {
 			meta.setContentType(contentType);
 		}
 		filename = toUuidFileName(filename);
+		filename = directoryHash(filename);// 目录hash
+
 		String uri;
 		if (dir == null || dir.length() == 0) {
 			uri = filename;
