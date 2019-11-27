@@ -78,7 +78,7 @@ public class XParamUtil {
 		return proxyIp;
 	}
 
-	public static String getPathVariableValue(String variableName, HttpServletRequest request, MethodParameter parameter) throws MissingPathVariableException {
+	public static String getPathVariableValue(String variableName, HttpServletRequest request) throws MissingPathVariableException {
 		@SuppressWarnings("unchecked")
 		Map<String, String> uriTemplateVars = (Map<String, String>) request.getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
 		String projectId = uriTemplateVars.get(variableName);
