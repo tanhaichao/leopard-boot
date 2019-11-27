@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import io.leopard.boot.jdbc.SqlUtil;
 import io.leopard.jdbc.Jdbc;
-import io.leopard.jdbc.SqlUtil;
 import io.leopard.lang.Page;
 import io.leopard.lang.PageImpl;
 import io.leopard.lang.Paging;

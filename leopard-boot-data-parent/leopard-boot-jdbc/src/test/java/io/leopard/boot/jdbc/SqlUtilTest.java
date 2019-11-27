@@ -1,7 +1,7 @@
-package io.leopard.jdbc;
+package io.leopard.boot.jdbc;
 
+import io.leopard.boot.jdbc.SqlUtil;
 import io.leopard.jdbc.InvalidParamDataAccessException;
-import io.leopard.jdbc.SqlUtil;
 import io.leopard.jdbc.StatementParameter;
 
 import org.junit.Assert;

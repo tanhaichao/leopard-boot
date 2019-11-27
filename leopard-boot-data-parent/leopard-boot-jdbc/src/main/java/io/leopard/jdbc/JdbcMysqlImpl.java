@@ -25,6 +25,7 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 
+import io.leopard.boot.jdbc.SqlUtil;
 import io.leopard.jdbc.builder.AbstractSqlBuilder;
 import io.leopard.jdbc.builder.InsertBuilder;
 import io.leopard.jdbc.builder.NullInsertBuilder;
