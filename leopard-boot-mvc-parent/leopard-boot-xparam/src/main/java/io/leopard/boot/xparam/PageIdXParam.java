@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 public class PageIdXParam implements XParam {
 
 	@Override
-	public Object getValue(HttpServletRequest request, MethodParameter parameter) {
+	public Object getValue(HttpServletRequest request, MethodParameter parameter) throws Exception {
 		String page = this.getPage(request);
 		int pageid = XParamUtil.toInt(page);
 		if (pageid < 1) {
