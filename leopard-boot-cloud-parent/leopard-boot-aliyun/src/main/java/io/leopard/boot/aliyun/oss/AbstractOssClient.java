@@ -30,8 +30,8 @@ public abstract class AbstractOssClient implements OssClient {
 	}
 
 	@Override
-	public String add(InputStream input, String dir, String filename, long lenght) throws IOException {
-		return this.add(input, dir, filename, lenght, null);
+	public String add(InputStream input, String dir, String filename, long length) throws IOException {
+		return this.add(input, dir, filename, length, null);
 	}
 
 	/** 支持的图片后缀，支持大小写 */

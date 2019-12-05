@@ -104,7 +104,7 @@ public class OssClientImpl extends AbstractOssClient {
 	}
 
 	@Override
-	public String add(InputStream input, String dir, String filename, long lenght, String contentType) throws IOException {
+	public String add(InputStream input, String dir, String filename, long length, String contentType) throws IOException {
 		if (input == null) {
 			throw new NullPointerException("input不能为空.");
 		}
@@ -112,7 +112,7 @@ public class OssClientImpl extends AbstractOssClient {
 		OSSClient client = new OSSClient(endpoint, accessKeyId, secretAccessKey);
 		// System.err.println("endpoint:" + endpoint);
 		ObjectMetadata meta = new ObjectMetadata();
-		meta.setContentLength(lenght);
+		meta.setContentLength(length);
 		if (contentType != null) {
 			meta.setContentType(contentType);
 		}
@@ -127,7 +127,7 @@ public class OssClientImpl extends AbstractOssClient {
 			uri = dir + "/" + filename;
 		}
 		uri = joinRootDirectory(uri);
-		logger.info("uri:" + uri + " lenght:" + lenght);
+		logger.info("uri:" + uri + " lenght:" + length);
 		PutObjectResult result = client.putObject(bucketName, uri, input, meta);
 		logger.info(result.getETag());
 		// return "/" + uri;

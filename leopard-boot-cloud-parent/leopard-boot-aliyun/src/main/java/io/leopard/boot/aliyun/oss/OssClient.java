@@ -18,9 +18,9 @@ public interface OssClient {
 
 	String add(String dir, MultipartFile file, Set<String> extnameSet) throws IOException;
 
-	String add(InputStream input, String dir, String filename, long lenght) throws IOException;
+	String add(InputStream input, String dir, String filename, long length) throws IOException;
 
-	String add(InputStream input, String dir, String filename, long lenght, String contentType) throws IOException;
+	String add(InputStream input, String dir, String filename, long length, String contentType) throws IOException;
 
 	boolean move(String uri, String destUri);
 
