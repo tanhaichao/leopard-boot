@@ -144,4 +144,11 @@ public class OssClientImpl extends AbstractOssClient {
 		throw new RuntimeException("not impl.");
 	}
 
+	@Override
+	public boolean delete(String uri) {
+		OSSClient client = new OSSClient(endpoint, accessKeyId, secretAccessKey);
+		client.deleteObject(uri, uri);
+		return true;
+	}
+
 }
