@@ -8,9 +8,9 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.aliyun.openservices.oss.OSSClient;
-import com.aliyun.openservices.oss.model.ObjectMetadata;
-import com.aliyun.openservices.oss.model.PutObjectResult;
+import com.aliyun.oss.OSSClient;
+import com.aliyun.oss.model.ObjectMetadata;
+import com.aliyun.oss.model.PutObjectResult;
 
 @Service
 public class OssClientImpl extends AbstractOssClient {

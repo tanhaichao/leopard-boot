@@ -9,11 +9,19 @@
 	<name>阿里云接口</name>
 
 	<dependencies>
+	<!-- 
 		<dependency>
 			<groupId>com.aliyun.openservices</groupId>
 			<artifactId>aliyun-openservices</artifactId>
 			<version>1.2.3</version>
 		</dependency>
+		 -->
+		
+		<dependency>
+    <groupId>com.aliyun.oss</groupId>
+    <artifactId>aliyun-sdk-oss</artifactId>
+    <version>3.8.0</version>
+</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
