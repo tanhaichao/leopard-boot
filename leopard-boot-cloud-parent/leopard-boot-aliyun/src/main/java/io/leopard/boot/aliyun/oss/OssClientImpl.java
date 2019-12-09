@@ -146,15 +146,19 @@ public class OssClientImpl extends AbstractOssClient {
 
 	@Override
 	public boolean delete(String uri) {
+		String key = uri.replaceFirst("^/", "");
+
 		OSSClient client = new OSSClient(endpoint, accessKeyId, secretAccessKey);
-		client.deleteObject(bucketName, uri);
+		client.deleteObject(bucketName, key);
 		return true;
 	}
 
 	@Override
 	public boolean delete(String bucketName, String uri) {
+		String key = uri.replaceFirst("^/", "");
+
 		OSSClient client = new OSSClient(endpoint, accessKeyId, secretAccessKey);
-		client.deleteObject(bucketName, uri);
+		client.deleteObject(bucketName, key);
 		return true;
 	}
 }
