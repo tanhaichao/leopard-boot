@@ -29,4 +29,6 @@ public interface OssClient {
 	void checkExtname(String filename, Set<String> extnameSet);
 
 	boolean delete(String uri);
+
+	boolean delete(String bucketName, String uri);
 }
