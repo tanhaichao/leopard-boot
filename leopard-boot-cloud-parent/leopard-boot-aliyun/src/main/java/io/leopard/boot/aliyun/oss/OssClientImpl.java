@@ -8,7 +8,9 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClient;
+import com.aliyun.oss.OSSClientBuilder;
 import com.aliyun.oss.model.ObjectMetadata;
 import com.aliyun.oss.model.PutObjectResult;
 
@@ -109,7 +111,9 @@ public class OssClientImpl extends AbstractOssClient {
 			throw new NullPointerException("input不能为空.");
 		}
 
-		OSSClient client = new OSSClient(endpoint, accessKeyId, secretAccessKey);
+		OSS oss = new OSSClientBuilder().build(endpoint, accessKeyId, secretAccessKey);
+
+		// OSSClient client = new OSSClient(endpoint, accessKeyId, secretAccessKey);
 		// System.err.println("endpoint:" + endpoint);
 		ObjectMetadata meta = new ObjectMetadata();
 		meta.setContentLength(length);
@@ -128,7 +132,9 @@ public class OssClientImpl extends AbstractOssClient {
 		}
 		uri = joinRootDirectory(uri);
 		logger.info("uri:" + uri + " lenght:" + length);
-		PutObjectResult result = client.putObject(bucketName, uri, input, meta);
+		String key = uri.replaceFirst("^/", "");
+
+		PutObjectResult result = oss.putObject(bucketName, key, input, meta);
 		logger.info(result.getETag());
 		// return "/" + uri;
 		StringBuilder sb = new StringBuilder(uploadServerDomain);
