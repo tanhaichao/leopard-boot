@@ -1,7 +1,7 @@
 package io.leopard.lang.datatype;
 
 /**
- * 时间排序
+ * 时间排序(可按posttime或lmodify排序)
  * 
  * @author 谭海潮
  *
