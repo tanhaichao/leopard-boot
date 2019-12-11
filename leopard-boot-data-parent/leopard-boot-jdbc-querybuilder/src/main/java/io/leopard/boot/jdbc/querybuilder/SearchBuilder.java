@@ -229,7 +229,7 @@ public abstract class SearchBuilder {
 	}
 
 	public SearchBuilder order(Sort sort, String defaultOrderDirection) {
-		if (sort == null) {
+		if (sort == null || sort.getFieldName() == null) {
 			return this;
 		}
 		if (sort.isDescending()) {

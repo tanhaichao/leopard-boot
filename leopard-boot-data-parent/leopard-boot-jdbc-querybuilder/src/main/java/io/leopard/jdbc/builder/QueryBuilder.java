@@ -218,7 +218,7 @@ public class QueryBuilder {
 	}
 
 	public QueryBuilder order(Sort sort, String defaultOrderDirection) {
-		if (sort == null) {
+		if (sort == null || sort.getFieldName() == null) {
 			return this;
 		}
 		if (sort.isDescending()) {
