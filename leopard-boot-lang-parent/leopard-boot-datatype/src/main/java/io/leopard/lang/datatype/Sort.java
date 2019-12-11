@@ -78,13 +78,15 @@ public class Sort {
 	 */
 	private void checkAllFieldName(String fieldName) {
 		String[] allowFieldNames = this.allowFieldNames();
-		boolean allow = true;
-		if (allowFieldNames != null) {
-			for (String allowFieldName : allowFieldNames) {
-				if (!allowFieldName.equals(fieldName)) {
-					allow = false;
-					break;
-				}
+		if (allowFieldNames == null || allowFieldNames.length == 0) {
+			return;
+		}
+
+		boolean allow = false;
+		for (String allowFieldName : allowFieldNames) {
+			if (allowFieldName.equals(fieldName)) {
+				allow = true;
+				break;
 			}
 		}
 		if (!allow) {
