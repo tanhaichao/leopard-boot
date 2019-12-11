@@ -224,22 +224,29 @@ public abstract class SearchBuilder {
 		return this.order(snum.getKey(), "desc");
 	}
 
-	public SearchBuilder order(Sort sort) {
-		return this.order(sort, "desc");
+	public SearchBuilder order(String defaultFieldName, Sort sort) {
+		return this.order(defaultFieldName, sort, "desc");
 	}
 
-	public SearchBuilder order(Sort sort, String defaultOrderDirection) {
+	public SearchBuilder order(String defaultFieldName, Sort sort, String defaultOrderDirection) {
 		if (sort == null || sort.getFieldName() == null) {
 			return this;
 		}
-		if (sort.isDescending()) {
-			return this.order(sort.getFieldName(), "desc");
-		}
-		else if (sort.isAscending()) {
-			return this.order(sort.getFieldName(), "asc");
+		String fieldName;
+		if (sort.getFieldName() == null) {
+			fieldName = defaultFieldName;
 		}
 		else {
-			return this.order(sort.getFieldName(), defaultOrderDirection);
+			fieldName = sort.getFieldName();
+		}
+		if (sort.isDescending()) {
+			return this.order(fieldName, "desc");
+		}
+		else if (sort.isAscending()) {
+			return this.order(fieldName, "asc");
+		}
+		else {
+			return this.order(fieldName, defaultOrderDirection);
 		}
 	}
 
