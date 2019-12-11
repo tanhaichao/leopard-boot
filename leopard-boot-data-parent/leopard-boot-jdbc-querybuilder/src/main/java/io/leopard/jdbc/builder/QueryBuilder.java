@@ -218,25 +218,23 @@ public class QueryBuilder {
 	}
 
 	public QueryBuilder order(String defaultFieldName, Sort sort, String defaultOrderDirection) {
-		if (sort == null || sort.getFieldName() == null) {
-			return this;
-		}
 		String fieldName;
-		if (sort.getFieldName() == null) {
+		if (sort == null || sort.getFieldName() == null) {
 			fieldName = defaultFieldName;
 		}
 		else {
 			fieldName = sort.getFieldName();
 		}
-		if (sort.isDescending()) {
-			return this.order(fieldName, "desc");
+		String orderDirection = defaultOrderDirection;
+		if (sort != null) {
+			if (sort.isDescending()) {
+				return this.order(fieldName, "desc");
+			}
+			else if (sort.isAscending()) {
+				return this.order(fieldName, "asc");
+			}
 		}
-		else if (sort.isAscending()) {
-			return this.order(fieldName, "asc");
-		}
-		else {
-			return this.order(fieldName, defaultOrderDirection);
-		}
+		return this.order(fieldName, orderDirection);
 	}
 
 	public QueryBuilder order(String fieldName, String orderDirection) {
