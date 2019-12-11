@@ -18,6 +18,8 @@ public class SortTest {
 		Assert.assertTrue(sort.isAscending());
 		Assert.assertFalse(sort.isDescending());
 
+		sort.setSort("+posttime");
+
 	}
 
 }
