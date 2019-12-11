@@ -34,17 +34,17 @@ public class Sort {
 		Pattern p = Pattern.compile(regex);
 		Matcher m = p.matcher(sort);
 		if (!m.find()) {
-			throw new IllegalArgumentException("非法排序参数.");
+			throw new IllegalArgumentException("非法排序参数[" + sort + "].");
 		}
 		String direction = m.group(1);
 		if (direction == null || direction.length() == 0) {
 			this.direction = null;
 		}
 		else if ("+".equals(direction)) {
-			this.direction = false;
+			this.direction = true;// 降序
 		}
 		else if ("-".equals(direction)) {
-			this.direction = true;
+			this.direction = false;// 升序
 		}
 		else {
 			throw new IllegalArgumentException("未知排序方向[" + direction + "].");
