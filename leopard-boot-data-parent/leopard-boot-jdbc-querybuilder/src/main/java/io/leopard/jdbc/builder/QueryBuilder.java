@@ -12,6 +12,7 @@ import io.leopard.jdbc.Jdbc;
 import io.leopard.jdbc.StatementParameter;
 import io.leopard.lang.Page;
 import io.leopard.lang.Paging;
+import io.leopard.lang.datatype.Sort;
 import io.leopard.lang.datatype.TimeRange;
 import io.leopard.lang.inum.Inum;
 import io.leopard.lang.inum.Snum;
@@ -210,6 +211,25 @@ public class QueryBuilder {
 			return this;
 		}
 		return this.order(snum.getKey(), "desc");
+	}
+
+	public QueryBuilder order(Sort sort) {
+		return this.order(sort, "desc");
+	}
+
+	public QueryBuilder order(Sort sort, String defaultOrderDirection) {
+		if (sort == null) {
+			return this;
+		}
+		if (sort.isDescending()) {
+			return this.order(sort.getFieldName(), "desc");
+		}
+		else if (sort.isAscending()) {
+			return this.order(sort.getFieldName(), "asc");
+		}
+		else {
+			return this.order(sort.getFieldName(), defaultOrderDirection);
+		}
 	}
 
 	public QueryBuilder order(String fieldName, String orderDirection) {
