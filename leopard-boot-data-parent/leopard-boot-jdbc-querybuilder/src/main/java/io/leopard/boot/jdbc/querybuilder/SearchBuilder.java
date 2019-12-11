@@ -239,10 +239,10 @@ public abstract class SearchBuilder {
 		String orderDirection = defaultOrderDirection;
 		if (sort != null) {
 			if (sort.isDescending()) {
-				return this.order(fieldName, "desc");
+				orderDirection = "desc";
 			}
 			else if (sort.isAscending()) {
-				return this.order(fieldName, "asc");
+				orderDirection = "asc";
 			}
 		}
 		return this.order(fieldName, orderDirection);
