@@ -67,10 +67,10 @@ public abstract class AbstractExecuteTemplateMethod extends AbstractTemplateMeth
 			}
 			else {
 				// TODO 什么情况下会来到这里?
-				logger.warn("types[i]:" + types[i].getName());
+				// logger.warn("types[i]:" + types[i].getName());
 
 				methodArgs[i] = ((StringModel) args[i]).getWrappedObject();
-				logger.warn("types[i]:" + types[i].getName() + " methodArgs[i]:" + methodArgs[i].getClass().getName());
+				// logger.warn("types[i]:" + types[i].getName() + " methodArgs[i]:" + methodArgs[i].getClass().getName());
 				// System.err.println("methodArgs[i]:" + methodArgs[i].getClass().getName());
 			}
 		}
