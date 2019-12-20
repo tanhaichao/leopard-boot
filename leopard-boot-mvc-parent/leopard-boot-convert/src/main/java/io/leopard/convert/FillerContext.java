@@ -21,6 +21,7 @@ public class FillerContext implements BeanFactoryAware {
 
 	@Override
 	public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+//		TODO ListableBeanFactory
 		Map<String, BeanFiller> beanMap = ((DefaultListableBeanFactory) beanFactory).getBeansOfType(BeanFiller.class);
 		for (Entry<String, BeanFiller> entry : beanMap.entrySet()) {
 			fillerList.add(entry.getValue());

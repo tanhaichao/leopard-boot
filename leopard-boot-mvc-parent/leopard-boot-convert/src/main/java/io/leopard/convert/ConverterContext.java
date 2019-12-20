@@ -22,6 +22,7 @@ public class ConverterContext implements BeanFactoryAware {
 	@SuppressWarnings("rawtypes")
 	@Override
 	public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+		// TODO ListableBeanFactory
 		Map<String, Converter> beanMap = ((DefaultListableBeanFactory) beanFactory).getBeansOfType(Converter.class);
 		for (Entry<String, Converter> entry : beanMap.entrySet()) {
 			converterList.add(entry.getValue());
