@@ -5,12 +5,12 @@ import java.util.Map.Entry;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.NoUniqueBeanDefinitionException;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
-import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.annotation.Primary;
 
 public class LeopardBeanFactoryAware {// implements BeanFactoryAware {
@@ -44,7 +44,7 @@ public class LeopardBeanFactoryAware {// implements BeanFactoryAware {
 	}
 
 	public static <T> T getSingleBean(BeanFactory beanFactory, Class<T> requiredType) throws BeansException {
-		DefaultListableBeanFactory factory = (DefaultListableBeanFactory) beanFactory;
+		ListableBeanFactory factory = (ListableBeanFactory) beanFactory;
 		Map<String, T> matchingBeans = factory.getBeansOfType(requiredType);
 		if (matchingBeans.isEmpty()) {
 			throw new NoSuchBeanDefinitionException(requiredType);
