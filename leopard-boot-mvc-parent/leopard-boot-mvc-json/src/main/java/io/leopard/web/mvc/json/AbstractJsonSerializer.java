@@ -20,7 +20,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
  */
 public abstract class AbstractJsonSerializer<T> extends JsonSerializer<T> {
 
-	private BeanFinder beanFinder = new BeanFinderImpl();
+	private static BeanFinder beanFinder = new BeanFinderImpl();
 
 	public AbstractJsonSerializer() {
 		this.inject();
