@@ -63,12 +63,25 @@ public class JdbcMysqlImpl implements Jdbc {
 
 	protected DataSource dataSource;
 
+	/**
+	 * JDBC名称
+	 */
+	private String name;
+
 	public void setDataSource(DataSource dataSource) {
 		System.err.println("dataSource:" + dataSource.getClass().getName());
 		this.dataSource = dataSource;
 		if (this.jdbcTemplate == null || dataSource != this.jdbcTemplate.getDataSource()) {
 			this.jdbcTemplate = new JdbcTemplate(dataSource);
 		}
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	@Override
