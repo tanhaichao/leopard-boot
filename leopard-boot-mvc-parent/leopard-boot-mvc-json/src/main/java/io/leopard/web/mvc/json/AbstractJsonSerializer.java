@@ -11,8 +11,6 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 
-import io.leopard.spring.LeopardBeanFactoryAware;
-
 /**
  * 实现依赖注入
  * 
@@ -21,6 +19,8 @@ import io.leopard.spring.LeopardBeanFactoryAware;
  * @param <T>
  */
 public abstract class AbstractJsonSerializer<T> extends JsonSerializer<T> {
+
+	private BeanFinder beanFinder = new BeanFinderImpl();
 
 	public AbstractJsonSerializer() {
 		this.inject();
@@ -58,7 +58,8 @@ public abstract class AbstractJsonSerializer<T> extends JsonSerializer<T> {
 	}
 
 	protected Object findBean(Class<?> type) {
-		return LeopardBeanFactoryAware.getBeanFactory().getBean(type);
+		// return LeopardBeanFactoryAware.getBeanFactory().getBean(type);
+		return this.beanFinder.findBean(type);
 	}
 
 	/**
