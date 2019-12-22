@@ -105,13 +105,9 @@ public class LeopardBeanPropertyRowMapper<T> implements RowMapper<T> {
 		try {
 			field.set(bean, value);
 		}
-		catch (IllegalArgumentException e) {
-			// throw new SQLException(e.getMessage(), e);
-			if (value != null) {
-				System.err.println("value:" + value.getClass().getClassLoader() + " field:" + field.getType().getClassLoader());
-			}
-			throw e;
-		}
+		// catch (IllegalArgumentException e) {
+		// throw new SQLException(e.getMessage(), e);
+		// }
 		catch (IllegalAccessException e) {
 			throw new SQLException(e.getMessage(), e);
 		}
@@ -126,7 +122,7 @@ public class LeopardBeanPropertyRowMapper<T> implements RowMapper<T> {
 		if (String.class.equals(requiredType)) {
 			value = rs.getString(index);
 		}
-		// TODO 对象类型未支持null
+		//TODO 对象类型未支持null
 		else if (boolean.class.equals(requiredType) || Boolean.class.equals(requiredType)) {
 			value = rs.getBoolean(index);
 		}
