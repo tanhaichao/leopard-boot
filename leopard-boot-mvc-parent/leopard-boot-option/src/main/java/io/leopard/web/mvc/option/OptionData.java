@@ -49,7 +49,7 @@ public class OptionData {
 		OptionInfo info = new OptionInfo();
 		info.setId(id);
 		info.setClassName(className);
-		info.setClazz(clazz);
+		// info.setClazz(clazz);
 		info.setData(data);
 		put(id, info);
 	}

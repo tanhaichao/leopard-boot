@@ -8,7 +8,7 @@ public class OptionInfo {
 
 	private String className;
 
-	private Class<?> clazz;
+	// private Class<?> clazz;
 
 	private List<OptionVO> data;
 
@@ -28,13 +28,13 @@ public class OptionInfo {
 		this.className = className;
 	}
 
-	public Class<?> getClazz() {
-		return clazz;
-	}
-
-	public void setClazz(Class<?> clazz) {
-		this.clazz = clazz;
-	}
+	// public Class<?> getClazz() {
+	// return clazz;
+	// }
+	//
+	// public void setClazz(Class<?> clazz) {
+	// this.clazz = clazz;
+	// }
 
 	public List<OptionVO> getData() {
 		return data;
