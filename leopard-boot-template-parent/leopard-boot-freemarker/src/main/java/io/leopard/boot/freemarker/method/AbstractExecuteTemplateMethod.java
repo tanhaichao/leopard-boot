@@ -78,7 +78,7 @@ public abstract class AbstractExecuteTemplateMethod extends AbstractTemplateMeth
 			return method.invoke(this, methodArgs);
 		}
 		catch (Exception e) {
-			logger.error("url:" + request.getRequestURL().toString() + " method:" + method.toGenericString() + " methodArgs:" + methodArgs.length);
+			logger.error("url:" + request.getRequestURL().toString() + " method:" + method.toGenericString() + " methodArgs:" + methodArgs.length + " args:" + args.length);
 			throw e;
 		}
 	}
