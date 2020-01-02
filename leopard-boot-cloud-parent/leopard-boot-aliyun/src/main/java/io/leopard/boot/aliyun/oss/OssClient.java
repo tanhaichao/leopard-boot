@@ -31,4 +31,6 @@ public interface OssClient {
 	boolean delete(String uri);
 
 	boolean delete(String bucketName, String uri);
+
+	boolean deleteDirectory(String bucketName, String directory);
 }

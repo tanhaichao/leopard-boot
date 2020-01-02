@@ -2,6 +2,8 @@ package io.leopard.boot.aliyun.oss;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 
@@ -11,6 +13,9 @@ import org.springframework.stereotype.Service;
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.OSSClientBuilder;
+import com.aliyun.oss.model.ListObjectsRequest;
+import com.aliyun.oss.model.OSSObjectSummary;
+import com.aliyun.oss.model.ObjectListing;
 import com.aliyun.oss.model.ObjectMetadata;
 import com.aliyun.oss.model.PutObjectResult;
 
@@ -166,5 +171,56 @@ public class OssClientImpl extends AbstractOssClient {
 		OSSClient client = new OSSClient(endpoint, accessKeyId, secretAccessKey);
 		client.deleteObject(bucketName, key);
 		return true;
+	}
+
+	@Override
+	public boolean deleteDirectory(String bucketName, String directory) {
+		OSSClient client = new OSSClient(endpoint, accessKeyId, secretAccessKey);
+		List<String> keys = this.getAllKey(client, bucketName, directory);
+		for (String key : keys) {
+			client.deleteObject(bucketName, key);
+		}
+		return true;
+	}
+
+	/**
+	 * 列出目录下所有文件(object)
+	 * 
+	 * @param prefix 指定文件夹
+	 * @return
+	 */
+	public List<String> getAllKey(OSSClient client, String bucketName, String directory) {
+		List<String> commonPrefixes = getCommonPrefixes(client, bucketName, directory);
+		commonPrefixes.add(directory);
+		// 构造ListObjectsRequest请求
+		ListObjectsRequest listObjectsRequest = new ListObjectsRequest(bucketName);
+		List<String> list = new ArrayList<>();
+		for (String prefix : commonPrefixes) {
+			// System.err.println("prefix:" + prefix);
+			// 递归列出fun目录下的所有文件
+			listObjectsRequest.setPrefix(prefix);
+			ObjectListing listing = client.listObjects(listObjectsRequest);
+			for (OSSObjectSummary objectSummary : listing.getObjectSummaries()) {
+				list.add(objectSummary.getKey());
+			}
+		}
+		return list;
+	}
+
+	/**
+	 * 列出目录下所有子目录
+	 * 
+	 * @param prefix 指定文件夹
+	 * @return
+	 */
+	protected List<String> getCommonPrefixes(OSSClient client, String bucketName, String directory) {
+		// 构造ListObjectsRequest请求
+		ListObjectsRequest listObjectsRequest = new ListObjectsRequest(bucketName);
+		// "/" 为文件夹的分隔符
+		listObjectsRequest.setDelimiter("/");
+		// 递归列出fun目录下的所有文件
+		listObjectsRequest.setPrefix(directory);
+		ObjectListing listing = client.listObjects(listObjectsRequest);
+		return listing.getCommonPrefixes();
 	}
 }
