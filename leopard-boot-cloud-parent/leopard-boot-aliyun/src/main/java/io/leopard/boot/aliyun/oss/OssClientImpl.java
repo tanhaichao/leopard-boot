@@ -175,9 +175,15 @@ public class OssClientImpl extends AbstractOssClient {
 
 	@Override
 	public boolean deleteDirectory(String bucketName, String directory) {
+		return deleteByPrefix(bucketName, directory);
+	}
+
+	@Override
+	public boolean deleteByPrefix(String bucketName, String prefix) {
 		OSSClient client = new OSSClient(endpoint, accessKeyId, secretAccessKey);
-		List<String> keys = this.getAllKey(client, bucketName, directory);
+		List<String> keys = this.getAllKey(client, bucketName, prefix);
 		for (String key : keys) {
+			System.err.println("deleteByPrefix key:" + key);
 			client.deleteObject(bucketName, key);
 		}
 		return true;
@@ -189,16 +195,18 @@ public class OssClientImpl extends AbstractOssClient {
 	 * @param prefix 指定文件夹
 	 * @return
 	 */
-	public List<String> getAllKey(OSSClient client, String bucketName, String directory) {
-		List<String> commonPrefixes = getCommonPrefixes(client, bucketName, directory);
-		commonPrefixes.add(directory);
+	public List<String> getAllKey(OSSClient client, String bucketName, String prefix) {
+		List<String> commonPrefixes = getCommonPrefixes(client, bucketName, prefix);
+		if (prefix.endsWith("/")) {
+			commonPrefixes.add(prefix);
+		}
 		// 构造ListObjectsRequest请求
 		ListObjectsRequest listObjectsRequest = new ListObjectsRequest(bucketName);
 		List<String> list = new ArrayList<>();
-		for (String prefix : commonPrefixes) {
+		for (String string : commonPrefixes) {
 			// System.err.println("prefix:" + prefix);
 			// 递归列出fun目录下的所有文件
-			listObjectsRequest.setPrefix(prefix);
+			listObjectsRequest.setPrefix(string);
 			ObjectListing listing = client.listObjects(listObjectsRequest);
 			for (OSSObjectSummary objectSummary : listing.getObjectSummaries()) {
 				list.add(objectSummary.getKey());
@@ -213,13 +221,13 @@ public class OssClientImpl extends AbstractOssClient {
 	 * @param prefix 指定文件夹
 	 * @return
 	 */
-	protected List<String> getCommonPrefixes(OSSClient client, String bucketName, String directory) {
+	protected List<String> getCommonPrefixes(OSSClient client, String bucketName, String prefix) {
 		// 构造ListObjectsRequest请求
 		ListObjectsRequest listObjectsRequest = new ListObjectsRequest(bucketName);
 		// "/" 为文件夹的分隔符
 		listObjectsRequest.setDelimiter("/");
 		// 递归列出fun目录下的所有文件
-		listObjectsRequest.setPrefix(directory);
+		listObjectsRequest.setPrefix(prefix);
 		ObjectListing listing = client.listObjects(listObjectsRequest);
 		return listing.getCommonPrefixes();
 	}

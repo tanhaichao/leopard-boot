@@ -33,4 +33,6 @@ public interface OssClient {
 	boolean delete(String bucketName, String uri);
 
 	boolean deleteDirectory(String bucketName, String directory);
+
+	boolean deleteByPrefix(String bucketName, String prefix);
 }
