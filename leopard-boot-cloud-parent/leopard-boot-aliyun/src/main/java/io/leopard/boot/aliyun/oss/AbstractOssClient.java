@@ -35,6 +35,9 @@ public abstract class AbstractOssClient implements OssClient {
 			else if ("image/png".equals(contentType)) {
 				fileName = "blob.png";
 			}
+			else if ("image/gif".equals(contentType)) {
+				fileName = "blob.gif";
+			}
 			else {
 				throw new RuntimeException("未支持该文件类型解析[" + contentType + "].");
 			}
