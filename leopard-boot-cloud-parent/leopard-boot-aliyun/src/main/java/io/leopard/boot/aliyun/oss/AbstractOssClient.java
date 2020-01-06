@@ -25,8 +25,18 @@ public abstract class AbstractOssClient implements OssClient {
 		if (file == null) {
 			throw new NullPointerException("文件不能为空.");
 		}
-		checkExtname(file.getOriginalFilename(), extnameSet);
-		return this.add(file.getInputStream(), dir, file.getOriginalFilename(), file.getSize());
+		String fileName = file.getOriginalFilename();
+		if ("blob".equals(fileName)) {// 支持blob文件上传
+			String contentType = file.getContentType();
+			if ("image/jpeg".equals(contentType)) {
+				fileName = "blob.jpg";
+			}
+			else {
+				throw new RuntimeException("未支持该文件类型解析[" + contentType + "].");
+			}
+		}
+		checkExtname(fileName, extnameSet);
+		return this.add(file.getInputStream(), dir, fileName, file.getSize());
 	}
 
 	@Override
