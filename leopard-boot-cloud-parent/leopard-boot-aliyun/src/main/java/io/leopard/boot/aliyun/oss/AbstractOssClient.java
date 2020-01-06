@@ -28,6 +28,7 @@ public abstract class AbstractOssClient implements OssClient {
 		String fileName = file.getOriginalFilename();
 		if ("blob".equals(fileName)) {// 支持blob文件上传
 			String contentType = file.getContentType();
+			// TODO 类型未做限制，未完整支持
 			if ("image/jpeg".equals(contentType)) {
 				fileName = "blob.jpg";
 			}
