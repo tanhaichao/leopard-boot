@@ -11,16 +11,16 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class XmlView extends AbstractView {
 
-	private String message;
+	private String xml;
 
-	public XmlView(final String message) {
+	public XmlView(final String xml) {
 		// this.addObject("message", data);
-		this.message = message;
+		this.xml = xml;
 	}
 
-	public String getMessage() {
+	public String getXml() {
 		// return (String) this.getModel().get("message");
-		return this.message;
+		return this.xml;
 	}
 
 	@Override
@@ -30,7 +30,7 @@ public class XmlView extends AbstractView {
 
 	@Override
 	public String getBody(HttpServletRequest request, HttpServletResponse response) {
-		String message = this.getMessage();
-		return message;
+		String xml = this.getXml();
+		return xml;
 	}
 }
