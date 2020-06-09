@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>io.leopard.boot</groupId>
 		<artifactId>leopard-boot-data-parent</artifactId>
-		<version>0.9.13-SNAPSHOT</version>
+		<version>0.9.13</version>
 	</parent>
 	<artifactId>leopard-boot-dfs</artifactId>
 	<description>分布式文件系统实现，目前只是做了基于GridFS的实现，可以在本机文件系统进行缓存。</description>
@@ -55,7 +55,7 @@
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-jdbc</artifactId>
-			<version>0.9.13-SNAPSHOT</version>
+			<version>0.9.13</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>

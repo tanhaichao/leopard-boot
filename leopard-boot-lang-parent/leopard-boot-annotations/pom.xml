@@ -3,7 +3,7 @@
   <parent>
     <groupId>io.leopard.boot</groupId>
     <artifactId>leopard-boot-lang-parent</artifactId>
-    <version>0.9.13-SNAPSHOT</version>
+    <version>0.9.13</version>
   </parent>
   <artifactId>leopard-boot-annotations</artifactId>
 </project>

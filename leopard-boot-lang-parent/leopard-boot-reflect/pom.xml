@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>io.leopard.boot</groupId>
 		<artifactId>leopard-boot-lang-parent</artifactId>
-		<version>0.9.13-SNAPSHOT</version>
+		<version>0.9.13</version>
 	</parent>
 	<artifactId>leopard-boot-reflect</artifactId>
 	<name>反射相关操作</name>

@@ -3,44 +3,44 @@
 	<parent>
 		<groupId>io.leopard.boot</groupId>
 		<artifactId>leopard-boot-data-parent</artifactId>
-		<version>0.9.13-SNAPSHOT</version>
+		<version>0.9.13</version>
 	</parent>
 	<artifactId>leopard-boot-data</artifactId>
 	<dependencies>
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-datatype</artifactId>
-			<version>0.9.13-SNAPSHOT</version>
+			<version>0.9.13</version>
 		</dependency>
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-condition</artifactId>
-			<version>0.9.13-SNAPSHOT</version>
+			<version>0.9.13</version>
 		</dependency>
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-json</artifactId>
-			<version>0.9.13-SNAPSHOT</version>
+			<version>0.9.13</version>
 		</dependency>
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-redis</artifactId>
-			<version>0.9.13-SNAPSHOT</version>
+			<version>0.9.13</version>
 		</dependency>
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-jdbc</artifactId>
-			<version>0.9.13-SNAPSHOT</version>
+			<version>0.9.13</version>
 		</dependency>
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-jdbc-querybuilder</artifactId>
-			<version>0.9.13-SNAPSHOT</version>
+			<version>0.9.13</version>
 		</dependency>
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-cache</artifactId>
-			<version>0.9.13-SNAPSHOT</version>
+			<version>0.9.13</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -64,17 +64,17 @@
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-jvmdns</artifactId>
-			<version>0.9.13-SNAPSHOT</version>
+			<version>0.9.13</version>
 		</dependency>
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-lang</artifactId>
-			<version>0.9.13-SNAPSHOT</version>
+			<version>0.9.13</version>
 		</dependency>
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-exception</artifactId>
-			<version>0.9.13-SNAPSHOT</version>
+			<version>0.9.13</version>
 		</dependency>
 	</dependencies>
 </project>
