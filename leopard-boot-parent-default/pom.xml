@@ -22,6 +22,10 @@
 	</properties>
 
 
+	<modules>
+		<module>example</module>
+	</modules>
+	
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
