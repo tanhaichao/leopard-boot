@@ -25,7 +25,7 @@
 	<modules>
 		<module>example</module>
 	</modules>
-	
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -447,12 +447,17 @@
 		</pluginRepository>
 	</pluginRepositories>
 
-
 	<distributionManagement>
 		<snapshotRepository>
 			<id>sonatype-nexus-snapshots</id>
 			<name>Sonatype Nexus Snapshots</name>
 			<url>http://leopard.io/nexus/content/repositories/framework-snapshots/</url>
 		</snapshotRepository>
+		<repository>
+			<id>sonatype-nexus-staging</id>
+			<name>Nexus Release Repository</name>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
 	</distributionManagement>
+
 </project>
