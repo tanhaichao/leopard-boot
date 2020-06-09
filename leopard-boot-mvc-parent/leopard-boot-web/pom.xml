@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>io.leopard.boot</groupId>
 		<artifactId>leopard-boot-mvc-parent</artifactId>
-		<version>0.9.13</version>
+		<version>0.9.14-SNAPSHOT</version>
 	</parent>
 	<artifactId>leopard-boot-web</artifactId>
 	<dependencies>
@@ -14,47 +14,47 @@
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-trynb</artifactId>
-			<version>0.9.13</version>
+			<version>0.9.14-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-xparam</artifactId>
-			<version>0.9.13</version>
+			<version>0.9.14-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-converter</artifactId>
-			<version>0.9.13</version>
+			<version>0.9.14-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-requestbody</artifactId>
-			<version>0.9.13</version>
+			<version>0.9.14-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-requestmapping</artifactId>
-			<version>0.9.13</version>
+			<version>0.9.14-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-passport</artifactId>
-			<version>0.9.13</version>
+			<version>0.9.14-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-fileupload</artifactId>
-			<version>0.9.13</version>
+			<version>0.9.14-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-mvc-json</artifactId>
-			<version>0.9.13</version>
+			<version>0.9.14-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-option</artifactId>
-			<version>0.9.13</version>
+			<version>0.9.14-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>
