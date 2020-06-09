@@ -16,7 +16,7 @@
 	<description>业务系统的Maven Parent，规范、简化Maven依赖配置，避免乱七八糟的类冲突。</description>
 
 	<properties>
-		<leopard.version>0.9.13-SNAPSHOT</leopard.version>
+		<leopard.version>0.9.14-SNAPSHOT</leopard.version>
 		<springboot.version>1.5.21.RELEASE</springboot.version>
 		<jdk.version>1.8</jdk.version>
 	</properties>
