@@ -5,7 +5,7 @@
 		<groupId>io.leopard.boot</groupId>
 		<artifactId>leopard-boot-parent-default</artifactId>
 		<version>0.9.13-SNAPSHOT</version>
-		<relativePath>../leopard-boot-parent-default/</relativePath>
+		<relativePath />
 	</parent>
 
 	<groupId>io.leopard.archetype</groupId>
