@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>io.leopard.boot</groupId>
 		<artifactId>leopard-boot-data-parent</artifactId>
-		<version>0.9.15</version>
+		<version>0.9.16-SNAPSHOT</version>
 	</parent>
 	<artifactId>leopard-boot-queue</artifactId>
 	<description>消息队列</description>
@@ -11,7 +11,7 @@
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-redis</artifactId>
-			<version>0.9.15</version>
+			<version>0.9.16-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
