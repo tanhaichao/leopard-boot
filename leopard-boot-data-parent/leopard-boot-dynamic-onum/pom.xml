@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>io.leopard.boot</groupId>
 		<artifactId>leopard-boot-data-parent</artifactId>
-		<version>0.9.14</version>
+		<version>0.9.15-SNAPSHOT</version>
 	</parent>
 	<artifactId>leopard-boot-dynamic-onum</artifactId>
 	<name>动态枚举</name>
@@ -11,22 +11,22 @@
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-datatype</artifactId>
-			<version>0.9.14</version>
+			<version>0.9.15-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-jdbc</artifactId>
-			<version>0.9.14</version>
+			<version>0.9.15-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-redis</artifactId>
-			<version>0.9.14</version>
+			<version>0.9.15-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-lang</artifactId>
-			<version>0.9.14</version>
+			<version>0.9.15-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-logging</groupId>
@@ -44,7 +44,7 @@
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-option</artifactId>
-			<version>0.9.14</version>
+			<version>0.9.15-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
@@ -58,7 +58,7 @@
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-test</artifactId>
-			<version>0.9.14</version>
+			<version>0.9.15-SNAPSHOT</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

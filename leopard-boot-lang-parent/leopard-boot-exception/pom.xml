@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>io.leopard.boot</groupId>
 		<artifactId>leopard-boot-lang-parent</artifactId>
-		<version>0.9.14</version>
+		<version>0.9.15-SNAPSHOT</version>
 	</parent>
 	<artifactId>leopard-boot-exception</artifactId>
 	
