@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>io.leopard.boot</groupId>
 		<artifactId>leopard-boot-kit-parent</artifactId>
-		<version>0.9.14-SNAPSHOT</version>
+		<version>0.9.14</version>
 	</parent>
 	<artifactId>leopard-boot-counter</artifactId>
 	<name>计数器</name>
@@ -11,7 +11,7 @@
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-redis</artifactId>
-			<version>0.9.14-SNAPSHOT</version>
+			<version>0.9.14</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>

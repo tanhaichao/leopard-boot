@@ -3,19 +3,19 @@
 	<parent>
 		<groupId>io.leopard.boot</groupId>
 		<artifactId>leopard-boot-mvc-parent</artifactId>
-		<version>0.9.14-SNAPSHOT</version>
+		<version>0.9.14</version>
 	</parent>
 	<artifactId>leopard-boot-web-test</artifactId>
 	<dependencies>
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-web</artifactId>
-			<version>0.9.14-SNAPSHOT</version>
+			<version>0.9.14</version>
 		</dependency>
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-mvc-mock</artifactId>
-			<version>0.9.14-SNAPSHOT</version>
+			<version>0.9.14</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
