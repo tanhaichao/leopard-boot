@@ -14,7 +14,7 @@
 
 
 	<properties>
-		<leopard.version>0.9.14-SNAPSHOT</leopard.version>
+		<leopard.version>0.9.16-SNAPSHOT</leopard.version>
 		<springboot.version>1.5.21.RELEASE</springboot.version>
 		<jdk.version>1.8</jdk.version>
 		<maven.test.skip>true</maven.test.skip>
