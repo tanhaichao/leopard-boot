@@ -6,6 +6,7 @@
 		<version>0.9.16-SNAPSHOT</version>
 	</parent>
 	<artifactId>leopard-boot-jdbc-querybuilder</artifactId>
+
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
