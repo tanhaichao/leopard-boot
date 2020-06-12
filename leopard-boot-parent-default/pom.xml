@@ -10,7 +10,7 @@
 
 	<groupId>io.leopard.boot</groupId>
 	<artifactId>leopard-boot-parent-default</artifactId>
-	<version>0.9.20</version>
+	<version>0.9.21-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<description>业务系统的Maven Parent，规范、简化Maven依赖配置，避免乱七八糟的类冲突。</description>
@@ -103,268 +103,268 @@
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-datatype</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-lang</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-exception</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-data</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-redis</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-jdbc</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-trynb</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-xparam</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-passport</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-session</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-json</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-reflect</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-timer</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-excel</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-env</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-email</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-servlet</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-web</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-mvc-json</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-web-test</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-tomcat</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-jetty</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-treedata</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-logdb</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-translate</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-mock</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-chart</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-convert</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-responsebody</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-operator</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-snowflake</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-pinyin</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-dynamic-onum</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-scheduler</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-condition</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-httpnb</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-role</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-password</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-counter</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-kit-rank</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-kit-token</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-queue</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-dfs</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-captcha</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-freemarker</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-view</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-vhost</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-pay-alipay</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-pay-weixin</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-annotations</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-jvmdns</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-test</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-aliyun</artifactId>
-				<version>0.9.20</version>
+				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
 
 
@@ -565,8 +565,4 @@
 			</build>
 		</profile>
 	</profiles>
-
-  <scm>
-    <url>https://github.com/spring-projects/spring-boot/spring-boot-starter-parent/leopard-boot-parent-default/tags/leopard-boot-0.9.20/leopard-boot-parent-default</url>
-  </scm>
 </project>

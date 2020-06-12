@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>io.leopard.boot</groupId>
 		<artifactId>leopard-boot-pay-parent</artifactId>
-		<version>0.9.20</version>
+		<version>0.9.21-SNAPSHOT</version>
 	</parent>
 	<artifactId>leopard-boot-pay-alipay</artifactId>
 	<description>支付宝支付</description>
@@ -25,12 +25,12 @@
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-datatype</artifactId>
-			<version>0.9.20</version>
+			<version>0.9.21-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-json</artifactId>
-			<version>0.9.20</version>
+			<version>0.9.21-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.alipay</groupId>
