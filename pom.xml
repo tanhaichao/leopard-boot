@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.leopard.boot</groupId>
 	<artifactId>leopard-boot</artifactId>
-	<version>0.9.18-SNAPSHOT</version>
+	<version>0.9.18</version>
 	<packaging>pom</packaging>
 
 
@@ -53,9 +53,9 @@
 	</dependencyManagement>
 
 	<scm>
-		<url>https://github.com/tanhaichao/leopard-boot</url>
-		<connection>scm:svn:https://github.com/tanhaichao/leopard-boot/trunk</connection>
-		<developerConnection>scm:svn:https://github.com/tanhaichao/leopard-boot/trunk</developerConnection>
+		<url>https://github.com/tanhaichao/leopard-boot/tags/leopard-boot-0.9.18</url>
+		<connection>scm:svn:https://github.com/tanhaichao/leopard-boot/tags/leopard-boot-0.9.18</connection>
+		<developerConnection>scm:svn:https://github.com/tanhaichao/leopard-boot/tags/leopard-boot-0.9.18</developerConnection>
 	</scm>
 
 	<issueManagement>
