@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>io.leopard.boot</groupId>
 		<artifactId>leopard-boot-mvc-parent</artifactId>
-		<version>0.9.17</version>
+		<version>0.9.18-SNAPSHOT</version>
 	</parent>
 	<artifactId>leopard-boot-converter</artifactId>
 	<name>参数转换器</name>
@@ -33,12 +33,12 @@
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-datatype</artifactId>
-			<version>0.9.17</version>
+			<version>0.9.18-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-lang</artifactId>
-			<version>0.9.17</version>
+			<version>0.9.18-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>
