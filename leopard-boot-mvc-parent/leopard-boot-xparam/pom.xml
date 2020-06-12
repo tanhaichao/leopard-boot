@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>io.leopard.boot</groupId>
 		<artifactId>leopard-boot-mvc-parent</artifactId>
-		<version>0.9.17-SNAPSHOT</version>
+		<version>0.9.17</version>
 	</parent>
 	<artifactId>leopard-boot-xparam</artifactId>
 
@@ -24,7 +24,7 @@
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-servlet</artifactId>
-			<version>0.9.17-SNAPSHOT</version>
+			<version>0.9.17</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -40,17 +40,17 @@
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-json</artifactId>
-			<version>0.9.17-SNAPSHOT</version>
+			<version>0.9.17</version>
 		</dependency>
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-datatype</artifactId>
-			<version>0.9.17-SNAPSHOT</version>
+			<version>0.9.17</version>
 		</dependency>
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-lang</artifactId>
-			<version>0.9.17-SNAPSHOT</version>
+			<version>0.9.17</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -59,7 +59,7 @@
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-requestbody</artifactId>
-			<version>0.9.17-SNAPSHOT</version>
+			<version>0.9.17</version>
 		</dependency>
 	</dependencies>
 
