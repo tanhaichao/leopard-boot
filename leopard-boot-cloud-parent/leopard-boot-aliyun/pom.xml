@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>io.leopard.boot</groupId>
 		<artifactId>leopard-boot-cloud-parent</artifactId>
-		<version>0.9.16-SNAPSHOT</version>
+		<version>0.9.16</version>
 	</parent>
 	<artifactId>leopard-boot-aliyun</artifactId>
 	<name>阿里云接口</name>

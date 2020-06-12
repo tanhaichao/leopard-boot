@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>io.leopard.boot</groupId>
 		<artifactId>leopard-boot-mvc-parent</artifactId>
-		<version>0.9.16-SNAPSHOT</version>
+		<version>0.9.16</version>
 	</parent>
 	<artifactId>leopard-boot-captcha</artifactId>
 	<description>验证码生成和验证。使用注解简化业务代码编写，支持验证码分组。</description>
@@ -25,21 +25,21 @@
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-xparam</artifactId>
-			<version>0.9.16-SNAPSHOT</version>
+			<version>0.9.16</version>
 			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-jdbc</artifactId>
-			<version>0.9.16-SNAPSHOT</version>
+			<version>0.9.16</version>
 
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-redis</artifactId>
-			<version>0.9.16-SNAPSHOT</version>
+			<version>0.9.16</version>
 
 			<scope>provided</scope>
 		</dependency>
@@ -53,7 +53,7 @@
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-exception</artifactId>
-			<version>0.9.16-SNAPSHOT</version>
+			<version>0.9.16</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>

@@ -4,12 +4,12 @@
 	<parent>
 		<groupId>io.leopard.boot</groupId>
 		<artifactId>leopard-boot-parent-default</artifactId>
-		<version>0.9.16-SNAPSHOT</version>
+		<version>0.9.16</version>
 	</parent>
 
 	<groupId>io.leopard.archetype</groupId>
 	<artifactId>example</artifactId>
-	<version>0.9.16-SNAPSHOT</version>
+	<version>0.9.16</version>
 	<packaging>pom</packaging>
 
 
