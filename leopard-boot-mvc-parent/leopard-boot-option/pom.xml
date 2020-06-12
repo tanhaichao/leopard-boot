@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>io.leopard.boot</groupId>
 		<artifactId>leopard-boot-mvc-parent</artifactId>
-		<version>0.9.19-SNAPSHOT</version>
+		<version>0.9.19</version>
 	</parent>
 	<artifactId>leopard-boot-option</artifactId>
 	<description>枚举元素接口</description>
@@ -25,17 +25,17 @@
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-datatype</artifactId>
-			<version>0.9.19-SNAPSHOT</version>
+			<version>0.9.19</version>
 		</dependency>
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-exception</artifactId>
-			<version>0.9.19-SNAPSHOT</version>
+			<version>0.9.19</version>
 		</dependency>
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-data</artifactId>
-			<version>0.9.19-SNAPSHOT</version>
+			<version>0.9.19</version>
 		</dependency>
 	</dependencies>
 </project>
