@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>io.leopard.boot</groupId>
 		<artifactId>leopard-boot-test-parent</artifactId>
-		<version>0.9.19</version>
+		<version>0.9.20-SNAPSHOT</version>
 	</parent>
 	<artifactId>leopard-boot-test</artifactId>
 
@@ -33,25 +33,25 @@
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-lang</artifactId>
-			<version>0.9.19</version>
+			<version>0.9.20-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-jdbc</artifactId>
-			<version>0.9.19</version>
+			<version>0.9.20-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-redis</artifactId>
-			<version>0.9.19</version>
+			<version>0.9.20-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
 		<!-- <dependency> <groupId>io.leopard.boot</groupId> <artifactId>leopard-boot-data</artifactId> <version>0.9.13-SNAPSHOT</version> </dependency> -->
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-jvmdns</artifactId>
-			<version>0.9.19</version>
+			<version>0.9.20-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 
