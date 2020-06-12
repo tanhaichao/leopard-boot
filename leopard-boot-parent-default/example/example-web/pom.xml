@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>io.leopard.archetype</groupId>
 		<artifactId>example</artifactId>
-		<version>0.9.18</version>
+		<version>0.9.19-SNAPSHOT</version>
 	</parent>
 	<artifactId>example-web</artifactId>
 	<name>Web模块</name>
@@ -30,7 +30,7 @@
 		<dependency>
 			<groupId>io.leopard.archetype</groupId>
 			<artifactId>example-service</artifactId>
-			<version>0.9.18</version>
+			<version>0.9.19-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 

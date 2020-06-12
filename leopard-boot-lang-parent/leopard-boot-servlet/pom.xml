@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>io.leopard.boot</groupId>
 		<artifactId>leopard-boot-lang-parent</artifactId>
-		<version>0.9.18</version>
+		<version>0.9.19-SNAPSHOT</version>
 	</parent>
 	<artifactId>leopard-boot-servlet</artifactId>
 	<dependencies>

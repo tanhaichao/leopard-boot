@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>io.leopard.boot</groupId>
 		<artifactId>leopard-boot-data-parent</artifactId>
-		<version>0.9.18</version>
+		<version>0.9.19-SNAPSHOT</version>
 	</parent>
 	<artifactId>leopard-boot-logdb</artifactId>
 
@@ -28,7 +28,7 @@
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-timer</artifactId>
-			<version>0.9.18</version>
+			<version>0.9.19-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>
