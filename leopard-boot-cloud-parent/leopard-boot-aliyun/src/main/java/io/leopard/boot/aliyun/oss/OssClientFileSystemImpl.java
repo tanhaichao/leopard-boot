@@ -1,13 +1,16 @@
 package io.leopard.boot.aliyun.oss;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
 import javax.annotation.PostConstruct;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Service;;
 
 /**
  * 文件系统实现
@@ -29,7 +32,7 @@ public class OssClientFileSystemImpl extends AbstractOssClient {
 	 * 根目录，默认为/
 	 */
 	@Value("${leopard.upload.dir}")
-	private String rootDirectory;
+	private String uploadDirectory;
 
 	/**
 	 * 目录hash长度
@@ -38,22 +41,9 @@ public class OssClientFileSystemImpl extends AbstractOssClient {
 
 	@PostConstruct
 	public void init() {
-		if (!rootDirectory.startsWith("/")) {
-			throw new IllegalArgumentException("aliyun.oss.rootDirectory必须以/开始");
-		}
-	}
-
-	/**
-	 * 加上rootDirectory;
-	 * 
-	 * @param uri
-	 * @return
-	 */
-	protected String joinRootDirectory(String uri) {
-		uri = this.rootDirectory + "/" + uri;
-		uri = uri.replace("//", "/");
-		uri = uri.replaceFirst("^/", "");
-		return uri;
+		// if (!rootDirectory.startsWith("/")) {
+		// throw new IllegalArgumentException("aliyun.oss.rootDirectory必须以/开始");
+		// }
 	}
 
 	/**
@@ -91,11 +81,16 @@ public class OssClientFileSystemImpl extends AbstractOssClient {
 		else {
 			uri = dir + "/" + filename;
 		}
-		uri = joinRootDirectory(uri);
-		logger.info("uri:" + uri + " lenght:" + length);
-		String key = uri.replaceFirst("^/", "");
 
-		logger.info("key:" + key);
+		logger.info("uri:" + uri + " lenght:" + length);
+
+		// uploadDirectory
+
+		File file = new File(this.uploadDirectory, uri);
+		byte[] data = IOUtils.toByteArray(input);
+		input.close();
+		FileUtils.writeByteArrayToFile(file, data);
+
 		// return "/" + uri;
 		StringBuilder sb = new StringBuilder(uploadServerDomain);
 		if (!uploadServerDomain.endsWith("/")) {
