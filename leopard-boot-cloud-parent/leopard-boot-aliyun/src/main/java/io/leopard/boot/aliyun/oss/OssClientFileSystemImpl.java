@@ -95,6 +95,7 @@ public class OssClientFileSystemImpl extends AbstractOssClient {
 		logger.info("uri:" + uri + " lenght:" + length);
 		String key = uri.replaceFirst("^/", "");
 
+		logger.info("key:" + key);
 		// return "/" + uri;
 		StringBuilder sb = new StringBuilder(uploadServerDomain);
 		if (!uploadServerDomain.endsWith("/")) {
