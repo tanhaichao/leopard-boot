@@ -28,6 +28,7 @@ public class ErrorMessageFilterSystemImpl implements ErrorMessageFilter {
 		MESSAGE_MAP.put("redis.clients.jedis.exceptions.JedisConnectionException", "操作数据库出错，请稍后重试.");
 		MESSAGE_MAP.put("io.leopard.core.exception.other.OutSideException", "访问外部接口出错，请稍后重试.");
 		MESSAGE_MAP.put("freemarker.template.TemplateNotFoundException", "模板文件找不到.");
+		MESSAGE_MAP.put("com.fasterxml.jackson.databind.exc.InvalidFormatException", "JSON不合法.");
 	}
 
 	@Override
