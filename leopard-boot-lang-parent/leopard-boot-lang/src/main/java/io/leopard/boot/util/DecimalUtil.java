@@ -292,4 +292,24 @@ public class DecimalUtil {
 	public static <T> double sumDouble(List<T> list, ToDoubleFunction<? super T> mapper) {
 		return list.stream().mapToDouble(mapper).sum();
 	}
+
+	/**
+	 * 转换成数字的fee
+	 * 
+	 * @param fee 费用/金额/价格
+	 * @param scale 精度
+	 * @return
+	 */
+	public static int toIntFee(double fee, int scale) {
+		int multiple = (int) Math.pow(10, scale);// 10的scale次方
+		int intFee = (int) DecimalUtil.multiply(fee, multiple);// TODO 2位精度
+		if (true) {
+			double fee2 = DecimalUtil.divide(intFee, multiple);
+			// System.out.println("intFee:" + intFee + " fee:" + fee + " fee2:" + fee2 + " multiple:" + multiple);
+			if (fee2 != fee) {
+				throw new RuntimeException("精度有问题[" + fee + "  " + fee2 + "].");
+			}
+		}
+		return intFee;
+	}
 }
