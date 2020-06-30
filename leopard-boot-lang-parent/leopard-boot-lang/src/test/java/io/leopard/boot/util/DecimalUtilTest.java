@@ -17,4 +17,11 @@ public class DecimalUtilTest {
 		System.out.println("num:" + num);
 	}
 
+	@Test
+	public void toIntFee() {
+		DecimalUtil.toIntFee(100.01, 2);
+		DecimalUtil.toIntFee(100.012, 3);
+		DecimalUtil.toIntFee(100.012, 2);
+	}
+
 }
