@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Value;
 
 import com.github.binarywang.wxpay.bean.notify.WxPayOrderNotifyResult;
 import com.github.binarywang.wxpay.bean.request.WxPayMicropayRequest;
+import com.github.binarywang.wxpay.bean.request.WxPayMicropayRequest.WxPayMicropayRequestBuilder;
 import com.github.binarywang.wxpay.bean.request.WxPayOrderReverseRequest;
+import com.github.binarywang.wxpay.bean.request.WxPayOrderReverseRequest.WxPayOrderReverseRequestBuilder;
 import com.github.binarywang.wxpay.bean.request.WxPayUnifiedOrderRequest;
 import com.github.binarywang.wxpay.bean.result.WxPayMicropayResult;
 import com.github.binarywang.wxpay.bean.result.WxPayOrderQueryResult;
@@ -77,7 +79,7 @@ public class WeixinPayClientImpl implements WeixinPayClient {
 		request.setProductId(orderNo);// TODO 商品ID
 		request.setBody(body);// 商品描述
 		request.setDetail(detail);// 商品详细介绍
-		request.setNotifyURL(notifyUrl);
+		request.setNotifyUrl(notifyUrl);
 		request.setTradeType(tradeType.getKey());// JSAPI，NATIVE，APP
 		request.setSpbillCreateIp(spbillCreateIp);
 		WxPayUnifiedOrderResult result = wxPayService.unifiedOrder(request);
@@ -132,7 +134,8 @@ public class WeixinPayClientImpl implements WeixinPayClient {
 		int totalFee = (int) DecimalUtil.multiply(amount, 100);// TODO
 
 		// 接口文档地址: https://pay.weixin.qq.com/wiki/doc/api/micropay.php?chapter=9_10&index=1
-		WxPayMicropayRequest.Builder builder = WxPayMicropayRequest.newBuilder();// .appid(appId).mchId(mchId);
+		// WxPayMicropayRequestBuilder
+		WxPayMicropayRequestBuilder builder = WxPayMicropayRequest.newBuilder();// .appid(appId).mchId(mchId);
 		// builder .nonceStr(nonceStr);
 		// builder .sign(sign)
 		builder.outTradeNo(outTradeNo);
@@ -181,7 +184,7 @@ public class WeixinPayClientImpl implements WeixinPayClient {
 		// if (StringUtils.isEmpty(paymentId)) {
 		// throw new RuntimeException("订单[" + orderNo + "]支付记录不存在.");
 		// }
-		WxPayOrderReverseRequest.Builder builder = WxPayOrderReverseRequest.newBuilder();
+		WxPayOrderReverseRequestBuilder builder = WxPayOrderReverseRequest.newBuilder();
 		builder.outTradeNo(orderNo);
 		WxPayOrderReverseRequest request = builder.build();
 
