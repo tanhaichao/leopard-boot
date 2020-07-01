@@ -1,4 +1,4 @@
 # Auto Configure
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-io.leopard.boot.pay.weixin.WxPayServiceLeopardImpl
+io.leopard.boot.pay.weixin.WeixinPayAutoConfiguration
 
