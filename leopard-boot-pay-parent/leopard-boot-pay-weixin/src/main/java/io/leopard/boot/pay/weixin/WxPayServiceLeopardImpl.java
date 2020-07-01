@@ -5,6 +5,7 @@ import javax.annotation.PostConstruct;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
 import com.github.binarywang.wxpay.config.WxPayConfig;
@@ -17,6 +18,7 @@ import com.github.binarywang.wxpay.service.impl.WxPayServiceImpl;
  *
  */
 @Component
+@ConditionalOnProperty(prefix = "weixin", name = "appId")
 public class WxPayServiceLeopardImpl extends WxPayServiceImpl {
 	protected Log logger = LogFactory.getLog(this.getClass());
 
