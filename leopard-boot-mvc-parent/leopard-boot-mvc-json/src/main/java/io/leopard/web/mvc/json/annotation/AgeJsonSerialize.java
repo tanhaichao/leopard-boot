@@ -1,4 +1,4 @@
-package io.leopard.web.mvc.json.common;
+package io.leopard.web.mvc.json.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,6 +7,8 @@ import java.lang.annotation.Target;
 
 import com.fasterxml.jackson.annotation.JacksonAnnotation;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import io.leopard.web.mvc.json.common.AgeJsonSerializer;
 
 @Target({ ElementType.ANNOTATION_TYPE, ElementType.METHOD, ElementType.FIELD, ElementType.TYPE, ElementType.PARAMETER })
 @Retention(RetentionPolicy.RUNTIME)
