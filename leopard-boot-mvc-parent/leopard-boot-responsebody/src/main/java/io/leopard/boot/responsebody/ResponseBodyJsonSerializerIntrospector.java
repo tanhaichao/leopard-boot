@@ -26,7 +26,6 @@ public class ResponseBodyJsonSerializerIntrospector extends JacksonAnnotationInt
 
 	@Override
 	public Object findSerializer(Annotated a) {
-		// System.err.println("a:" + a);
 		if (a instanceof AnnotatedMethod) {// 在field上加的注解，会变成AnnotatedMethod
 			AnnotatedMethod annotated = ((AnnotatedMethod) a);
 			// if ("getBirthDate".equals(annotated.getName())) {
