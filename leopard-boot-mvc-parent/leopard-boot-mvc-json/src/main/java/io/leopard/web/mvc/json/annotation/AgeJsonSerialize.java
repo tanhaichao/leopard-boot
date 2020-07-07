@@ -34,4 +34,11 @@ public @interface AgeJsonSerialize {
 	 */
 	boolean ignore() default false;
 
+	/**
+	 * 注释
+	 * 
+	 * @return
+	 */
+	String comment() default "年龄";
+
 }
