@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 import com.fasterxml.jackson.databind.JsonSerializer;
+import com.fasterxml.jackson.databind.PropertyName;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.introspect.Annotated;
 import com.fasterxml.jackson.databind.introspect.AnnotatedMethod;
@@ -23,6 +24,19 @@ public class ResponseBodyJsonSerializerIntrospector extends JacksonAnnotationInt
 	private static final long serialVersionUID = 1L;
 
 	private CustomJsonSerializeAnnotationCache customJsonSerializeAnnotationCache = new CustomJsonSerializeAnnotationCache();
+
+	@Override
+	public PropertyName findNameForSerialization(Annotated a) {
+		// 修改属性名称后，无法根据gen.getCurrentName()获取当前Field
+		// if (a instanceof AnnotatedMethod) {// 在field上加的注解，会变成AnnotatedMethod
+		// AnnotatedMethod annotated = ((AnnotatedMethod) a);
+		// if ("getBirthDate".equals(annotated.getName())) {
+		// return PropertyName.construct("birthDate2");
+		// // return PropertyName.NO_NAME;
+		// }
+		// }
+		return super.findNameForSerialization(a);
+	}
 
 	@Override
 	public Object findSerializer(Annotated a) {
