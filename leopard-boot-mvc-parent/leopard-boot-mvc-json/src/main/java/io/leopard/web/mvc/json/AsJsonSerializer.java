@@ -168,7 +168,7 @@ public abstract class AsJsonSerializer<T> extends AbstractJsonSerializer<Object>
 	 * @param fieldName
 	 * @return
 	 */
-	protected Field getCurrentField(JsonGenerator gen) {
+	public static Field getCurrentField(JsonGenerator gen) {
 		Object currentValue = gen.getOutputContext().getCurrentValue();
 		if (currentValue == null) {
 			return null;
@@ -195,6 +195,7 @@ public abstract class AsJsonSerializer<T> extends AbstractJsonSerializer<Object>
 	 * @param fieldName
 	 * @return
 	 */
+	@Override
 	protected Object getFieldValue(JsonGenerator gen, String fieldName) {
 		Object currentValue = gen.getOutputContext().getCurrentValue();
 		if (currentValue == null) {
