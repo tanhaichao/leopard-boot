@@ -39,7 +39,7 @@ public class ReponseBodyAutoConfiguration extends WebMvcConfigurerAdapter {
 			module.addSerializer(new OnumJsonSerializer());
 			objectMapper.registerModule(module);
 
-			objectMapper.setAnnotationIntrospector(new ResponseBodyJsonSerializerIntrospector());
+			// objectMapper.setAnnotationIntrospector(new ResponseBodyJsonSerializerIntrospector());
 		}
 
 		LeopardMappingJackson2HttpMessageConverter converter = new LeopardMappingJackson2HttpMessageConverter(objectMapper);

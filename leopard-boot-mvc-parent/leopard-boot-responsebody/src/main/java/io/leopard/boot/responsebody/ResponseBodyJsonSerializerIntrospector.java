@@ -19,6 +19,7 @@ import com.fasterxml.jackson.databind.introspect.JacksonAnnotationIntrospector;
  * @author 谭海潮
  *
  */
+@Deprecated
 public class ResponseBodyJsonSerializerIntrospector extends JacksonAnnotationIntrospector {
 
 	private static final long serialVersionUID = 1L;
