@@ -13,6 +13,12 @@ import com.fasterxml.jackson.databind.ser.ContextualSerializer;
 
 import io.leopard.web.mvc.json.annotation.AgeJsonSerialize;
 
+/**
+ * 根据生日输出年龄
+ * 
+ * @author 谭海潮
+ *
+ */
 public class AgeJsonSerializer extends JsonSerializer<Date> implements ContextualSerializer {
 
 	private AgeJsonSerialize ageJsonSerialize;
