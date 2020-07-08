@@ -8,10 +8,10 @@ import java.lang.annotation.Target;
 import com.fasterxml.jackson.annotation.JacksonAnnotationsInside;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-import io.leopard.web.mvc.json.common.AgeJsonSerializer;
+import io.leopard.web.mvc.json.common.IdCardNumberMaskJsonSerializer;
 
 /**
- * 根据生日输入年龄
+ * 身份证号码脱敏
  * 
  * @author 谭海潮
  *
@@ -19,8 +19,8 @@ import io.leopard.web.mvc.json.common.AgeJsonSerializer;
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 @JacksonAnnotationsInside
-@JsonSerialize(using = AgeJsonSerializer.class)
-public @interface AgeJsonSerialize {
+@JsonSerialize(using = IdCardNumberMaskJsonSerializer.class)
+public @interface IdCardNumberMaskJsonSerialize {
 
 	/**
 	 * 字段名称
