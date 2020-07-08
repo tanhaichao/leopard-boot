@@ -7,6 +7,6 @@ package io.leopard.burrow.lang;
  * 
  */
 @Deprecated
-public class AssertUtil extends io.leopard.boot.util.AssertUtil {
+class AssertUtil extends io.leopard.boot.util.AssertUtil {
 
 }
