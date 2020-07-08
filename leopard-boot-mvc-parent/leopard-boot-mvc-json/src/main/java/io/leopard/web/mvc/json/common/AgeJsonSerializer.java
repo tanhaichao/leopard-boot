@@ -1,23 +1,41 @@
 package io.leopard.web.mvc.json.common;
 
-import java.lang.reflect.Field;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 
 import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.BeanProperty;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.ser.ContextualSerializer;
 
-import io.leopard.web.mvc.json.AbstractJsonSerializer;
-import io.leopard.web.mvc.json.AsJsonSerializer;
 import io.leopard.web.mvc.json.annotation.AgeJsonSerialize;
 
-public class AgeJsonSerializer extends AbstractJsonSerializer<Date> {
+public class AgeJsonSerializer extends JsonSerializer<Date> implements ContextualSerializer {
+
+	private AgeJsonSerialize ageJsonSerialize;
+
+	public AgeJsonSerializer() {
+		// new Exception("here1").printStackTrace();
+	}
+
+	public AgeJsonSerializer(AgeJsonSerialize ageJsonSerialize) {
+		// new Exception("here2").printStackTrace();
+		this.ageJsonSerialize = ageJsonSerialize;
+	}
 
 	@Override
-	public void out(Date birthDate, JsonGenerator gen, SerializerProvider serializers) throws Exception {
-		Field field = AsJsonSerializer.getCurrentField(gen);
-		field.setAccessible(true);
-		AgeJsonSerialize ageJsonSerialize = field.getAnnotation(AgeJsonSerialize.class);
+	public void serialize(Date birthDate, JsonGenerator gen, SerializerProvider serializers) throws IOException {
+		if (ageJsonSerialize == null) {
+			gen.writeObject(birthDate);
+			return;
+		}
+
+		// Field field = AsJsonSerializer.getCurrentField(gen);
+		// field.setAccessible(true);
+		// AgeJsonSerialize ageJsonSerialize = field.getAnnotation(AgeJsonSerialize.class);
 
 		boolean ignore = ageJsonSerialize.ignore();
 		if (ignore) {
@@ -54,4 +72,21 @@ public class AgeJsonSerializer extends AbstractJsonSerializer<Date> {
 		}
 		return age;
 	}
+
+	@Override
+	public JsonSerializer<?> createContextual(SerializerProvider serializerProvider, BeanProperty beanProperty) throws JsonMappingException {
+		if (beanProperty != null) {
+			// System.err.println("beanProperty:" + beanProperty + " name:" + beanProperty.getName() + " type:" + beanProperty.getMember().getGenericType());
+			AgeJsonSerialize anno = beanProperty.getAnnotation(AgeJsonSerialize.class);
+			if (anno == null) {
+				anno = beanProperty.getContextAnnotation(AgeJsonSerialize.class);
+			}
+			if (anno != null) {
+				return new AgeJsonSerializer(anno);
+			}
+			return serializerProvider.findValueSerializer(beanProperty.getType(), beanProperty);
+		}
+		return serializerProvider.findNullValueSerializer(beanProperty);
+	}
+
 }
