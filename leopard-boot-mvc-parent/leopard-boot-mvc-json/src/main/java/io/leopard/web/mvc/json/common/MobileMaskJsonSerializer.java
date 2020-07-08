@@ -28,8 +28,8 @@ public class MobileMaskJsonSerializer extends AbstractJsonSerializer<String> {
 			String left = StringUtils.left(mobile, 3);
 			String mask = StringUtils.repeat('*', mobile.length() - 7);
 			String right = StringUtils.right(mobile, 4);
-			String idCardNumberMask = left + mask + right;
-			gen.writeObject(idCardNumberMask);
+			String mobileMask = left + mask + right;
+			gen.writeObject(mobileMask);
 		}
 	}
 
