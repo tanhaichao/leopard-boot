@@ -8,10 +8,10 @@ import java.lang.annotation.Target;
 import com.fasterxml.jackson.annotation.JacksonAnnotationsInside;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-import io.leopard.web.mvc.json.common.IdCardNumberMaskJsonSerializer;
+import io.leopard.web.mvc.json.common.MobileMaskJsonSerializer;
 
 /**
- * 身份证号码脱敏
+ * 手机号脱敏
  * 
  * @author 谭海潮
  *
@@ -19,7 +19,7 @@ import io.leopard.web.mvc.json.common.IdCardNumberMaskJsonSerializer;
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 @JacksonAnnotationsInside
-@JsonSerialize(using = IdCardNumberMaskJsonSerializer.class)
-public @interface IdCardNumberMaskJsonSerialize {
+@JsonSerialize(using = MobileMaskJsonSerializer.class)
+public @interface MobileMaskJsonSerialize {
 
 }
