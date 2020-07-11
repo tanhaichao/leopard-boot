@@ -23,5 +23,6 @@
 		<module>leopard-boot-queue</module>
 		<module>leopard-boot-dfs</module>
 		<module>leopard-boot-logdb</module>
+		<module>leopard-boot-validator</module>
 	</modules>
 </project>
