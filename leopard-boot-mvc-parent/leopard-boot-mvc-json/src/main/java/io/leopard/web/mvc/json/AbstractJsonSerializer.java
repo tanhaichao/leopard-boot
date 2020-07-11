@@ -20,7 +20,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
  */
 public abstract class AbstractJsonSerializer<T> extends JsonSerializer<T> {
 
-	private static BeanFinder beanFinder = new BeanFinderImpl();
+	private static BeanFinder BEAN_FINDER = new BeanFinderImpl();
 
 	public AbstractJsonSerializer() {
 		this.inject();
@@ -59,7 +59,7 @@ public abstract class AbstractJsonSerializer<T> extends JsonSerializer<T> {
 
 	protected Object findBean(Class<?> type) {
 		// return LeopardBeanFactoryAware.getBeanFactory().getBean(type);
-		return beanFinder.findBean(type);
+		return BEAN_FINDER.findBean(type);
 	}
 
 	/**
