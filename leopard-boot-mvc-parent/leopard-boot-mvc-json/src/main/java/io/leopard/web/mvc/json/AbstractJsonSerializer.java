@@ -59,7 +59,7 @@ public abstract class AbstractJsonSerializer<T> extends JsonSerializer<T> {
 
 	protected Object findBean(Class<?> type) {
 		// return LeopardBeanFactoryAware.getBeanFactory().getBean(type);
-		return this.beanFinder.findBean(type);
+		return beanFinder.findBean(type);
 	}
 
 	/**
