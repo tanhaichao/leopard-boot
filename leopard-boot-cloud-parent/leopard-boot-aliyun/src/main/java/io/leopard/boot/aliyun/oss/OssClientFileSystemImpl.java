@@ -9,7 +9,7 @@ import javax.annotation.PostConstruct;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.stereotype.Service;;
 
 /**
@@ -19,7 +19,8 @@ import org.springframework.stereotype.Service;;
  *
  */
 @Service
-@ConditionalOnProperty(prefix = "aliyun.oss", name = "endpoint", matchIfMissing = true)
+// @ConditionalOnProperty(prefix = "aliyun.oss", name = "endpoint", matchIfMissing = true)
+@ConditionalOnMissingBean(value = OssClient.class)
 public class OssClientFileSystemImpl extends AbstractOssClient {
 
 	/**
