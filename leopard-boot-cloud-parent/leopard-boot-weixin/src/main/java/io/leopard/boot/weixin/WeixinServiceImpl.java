@@ -4,6 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -12,6 +13,7 @@ import io.leopard.httpnb.Httpnb;
 import io.leopard.json.Json;
 
 @Service("leopardBootWeixinServiceImpl")
+@ConditionalOnProperty(prefix = "weixin", name = "secret")
 public class WeixinServiceImpl implements WeixinService {
 
 	@Value("${weixin.appId}")
