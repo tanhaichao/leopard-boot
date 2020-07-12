@@ -9,6 +9,7 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import com.aliyun.oss.OSS;
@@ -22,6 +23,8 @@ import com.aliyun.oss.model.PutObjectResult;
 
 @Service
 @ConditionalOnProperty(prefix = "aliyun.oss", name = "endpoint")
+// @Order(Ordered.HIGHEST_PRECEDENCE)
+@Primary
 public class OssClientImpl extends AbstractOssClient {
 
 	// private static final String endpoint = "http://oss.aliyuncs.com";
