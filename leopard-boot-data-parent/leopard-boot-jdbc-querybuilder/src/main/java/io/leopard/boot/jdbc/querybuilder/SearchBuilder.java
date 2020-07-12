@@ -8,6 +8,7 @@ import java.util.Map.Entry;
 
 import org.springframework.util.StringUtils;
 
+import io.leopard.boot.jdbc.SqlUtil;
 import io.leopard.jdbc.Jdbc;
 import io.leopard.jdbc.StatementParameter;
 import io.leopard.jdbc.builder.Orderby;
@@ -197,6 +198,30 @@ public abstract class SearchBuilder {
 			// }
 			this.addWhereBitAnd(fieldName, value);
 		}
+		return this;
+	}
+
+	public SearchBuilder addMatch(String fieldName, String value) {
+		if (StringUtils.isEmpty(value)) {
+			// throw new IllegalArgumentException("参数不能为空.");
+			return this;
+		}
+		{
+			value = value.replace("*", "");
+			value = value.replace("\"", "");
+			value = value.replace("'", "");
+			value = value.replace("+", "");
+			value = value.replace("-", "");
+			value = value.replace(">", "");
+			value = value.replace("<", "");
+			value = value.replace("(", "");
+			value = value.replace(")", "");
+			value = value.replace("~", "");
+		}
+		// TODO 是否需要过滤特殊字符？
+		String searchx = SqlUtil.getIntString(value).trim();
+		String expression = "MATCH(`" + fieldName + "`) AGAINST ('" + searchx + "' IN BOOLEAN MODE)";
+		this.addWhere(expression);
 		return this;
 	}
 
