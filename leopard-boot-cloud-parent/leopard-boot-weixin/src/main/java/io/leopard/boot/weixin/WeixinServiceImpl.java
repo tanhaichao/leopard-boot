@@ -63,8 +63,9 @@ public class WeixinServiceImpl implements WeixinService {
 		Map<String, Object> obj = Json.toMap(json);
 		Integer errCode = (Integer) obj.get("errcode");
 		if (errCode != null) {
-			String errmsg = (String) obj.get("errmsg");
-			throw new RuntimeException(errmsg);
+			System.err.println("json:" + json);
+			// String errmsg = (String) obj.get("errmsg");
+			throw new RuntimeException("微信接口请求失败.");
 		}
 		String sessionKey = (String) obj.get("session_key");
 		String openid = (String) obj.get("openid");
