@@ -2,14 +2,9 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>io.leopard.boot</groupId>
-    <artifactId>leopard-boot</artifactId>
+    <artifactId>leopard-boot-cloud-parent</artifactId>
     <version>0.9.21-SNAPSHOT</version>
   </parent>
-  <artifactId>leopard-boot-cloud-parent</artifactId>
-  <packaging>pom</packaging>
-  <modules>
-  	<module>leopard-boot-cloud</module>
-  	<module>leopard-boot-aliyun</module>
-  	<module>leopard-boot-weixin</module>
-  </modules>
+  <artifactId>leopard-boot-weixin</artifactId>
+  <description>微信相关接口</description>
 </project>
