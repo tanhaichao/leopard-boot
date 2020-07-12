@@ -18,7 +18,7 @@ import com.github.binarywang.wxpay.service.impl.WxPayServiceImpl;
  *
  */
 @Component
-@ConditionalOnProperty(prefix = "weixin", name = "appId")
+@ConditionalOnProperty(prefix = "weixin", name = "mchId")
 public class WxPayServiceLeopardImpl extends WxPayServiceImpl {
 	protected Log logger = LogFactory.getLog(this.getClass());
 
