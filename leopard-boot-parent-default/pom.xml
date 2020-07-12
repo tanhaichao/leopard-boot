@@ -254,6 +254,11 @@
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
+				<artifactId>leopard-boot-weixin</artifactId>
+				<version>0.9.21-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-operator</artifactId>
 				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
