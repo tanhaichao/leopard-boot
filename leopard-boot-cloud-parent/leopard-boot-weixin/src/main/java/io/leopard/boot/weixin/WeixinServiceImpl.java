@@ -65,7 +65,7 @@ public class WeixinServiceImpl implements WeixinService {
 		if (errCode != null) {
 			System.err.println("json:" + json);
 			// String errmsg = (String) obj.get("errmsg");
-			throw new RuntimeException("微信接口请求失败.");
+			throw new RuntimeException("微信接口请求失败，" + "errCode:" + errCode);
 		}
 		String sessionKey = (String) obj.get("session_key");
 		String openid = (String) obj.get("openid");
