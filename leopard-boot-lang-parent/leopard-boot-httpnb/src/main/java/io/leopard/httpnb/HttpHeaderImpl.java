@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
+import java.net.Proxy;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -13,7 +14,8 @@ import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLSession;
 
-public class HttpHeaderImpl implements HttpHeader {
+@Deprecated
+class HttpHeaderImpl implements HttpHeader {
 
 	private long timeout = -1;
 	private String cookie;
@@ -122,5 +124,17 @@ public class HttpHeaderImpl implements HttpHeader {
 	@Override
 	public void setUserAgent(String userAgent) {
 		this.userAgent = userAgent;
+	}
+
+	@Override
+	public Proxy getProxy() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setProxy(Proxy proxy) {
+		// TODO Auto-generated method stub
+
 	}
 }

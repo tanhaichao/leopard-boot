@@ -2,6 +2,7 @@ package io.leopard.httpnb;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.net.Proxy;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,8 +52,13 @@ public class AbstractHttpHeader implements HttpHeader {
 			Https.trustAllHosts();
 		}
 		URL oUrl = new URL(url);
-		HttpURLConnection conn = (HttpURLConnection) oUrl.openConnection();
-
+		HttpURLConnection conn;
+		if (this.proxy == null) {
+			conn = (HttpURLConnection) oUrl.openConnection();
+		}
+		else {
+			conn = (HttpURLConnection) oUrl.openConnection(proxy);
+		}
 		if (isHttps) {
 			((HttpsURLConnection) conn).setHostnameVerifier(new HostnameVerifier() {
 				@Override
@@ -99,6 +105,18 @@ public class AbstractHttpHeader implements HttpHeader {
 	@Override
 	public void setUserAgent(String userAgent) {
 		this.userAgent = userAgent;
+	}
+
+	protected Proxy proxy;
+
+	@Override
+	public Proxy getProxy() {
+		return proxy;
+	}
+
+	@Override
+	public void setProxy(Proxy proxy) {
+		this.proxy = proxy;
 	}
 
 }

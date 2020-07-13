@@ -2,6 +2,7 @@ package io.leopard.httpnb;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.net.Proxy;
 
 public interface HttpHeader {
 
@@ -19,4 +20,7 @@ public interface HttpHeader {
 
 	void setUserAgent(String userAgent);
 
+	Proxy getProxy();
+
+	void setProxy(Proxy proxy);
 }
