@@ -5,9 +5,12 @@ import javax.annotation.PostConstruct;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Component
+@Order(Ordered.HIGHEST_PRECEDENCE)
 public class WeixinServiceFactory {
 
 	protected static Log logger = LogFactory.getLog(WeixinServiceFactory.class);
@@ -23,6 +26,9 @@ public class WeixinServiceFactory {
 	}
 
 	public static WeixinService create(String appId, String secret) {
+		if (PROXY == null) {
+			throw new RuntimeException("WeixinServiceFactory未初始化");
+		}
 		logger.info("PROXY:" + PROXY);
 		WeixinServiceImpl weixinService = new WeixinServiceImpl();
 		weixinService.setAppId(appId);
