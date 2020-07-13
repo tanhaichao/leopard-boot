@@ -44,6 +44,14 @@ public class WeixinServiceImpl implements WeixinService {
 		this.secret = secret;
 	}
 
+	public String getProxy() {
+		return proxy;
+	}
+
+	public void setProxy(String proxy) {
+		this.proxy = proxy;
+	}
+
 	@PostConstruct
 	public void init() {
 		System.err.println("WeixinService proxy:" + this.proxy);
