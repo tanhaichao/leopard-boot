@@ -11,9 +11,11 @@
 	<description>短信发送</description>
 
 	<dependencies>
+		
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context-support</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-autoconfigure</artifactId>
+			<version>${springboot.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.aliyun</groupId>

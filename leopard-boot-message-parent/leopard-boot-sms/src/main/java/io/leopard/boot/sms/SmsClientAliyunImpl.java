@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
 import com.aliyuncs.CommonRequest;
@@ -19,6 +20,7 @@ import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 
 @Component
+@ConditionalOnProperty(prefix = "aliyun.sms", name = "accessKeyId")
 public class SmsClientAliyunImpl implements SmsClient {
 
 	protected Log logger = LogFactory.getLog(this.getClass());
