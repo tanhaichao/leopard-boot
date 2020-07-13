@@ -209,15 +209,18 @@ public class Httpnb {
 	}
 
 	/**
-	 * 创建http代理
 	 * 
-	 * @param proxy
+	 * 
+	 * @param hostAndPort 格式 IP:port
 	 * @return
 	 */
-	public static InetSocketAddress newInetSocketAddress(String proxy) {
-		String[] strs = proxy.split(":");
+	public static InetSocketAddress newInetSocketAddress(String hostAndPort) {
+		if (hostAndPort == null || hostAndPort.length() == 0) {
+			throw new IllegalArgumentException("hostAndPort格式不正确");
+		}
+		String[] strs = hostAndPort.split(":");
 		if (strs.length != 2) {
-			throw new IllegalArgumentException("proxy格式不正确");
+			throw new IllegalArgumentException("hostAndPort格式不正确");
 		}
 		String host = strs[0].trim();
 		int port = Integer.parseInt(strs[1].trim());
