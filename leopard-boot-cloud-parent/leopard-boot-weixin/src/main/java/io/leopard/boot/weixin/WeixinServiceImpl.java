@@ -82,7 +82,7 @@ public class WeixinServiceImpl implements WeixinService {
 		Integer errCode = (Integer) obj.get("errcode");
 		if (errCode != null) {
 			System.err.println("json:" + json);
-			// json:{"errcode":40163,"errmsg":"code been used, hints: [ req_id: Ehgd4tNre-h1o5NA ]"}
+			// json:{"errcode":40163,"errmsg":"code been used, hints: [ req_id: xxx ]"}
 
 			// String errmsg = (String) obj.get("errmsg");
 			throw new RuntimeException("微信接口请求失败，" + "errCode:" + errCode);
@@ -97,7 +97,6 @@ public class WeixinServiceImpl implements WeixinService {
 		if (StringUtils.isEmpty(openid)) {
 			throw new RuntimeException("openid怎么会为空?");
 		}
-		System.out.println("json:" + json);
 		JSCode2Session session = new JSCode2Session();
 		session.setOpenid(openid);
 		session.setUnionId(unionId);

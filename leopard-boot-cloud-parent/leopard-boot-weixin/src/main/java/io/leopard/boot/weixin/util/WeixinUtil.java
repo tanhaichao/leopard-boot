@@ -21,6 +21,7 @@ import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.springframework.util.StringUtils;
 
 public class WeixinUtil {
+
 	/**
 	 * 解析手机号
 	 * 
