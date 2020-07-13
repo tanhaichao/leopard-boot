@@ -1,7 +1,10 @@
 package io.leopard.boot.weixin;
 
+import java.net.Proxy;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -22,6 +25,9 @@ public class WeixinServiceImpl implements WeixinService {
 	@Value("${weixin.secret}")
 	private String secret;
 
+	@Value("${leopard.proxy:}") // 默认为empty
+	private String proxy;// 格式 ip:port
+
 	public String getAppId() {
 		return appId;
 	}
@@ -36,6 +42,11 @@ public class WeixinServiceImpl implements WeixinService {
 
 	public void setSecret(String secret) {
 		this.secret = secret;
+	}
+
+	@PostConstruct
+	public void init() {
+		System.err.println("WeixinService proxy:" + this.proxy);
 	}
 
 	/**
@@ -56,12 +67,16 @@ public class WeixinServiceImpl implements WeixinService {
 		System.out.println("iv:" + iv);
 		System.out.println("encryptedData:" + encryptedData);
 
+		Proxy proxy = null;
+		if (!StringUtils.isEmpty(this.proxy)) {
+			proxy = new Proxy(Proxy.Type.HTTP, Httpnb.newInetSocketAddress(this.proxy));
+		}
 		Map<String, Object> params = new LinkedHashMap<>();
 		params.put("appId", appId);
 		params.put("secret", secret);
 		params.put("js_code", code);
 		params.put("grant_type", "authorization_code");
-		String json = Httpnb.doPost("https://api.weixin.qq.com/sns/jscode2session", params);
+		String json = Httpnb.doPost("https://api.weixin.qq.com/sns/jscode2session", proxy, params);
 		Map<String, Object> obj = Json.toMap(json);
 		Integer errCode = (Integer) obj.get("errcode");
 		if (errCode != null) {
