@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.util.Iterator;
 import java.util.Map;
@@ -205,5 +206,21 @@ public class Httpnb {
 		in.close();
 		conn.disconnect();
 		return sb.toString();
+	}
+
+	/**
+	 * 创建http代理
+	 * 
+	 * @param proxy
+	 * @return
+	 */
+	public static InetSocketAddress newInetSocketAddress(String proxy) {
+		String[] strs = proxy.split(":");
+		if (strs.length != 2) {
+			throw new IllegalArgumentException("proxy格式不正确");
+		}
+		String host = strs[0].trim();
+		int port = Integer.parseInt(strs[1].trim());
+		return new InetSocketAddress(host, port);
 	}
 }
