@@ -10,6 +10,7 @@ public class WeixinServiceFactory {
 
 	@Value("${leopard.proxy:}") // 默认为empty
 	private String proxy;// 格式 ip:port
+
 	private static String PROXY;// 格式 ip:port
 
 	@PostConstruct
