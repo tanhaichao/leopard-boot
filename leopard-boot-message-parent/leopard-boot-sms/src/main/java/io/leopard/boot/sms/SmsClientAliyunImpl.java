@@ -16,8 +16,10 @@ import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.IAcsClient;
 import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.exceptions.ServerException;
+import com.aliyuncs.http.HttpClientConfig;
 import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
+import com.aliyuncs.utils.StringUtils;
 
 @Component
 @ConditionalOnProperty(prefix = "aliyun.sms", name = "accessKeyId")
@@ -38,10 +40,19 @@ public class SmsClientAliyunImpl implements SmsClient {
 
 	@Value("${aliyun.sms.signName}")
 	private String signName;
+	@Value("${leopard.proxy:}") // 默认为empty
+	private String proxy;// 格式 ip:port
 
 	@PostConstruct
 	public void init() {
 		DefaultProfile profile = DefaultProfile.getProfile(regionId, accessKeyId, accessSecret);
+		if (!StringUtils.isEmpty(proxy)) {
+			HttpClientConfig clientConfig = HttpClientConfig.getDefault();
+			String httpProxy = "http://" + proxy;
+			clientConfig.setHttpProxy(httpProxy);
+			clientConfig.setHttpsProxy(httpProxy);
+			profile.setHttpClientConfig(clientConfig);
+		}
 		client = new DefaultAcsClient(profile);
 
 		// PhoneNumbers String 是 15900000000
