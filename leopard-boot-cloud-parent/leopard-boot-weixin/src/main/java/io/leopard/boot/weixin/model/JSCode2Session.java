@@ -6,6 +6,8 @@ public class JSCode2Session {
 
 	private String openid;
 
+	private String unionId;
+
 	public String getSessionKey() {
 		return sessionKey;
 	}
@@ -20,5 +22,13 @@ public class JSCode2Session {
 
 	public void setOpenid(String openid) {
 		this.openid = openid;
+	}
+
+	public String getUnionId() {
+		return unionId;
+	}
+
+	public void setUnionId(String unionId) {
+		this.unionId = unionId;
 	}
 }

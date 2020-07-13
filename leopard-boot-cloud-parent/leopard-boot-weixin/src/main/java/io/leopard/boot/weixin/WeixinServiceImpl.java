@@ -71,6 +71,7 @@ public class WeixinServiceImpl implements WeixinService {
 		}
 		String sessionKey = (String) obj.get("session_key");
 		String openid = (String) obj.get("openid");
+		String unionId = (String) obj.get("unionId");
 
 		if (StringUtils.isEmpty(sessionKey)) {
 			throw new RuntimeException("sessionKey怎么会为空?");
@@ -81,6 +82,7 @@ public class WeixinServiceImpl implements WeixinService {
 		System.out.println("json:" + json);
 		JSCode2Session session = new JSCode2Session();
 		session.setOpenid(openid);
+		session.setUnionId(unionId);
 		session.setSessionKey(sessionKey);
 		return session;
 	}
