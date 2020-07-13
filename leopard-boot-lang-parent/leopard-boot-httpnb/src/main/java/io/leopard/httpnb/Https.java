@@ -49,19 +49,29 @@ public class Https {
 
 	}
 
+	private static boolean trustedAllHosts = false;
+
 	/**
 	 * Trust every server - dont check for any certificate
 	 */
 	public static void trustAllHosts() {
+		if (trustedAllHosts) {
+			return;
+		}
+		trustedAllHosts = true;
+
 		// Create a trust manager that does not validate certificate chains
 		TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
+			@Override
 			public java.security.cert.X509Certificate[] getAcceptedIssuers() {
 				return new java.security.cert.X509Certificate[] {};
 			}
 
+			@Override
 			public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
 			}
 
+			@Override
 			public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
 			}
 		} };
