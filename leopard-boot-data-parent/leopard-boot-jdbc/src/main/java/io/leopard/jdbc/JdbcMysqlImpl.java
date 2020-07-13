@@ -37,6 +37,7 @@ import io.leopard.jdbc.datasource.JdbcDataSource;
 import io.leopard.jdbc.logger.JdbcLogger;
 import io.leopard.jdbc.logger.JdbcLoggerImpl;
 import io.leopard.jdbc.mapper.CountResultSetExtractor;
+import io.leopard.json.Json;
 import io.leopard.lang.Page;
 import io.leopard.lang.PageImpl;
 import io.leopard.lang.Paging;
@@ -69,7 +70,7 @@ public class JdbcMysqlImpl implements Jdbc {
 	private String name;
 
 	public void setDataSource(DataSource dataSource) {
-//		System.err.println("dataSource:" + dataSource.getClass().getName());
+		// System.err.println("dataSource:" + dataSource.getClass().getName());
 		this.dataSource = dataSource;
 		if (this.jdbcTemplate == null || dataSource != this.jdbcTemplate.getDataSource()) {
 			this.jdbcTemplate = new JdbcTemplate(dataSource);
@@ -911,7 +912,9 @@ public class JdbcMysqlImpl implements Jdbc {
 			}
 		}
 		else {
-			throw new InvalidDataAccessApiUsageException("未知数据类型[" + type.getName() + "].");
+			String json = Json.toJson(obj);
+			builder.setString(fieldName, json);
+			// throw new InvalidDataAccessApiUsageException("未知数据类型[" + type.getName() + "].");
 		}
 	}
 
