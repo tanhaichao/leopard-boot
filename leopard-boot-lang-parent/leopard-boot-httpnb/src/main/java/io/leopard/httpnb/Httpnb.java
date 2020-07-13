@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.Proxy;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -99,10 +100,18 @@ public class Httpnb {
 	}
 
 	public static String doPost(String url, Map<String, Object> map) {
-		return doPost(url, -1, map);
+		return doPost(url, null, map);
+	}
+
+	public static String doPost(String url, Proxy proxy, Map<String, Object> map) {
+		return doPost(url, proxy, -1, map);
 	}
 
 	public static String doPost(String url, long timeout, Map<String, Object> map) {
+		return doPost(url, null, timeout, map);
+	}
+
+	public static String doPost(String url, Proxy proxy, long timeout, Map<String, Object> map) {
 		HttpHeader header = new HttpHeaderPostImpl(timeout);
 		Iterator<Entry<String, Object>> iterator = map.entrySet().iterator();
 		while (iterator.hasNext()) {
