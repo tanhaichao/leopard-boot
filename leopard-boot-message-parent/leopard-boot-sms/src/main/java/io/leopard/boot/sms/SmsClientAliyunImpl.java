@@ -101,7 +101,6 @@ public class SmsClientAliyunImpl implements SmsClient {
 		catch (ClientException e) {
 			throw new RuntimeException(e.getMessage(), e);
 		}
-		return true;
 	}
 
 }
