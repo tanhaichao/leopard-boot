@@ -77,6 +77,7 @@ public class WeixinServiceImpl implements WeixinService {
 		params.put("js_code", code);
 		params.put("grant_type", "authorization_code");
 		String json = Httpnb.doPost("https://api.weixin.qq.com/sns/jscode2session", proxy, params);
+		System.err.println("json:" + json);
 		Map<String, Object> obj = Json.toMap(json);
 		Integer errCode = (Integer) obj.get("errcode");
 		if (errCode != null) {
