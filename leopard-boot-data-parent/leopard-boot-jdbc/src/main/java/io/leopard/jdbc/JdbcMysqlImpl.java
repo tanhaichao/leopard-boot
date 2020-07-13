@@ -914,6 +914,7 @@ public class JdbcMysqlImpl implements Jdbc {
 		else {
 			String json = Json.toJson(obj);
 			builder.setString(fieldName, json);
+			// FIXME 未测试 20200713
 			// throw new InvalidDataAccessApiUsageException("未知数据类型[" + type.getName() + "].");
 		}
 	}
