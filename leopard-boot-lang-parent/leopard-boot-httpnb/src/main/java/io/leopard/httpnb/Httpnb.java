@@ -114,6 +114,7 @@ public class Httpnb {
 
 	public static String doPost(String url, Proxy proxy, long timeout, Map<String, Object> map) {
 		HttpHeader header = new HttpHeaderPostImpl(timeout);
+		header.setProxy(proxy);
 		Iterator<Entry<String, Object>> iterator = map.entrySet().iterator();
 		while (iterator.hasNext()) {
 			Entry<String, Object> entry = iterator.next();
