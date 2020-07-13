@@ -9,7 +9,7 @@ public interface WeixinService {
 	 * @param code 调用微信登陆返回的Code
 	 * @return
 	 */
-	String getSessionKey(String code, String iv, String encryptedData) throws Exception;
+	String getSessionKey(String code, String iv, String encryptedData);
 
-	JSCode2Session jscode2Session(String code, String iv, String encryptedData) throws Exception;
+	JSCode2Session jscode2Session(String code, String iv, String encryptedData);
 }
