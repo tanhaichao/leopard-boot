@@ -305,6 +305,10 @@ public class JdbcWrapper implements Jdbc {
 		return this.getJdbc().insert(tableName, bean);
 	}
 
+	@Override
+	public boolean replace(String tableName, Object bean) {
+		return this.getJdbc().replace(tableName, bean);
+	}
 	// @Override
 	// public boolean insertByBean(String sql, Object bean) {
 	// return this.getJdbc().insertByBean(sql, bean);

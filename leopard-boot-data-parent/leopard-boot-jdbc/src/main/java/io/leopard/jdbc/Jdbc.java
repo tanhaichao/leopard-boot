@@ -591,6 +591,14 @@ public interface Jdbc {
 	 */
 	boolean insert(String tableName, Object bean);
 
+	/**
+	 * 替换一条记录
+	 * 
+	 * @param tableName 表名
+	 * @param bean
+	 * @return
+	 */
+	boolean replace(String tableName, Object bean);
 	// boolean insertByBean(String sql, Object bean);
 	// boolean updateByBean(String sql, Object bean);
 

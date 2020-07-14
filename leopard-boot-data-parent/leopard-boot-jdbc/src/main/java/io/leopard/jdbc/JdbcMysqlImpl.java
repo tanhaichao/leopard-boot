@@ -29,6 +29,7 @@ import io.leopard.boot.jdbc.SqlUtil;
 import io.leopard.jdbc.builder.AbstractSqlBuilder;
 import io.leopard.jdbc.builder.InsertBuilder;
 import io.leopard.jdbc.builder.NullInsertBuilder;
+import io.leopard.jdbc.builder.NullReplaceBuilder;
 import io.leopard.jdbc.builder.NullUpdateBuilder;
 import io.leopard.jdbc.builder.ReplaceBuilder;
 import io.leopard.jdbc.builder.SqlBuilder;
@@ -644,6 +645,29 @@ public class JdbcMysqlImpl implements Jdbc {
 		return this.insertForBoolean(builder);
 	}
 
+	@Override
+	public boolean replace(String tableName, Object bean) {
+		ReplaceBuilder builder = new NullReplaceBuilder(tableName);
+
+		Field[] fields = bean.getClass().getDeclaredFields();
+		for (Field field : fields) {
+			String fieldName = field.getName();
+			Class<?> type = field.getType();
+			field.setAccessible(true);
+			Object obj;
+			try {
+				obj = field.get(bean);
+			}
+			// catch (IllegalArgumentException e) {
+			// throw new InvalidDataAccessApiUsageException(e.getMessage());
+			// }
+			catch (IllegalAccessException e) {
+				throw new InvalidDataAccessApiUsageException(e.getMessage());
+			}
+			this.setFieldValue(builder, type, fieldName, obj);
+		}
+		return this.insertForBoolean(builder);
+	}
 	// @Override
 	// public boolean updateByBean(String sql, Object bean) {
 	// return this.updateForBoolean(sql, SqlParserUtil.toUpdateParameter(sql, bean));
