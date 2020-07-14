@@ -83,9 +83,8 @@ public class WeixinUtil {
 			if (null != resultByte && resultByte.length > 0) {
 
 				String result = new String(resultByte, "UTF-8");
-
 				System.out.println("result:" + result);
-				return null;
+				return result;
 
 			}
 
