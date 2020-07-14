@@ -64,16 +64,16 @@ public class WeixinServiceImpl implements WeixinService {
 	 * @return
 	 */
 	@Override
-	public String getSessionKey(String code, String iv, String encryptedData) {
-		JSCode2Session session = this.jscode2Session(code, iv, encryptedData);
+	public String getSessionKey(String code) {
+		JSCode2Session session = this.jscode2Session(code);
 		return session.getSessionKey();
 	}
 
 	@Override
-	public JSCode2Session jscode2Session(String code, String iv, String encryptedData) {
+	public JSCode2Session jscode2Session(String code) {
 		System.out.println("code:" + code);
-		System.out.println("iv:" + iv);
-		System.out.println("encryptedData:" + encryptedData);
+		// System.out.println("iv:" + iv);
+		// System.out.println("encryptedData:" + encryptedData);
 
 		Proxy proxy = null;
 		if (!StringUtils.isEmpty(this.proxy)) {
