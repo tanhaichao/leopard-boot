@@ -7,6 +7,8 @@ import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.validation.ValidationException;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -23,6 +25,7 @@ import io.leopard.boot.responsebody.ResponseEntity;
 @ControllerAdvice
 @ResponseBody
 public class TrynbExceptionHandler {
+	protected Log logger = LogFactory.getLog(this.getClass());
 
 	@Autowired
 	private ErrorMessageFilter errorMessageFilter;
@@ -31,7 +34,8 @@ public class TrynbExceptionHandler {
 	// @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	public ResponseEntity handlerException(HttpServletRequest request, Exception e) {
 		request.setAttribute("exception", e);
-		e.printStackTrace();// TODO
+		// e.printStackTrace();// TODO
+		logger.error(e.getMessage(), e);
 		String message = errorMessageFilter.parseMessage(request, e);// ErrorUtil.parseMessage(e);
 
 		ResponseEntity entity = new ResponseEntity();
