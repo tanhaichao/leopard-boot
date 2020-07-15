@@ -153,8 +153,11 @@ public class WeixinUtil {
 			}
 		}
 		catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidParameterSpecException | InvalidKeyException | InvalidAlgorithmParameterException | IllegalBlockSizeException
-				| BadPaddingException | UnsupportedEncodingException e) {
+				| UnsupportedEncodingException e) {
 			throw new RuntimeException(e.getMessage(), e);
+		}
+		catch (BadPaddingException e) {
+			throw new RuntimeException("sessionKey已失效!");
 		}
 		throw new RuntimeException("解析手机号码出错.");
 	}
