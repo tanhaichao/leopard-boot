@@ -35,7 +35,8 @@ public class TrynbExceptionHandler {
 	public ResponseEntity handlerException(HttpServletRequest request, Exception e) {
 		request.setAttribute("exception", e);
 		// e.printStackTrace();// TODO
-		logger.error(e.getMessage(), e);
+		logger.error(e.getMessage(), e);// TODO 这里要区分日志级别？
+
 		String message = errorMessageFilter.parseMessage(request, e);// ErrorUtil.parseMessage(e);
 
 		ResponseEntity entity = new ResponseEntity();
