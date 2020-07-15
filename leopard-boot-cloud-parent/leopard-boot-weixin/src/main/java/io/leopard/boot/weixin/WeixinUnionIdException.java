@@ -6,6 +6,7 @@ package io.leopard.boot.weixin;
  * @author 谭海潮
  *
  */
+@Deprecated
 public class WeixinUnionIdException extends Exception {
 
 	private static final long serialVersionUID = 1L;
