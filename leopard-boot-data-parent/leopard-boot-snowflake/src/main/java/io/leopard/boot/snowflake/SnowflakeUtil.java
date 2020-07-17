@@ -7,4 +7,15 @@ public class SnowflakeUtil {
 	public static long generateId() {
 		return idWorker.nextId();
 	}
+
+	private static SequenceIdWorker sequenceIdWorker = new SequenceIdWorker(1);// TODO
+
+	/**
+	 * 生成53位的的ID
+	 * 
+	 * @return
+	 */
+	public static long generate53BitId() {
+		return sequenceIdWorker.nextId();
+	}
 }
