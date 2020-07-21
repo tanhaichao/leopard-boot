@@ -13,7 +13,11 @@ public class CaptchaWrongException extends LeopardRuntimeException {
 	private static final long serialVersionUID = 1L;
 
 	public CaptchaWrongException(String message) {
-		this(message, null);
+		this(message, (String) null);
+	}
+
+	public CaptchaWrongException(String message, Throwable cause) {
+		super(message, cause);
 	}
 
 	public CaptchaWrongException(String message, String apiMessage) {
