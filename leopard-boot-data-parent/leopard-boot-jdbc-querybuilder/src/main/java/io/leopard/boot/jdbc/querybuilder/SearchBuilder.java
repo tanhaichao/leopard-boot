@@ -217,6 +217,8 @@ public abstract class SearchBuilder {
 			value = value.replace("(", "");
 			value = value.replace(")", "");
 			value = value.replace("~", "");
+			value = value.replace("（", "");
+			value = value.replace("）", "");
 		}
 		// TODO 是否需要过滤特殊字符？
 		String searchx = SqlUtil.getIntString(value).trim();
