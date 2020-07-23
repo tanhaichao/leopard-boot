@@ -202,6 +202,10 @@ public abstract class SearchBuilder {
 	}
 
 	public SearchBuilder addMatch(String fieldName, String value) {
+		return this.addMatch(fieldName, value, true);
+	}
+
+	public SearchBuilder addMatch(String fieldName, String value, boolean inBooleanMode) {
 		if (StringUtils.isEmpty(value)) {
 			// throw new IllegalArgumentException("参数不能为空.");
 			return this;
@@ -222,8 +226,14 @@ public abstract class SearchBuilder {
 		}
 		// TODO 是否需要过滤特殊字符？
 		String searchx = SqlUtil.getIntString(value).trim();
-		String expression = "MATCH(`" + fieldName + "`) AGAINST ('" + searchx + "' IN BOOLEAN MODE)";
-		this.addWhere(expression);
+		if (inBooleanMode) {
+			String expression = "MATCH(`" + fieldName + "`) AGAINST ('" + searchx + "' IN BOOLEAN MODE)";
+			this.addWhere(expression);
+		}
+		else {
+			String expression = "MATCH(`" + fieldName + "`) AGAINST ('" + searchx + "')";
+			this.addWhere(expression);
+		}
 		return this;
 	}
 
