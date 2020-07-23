@@ -236,7 +236,7 @@ public abstract class SearchBuilder {
 			return this;
 		}
 
-		String expression = "MATCH(`" + fieldName + "`) AGAINST ('" + StringUtil.escapeSQLParam(value) + "' IN BOOLEAN MODE)";
+		String expression = "MATCH(`" + fieldName + "`) AGAINST ('" + StringUtil.escapeSQLParam(value) + "')";
 		this.addWhere(expression);
 		return this;
 	}
