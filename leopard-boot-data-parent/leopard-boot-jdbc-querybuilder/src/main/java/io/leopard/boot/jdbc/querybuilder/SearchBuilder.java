@@ -9,6 +9,7 @@ import java.util.Map.Entry;
 import org.springframework.util.StringUtils;
 
 import io.leopard.boot.jdbc.SqlUtil;
+import io.leopard.boot.util.StringUtil;
 import io.leopard.jdbc.Jdbc;
 import io.leopard.jdbc.StatementParameter;
 import io.leopard.jdbc.builder.Orderby;
@@ -202,10 +203,6 @@ public abstract class SearchBuilder {
 	}
 
 	public SearchBuilder addMatch(String fieldName, String value) {
-		return this.addMatch(fieldName, value, true);
-	}
-
-	public SearchBuilder addMatch(String fieldName, String value, boolean inBooleanMode) {
 		if (StringUtils.isEmpty(value)) {
 			// throw new IllegalArgumentException("参数不能为空.");
 			return this;
@@ -226,14 +223,35 @@ public abstract class SearchBuilder {
 		}
 		// TODO 是否需要过滤特殊字符？
 		String searchx = SqlUtil.getIntString(value).trim();
-		if (inBooleanMode) {
-			String expression = "MATCH(`" + fieldName + "`) AGAINST ('" + searchx + "' IN BOOLEAN MODE)";
-			this.addWhere(expression);
+		String expression = "MATCH(`" + fieldName + "`) AGAINST ('" + searchx + "' IN BOOLEAN MODE)";
+		this.addWhere(expression);
+		return this;
+	}
+
+	public SearchBuilder addMatch(String fieldName, String value) {
+		if (value != null) {
+			value = value.trim();
 		}
-		else {
-			String expression = "MATCH(`" + fieldName + "`) AGAINST ('" + searchx + "')";
-			this.addWhere(expression);
+		if (StringUtils.isEmpty(value)) {
+			return this;
 		}
+		{
+			value = value.replace("*", "");
+			value = value.replace("\"", "");
+			value = value.replace("'", "");
+			value = value.replace("+", "");
+			value = value.replace("-", "");
+			value = value.replace(">", "");
+			value = value.replace("<", "");
+			value = value.replace("(", "");
+			value = value.replace(")", "");
+			value = value.replace("~", "");
+			value = value.replace("（", "");
+			value = value.replace("）", "");
+		}
+		// TODO 是否需要过滤特殊字符？
+		String expression = "MATCH(`" + fieldName + "`) AGAINST ('" + StringUtil.escapeSQLParam(value) + "' IN BOOLEAN MODE)";
+		this.addWhere(expression);
 		return this;
 	}
 
