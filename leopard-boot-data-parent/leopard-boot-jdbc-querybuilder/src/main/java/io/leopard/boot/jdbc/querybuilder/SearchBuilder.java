@@ -228,28 +228,14 @@ public abstract class SearchBuilder {
 		return this;
 	}
 
-	public SearchBuilder addMatch(String fieldName, String value) {
+	public SearchBuilder addMatch2(String fieldName, String value) {
 		if (value != null) {
 			value = value.trim();
 		}
 		if (StringUtils.isEmpty(value)) {
 			return this;
 		}
-		{
-			value = value.replace("*", "");
-			value = value.replace("\"", "");
-			value = value.replace("'", "");
-			value = value.replace("+", "");
-			value = value.replace("-", "");
-			value = value.replace(">", "");
-			value = value.replace("<", "");
-			value = value.replace("(", "");
-			value = value.replace(")", "");
-			value = value.replace("~", "");
-			value = value.replace("（", "");
-			value = value.replace("）", "");
-		}
-		// TODO 是否需要过滤特殊字符？
+
 		String expression = "MATCH(`" + fieldName + "`) AGAINST ('" + StringUtil.escapeSQLParam(value) + "' IN BOOLEAN MODE)";
 		this.addWhere(expression);
 		return this;
