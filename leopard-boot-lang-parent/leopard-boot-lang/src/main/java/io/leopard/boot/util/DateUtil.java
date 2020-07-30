@@ -195,8 +195,9 @@ public class DateUtil {
 	 * @param daynum 天数
 	 * @return 日期字符串
 	 */
-	public static Date addYear(final int year) {
+	public static Date addYear(final Date date, final int year) {
 		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
 		cal.add(Calendar.YEAR, year);
 		return new Date(cal.getTimeInMillis());
 	}
