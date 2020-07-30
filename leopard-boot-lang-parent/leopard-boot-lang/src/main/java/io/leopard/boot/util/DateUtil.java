@@ -190,6 +190,18 @@ public class DateUtil {
 	}
 
 	/**
+	 * 添加多少年
+	 * 
+	 * @param daynum 天数
+	 * @return 日期字符串
+	 */
+	public static Date addYear(final int year) {
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.YEAR, year);
+		return new Date(cal.getTimeInMillis());
+	}
+
+	/**
 	 * 获取今天的日期
 	 * 
 	 * @return
