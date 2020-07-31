@@ -241,6 +241,17 @@ public abstract class SearchBuilder {
 		return this;
 	}
 
+	public SearchBuilder addMatchBySearchx(String fieldName, String value) {
+		if (StringUtils.isEmpty(value)) {
+			// throw new IllegalArgumentException("参数不能为空.");
+			return this;
+		}
+		// String searchx = SqlUtil.getIntString(value).trim();
+		String expression = "MATCH(`" + fieldName + "`) AGAINST ('" + value + "' IN BOOLEAN MODE)";
+		this.addWhere(expression);
+		return this;
+	}
+
 	public SearchBuilder addLike(String fieldName, String value) {
 		if (StringUtils.isEmpty(value)) {
 			// throw new IllegalArgumentException("参数不能为空.");
