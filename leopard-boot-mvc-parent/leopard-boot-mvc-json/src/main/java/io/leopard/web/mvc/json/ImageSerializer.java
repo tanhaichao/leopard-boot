@@ -10,11 +10,15 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 
 public class ImageSerializer extends AbstractJsonSerializer<String> {
 
-	@Autowired
+	@Autowired(required = false)
 	private ImageUrlConverter imageUrlConverter;
 
 	@Override
 	public void out(String uri, JsonGenerator jgen, SerializerProvider provider) throws IOException, JsonProcessingException {
+		if (imageUrlConverter == null) {
+			jgen.writeString(uri);
+			return;
+		}
 		String url = imageUrlConverter.convert(uri);
 		jgen.writeString(url);
 	}

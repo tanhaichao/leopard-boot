@@ -11,11 +11,15 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 public class ImageListSerializer extends AbstractJsonSerializer<List<String>> {
 
 	// ["/test/DSC_7348.jpg","/test/DSC_7352.jpg","/test/DSC_7353.jpg"]
-	@Autowired
+	@Autowired(required = false)
 	private ImageUrlConverter imageUrlConverter;
 
 	@Override
 	public void out(List<String> list, JsonGenerator jgen, SerializerProvider provider) throws Exception {
+		if (imageUrlConverter == null) {
+			jgen.writeObject(list);
+			return;
+		}
 		List<String> urlList = null;
 		if (list != null) {
 			urlList = new ArrayList<String>();
