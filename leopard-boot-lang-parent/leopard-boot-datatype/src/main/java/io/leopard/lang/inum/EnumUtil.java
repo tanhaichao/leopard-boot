@@ -4,6 +4,7 @@ import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -86,6 +87,24 @@ public class EnumUtil {
 			return onum;
 		}
 		return inum;
+	}
+
+	/**
+	 * 判断枚举元素是否存在.
+	 * 
+	 * @param key
+	 * @param clazz
+	 * @return
+	 */
+	public static <E extends Enum<E>> boolean contains(List<E> constantList, E constant) {
+		if (constantList != null) {
+			for (E _constant : constantList) {
+				if (_constant == constant) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	/**
