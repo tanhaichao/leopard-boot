@@ -7,7 +7,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 标记未json输出
+ * 标记为json输出属性
  * 
  * @author 谭海潮
  *
