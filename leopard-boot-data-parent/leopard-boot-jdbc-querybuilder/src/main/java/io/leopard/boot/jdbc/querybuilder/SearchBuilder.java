@@ -538,9 +538,11 @@ public abstract class SearchBuilder {
 			}
 		}
 		// }
-		sb.append(" limit ?,?");
-		param.setInt(limitStart);
-		param.setInt(limitSize);
+		if (limitStart != null) {
+			sb.append(" limit ?,?");
+			param.setInt(limitStart);
+			param.setInt(limitSize);
+		}
 		String orderSql = sb.toString();
 		return orderSql;
 	}
