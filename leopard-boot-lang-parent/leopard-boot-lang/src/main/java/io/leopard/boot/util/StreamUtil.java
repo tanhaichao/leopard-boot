@@ -57,6 +57,21 @@ public class StreamUtil {
 	}
 
 	/**
+	 * 分组
+	 * 
+	 * @param list
+	 * @param mapper
+	 * @return
+	 */
+	public static <KEY, BEAN> Map<KEY, List<BEAN>> groupingBy(List<BEAN> list, Function<? super BEAN, ? extends KEY> keyMapper) {
+		if (list == null) {
+			return new LinkedHashMap<KEY, List<BEAN>>();
+		}
+		Map<KEY, List<BEAN>> map = list.stream().collect(Collectors.groupingBy(keyMapper));
+		return map;
+	}
+
+	/**
 	 * List转Map
 	 * 
 	 * @param list
