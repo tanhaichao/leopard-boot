@@ -10,5 +10,6 @@
 	<name>文档相关</name>
 	<modules>
 		<module>leopard-boot-excel</module>
+		<module>leopard-boot-exceldb</module>
 	</modules>
 </project>
