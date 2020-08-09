@@ -84,7 +84,7 @@ public class SheetDb {
 		}
 		String names = "insert into `" + tableName + "`(" + StringUtils.join(nameSet, ", ") + ") values(";
 
-		for (int i = 1; i < lastRowNum; i++) {
+		for (int i = 1; i <= lastRowNum; i++) {
 			Row row = sheet.getRow(i);
 			Set<String> valueSet = this.rowToValueSet(i, row);
 			sb.append(names);
