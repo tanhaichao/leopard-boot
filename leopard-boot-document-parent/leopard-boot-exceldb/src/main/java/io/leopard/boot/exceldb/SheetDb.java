@@ -3,9 +3,7 @@ package io.leopard.boot.exceldb;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.usermodel.Cell;
@@ -77,24 +75,24 @@ public class SheetDb {
 				lastRowNum = rowCount;
 			}
 		}
-		Set<String> nameSet = new LinkedHashSet<>();
+		List<String> nameList = new ArrayList<>();
 		for (int i = 0; i < columnList.size(); i++) {
 			Column column = columnList.get(i);
-			nameSet.add("`" + column.getDbColumnName() + "`");
+			nameList.add("`" + column.getDbColumnName() + "`");
 		}
-		String names = "insert into `" + tableName + "`(" + StringUtils.join(nameSet, ", ") + ") values(";
+		String names = "insert into `" + tableName + "`(" + StringUtils.join(nameList, ", ") + ") values(";
 
 		for (int i = 1; i <= lastRowNum; i++) {
 			Row row = sheet.getRow(i);
-			Set<String> valueSet = this.rowToValueSet(i, row);
+			List<String> valueList = this.rowToValueList(i, row);
 			sb.append(names);
-			sb.append(StringUtils.join(valueSet, ", ")).append(");\n");
+			sb.append(StringUtils.join(valueList, ", ")).append(");\n");
 		}
 		return sb.toString();
 	}
 
-	private Set<String> rowToValueSet(int rowIndex, Row row) {
-		Set<String> valueSet = new LinkedHashSet<>();
+	private List<String> rowToValueList(int rowIndex, Row row) {
+		List<String> valueList = new ArrayList<>();
 		for (int i = 0; i < columnList.size(); i++) {
 			Column column = columnList.get(i);
 			Cell cell = row.getCell(column.getColumnIndex());
@@ -106,9 +104,9 @@ public class SheetDb {
 			else {
 				value = cell.getStringCellValue();
 			}
-			valueSet.add("'" + value + "'");
+			valueList.add("'" + value + "'");
 		}
-		return valueSet;
+		return valueList;
 	}
 
 	public void close() throws IOException {
