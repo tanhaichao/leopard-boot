@@ -54,7 +54,7 @@ public class SheetDb {
 		if (columnIndex == -1) {
 			throw new RuntimeException("列[" + excelColumnName + "]不存在.");
 		}
-		columnList.add(new Column(columnIndex, excelColumnName, dbColumnName));
+		columnList.add(new Column(columnIndex, dbColumnName));
 	}
 
 	public void test2() {
@@ -121,20 +121,14 @@ public class SheetDb {
 	}
 
 	private static class Column {
-		private final String excelColumnName;
 
 		private final String dbColumnName;
 
 		private int columnIndex;
 
-		public Column(int columnIndex, String excelColumnName, String dbColumnName) {
+		public Column(int columnIndex, String dbColumnName) {
 			this.columnIndex = columnIndex;
-			this.excelColumnName = excelColumnName;
 			this.dbColumnName = dbColumnName;
-		}
-
-		public String getExcelColumnName() {
-			return excelColumnName;
 		}
 
 		public String getDbColumnName() {
@@ -143,10 +137,6 @@ public class SheetDb {
 
 		public int getColumnIndex() {
 			return columnIndex;
-		}
-
-		public void setColumnIndex(int columnIndex) {
-			this.columnIndex = columnIndex;
 		}
 
 	}
