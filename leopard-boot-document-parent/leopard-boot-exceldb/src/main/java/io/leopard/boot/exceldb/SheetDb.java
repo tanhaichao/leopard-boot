@@ -74,7 +74,7 @@ public class SheetDb {
 		int lastRowNum = this.sheet.getLastRowNum();
 		if (rowCount > 0) {
 			if (rowCount < lastRowNum) {
-				lastRowNum = rowCount + 1;
+				lastRowNum = rowCount;
 			}
 		}
 		Set<String> nameSet = new LinkedHashSet<>();
