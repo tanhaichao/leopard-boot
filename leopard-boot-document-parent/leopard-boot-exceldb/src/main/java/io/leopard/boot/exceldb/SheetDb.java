@@ -41,6 +41,10 @@ public class SheetDb {
 		}
 	}
 
+	public Sheet getSheet() {
+		return sheet;
+	}
+
 	/**
 	 * 添加列
 	 * 
