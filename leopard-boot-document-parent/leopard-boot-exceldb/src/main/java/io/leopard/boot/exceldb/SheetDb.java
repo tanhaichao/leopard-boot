@@ -86,19 +86,26 @@ public class SheetDb {
 
 		for (int i = 1; i < lastRowNum; i++) {
 			Row row = sheet.getRow(i);
-			Set<String> valueSet = this.rowToValueSet(row);
+			Set<String> valueSet = this.rowToValueSet(i, row);
 			sb.append(names);
 			sb.append(StringUtils.join(valueSet, ", ")).append(");\n");
 		}
 		return sb.toString();
 	}
 
-	private Set<String> rowToValueSet(Row row) {
+	private Set<String> rowToValueSet(int rowIndex, Row row) {
 		Set<String> valueSet = new LinkedHashSet<>();
 		for (int i = 0; i < columnList.size(); i++) {
 			Column column = columnList.get(i);
 			Cell cell = row.getCell(column.getColumnIndex());
-			String value = cell.getStringCellValue();
+			String value;
+			if (cell == null) {
+				value = "";
+				System.err.println(" rowIndex:" + rowIndex + " cell:" + column.getColumnIndex() + " is null.");
+			}
+			else {
+				value = cell.getStringCellValue();
+			}
 			valueSet.add("'" + value + "'");
 		}
 		return valueSet;
