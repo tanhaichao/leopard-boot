@@ -24,5 +24,6 @@
 		<module>leopard-boot-dfs</module>
 		<module>leopard-boot-logdb</module>
 		<module>leopard-boot-validator</module>
+		<module>leopard-boot-elasticsearch</module>
 	</modules>
 </project>
