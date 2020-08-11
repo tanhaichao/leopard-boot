@@ -11,7 +11,7 @@ import org.elasticsearch.search.SearchHits;
  * @author 谭海潮
  *
  */
-public interface Searcher {
+public interface ElasticSearcher {
 
 	boolean createIndex(String indexName);
 

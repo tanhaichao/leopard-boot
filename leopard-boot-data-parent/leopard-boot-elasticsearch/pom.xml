@@ -7,7 +7,8 @@
 	</parent>
 	<artifactId>leopard-boot-elasticsearch</artifactId>
 
-	<dependencies><dependency>
+	<dependencies>
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 		</dependency>

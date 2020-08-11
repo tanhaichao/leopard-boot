@@ -22,7 +22,7 @@ import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.sort.SortOrder;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
 
-public class SearcherImpl implements Searcher {
+public class ElasticSearcherImpl implements ElasticSearcher {
 	protected Log logger = LogFactory.getLog(this.getClass());
 
 	protected String host;
@@ -35,11 +35,11 @@ public class SearcherImpl implements Searcher {
 
 	protected TransportClient client;
 
-	public SearcherImpl() {
+	public ElasticSearcherImpl() {
 
 	}
 
-	public SearcherImpl(String host, int port) {
+	public ElasticSearcherImpl(String host, int port) {
 		this.host = host;
 		this.port = port;
 	}
