@@ -20,6 +20,7 @@
 	<properties>
 		<leopard.version>0.9.16-SNAPSHOT</leopard.version>
 		<springboot.version>1.5.21.RELEASE</springboot.version>
+		<elasticsearch.version>6.8.1</elasticsearch.version>
 		<jdk.version>1.8</jdk.version>
 	</properties>
 
