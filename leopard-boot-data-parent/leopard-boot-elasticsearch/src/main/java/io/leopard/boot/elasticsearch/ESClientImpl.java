@@ -41,7 +41,9 @@ public class ESClientImpl extends AbstractESClient {
 		request.settings(Settings.builder().put("index.number_of_shards", 3).put("index.number_of_replicas", 2));
 
 		// mapping.put("info", info);
-		request.mapping(mapping);
+		if (mapping != null) {
+			request.mapping(mapping);
+		}
 		// "district": {
 		// "type": "text",
 		// "analyzer": "whitespace",
