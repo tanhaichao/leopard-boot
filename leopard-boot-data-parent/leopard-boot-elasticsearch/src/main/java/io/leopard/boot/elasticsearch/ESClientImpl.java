@@ -1,7 +1,6 @@
 package io.leopard.boot.elasticsearch;
 
 import java.io.IOException;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
@@ -33,20 +32,14 @@ public class ESClientImpl extends AbstractESClient {
 
 	@Override
 	public boolean createIndex(String indexName) throws IOException {
+		return this.createIndex(indexName, null);
+	}
+
+	@Override
+	public boolean createIndex(String indexName, Map<String, Object> mapping) throws IOException {
 		CreateIndexRequest request = new CreateIndexRequest(indexName);
 		request.settings(Settings.builder().put("index.number_of_shards", 3).put("index.number_of_replicas", 2));
-		Map<String, Object> mapping = new LinkedHashMap<>();
-		Map<String, Object> properties = new LinkedHashMap<>();
-		{
-			Map<String, Object> nameProperty = new LinkedHashMap<>();
-			nameProperty.put("type", "text");
-			nameProperty.put("analyzer", "whitespace");
-			nameProperty.put("search_analyzer", "whitespace");
-			nameProperty.put("fielddata", true);
 
-			properties.put("name", nameProperty);
-			mapping.put("properties", properties);
-		}
 		// mapping.put("info", info);
 		request.mapping(mapping);
 		// "district": {

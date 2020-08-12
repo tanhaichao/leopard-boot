@@ -1,6 +1,7 @@
 package io.leopard.boot.elasticsearch;
 
 import java.io.IOException;
+import java.util.Map;
 
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexResponse;
@@ -69,5 +70,7 @@ public interface ESClient {
 	boolean exists(String indexName) throws IOException;
 
 	boolean deleteIndex(String indexName) throws IOException;
+
+	boolean createIndex(String indexName, Map<String, Object> mapping) throws IOException;
 
 }
