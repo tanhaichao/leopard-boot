@@ -1,6 +1,8 @@
 package io.leopard.boot.elasticsearch;
 
 import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.delete.DeleteRequest;
@@ -33,6 +35,27 @@ public class ESClientImpl extends AbstractESClient {
 	public boolean createIndex(String indexName) throws IOException {
 		CreateIndexRequest request = new CreateIndexRequest(indexName);
 		request.settings(Settings.builder().put("index.number_of_shards", 3).put("index.number_of_replicas", 2));
+		Map<String, Object> mapping = new LinkedHashMap<>();
+		Map<String, Object> properties = new LinkedHashMap<>();
+		{
+			Map<String, Object> nameProperty = new LinkedHashMap<>();
+			nameProperty.put("type", "text");
+			nameProperty.put("analyzer", "whitespace");
+			nameProperty.put("search_analyzer", "whitespace");
+			nameProperty.put("fielddata", true);
+
+			properties.put("name", nameProperty);
+			mapping.put("properties", properties);
+		}
+		// mapping.put("info", info);
+		request.mapping(mapping);
+		// "district": {
+		// "type": "text",
+		// "analyzer": "whitespace",
+		// "search_analyzer": "whitespace",
+		// "fielddata": true
+		// }
+		// request.settings(source, XContentType);
 
 		// CreateIndexResponse response = ;
 		this.restClient.indices().create(request, RequestOptions.DEFAULT);
@@ -53,7 +76,7 @@ public class ESClientImpl extends AbstractESClient {
 
 	@Override
 	public IndexResponse index(String indexName, String type, String id, String json) throws IOException {
-		IndexRequest request = new IndexRequest(indexName, type, id);
+		IndexRequest request = new IndexRequest(indexName, "_doc", id);
 		request.source(json, XContentType.JSON);
 		return this.restClient.index(request, RequestOptions.DEFAULT);
 	}
