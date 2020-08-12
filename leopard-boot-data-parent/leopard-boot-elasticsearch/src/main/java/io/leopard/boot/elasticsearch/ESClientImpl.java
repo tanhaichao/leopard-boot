@@ -2,7 +2,6 @@ package io.leopard.boot.elasticsearch;
 
 import java.io.IOException;
 
-import org.elasticsearch.action.admin.indices.create.CreateIndexRequest;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.delete.DeleteRequest;
 import org.elasticsearch.action.delete.DeleteResponse;
@@ -13,6 +12,7 @@ import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.RequestOptions;
+import org.elasticsearch.client.indices.CreateIndexRequest;
 import org.elasticsearch.client.indices.GetIndexRequest;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.xcontent.XContentType;
@@ -22,8 +22,10 @@ import org.elasticsearch.index.reindex.DeleteByQueryRequest;
 import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.search.sort.SortOrder;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
+@ConditionalOnProperty(prefix = "elasticsearch", name = "host")
 @Component
 public class ESClientImpl extends AbstractESClient {
 
@@ -116,6 +118,11 @@ public class ESClientImpl extends AbstractESClient {
 		request.setQuery(query);
 		restClient.deleteByQuery(request, RequestOptions.DEFAULT);
 		return true;
+	}
+
+	@Override
+	public String delete(String indexName, String type, long id) throws IOException {
+		return this.delete(indexName, type, Long.toString(id));
 	}
 
 	@Override

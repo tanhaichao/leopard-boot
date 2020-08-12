@@ -48,7 +48,6 @@ public abstract class AbstractESClient implements ESClient {
 		setConnectTimeOutConfig();
 		setMutiConnectConfig();
 		restClient = new RestHighLevelClient(builder);
-		System.out.println("init factory");
 	}
 
 	protected void setConnectTimeOutConfig() { // 配置连接时间延时
