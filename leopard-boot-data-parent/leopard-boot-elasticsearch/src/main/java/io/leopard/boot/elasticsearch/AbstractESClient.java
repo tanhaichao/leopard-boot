@@ -18,10 +18,10 @@ import org.springframework.beans.factory.annotation.Value;
 
 public abstract class AbstractESClient implements ESClient {
 
-	@Value("elasticsearch.host")
+	@Value("${elasticsearch.host}")
 	private String host;
 
-	@Value("elasticsearch.port")
+	@Value("${elasticsearch.port}")
 	private int port = 9200;
 
 	protected String clusterName;
