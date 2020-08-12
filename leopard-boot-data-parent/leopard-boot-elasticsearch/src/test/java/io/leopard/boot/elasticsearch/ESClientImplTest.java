@@ -2,6 +2,7 @@ package io.leopard.boot.elasticsearch;
 
 import java.io.IOException;
 
+import org.elasticsearch.action.admin.cluster.storedscripts.GetStoredScriptRequest;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
@@ -24,6 +25,8 @@ public class ESClientImplTest {
 
 	@Test
 	public void index() throws IOException {
+		GetStoredScriptRequest ddd = new GetStoredScriptRequest("dd");
+
 		long newsId = 7;
 		News news = new News();
 		news.setNewsId(newsId);
