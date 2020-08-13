@@ -15,8 +15,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.AbstractUrlBasedView;
 
-import jxl.write.WriteException;
-
 public class ExcelView extends ModelAndView {
 
 	/**
@@ -82,12 +80,12 @@ public class ExcelView extends ModelAndView {
 	 * @param width 宽度,最大255
 	 * @throws WriteException
 	 */
-	public void addColumn(String columnName, int columnWidth) throws WriteException {
+	public void addColumn(String columnName, int columnWidth) {
 		excelWriter.addHeaderCell(columnName, columnWidth);
 		// this.sheet.addColumn(columnName, width);
 	}
 
-	public void addColumnName(String... columnNames) throws WriteException {
+	public void addColumnName(String... columnNames) {
 		excelWriter.addColumnName(columnNames);
 		// this.sheet.addColumnName(columnNames);
 	}
@@ -108,13 +106,13 @@ public class ExcelView extends ModelAndView {
 		// return sheet.addRow();
 	}
 
-	public File save(String fileId) throws IOException, WriteException {
+	public File save(String fileId) throws IOException {
 		File file = new File("/tmp/" + fileId + ".xls");
 		this.save(file);
 		return file;
 	}
 
-	public void save(File file) throws IOException, WriteException {
+	public void save(File file) throws IOException {
 		this.excelWriter.save(file);
 		// FileUtils.writeByteArrayToFile(file, output.toByteArray());
 	}
