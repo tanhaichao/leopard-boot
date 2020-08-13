@@ -17,9 +17,12 @@ public class Row {
 
 	private CellStyle style;
 
-	public Row(org.apache.poi.ss.usermodel.Row row, CellStyle style) {
+	private CellStyle dateCellStyle;
+
+	public Row(org.apache.poi.ss.usermodel.Row row, CellStyle style, CellStyle dateCellStyle) {
 		this.row = row;
 		this.style = style;
+		this.dateCellStyle = dateCellStyle;
 	}
 
 	public Row addCell(String value) {
@@ -48,27 +51,38 @@ public class Row {
 		return this.addCell(str);
 	}
 
-	public Row addCell(double num) throws WriteException {
-		String str = Double.toString(num);
-		return this.addCell(str);
+	public Row addCell(double num) {
+		// String str = Double.toString(num);
+		// return this.addCell(str);
+		int column = this.row.getLastCellNum();
+		if (column == -1) {
+			column = 0;
+		}
+		Cell cell = row.createCell(column);
+		cell.setCellStyle(style);
+		cell.setCellValue(num);
+		return this;
 	}
 
-	public Row addCell(float num) throws WriteException {
-		String str = Float.toString(num);
-		return this.addCell(str);
+	public Row addCell(float num) {
+		return this.addCell((double) num);
 	}
 
-	public Row addCell(int num) throws WriteException {
-		String str = Integer.toString(num);
-		return this.addCell(str);
+	public Row addCell(int num) {
+		return this.addCell((double) num);
 	}
 
-	public Row addCell(long num) throws WriteException {
-		String str = Long.toString(num);
-		return this.addCell(str);
+	public Row addCell(long num) {
+		return this.addCell((double) num);
 	}
 
-	public Row addFormatCell(double number) throws WriteException {
+	/**
+	 * 自动在数字前增加+号？
+	 * 
+	 * @param number
+	 * @return
+	 */
+	public Row addFormatCell(double number) {
 		String str;
 		if (number > 0) {
 			str = "+" + number;
@@ -84,4 +98,14 @@ public class Row {
 		return this.addCell(time);
 	}
 
+	public Row addDate(Date date) {
+		int column = this.row.getLastCellNum();
+		if (column == -1) {
+			column = 0;
+		}
+		Cell cell = row.createCell(column);
+		cell.setCellStyle(dateCellStyle);
+		cell.setCellValue(date);
+		return this;
+	}
 }

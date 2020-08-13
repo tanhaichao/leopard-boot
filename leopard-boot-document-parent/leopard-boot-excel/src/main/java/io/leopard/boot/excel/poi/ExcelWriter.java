@@ -8,6 +8,8 @@ import java.io.OutputStream;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.DataFormat;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -64,27 +66,67 @@ public class ExcelWriter {
 			style.setFont(font);
 			this.mainCellStyle = style;
 		}
+		{// 日期格式
+			Font font = this.workbook.createFont();
+			font.setBold(false);
+			font.setFontHeightInPoints((short) 11);
+			font.setFontName("宋体");
+
+			CellStyle style = workbook.createCellStyle();
+			DataFormat format = workbook.createDataFormat();
+			style.setDataFormat(format.getFormat("yyyy/mm/dd hh:mm:ss"));
+			style.setFont(font);
+			this.dateCellStyle = style;
+		}
 	}
 
 	private CellStyle headerCellStyle;
 
 	private CellStyle mainCellStyle;
 
+	private CellStyle dateCellStyle;
+
 	public void addHeaderCell(String columnName) {
+		this.addHeaderCell(columnName, null);
+	}
+
+	public void addHeaderCell(String columnName, Integer columnWidth) {
 		Row row = this.sheet.getRow(0);
 		if (row == null) {
 			row = this.sheet.createRow(0);
 		}
-		short cellCount = row.getLastCellNum();
-		if (cellCount == -1) {
-			cellCount = 0;
+		short columnIndex = row.getLastCellNum();
+		if (columnIndex == -1) {
+			columnIndex = 0;
 		}
-
 		// font.setFontHeight((short) 50);
-		Cell cell = row.createCell(cellCount);
+		Cell cell = row.createCell(columnIndex);
 		cell.setCellStyle(headerCellStyle);
 		cell.setCellValue(columnName);
 
+		if (columnWidth != null) {
+			this.sheet.setColumnWidth(columnIndex, columnWidth * 256);
+		}
+
+	}
+
+	public void autoSizeColumns() {
+		Row row = this.sheet.getRow(0);
+		int columnCount = row.getLastCellNum();
+		for (int i = 0; i < columnCount; i++) {
+			this.autoSizeColumns(i);
+		}
+	}
+
+	public void autoSizeColumns(int columnIndex) {
+		int rowCount = this.sheet.getLastRowNum();
+		for (int i = 0; i <= rowCount; i++) {
+			Row row = this.sheet.getRow(i);
+			Cell cell = row.getCell(i);
+			CellType cellType = cell.getCellType();
+			System.out.println("cellType:" + cellType.getCode());
+			// this.sheet.autoSizeColumn(column);
+		}
 	}
 
 	public void addColumnName(String... columnNames) {
@@ -96,14 +138,14 @@ public class ExcelWriter {
 			// 第四个参数表示是否斜体,此处true表示为斜体
 			// 第五个参数表示下划线样式
 			// 第六个参数表示颜色样式，此处为Red
-			this.addHeaderCell(columnNames[i]);
+			this.addHeaderCell(columnNames[i], null);
 		}
 	}
 
 	public io.leopard.boot.excel.poi.Row addRow() {
 		int rowCount = this.sheet.getLastRowNum();
 		Row row = this.sheet.createRow(rowCount + 1);
-		return new io.leopard.boot.excel.poi.Row(row, this.mainCellStyle);
+		return new io.leopard.boot.excel.poi.Row(row, this.mainCellStyle, this.dateCellStyle);
 	}
 
 	public void save(File file) throws IOException {
