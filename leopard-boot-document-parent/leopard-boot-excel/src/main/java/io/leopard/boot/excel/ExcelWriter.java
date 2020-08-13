@@ -58,6 +58,12 @@ public class ExcelWriter {
 	}
 
 	private void init() {
+		{// 为了linux准确计算列宽
+			Font defaultFont = this.workbook.getFontAt(0);
+			defaultFont.setFontName("宋体");
+			defaultFont.setFontHeightInPoints((short) 11);
+			// System.out.println("defaultFont:" + defaultFont.getFontName() + " size:" + defaultFont.getFontHeightInPoints());
+		}
 		{
 			Font font = this.workbook.createFont();
 			font.setBold(true);
@@ -124,6 +130,9 @@ public class ExcelWriter {
 	}
 
 	public void autoSizeColumns() {
+
+		// Font defaultFont = wb.getFontAt( 0);
+
 		Row row = this.sheet.getRow(0);
 		int columnCount = row.getLastCellNum();
 		for (int i = 0; i < columnCount; i++) {
