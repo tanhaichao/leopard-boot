@@ -128,7 +128,7 @@ public class ExcelWriter {
 		int columnCount = row.getLastCellNum();
 		for (int i = 0; i < columnCount; i++) {
 			sheet.autoSizeColumn(i);
-			System.out.println("width:" + sheet.getColumnWidth(i));
+			// System.out.println("width:" + sheet.getColumnWidth(i));
 			sheet.setColumnWidth(i, sheet.getColumnWidth(i) + 2 * 256);// 多出2个字
 		}
 	}
