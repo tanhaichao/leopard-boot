@@ -13,17 +13,17 @@ public abstract class Row {
 	public abstract Row addCell(String str);
 
 	public Row addCell(Bnum bnum) throws WriteException {
-		String str = bnum.getDesc();
+		String str = (bnum == null) ? "" : bnum.getDesc();
 		return this.addCell(str);
 	}
 
 	public Row addCell(Inum inum) throws WriteException {
-		String str = inum.getDesc();
+		String str = (inum == null) ? "" : inum.getDesc();
 		return this.addCell(str);
 	}
 
 	public Row addCell(Snum snum) throws WriteException {
-		String str = snum.getDesc();
+		String str = (snum == null) ? "" : snum.getDesc();
 		return this.addCell(str);
 	}
 
