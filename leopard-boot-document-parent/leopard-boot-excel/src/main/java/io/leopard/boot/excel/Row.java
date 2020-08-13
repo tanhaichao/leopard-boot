@@ -24,8 +24,6 @@ public class Row {
 		this.currentCell = 0;
 	}
 
-	private static final SimpleDateFormat GET_TIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
 	public Row addCell(String str) throws WriteException {
 		sheet.addCell(new Label(currentCell++, rowNumber, str));
 		return this;
@@ -78,7 +76,7 @@ public class Row {
 	}
 
 	public Row addCell(Date date) throws WriteException {
-		String time = GET_TIME_FORMAT.format(date);
+		String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
 		return this.addCell(time);
 	}
 
