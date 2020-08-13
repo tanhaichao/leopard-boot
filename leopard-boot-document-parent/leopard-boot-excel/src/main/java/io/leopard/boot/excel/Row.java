@@ -6,28 +6,11 @@ import java.util.Date;
 import io.leopard.lang.inum.Bnum;
 import io.leopard.lang.inum.Inum;
 import io.leopard.lang.inum.Snum;
-import jxl.write.Label;
-import jxl.write.WritableSheet;
 import jxl.write.WriteException;
 
-public class Row {
+public abstract class Row {
 
-	private WritableSheet sheet;
-
-	private int rowNumber;
-
-	private int currentCell;
-
-	public Row(WritableSheet sheet, int rowNumber) {
-		this.sheet = sheet;
-		this.rowNumber = rowNumber;
-		this.currentCell = 0;
-	}
-
-	public Row addCell(String str) throws WriteException {
-		sheet.addCell(new Label(currentCell++, rowNumber, str));
-		return this;
-	}
+	public abstract Row addCell(String str);
 
 	public Row addCell(Bnum bnum) throws WriteException {
 		String str = bnum.getDesc();

@@ -69,7 +69,7 @@ public class Sheet {
 	}
 
 	public Row addRow() {
-		Row row = new Row(sheet, currentRow);
+		Row row = new RowJxlImpl(sheet, currentRow);
 		currentRow++;
 		return row;
 	}
