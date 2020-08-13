@@ -6,9 +6,6 @@ import java.util.Date;
 
 import org.junit.Test;
 
-import io.leopard.boot.excel.ExcelWriter;
-import io.leopard.boot.excel.Row;
-
 public class ExcelWriterTest {
 
 	@Test
@@ -24,7 +21,8 @@ public class ExcelWriterTest {
 		Row row = writer.addRow();
 		row.addCell("名称1");
 		row.addCell("广东");
-		row.addCell("广州广州广州广州广州广州广州广州广州广州广州广州广州广州广州广州");
+		row.addCell("广州广州广州广州广州广州广州广州");
+		// row.addCell("广州广州广州广州广州广州广州广州广州广州广州广州广州广州广州广州");
 		row.addCell(2);
 		row.addDate(new Date());
 		writer.autoSizeColumns();
