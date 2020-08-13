@@ -114,11 +114,14 @@ public class ExcelWriter {
 		Row row = this.sheet.getRow(0);
 		int columnCount = row.getLastCellNum();
 		for (int i = 0; i < columnCount; i++) {
-			this.autoSizeColumns(i);
+			sheet.autoSizeColumn(i);
+			System.out.println("width:" + sheet.getColumnWidth(i));
+			sheet.setColumnWidth(i, sheet.getColumnWidth(i) + 2 * 256);// 多出2个字
 		}
 	}
 
 	public void autoSizeColumns(int columnIndex) {
+
 		int rowCount = this.sheet.getLastRowNum();
 		for (int i = 0; i <= rowCount; i++) {
 			Row row = this.sheet.getRow(i);
