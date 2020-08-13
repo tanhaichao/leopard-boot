@@ -11,13 +11,10 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.io.FileUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.AbstractUrlBasedView;
 
-import jxl.Workbook;
-import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
 
 public class ExcelView extends ModelAndView {
@@ -27,15 +24,11 @@ public class ExcelView extends ModelAndView {
 	 */
 	private String fileName;
 
-	private ByteArrayOutputStream output;
+	// private ByteArrayOutputStream output;
 
-	private WritableWorkbook workbook;
+	private ExcelWriter excelWriter;
 
 	protected String sheetName;
-
-	private Sheet sheet;
-
-	private int currentRow;
 
 	private AbstractUrlBasedView view = new AbstractUrlBasedView() {
 		@Override
@@ -48,9 +41,10 @@ public class ExcelView extends ModelAndView {
 			String filedisplay = URLEncoder.encode(fileName + ".xls", "UTF-8");
 			response.addHeader("Content-Disposition", "attachment;filename=" + filedisplay);
 			// System.out.println("filedisplay:" + filedisplay);
-			workbook.write();
-			workbook.close();
 
+			ByteArrayOutputStream output = new ByteArrayOutputStream();
+			excelWriter.write(output);
+			excelWriter.close();
 			InputStream input = new ByteArrayInputStream(output.toByteArray());
 			java.io.OutputStream out = response.getOutputStream();
 			byte[] b = new byte[1024];
@@ -70,13 +64,15 @@ public class ExcelView extends ModelAndView {
 
 	public ExcelView(String sheetName) throws IOException {
 		super.setView(view);
-		output = new ByteArrayOutputStream();
-		this.workbook = Workbook.createWorkbook(output);
+		this.excelWriter = new ExcelWriter(false);
+		excelWriter.createSheet(sheetName);
 		this.sheetName = sheetName;
 	}
 
-	public Sheet addSheet(String sheetName) {
-		return new Sheet(workbook, sheetName);
+	public void addSheet(String sheetName) {
+		excelWriter.createSheet(sheetName);
+
+		// return new Sheet(workbook, sheetName);
 	}
 
 	/**
@@ -86,16 +82,14 @@ public class ExcelView extends ModelAndView {
 	 * @param width 宽度,最大255
 	 * @throws WriteException
 	 */
-	public void addColumn(String columnName, int width) throws WriteException {
-		if (this.sheet == null) {
-			this.sheet = new Sheet(workbook, sheetName);
-		}
-		this.sheet.addColumn(columnName, width);
+	public void addColumn(String columnName, int columnWidth) throws WriteException {
+		excelWriter.addHeaderCell(columnName, columnWidth);
+		// this.sheet.addColumn(columnName, width);
 	}
 
 	public void addColumnName(String... columnNames) throws WriteException {
-		this.sheet = new Sheet(workbook, sheetName);
-		this.sheet.addColumnName(columnNames);
+		excelWriter.addColumnName(columnNames);
+		// this.sheet.addColumnName(columnNames);
 	}
 
 	public String getFileName() {
@@ -106,11 +100,12 @@ public class ExcelView extends ModelAndView {
 		this.fileName = fileName;
 	}
 
-	public Row addRow() {
+	public io.leopard.boot.excel.Row addRow() {
+		return excelWriter.addRow();
 		// Row row = new Row(sheet, currentRow);
 		// currentRow++;
 		// return row;
-		return sheet.addRow();
+		// return sheet.addRow();
 	}
 
 	public File save(String fileId) throws IOException, WriteException {
@@ -120,9 +115,8 @@ public class ExcelView extends ModelAndView {
 	}
 
 	public void save(File file) throws IOException, WriteException {
-		workbook.write();
-		workbook.close();
-		FileUtils.writeByteArrayToFile(file, output.toByteArray());
+		this.excelWriter.save(file);
+		// FileUtils.writeByteArrayToFile(file, output.toByteArray());
 	}
 
 }

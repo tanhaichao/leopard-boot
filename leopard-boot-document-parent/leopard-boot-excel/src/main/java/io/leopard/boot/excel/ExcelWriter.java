@@ -1,4 +1,4 @@
-package io.leopard.boot.excel.poi;
+package io.leopard.boot.excel;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -27,21 +27,34 @@ public class ExcelWriter {
 	}
 
 	public ExcelWriter(boolean xlsx) {
+		this(null, xlsx);
+	}
+
+	public ExcelWriter(String sheetName) {
+		this(sheetName, false);
+	}
+
+	public ExcelWriter(String sheetName, boolean xlsx) {
 		if (xlsx) {
 			this.workbook = new XSSFWorkbook();
 		}
 		else {
 			this.workbook = new HSSFWorkbook();
 		}
+		if (sheetName != null) {
+			this.createSheet(sheetName);
+		}
 		this.init();
 	}
 
-	public void createSheet(String sheetName) {
+	public Sheet createSheet(String sheetName) {
 		this.sheet = workbook.createSheet(sheetName);
+		return this.sheet;
 	}
 
-	public void selectSheet(String sheetName) {
+	public Sheet selectSheet(String sheetName) {
 		this.sheet = this.workbook.getSheet(sheetName);
+		return this.sheet;
 	}
 
 	private void init() {
@@ -127,7 +140,7 @@ public class ExcelWriter {
 			Row row = this.sheet.getRow(i);
 			Cell cell = row.getCell(i);
 			CellType cellType = cell.getCellType();
-			System.out.println("cellType:" + cellType.getCode());
+			// System.out.println("cellType:" + cellType.getCode());
 			// this.sheet.autoSizeColumn(column);
 		}
 	}
@@ -145,10 +158,18 @@ public class ExcelWriter {
 		}
 	}
 
-	public io.leopard.boot.excel.poi.Row addRow() {
+	public io.leopard.boot.excel.Row addRow() {
 		int rowCount = this.sheet.getLastRowNum();
 		Row row = this.sheet.createRow(rowCount + 1);
-		return new io.leopard.boot.excel.poi.Row(row, this.mainCellStyle, this.dateCellStyle);
+		return new io.leopard.boot.excel.Row(row, this.mainCellStyle, this.dateCellStyle);
+	}
+
+	public void write(OutputStream stream) throws IOException {
+		this.workbook.write(stream);
+	}
+
+	public void close() throws IOException {
+		this.workbook.close();
 	}
 
 	public void save(File file) throws IOException {
