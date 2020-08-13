@@ -106,6 +106,7 @@ public class ExcelView extends ModelAndView {
 		// return sheet.addRow();
 	}
 
+	@Deprecated
 	public File save(String fileId) throws IOException {
 		File file = new File("/tmp/" + fileId + ".xls");
 		this.save(file);
