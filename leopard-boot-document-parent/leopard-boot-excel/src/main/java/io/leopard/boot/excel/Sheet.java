@@ -1,6 +1,10 @@
 package io.leopard.boot.excel;
 
+import java.io.File;
+import java.io.IOException;
+
 import jxl.CellView;
+import jxl.Workbook;
 import jxl.format.CellFormat;
 import jxl.write.Label;
 import jxl.write.WritableCellFormat;
@@ -15,7 +19,17 @@ public class Sheet {
 
 	private int currentRow;
 
+	private WritableWorkbook workbook;
+
+	public Sheet(String sheetName, File file) throws IOException {
+		// WritableWorkbook
+		this.workbook = Workbook.createWorkbook(file);
+		this.sheet = workbook.createSheet(sheetName, 0);
+		this.currentRow = 1;
+	}
+
 	public Sheet(WritableWorkbook workbook, String sheetName) {
+		this.workbook = workbook;
 		this.sheet = workbook.createSheet(sheetName, 0);
 		this.currentRow = 1;
 	}
@@ -78,4 +92,8 @@ public class Sheet {
 		return sheet.getColumns();
 	}
 
+	public void save() throws IOException, WriteException {
+		this.workbook.write();
+		workbook.close();
+	}
 }
