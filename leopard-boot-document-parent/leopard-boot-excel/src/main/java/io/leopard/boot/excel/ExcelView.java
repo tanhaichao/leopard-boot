@@ -28,6 +28,11 @@ public class ExcelView extends ModelAndView {
 
 	protected String sheetName;
 
+	/**
+	 * 是否自动列宽
+	 */
+	private boolean autoSizeColumns;
+
 	private AbstractUrlBasedView view = new AbstractUrlBasedView() {
 		@Override
 		protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -41,6 +46,9 @@ public class ExcelView extends ModelAndView {
 			// System.out.println("filedisplay:" + filedisplay);
 
 			ByteArrayOutputStream output = new ByteArrayOutputStream();
+			if (autoSizeColumns) {
+				excelWriter.autoSizeColumns();
+			}
 			excelWriter.write(output);
 			excelWriter.close();
 			InputStream input = new ByteArrayInputStream(output.toByteArray());
@@ -56,15 +64,20 @@ public class ExcelView extends ModelAndView {
 		}
 	};
 
-	public ExcelView() throws IOException {
+	public ExcelView() {
 		this("sheet1");
 	}
 
-	public ExcelView(String sheetName) throws IOException {
+	public ExcelView(String sheetName) {
+		this(sheetName, true);
+	}
+
+	public ExcelView(String sheetName, boolean autoSizeColumns) {
 		super.setView(view);
 		this.excelWriter = new ExcelWriter(false);
 		excelWriter.createSheet(sheetName);
 		this.sheetName = sheetName;
+		this.autoSizeColumns = autoSizeColumns;
 	}
 
 	public void addSheet(String sheetName) {
@@ -114,6 +127,9 @@ public class ExcelView extends ModelAndView {
 	}
 
 	public void save(File file) throws IOException {
+		if (autoSizeColumns) {
+			excelWriter.autoSizeColumns();
+		}
 		this.excelWriter.save(file);
 		// FileUtils.writeByteArrayToFile(file, output.toByteArray());
 	}
