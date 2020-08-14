@@ -28,6 +28,10 @@
 					<groupId>org.slf4j</groupId>
 					<artifactId>jcl-over-slf4j</artifactId>
 				</exclusion>
+				<exclusion>
+					<groupId>com.fasterxml.jackson.core</groupId>
+					<artifactId>jackson-databind</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 		<dependency>
@@ -57,7 +61,8 @@
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-json</artifactId>
 			<version>0.9.21-SNAPSHOT</version>
-		</dependency><dependency>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-autoconfigure</artifactId>
 			<version>${springboot.version}</version>
