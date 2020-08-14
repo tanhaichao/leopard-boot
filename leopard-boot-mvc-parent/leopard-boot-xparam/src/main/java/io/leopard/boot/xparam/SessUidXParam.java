@@ -26,7 +26,8 @@ public class SessUidXParam implements XParam {
 			Nologin nologin = parameter.getMethodAnnotation(Nologin.class);
 			if (nologin == null) {
 				String ip = XParamUtil.getProxyIp(request);
-				throw new NotLoginException("您[" + ip + "]未登录.");
+				String uri = request.getRequestURI();
+				throw new NotLoginException("您[ip:" + ip + " uri:" + uri + "]未登录.");
 			}
 			else {
 				return 0L;
