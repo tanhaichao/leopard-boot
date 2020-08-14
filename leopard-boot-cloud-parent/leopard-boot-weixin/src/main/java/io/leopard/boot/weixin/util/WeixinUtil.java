@@ -22,6 +22,8 @@ import org.apache.commons.logging.LogFactory;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.springframework.util.StringUtils;
 
+import io.leopard.boot.weixin.model.WeixinData;
+import io.leopard.boot.weixin.model.WeixinMobile;
 import io.leopard.boot.weixin.model.WeixinUserinfo;
 import io.leopard.json.Json;
 
@@ -111,7 +113,7 @@ public class WeixinUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	public static WeixinUserinfo getUserinfo(String sessionKey, String encryptedData, String iv) {
+	public static WeixinData getData(String sessionKey, String encryptedData, String iv) {
 		if (StringUtils.isEmpty(sessionKey)) {
 			throw new IllegalArgumentException("sessionKey不能为空");
 		}
@@ -152,7 +154,13 @@ public class WeixinUtil {
 			if (null != resultByte && resultByte.length > 0) {
 				String json = new String(resultByte, "UTF-8");
 				logger.info("json:" + json);
-				return Json.toObject(json, WeixinUserinfo.class);
+				if (json.indexOf("phoneNumber") == -1) {
+					return Json.toObject(json, WeixinUserinfo.class);
+				}
+				else {
+					return Json.toObject(json, WeixinMobile.class);
+				}
+
 			}
 		}
 		catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidParameterSpecException | InvalidKeyException | InvalidAlgorithmParameterException | IllegalBlockSizeException

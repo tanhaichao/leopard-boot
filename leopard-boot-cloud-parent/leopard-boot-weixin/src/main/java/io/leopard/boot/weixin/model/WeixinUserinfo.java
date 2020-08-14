@@ -6,7 +6,8 @@ package io.leopard.boot.weixin.model;
  * @author 谭海潮
  *
  */
-public class WeixinUserinfo {
+public class WeixinUserinfo extends WeixinData {
+
 	private String openId;
 
 	private String nickName;
@@ -24,8 +25,6 @@ public class WeixinUserinfo {
 	private String avatarUrl;// https://wx.qlogo.cn/mmopen/vi_32/xxxxxxxxxxxxxxxxxxxxxxxxxxxxx/132
 
 	private String unionId;
-
-	private Watermark watermark;
 
 	public String getOpenId() {
 		return openId;
@@ -99,18 +98,4 @@ public class WeixinUserinfo {
 		this.unionId = unionId;
 	}
 
-	public Watermark getWatermark() {
-		return watermark;
-	}
-
-	public void setWatermark(Watermark watermark) {
-		this.watermark = watermark;
-	}
-
-	public static class Watermark {
-
-		private int timestamp;
-
-		private String appid;
-	}
 }
