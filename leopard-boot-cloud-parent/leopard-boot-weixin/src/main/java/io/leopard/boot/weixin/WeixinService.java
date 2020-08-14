@@ -11,5 +11,7 @@ public interface WeixinService {
 	 */
 	String getSessionKey(String code);
 
+	String getAppId();
+
 	JSCode2Session jscode2Session(String code);
 }

@@ -32,6 +32,7 @@ public class WeixinServiceImpl implements WeixinService {
 	@Value("${leopard.proxy:}") // 默认为empty
 	private String proxy;// 格式 ip:port
 
+	@Override
 	public String getAppId() {
 		return appId;
 	}
