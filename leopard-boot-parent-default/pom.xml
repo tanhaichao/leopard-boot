@@ -1,6 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -19,8 +17,9 @@
 
 	<properties>
 		<leopard.version>0.9.16-SNAPSHOT</leopard.version>
-		<springboot.version>1.5.21.RELEASE</springboot.version>
+		<springboot.version>1.5.22.RELEASE</springboot.version>
 		<elasticsearch.version>6.8.11</elasticsearch.version>
+		<tomcat.version>8.5.57</tomcat.version>
 		<jdk.version>1.8</jdk.version>
 	</properties>
 
@@ -55,6 +54,17 @@
 				<groupId>commons-beanutils</groupId>
 				<artifactId>commons-beanutils</artifactId>
 				<version>1.9.4</version>
+				<exclusions>
+					<exclusion>
+						<groupId>commons-collections</groupId>
+						<artifactId>commons-collections</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-collections4</artifactId>
+				<version>4.4</version>
 			</dependency>
 			<!-- -->
 
@@ -137,7 +147,7 @@
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-elasticsearch</artifactId>
 				<version>0.9.21-SNAPSHOT</version>
-			</dependency>			
+			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-validator</artifactId>
