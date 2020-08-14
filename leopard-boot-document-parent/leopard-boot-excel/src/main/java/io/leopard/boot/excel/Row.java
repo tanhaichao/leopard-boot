@@ -56,6 +56,27 @@ public class Row {
 		return this;
 	}
 
+	public Row setId(int column, String id) {
+		Cell cell = row.createCell(column);
+		cell.setCellStyle(style);
+		cell.setCellValue(id);
+		return this;
+	}
+
+	public Row setId(int column, int id) {
+		Cell cell = row.createCell(column);
+		cell.setCellStyle(style);
+		cell.setCellValue(Integer.toString(id));
+		return this;
+	}
+
+	public Row setId(int column, long id) {
+		Cell cell = row.createCell(column);
+		cell.setCellStyle(style);
+		cell.setCellValue(Long.toString(id));
+		return this;
+	}
+
 	public Row setCell(int column, long value) {
 		Cell cell = row.createCell(column);
 		cell.setCellStyle(style);
