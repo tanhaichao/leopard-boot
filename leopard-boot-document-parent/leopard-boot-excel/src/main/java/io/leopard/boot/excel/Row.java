@@ -49,6 +49,20 @@ public class Row {
 		return this;
 	}
 
+	public Row setCell(int column, double value) {
+		Cell cell = row.createCell(column);
+		cell.setCellStyle(style);
+		cell.setCellValue(value);
+		return this;
+	}
+
+	public Row setCell(int column, long value) {
+		Cell cell = row.createCell(column);
+		cell.setCellStyle(style);
+		cell.setCellValue(value);
+		return this;
+	}
+
 	public Row setCell(int column, String value) {
 		Cell cell = row.createCell(column);
 		cell.setCellStyle(style);
