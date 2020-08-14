@@ -168,6 +168,7 @@ public class WeixinUtil {
 			throw new RuntimeException(e.getMessage(), e);
 		}
 		catch (BadPaddingException e) {
+			logger.error("sessionKey:" + sessionKey + " encryptedData:" + encryptedData + " iv:" + iv);
 			throw new RuntimeException("sessionKey已失效!", e);
 		}
 		throw new RuntimeException("解析手机号码出错.");
