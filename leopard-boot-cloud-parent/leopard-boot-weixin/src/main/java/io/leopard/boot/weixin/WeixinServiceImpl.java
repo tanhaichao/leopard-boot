@@ -6,6 +6,8 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,8 @@ import io.leopard.json.Json;
 @Service("leopardBootWeixinServiceImpl")
 @ConditionalOnProperty(prefix = "weixin", name = "secret")
 public class WeixinServiceImpl implements WeixinService {
+
+	protected Log logger = LogFactory.getLog(this.getClass());
 
 	@Value("${weixin.appId}")
 	private String appId;
@@ -54,7 +58,7 @@ public class WeixinServiceImpl implements WeixinService {
 
 	@PostConstruct
 	public void init() {
-		System.err.println("WeixinService proxy:" + this.proxy);
+		logger.info("WeixinService proxy:" + this.proxy);
 	}
 
 	/**
@@ -71,7 +75,7 @@ public class WeixinServiceImpl implements WeixinService {
 
 	@Override
 	public JSCode2Session jscode2Session(String code) {
-		System.out.println("code:" + code);
+		logger.info("code:" + code);
 		// System.out.println("iv:" + iv);
 		// System.out.println("encryptedData:" + encryptedData);
 
@@ -85,11 +89,11 @@ public class WeixinServiceImpl implements WeixinService {
 		params.put("js_code", code);
 		params.put("grant_type", "authorization_code");
 		String json = Httpnb.doPost("https://api.weixin.qq.com/sns/jscode2session", proxy, params);
-		System.err.println("json:" + json);
+		logger.info("json:" + json);
 		Map<String, Object> obj = Json.toMap(json);
 		Integer errCode = (Integer) obj.get("errcode");
 		if (errCode != null) {
-			System.err.println("json:" + json);
+			logger.error("json:" + json);
 			// json:{"errcode":40163,"errmsg":"code been used, hints: [ req_id: xxx ]"}
 
 			// String errmsg = (String) obj.get("errmsg");

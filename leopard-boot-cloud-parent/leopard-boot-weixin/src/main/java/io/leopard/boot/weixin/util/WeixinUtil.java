@@ -18,12 +18,15 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.springframework.util.StringUtils;
 
 import io.leopard.json.Json;
 
 public class WeixinUtil {
+	protected static Log logger = LogFactory.getLog(WeixinUtil.class);
 
 	public static String getUserInfo(String encryptedData, String sessionKey, String iv) {
 
@@ -43,7 +46,7 @@ public class WeixinUtil {
 		byte[] keyByte = Base64.decodeBase64(sessionKey);
 		byte[] ivByte = Base64.decodeBase64(iv);
 
-		System.err.println("keyByte:" + keyByte.length);
+		// System.err.println("keyByte:" + keyByte.length);
 		try {
 
 			// 如果密钥不足16位，那么就补足. 这个if 中的内容很重要
@@ -83,7 +86,7 @@ public class WeixinUtil {
 			if (null != resultByte && resultByte.length > 0) {
 
 				String result = new String(resultByte, "UTF-8");
-				System.out.println("result:" + result);
+				logger.info("result:" + result);
 				return result;
 
 			}
@@ -149,6 +152,8 @@ public class WeixinUtil {
 			if (null != resultByte && resultByte.length > 0) {
 				String json = new String(resultByte, "UTF-8");
 				Map<String, Object> map = Json.toMap(json);
+				logger.info("json:" + json);
+				logger.info("map:" + map);
 				return (String) map.get("phoneNumber");
 			}
 		}
