@@ -5,6 +5,8 @@ import java.util.Date;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.util.CellRangeAddress;
 
 import io.leopard.lang.inum.Bnum;
 import io.leopard.lang.inum.Inum;
@@ -24,11 +26,30 @@ public class Row {
 		this.dateCellStyle = dateCellStyle;
 	}
 
+	public Row skipCell(int count) {
+		int column = this.row.getLastCellNum();
+		if (column == -1) {
+			column = 0;
+		}
+		for (int i = 0; i < count; i++) {
+			Cell cell = row.createCell(column + i);
+			cell.setCellStyle(style);
+		}
+		return this;
+	}
+
 	public Row addCell(String value) {
 		int column = this.row.getLastCellNum();
 		if (column == -1) {
 			column = 0;
 		}
+		Cell cell = row.createCell(column);
+		cell.setCellStyle(style);
+		cell.setCellValue(value);
+		return this;
+	}
+
+	public Row setCell(int column, String value) {
 		Cell cell = row.createCell(column);
 		cell.setCellStyle(style);
 		cell.setCellValue(value);
@@ -118,5 +139,35 @@ public class Row {
 		cell.setCellStyle(dateCellStyle);
 		cell.setCellValue(date);
 		return this;
+	}
+
+	/**
+	 * 合并行
+	 * 
+	 * @param column 第几列
+	 * @param rowCount 行数
+	 */
+	public void mergeRows(int column, int rowCount) {
+		int firstRow = this.row.getRowNum();
+		int lastRow = firstRow + rowCount - 1;
+		CellRangeAddress region = new CellRangeAddress(firstRow, lastRow, column, column);
+		Sheet sheet = this.row.getSheet();
+		sheet.addMergedRegion(region);
+	}
+
+	public Row getRow(int index) {
+		Sheet sheet = this.row.getSheet();
+		org.apache.poi.ss.usermodel.Row row;
+		if (index == 0) {
+			row = this.row;
+		}
+		else if (index < 0) {
+			row = sheet.getRow(this.row.getRowNum() + index);
+		}
+		else {
+			row = sheet.createRow(this.row.getRowNum() + index);
+		}
+		return new Row(row, style, dateCellStyle);
+
 	}
 }

@@ -52,10 +52,10 @@ public class ExcelWriterTest {
 		writer.addHeaderCell("药品数量");
 		writer.addColumnName("金额");
 
-		writer.addHeaderCell("运费", 25);
-		writer.addHeaderCell("总金额", 25);
-		writer.addHeaderCell("快递公司", 25);
-		writer.addHeaderCell("快递单号", 25);
+		writer.addHeaderCell("运费");
+		writer.addHeaderCell("总金额");
+		writer.addHeaderCell("快递公司");
+		writer.addHeaderCell("快递单号");
 
 		Row row = writer.addRow();
 		row.addCell("E-001");
@@ -66,6 +66,8 @@ public class ExcelWriterTest {
 		// row.addCell(10);
 		row.addCell(11);
 		row.addCell(12);
+		row.addCell("顺丰");
+		row.addCell("SF-13456");
 
 		for (int i = 0; i < 3; i++) {
 			Row _row = row.getRow(i);

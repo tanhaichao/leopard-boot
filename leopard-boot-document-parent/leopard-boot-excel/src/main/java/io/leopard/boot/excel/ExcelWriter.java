@@ -13,6 +13,7 @@ import org.apache.poi.ss.usermodel.DataFormat;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.VerticalAlignment;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -83,6 +84,8 @@ public class ExcelWriter {
 
 			CellStyle style = workbook.createCellStyle();
 			style.setFont(font);
+			style.setVerticalAlignment(VerticalAlignment.CENTER);
+
 			this.mainCellStyle = style;
 		}
 		{// 日期格式
