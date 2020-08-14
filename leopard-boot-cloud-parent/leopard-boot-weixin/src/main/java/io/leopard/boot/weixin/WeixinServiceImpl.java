@@ -97,7 +97,7 @@ public class WeixinServiceImpl implements WeixinService {
 		}
 		String sessionKey = (String) obj.get("session_key");
 		String openid = (String) obj.get("openid");
-		String unionId = (String) obj.get("unionId");
+		String unionId = (String) obj.get("unionid");
 
 		if (StringUtils.isEmpty(sessionKey)) {
 			throw new RuntimeException("sessionKey怎么会为空?");
