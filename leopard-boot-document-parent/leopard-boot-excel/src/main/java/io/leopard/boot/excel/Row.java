@@ -75,6 +75,18 @@ public class Row {
 		return this.addCell((double) num);
 	}
 
+	public Row addId(String id) {
+		return this.addCell(id);
+	}
+
+	public Row addId(int id) {
+		return this.addCell(Integer.toString(id));
+	}
+
+	public Row addId(long id) {
+		return this.addCell(Long.toString(id));
+	}
+
 	/**
 	 * 自动在数字前增加+号？
 	 * 
