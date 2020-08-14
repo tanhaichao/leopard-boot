@@ -8,7 +8,6 @@ import java.security.NoSuchAlgorithmException;
 import java.security.Security;
 import java.security.spec.InvalidParameterSpecException;
 import java.util.Arrays;
-import java.util.Map;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -23,12 +22,13 @@ import org.apache.commons.logging.LogFactory;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.springframework.util.StringUtils;
 
+import io.leopard.boot.weixin.model.WeixinUserinfo;
 import io.leopard.json.Json;
 
 public class WeixinUtil {
 	protected static Log logger = LogFactory.getLog(WeixinUtil.class);
 
-	public static String getUserInfo(String encryptedData, String sessionKey, String iv) {
+	public static String getUserInfo_bak(String encryptedData, String sessionKey, String iv) {
 
 		// // 被加密的数据
 		//
@@ -111,7 +111,7 @@ public class WeixinUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	public static String getMobile(String sessionKey, String encryptedData, String iv) {
+	public static WeixinUserinfo getUserinfo(String sessionKey, String encryptedData, String iv) {
 		if (StringUtils.isEmpty(sessionKey)) {
 			throw new IllegalArgumentException("sessionKey不能为空");
 		}
@@ -151,10 +151,8 @@ public class WeixinUtil {
 			byte[] resultByte = cipher.doFinal(dataByte);
 			if (null != resultByte && resultByte.length > 0) {
 				String json = new String(resultByte, "UTF-8");
-				Map<String, Object> map = Json.toMap(json);
 				logger.info("json:" + json);
-				logger.info("map:" + map);
-				return (String) map.get("phoneNumber");
+				return Json.toObject(json, WeixinUserinfo.class);
 			}
 		}
 		catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidParameterSpecException | InvalidKeyException | InvalidAlgorithmParameterException | IllegalBlockSizeException
