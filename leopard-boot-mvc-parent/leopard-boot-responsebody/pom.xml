@@ -38,5 +38,9 @@
 			<artifactId>leopard-boot-json</artifactId>
 			<version>0.9.21-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+		</dependency>
 	</dependencies>
 </project>
