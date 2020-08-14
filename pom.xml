@@ -31,10 +31,8 @@
 				<version>1.9.4</version>
 				<exclusions>
 					<exclusion>
-						<dependency>
-							<groupId>commons-collections</groupId>
-							<artifactId>commons-collections</artifactId>
-						</dependency>
+						<groupId>commons-collections</groupId>
+						<artifactId>commons-collections</artifactId>
 					</exclusion>
 				</exclusions>
 			</dependency>
