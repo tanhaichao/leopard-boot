@@ -14,6 +14,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import io.leopard.boot.weixin.model.JSCode2Session;
+import io.leopard.boot.weixin.model.WeixinMobile;
+import io.leopard.boot.weixin.model.WeixinUserinfo;
+import io.leopard.boot.weixin.util.WeixinUtil;
 import io.leopard.httpnb.Httpnb;
 import io.leopard.json.Json;
 
@@ -115,5 +118,17 @@ public class WeixinServiceImpl implements WeixinService {
 		session.setUnionId(unionId);
 		session.setSessionKey(sessionKey);
 		return session;
+	}
+
+	@Override
+	public String getUnionIdByUserinfo(String sessionKey, String encryptedData, String iv) {
+		WeixinUserinfo weixinUserinfo = (WeixinUserinfo) WeixinUtil.getData(sessionKey, encryptedData, iv);
+		return weixinUserinfo.getUnionId();
+	}
+
+	@Override
+	public WeixinMobile getWeixinMobile(String sessionKey, String encryptedData, String iv) {
+		WeixinMobile weixinMobile = (WeixinMobile) WeixinUtil.getData(sessionKey, encryptedData, iv);
+		return weixinMobile;
 	}
 }

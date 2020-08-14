@@ -1,7 +1,10 @@
 package io.leopard.boot.weixin.mock;
 
+import org.springframework.util.StringUtils;
+
 import io.leopard.boot.weixin.WeixinService;
 import io.leopard.boot.weixin.model.JSCode2Session;
+import io.leopard.boot.weixin.model.WeixinMobile;
 
 public class MockWeixinService implements WeixinService {
 
@@ -10,6 +13,10 @@ public class MockWeixinService implements WeixinService {
 	private String appId;
 
 	private JSCode2Session session;
+
+	private String unionId;
+
+	private String purePhoneNumber;
 
 	public MockWeixinService() {
 	}
@@ -63,6 +70,37 @@ public class MockWeixinService implements WeixinService {
 
 	public void setAppId(String appId) {
 		this.appId = appId;
+	}
+
+	public String getUnionId() {
+		return unionId;
+	}
+
+	public void setUnionId(String unionId) {
+		this.unionId = unionId;
+	}
+
+	@Override
+	public String getUnionIdByUserinfo(String sessionKey, String encryptedData, String iv) {
+		return this.unionId;
+	}
+
+	public String getPurePhoneNumber() {
+		return purePhoneNumber;
+	}
+
+	public void setPurePhoneNumber(String purePhoneNumber) {
+		this.purePhoneNumber = purePhoneNumber;
+	}
+
+	@Override
+	public WeixinMobile getWeixinMobile(String sessionKey, String encryptedData, String iv) {
+		if (StringUtils.isEmpty(purePhoneNumber)) {
+			throw new RuntimeException("非法请求.");
+		}
+		WeixinMobile weixinMobile = new WeixinMobile();
+		weixinMobile.setPurePhoneNumber(purePhoneNumber);
+		return weixinMobile;
 	}
 
 }
