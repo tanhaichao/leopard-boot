@@ -240,6 +240,10 @@ public class Httpnb {
 		return sb.toString();
 	}
 
+	public static Proxy newHttpProxy(String hostAndPort) {
+		return new Proxy(Proxy.Type.HTTP, Httpnb.newInetSocketAddress(hostAndPort));
+	}
+
 	/**
 	 * 
 	 * 
