@@ -34,6 +34,7 @@ public class MailClientImpl implements MailClient {
 	@Override
 	public boolean sendText(String to, String subject, String content) throws EmailException {
 		SimpleEmail email = new SimpleEmail();
+		email.setCharset("UTF-8");
 		email.setHostName(host);// 设置使用发电子邮件的邮件服务器
 		email.addTo(to);
 		email.setAuthentication(user, password);
@@ -55,6 +56,7 @@ public class MailClientImpl implements MailClient {
 	public boolean sendHtml(String to, String subject, String content) throws EmailException {
 		HtmlEmail email = new HtmlEmail();
 		email.setHostName(host);// 设置使用发电子邮件的邮件服务器
+		email.setCharset("UTF-8");
 		email.addTo(to);
 		email.setAuthentication(user, password);
 		email.setFrom(user);
