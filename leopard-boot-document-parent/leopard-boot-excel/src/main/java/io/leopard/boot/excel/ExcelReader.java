@@ -58,7 +58,7 @@ public class ExcelReader {
 		}
 
 		List<E> list = new ArrayList<>();
-		for (int i = 1; i < sheet.getLastRowNum(); i++) {
+		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
 			E bean;
 			try {
 				bean = clazz.newInstance();
@@ -92,8 +92,9 @@ public class ExcelReader {
 				catch (IllegalAccessException e) {
 					throw new RuntimeException(e.getMessage(), e);
 				}
-
 			}
+
+			list.add(bean);
 		}
 		workbook.close();
 		input.close();
