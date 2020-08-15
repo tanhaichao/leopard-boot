@@ -55,8 +55,15 @@ public class MailClientImpl implements MailClient {
 		email.setFrom(user);
 		email.setSubject(subject);
 		email.setMsg(content);
-		email.setSSLOnConnect(true);
-		email.setSslSmtpPort("465"); // 若启用，设置smtp协议的SSL端口号
+		// email.setSSLOnConnect(true);
+		// email.setSslSmtpPort("465"); // 若启用，设置smtp协议的SSL端口号
+		if (port == 465) {
+			email.setSSLOnConnect(true);
+			email.setSslSmtpPort(Integer.toString(port)); // 若启用，设置smtp协议的SSL端口号
+		}
+		else {
+			email.setSmtpPort(port);
+		}
 		email.send();
 		return true;
 	}
