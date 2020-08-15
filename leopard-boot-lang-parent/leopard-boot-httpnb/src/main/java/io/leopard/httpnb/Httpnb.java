@@ -62,6 +62,37 @@ public class Httpnb {
 		}
 	}
 
+	public static String doGet(String url, Proxy proxy, long timeout) {
+		return doGet(url, proxy, timeout, null);
+	}
+
+	public static String doGet(String url, Proxy proxy, long timeout, Map<String, Object> params) {
+		return doGet(url, proxy, timeout, params, null);
+	}
+
+	public static String doGet(String url, Proxy proxy, Map<String, Object> params) {
+		return doGet(url, proxy, -1, params, null);
+	}
+
+	public static String doGet(String url, Proxy proxy, long timeout, Map<String, Object> params, String charsetName) {
+		HttpHeader header = new HttpHeaderGetImpl(timeout);
+		header.setProxy(proxy);
+		if (params != null) {
+			Iterator<Entry<String, Object>> iterator = params.entrySet().iterator();
+			while (iterator.hasNext()) {
+				Entry<String, Object> entry = iterator.next();
+				header.addParam(new Param(entry.getKey(), entry.getValue()));
+			}
+		}
+		try {
+			HttpURLConnection conn = header.openConnection(url);
+			return execute(conn, charsetName);
+		}
+		catch (IOException e) {
+			throw new HttpException(e, header);
+		}
+	}
+
 	public static InputStream doGetForInputStream(String url, long timeout) throws IOException {
 		HttpHeader header = new HttpHeaderGetImpl(timeout);
 
