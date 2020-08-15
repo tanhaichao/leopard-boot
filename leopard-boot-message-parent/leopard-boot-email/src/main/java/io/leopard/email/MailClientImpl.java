@@ -1,11 +1,16 @@
 package io.leopard.email;
 
+import java.io.IOException;
+import java.util.Map;
+
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 import org.apache.commons.mail.SimpleEmail;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
+
+import freemarker.template.TemplateException;
 
 @Component
 @ConditionalOnProperty(prefix = "mail", name = "host")
@@ -68,4 +73,9 @@ public class MailClientImpl implements MailClient {
 		return true;
 	}
 
+	@Override
+	public boolean sendHtmlByTemplatePath(String to, String subject, String templatePath, Map<String, Object> model) throws EmailException, IOException, TemplateException {
+		String content = MailTemplateUtil.render(templatePath, model);
+		return this.sendHtml(to, subject, content);
+	}
 }
