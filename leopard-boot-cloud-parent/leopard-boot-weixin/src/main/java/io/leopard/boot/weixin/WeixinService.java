@@ -1,5 +1,6 @@
 package io.leopard.boot.weixin;
 
+import io.leopard.boot.weixin.model.AccessToken;
 import io.leopard.boot.weixin.model.JSCode2Session;
 import io.leopard.boot.weixin.model.WeixinMobile;
 
@@ -13,6 +14,8 @@ public interface WeixinService {
 	String getSessionKey(String code);
 
 	String getAppId();
+
+	AccessToken getAccessToken();
 
 	JSCode2Session jscode2Session(String code);
 

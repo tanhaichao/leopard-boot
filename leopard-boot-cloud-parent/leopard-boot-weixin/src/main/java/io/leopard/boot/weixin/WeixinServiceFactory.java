@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 public class WeixinServiceFactory {
 
 	protected static Log logger = LogFactory.getLog(WeixinServiceFactory.class);
+
 	@Value("${leopard.proxy:}") // 默认为empty
 	private String proxy;// 格式 ip:port
 
@@ -37,7 +38,7 @@ public class WeixinServiceFactory {
 		WeixinServiceImpl weixinService = new WeixinServiceImpl();
 		weixinService.setAppId(appId);
 		weixinService.setSecret(secret);
-		weixinService.setProxy(proxy);
+		weixinService.setProxyConfig(proxy);
 		weixinService.init();
 		return weixinService;
 	}

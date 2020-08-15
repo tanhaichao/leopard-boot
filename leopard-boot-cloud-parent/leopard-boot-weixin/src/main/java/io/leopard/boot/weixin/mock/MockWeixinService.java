@@ -3,6 +3,7 @@ package io.leopard.boot.weixin.mock;
 import org.springframework.util.StringUtils;
 
 import io.leopard.boot.weixin.WeixinService;
+import io.leopard.boot.weixin.model.AccessToken;
 import io.leopard.boot.weixin.model.JSCode2Session;
 import io.leopard.boot.weixin.model.WeixinMobile;
 
@@ -101,6 +102,12 @@ public class MockWeixinService implements WeixinService {
 		WeixinMobile weixinMobile = new WeixinMobile();
 		weixinMobile.setPurePhoneNumber(purePhoneNumber);
 		return weixinMobile;
+	}
+
+	@Override
+	public AccessToken getAccessToken() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

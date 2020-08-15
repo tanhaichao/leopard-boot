@@ -13,6 +13,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import io.leopard.boot.weixin.model.AccessToken;
 import io.leopard.boot.weixin.model.JSCode2Session;
 import io.leopard.boot.weixin.model.WeixinMobile;
 import io.leopard.boot.weixin.model.WeixinUserinfo;
@@ -33,7 +34,9 @@ public class WeixinServiceImpl implements WeixinService {
 	private String secret;
 
 	@Value("${leopard.proxy:}") // 默认为empty
-	private String proxy;// 格式 ip:port
+	private String proxyConfig;// 格式 ip:port
+
+	private Proxy proxy;
 
 	@Override
 	public String getAppId() {
@@ -52,17 +55,21 @@ public class WeixinServiceImpl implements WeixinService {
 		this.secret = secret;
 	}
 
-	public String getProxy() {
-		return proxy;
+	public String getProxyConfig() {
+		return proxyConfig;
 	}
 
-	public void setProxy(String proxy) {
-		this.proxy = proxy;
+	public void setProxyConfig(String proxyConfig) {
+		this.proxyConfig = proxyConfig;
 	}
 
 	@PostConstruct
 	public void init() {
-		logger.info("WeixinService proxy:" + this.proxy);
+		logger.info("WeixinService proxy:" + this.proxyConfig);
+
+		if (!StringUtils.isEmpty(this.proxyConfig)) {
+			proxy = Httpnb.newHttpProxy(this.proxyConfig);
+		}
 	}
 
 	/**
@@ -83,10 +90,6 @@ public class WeixinServiceImpl implements WeixinService {
 		// System.out.println("iv:" + iv);
 		// System.out.println("encryptedData:" + encryptedData);
 
-		Proxy proxy = null;
-		if (!StringUtils.isEmpty(this.proxy)) {
-			proxy = new Proxy(Proxy.Type.HTTP, Httpnb.newInetSocketAddress(this.proxy));
-		}
 		Map<String, Object> params = new LinkedHashMap<>();
 		params.put("appId", appId);
 		params.put("secret", secret);
@@ -130,5 +133,17 @@ public class WeixinServiceImpl implements WeixinService {
 	public WeixinMobile getWeixinMobile(String sessionKey, String encryptedData, String iv) {
 		WeixinMobile weixinMobile = (WeixinMobile) WeixinUtil.getData(sessionKey, encryptedData, iv);
 		return weixinMobile;
+	}
+
+	@Override
+	public AccessToken getAccessToken() {
+		Map<String, Object> params = new LinkedHashMap<>();
+		params.put("appId", "client_credential");
+		params.put("appId", appId);
+		params.put("secret", secret);
+		String url = "https://api.weixin.qq.com/cgi-bin/token";
+		String json = Httpnb.doGet(url, proxy, params);
+		logger.info("getAccessToken:" + json);
+		return Json.toObject(json, AccessToken.class);
 	}
 }
