@@ -22,21 +22,33 @@ public class RequestBodyFilter implements Filter {
 		// 打印请求Url
 		String requestBody = request.getParameter("requestBody");
 		if (requestBody == null) {
-			ServletInputStream input = request.getInputStream();
-			byte[] bytes = IOUtils.toByteArray(input);
-			if (bytes.length > 0) {
-				requestBody = new String(bytes);
+			// Content-Type: text/xml
+			String contentType = request.getHeader("Content-Type");
+			if ("text/xml".equals(contentType)) {
+				// 暂时忽略xml
 			}
-			// System.err.println("requestBody uri:" + request.getRequestURI() + " length:" + bytes.length + " " + new String(bytes));
-			input.close();
+			else {
+				ServletInputStream input = request.getInputStream();
+				byte[] bytes = IOUtils.toByteArray(input);
+				if (bytes.length > 0) {
+					requestBody = new String(bytes);
+				}
+				// System.err.println("requestBody uri:" + request.getRequestURI() + " length:" + bytes.length + " " + new String(bytes));
+				input.close();
+			}
 		}
 		// System.err.println("RequestBodyFilter:" + requestBody);
 		if (StringUtils.isEmpty(requestBody)) {
 			chain.doFilter(req, res);
 		}
 		else {
-			RequestBodyHttpServletRequestWrapper wrapper = new RequestBodyHttpServletRequestWrapper(request, requestBody);
-			chain.doFilter(wrapper, res);
+			if (requestBody.startsWith("[") || requestBody.startsWith("{")) {// 仅支持json
+				RequestBodyHttpServletRequestWrapper wrapper = new RequestBodyHttpServletRequestWrapper(request, requestBody);
+				chain.doFilter(wrapper, res);
+			}
+			else {
+				chain.doFilter(req, res);
+			}
 
 			// Object body = Json.toMap(requestBody);
 			// request.setAttribute("requestBody", body);
