@@ -19,11 +19,17 @@ public class LeopardRunner extends SpringJUnit4ClassRunner {
 	}
 
 	public static void config() {
-		System.err.println("config logback");
 		LoggerContext context = (LoggerContext) LoggerFactory.getILoggerFactory();
 		Logger root = context.getLogger("root");
 
-		context.getStatusManager().clear();
+		// BasicStatusManager statusManager = (BasicStatusManager) context.getStatusManager();
+
+		// new BasicStatusManager().add("xxx");
+		context.setStatusManager(new LeopardStatusManager());
+		// context.getStatusManager().clear();
+
+		// context.setStatusManager(statusManager);
+
 		root.setLevel(Level.WARN);
 	}
 }
