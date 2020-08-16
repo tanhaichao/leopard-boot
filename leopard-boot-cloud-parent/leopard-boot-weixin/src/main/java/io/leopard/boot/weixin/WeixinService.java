@@ -29,4 +29,6 @@ public interface WeixinService {
 	void getAllPrivateTemplate();
 
 	void sendTemplateMessage(TemplateMessageForm message);
+
+	void createMenu(String body);
 }

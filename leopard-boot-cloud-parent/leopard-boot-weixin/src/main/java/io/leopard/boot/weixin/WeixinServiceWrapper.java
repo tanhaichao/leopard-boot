@@ -61,4 +61,9 @@ public class WeixinServiceWrapper implements WeixinService {
 	public void sendTemplateMessage(TemplateMessageForm message) {
 		weixinService.sendTemplateMessage(message);
 	}
+
+	@Override
+	public void createMenu(String body) {
+		weixinService.createMenu(body);
+	}
 }

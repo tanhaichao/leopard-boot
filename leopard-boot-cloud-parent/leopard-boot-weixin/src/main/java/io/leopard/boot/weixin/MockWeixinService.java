@@ -1,8 +1,7 @@
-package io.leopard.boot.weixin.mock;
+package io.leopard.boot.weixin;
 
 import org.springframework.util.StringUtils;
 
-import io.leopard.boot.weixin.WeixinService;
 import io.leopard.boot.weixin.form.TemplateMessageForm;
 import io.leopard.boot.weixin.model.AccessToken;
 import io.leopard.boot.weixin.model.JSCode2Session;
@@ -125,6 +124,12 @@ public class MockWeixinService implements WeixinService {
 
 	@Override
 	public void sendTemplateMessage(TemplateMessageForm message) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void createMenu(String body) {
 		// TODO Auto-generated method stub
 
 	}
