@@ -3,6 +3,7 @@ package io.leopard.boot.weixin;
 import io.leopard.boot.weixin.form.TemplateMessageForm;
 import io.leopard.boot.weixin.model.AccessToken;
 import io.leopard.boot.weixin.model.JSCode2Session;
+import io.leopard.boot.weixin.model.Qrcode;
 import io.leopard.boot.weixin.model.WeixinMobile;
 
 public interface WeixinService {
@@ -24,7 +25,7 @@ public interface WeixinService {
 
 	WeixinMobile getWeixinMobile(String sessionKey, String encryptedData, String iv);
 
-	void getQrcodeLimitStrScene(String sceneStr);
+	Qrcode getQrcodeLimitStrScene(String sceneStr);
 
 	void getAllPrivateTemplate();
 

@@ -3,6 +3,7 @@ package io.leopard.boot.weixin;
 import io.leopard.boot.weixin.form.TemplateMessageForm;
 import io.leopard.boot.weixin.model.AccessToken;
 import io.leopard.boot.weixin.model.JSCode2Session;
+import io.leopard.boot.weixin.model.Qrcode;
 import io.leopard.boot.weixin.model.WeixinMobile;
 
 public class WeixinServiceWrapper implements WeixinService {
@@ -48,8 +49,8 @@ public class WeixinServiceWrapper implements WeixinService {
 	}
 
 	@Override
-	public void getQrcodeLimitStrScene(String sceneStr) {
-		weixinService.getQrcodeLimitStrScene(sceneStr);
+	public Qrcode getQrcodeLimitStrScene(String sceneStr) {
+		return weixinService.getQrcodeLimitStrScene(sceneStr);
 	}
 
 	@Override

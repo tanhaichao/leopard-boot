@@ -5,6 +5,7 @@ import org.springframework.util.StringUtils;
 import io.leopard.boot.weixin.form.TemplateMessageForm;
 import io.leopard.boot.weixin.model.AccessToken;
 import io.leopard.boot.weixin.model.JSCode2Session;
+import io.leopard.boot.weixin.model.Qrcode;
 import io.leopard.boot.weixin.model.WeixinMobile;
 
 public class MockWeixinService implements WeixinService {
@@ -111,9 +112,9 @@ public class MockWeixinService implements WeixinService {
 	}
 
 	@Override
-	public void getQrcodeLimitStrScene(String sceneStr) {
+	public Qrcode getQrcodeLimitStrScene(String sceneStr) {
 		// TODO Auto-generated method stub
-
+		return null;
 	}
 
 	@Override

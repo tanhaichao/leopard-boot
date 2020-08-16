@@ -16,6 +16,7 @@ import org.springframework.util.StringUtils;
 import io.leopard.boot.weixin.form.TemplateMessageForm;
 import io.leopard.boot.weixin.model.AccessToken;
 import io.leopard.boot.weixin.model.JSCode2Session;
+import io.leopard.boot.weixin.model.Qrcode;
 import io.leopard.boot.weixin.model.Userinfo;
 import io.leopard.boot.weixin.model.WeixinMobile;
 import io.leopard.boot.weixin.model.WeixinUserinfo;
@@ -152,7 +153,7 @@ public class WeixinServiceImpl implements WeixinService {
 	}
 
 	@Override
-	public void getQrcodeLimitStrScene(String sceneStr) {
+	public Qrcode getQrcodeLimitStrScene(String sceneStr) {
 		AccessToken accessToken = this.getAccessToken();
 		Map<String, Object> params = new LinkedHashMap<>();
 
@@ -162,12 +163,17 @@ public class WeixinServiceImpl implements WeixinService {
 		String body = "{\"action_name\": \"QR_LIMIT_STR_SCENE\", \"action_info\": {\"scene\": {\"scene_str\": \"" + sceneStr + "\"}}}";
 		// params.put("body", body);
 
+		// 2020-08-17 02:23:18.503 [main]leopard-test INFO io.leopard.boot.weixin.WeixinServiceImpl -
+		// getQrcodeLimitStrScene:{"ticket":"gQHK8DwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyLUhQYTRxc3ZjbDMxMDAwME0wN1AAAgQz6jhfAwQAAAAA","url":"http:\/\/weixin.qq.com\/q\/02-HPa4qsvcl310000M07P"}
+
 		String json = Httpnb.doPost(url, proxy, params, body);
 		logger.info("getQrcodeLimitStrScene:" + json);
 
 		// https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=TICKET
 
 		// https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=TOKEN
+
+		return Json.toObject(json, Qrcode.class);
 	}
 
 	public Userinfo getUserinfo() {
