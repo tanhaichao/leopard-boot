@@ -15,12 +15,8 @@ public class RequestBodyHttpServletRequestWrapper extends HttpServletRequestWrap
 
 	public RequestBodyHttpServletRequestWrapper(HttpServletRequest request, String requestBody) {
 		super(request);
-
-		if (requestBody.startsWith("[") || requestBody.startsWith("{")) {// 仅支持json
-			this.requestBody = Json.toMap(requestBody);
-			request.setAttribute("requestBody", this.requestBody);
-		}
-
+		this.requestBody = Json.toMap(requestBody);
+		request.setAttribute("requestBody", this.requestBody);
 	}
 
 	@Override
