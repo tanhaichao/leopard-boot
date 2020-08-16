@@ -153,13 +153,15 @@ public class Httpnb {
 		return doPost(url, proxy, -1, map, body);
 	}
 
-	public static String doPost(String url, Proxy proxy, long timeout, Map<String, Object> map, String body) {
+	public static String doPost(String url, Proxy proxy, long timeout, Map<String, Object> params, String body) {
 		HttpHeader header = new HttpHeaderPostImpl(timeout);
 		header.setProxy(proxy);
-		Iterator<Entry<String, Object>> iterator = map.entrySet().iterator();
-		while (iterator.hasNext()) {
-			Entry<String, Object> entry = iterator.next();
-			header.addParam(new Param(entry.getKey(), entry.getValue()));
+		if (params != null) {
+			Iterator<Entry<String, Object>> iterator = params.entrySet().iterator();
+			while (iterator.hasNext()) {
+				Entry<String, Object> entry = iterator.next();
+				header.addParam(new Param(entry.getKey(), entry.getValue()));
+			}
 		}
 
 		try {
