@@ -15,11 +15,14 @@ import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLSession;
 
 @Deprecated
-class HttpHeaderImpl implements HttpHeader {
+public class HttpHeaderImpl implements HttpHeader {
 
 	private long timeout = -1;
+
 	private String cookie;
+
 	private String method = "GET";
+
 	private String userAgent = null;
 
 	private List<Param> paramList = new ArrayList<Param>();
