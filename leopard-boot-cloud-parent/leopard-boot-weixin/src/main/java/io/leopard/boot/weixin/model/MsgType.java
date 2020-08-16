@@ -5,6 +5,7 @@ import io.leopard.lang.inum.Snum;
 public enum MsgType implements Snum {
 	TEXT("text", "文本")//
 	, LINK("link", "链接")//
+	, EVENT("event", "事件")//
 	, IMAGE("image", "图片");
 	private String key;
 
