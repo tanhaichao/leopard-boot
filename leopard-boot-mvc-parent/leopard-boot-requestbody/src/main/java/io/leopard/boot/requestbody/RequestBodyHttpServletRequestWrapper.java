@@ -7,6 +7,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 
+import org.springframework.util.StringUtils;
+
 import io.leopard.json.Json;
 
 public class RequestBodyHttpServletRequestWrapper extends HttpServletRequestWrapper {
@@ -15,9 +17,13 @@ public class RequestBodyHttpServletRequestWrapper extends HttpServletRequestWrap
 
 	public RequestBodyHttpServletRequestWrapper(HttpServletRequest request, String requestBody) {
 		super(request);
-		this.requestBody = Json.toMap(requestBody);
 
-		request.setAttribute("requestBody", this.requestBody);
+		if (!StringUtils.isEmpty(requestBody)) {
+			if (requestBody.startsWith("[") || requestBody.startsWith("{")) {// 仅支持json
+				this.requestBody = Json.toMap(requestBody);
+				request.setAttribute("requestBody", this.requestBody);
+			}
+		}
 	}
 
 	@Override
