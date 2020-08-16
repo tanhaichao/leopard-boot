@@ -2,3 +2,7 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 io.leopard.boot.test.datasource.ProjectDatasourceAutoConfiguration
 
+# Environment Post Processors
+org.springframework.boot.env.EnvironmentPostProcessor=\
+io.leopard.test.LoggingPostProcessor
+

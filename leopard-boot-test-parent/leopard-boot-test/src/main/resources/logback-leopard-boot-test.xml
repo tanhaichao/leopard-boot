@@ -13,8 +13,6 @@
 	</appender>
 
 
-	<logger name="com.vbp.chufang" level="OFF">
-	</logger>
 
 
 	<logger name="ch.qos.logback" level="OFF">
@@ -83,17 +81,6 @@
 	</logger>
 
 	<logger name="org.springframework.web.servlet.view.freemarker" level="OFF">
-	</logger>
-
-
-
-
-
-	<logger name="io.xiaoniu.boot.network_forwarding" level="OFF">
-	</logger>
-
-
-	<logger name="io.leopard.boot.weixin" level="OFF">
 	</logger>
 
 

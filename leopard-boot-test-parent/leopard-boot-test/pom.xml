@@ -53,6 +53,14 @@
 			<artifactId>leopard-jvmdns</artifactId>
 			<version>0.9.21-SNAPSHOT</version>
 		</dependency>
+
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-logging</artifactId>
+		</dependency>
+
+
 	</dependencies>
 
 </project>

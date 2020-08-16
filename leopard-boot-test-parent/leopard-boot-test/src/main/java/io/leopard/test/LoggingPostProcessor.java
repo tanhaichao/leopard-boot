@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.env.EnvironmentPostProcessor;
 import org.springframework.core.env.ConfigurableEnvironment;
@@ -33,6 +34,7 @@ public class LoggingPostProcessor implements EnvironmentPostProcessor {
 		if (!isJunit()) {
 			return;
 		}
+		application.setBannerMode(Banner.Mode.OFF);
 		Map<String, Object> properties = new HashMap<String, Object>();
 		properties.put("logging.config", "classpath:logback-leopard-boot-test.xml");
 
