@@ -1,6 +1,7 @@
 package io.leopard.boot.jetty;
 
 import org.apache.commons.lang3.SystemUtils;
+import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 
 public class JettyServer {
@@ -40,6 +41,7 @@ public class JettyServer {
 		SpringApplication app = new SpringApplication(application);
 		// 启动dev配置文件
 		app.setAdditionalProfiles("dev"); // dev 或prod
+		app.setBannerMode(Banner.Mode.OFF);// 设置Banner
 		app.run();
 	}
 }
