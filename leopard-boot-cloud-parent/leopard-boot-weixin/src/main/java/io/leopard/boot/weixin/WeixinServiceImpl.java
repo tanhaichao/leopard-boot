@@ -154,6 +154,12 @@ public class WeixinServiceImpl implements WeixinService {
 
 	@Override
 	public Qrcode getQrcodeStrScene(String sceneStr, int expireSeconds) {
+		if (StringUtils.isEmpty(sceneStr)) {
+			throw new IllegalArgumentException("sceneStr不能为空.");
+		}
+		if (sceneStr.length() > 64) {
+			throw new IllegalArgumentException("sceneStr不能超过64位.");
+		}
 		if (expireSeconds > 2592000) {
 			expireSeconds = 2592000;
 		}
@@ -170,7 +176,7 @@ public class WeixinServiceImpl implements WeixinService {
 		// getQrcodeLimitStrScene:{"ticket":"gQHK8DwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyLUhQYTRxc3ZjbDMxMDAwME0wN1AAAgQz6jhfAwQAAAAA","url":"http:\/\/weixin.qq.com\/q\/02-HPa4qsvcl310000M07P"}
 
 		String json = Httpnb.doPost(url, proxy, params, body);
-		logger.info("getQrcodeLimitStrScene:" + json);
+		logger.info("getQrcodeStrScene:" + json);
 
 		// https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=TICKET
 
