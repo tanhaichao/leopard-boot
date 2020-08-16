@@ -135,4 +135,9 @@ public class MockWeixinService implements WeixinService {
 
 	}
 
+	@Override
+	public Qrcode getQrcodeStrScene(String sceneStr, int expireSeconds) {
+		return null;
+	}
+
 }

@@ -67,4 +67,9 @@ public class WeixinServiceWrapper implements WeixinService {
 	public void createMenu(String body) {
 		weixinService.createMenu(body);
 	}
+
+	@Override
+	public Qrcode getQrcodeStrScene(String sceneStr, int expireSeconds) {
+		return weixinService.getQrcodeStrScene(sceneStr, expireSeconds);
+	}
 }

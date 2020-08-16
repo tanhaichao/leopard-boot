@@ -32,4 +32,6 @@ public interface WeixinService {
 	void sendTemplateMessage(TemplateMessageForm message);
 
 	void createMenu(String body);
+
+	Qrcode getQrcodeStrScene(String sceneStr, int expireSeconds);
 }

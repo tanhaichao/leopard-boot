@@ -169,7 +169,7 @@ public class WeixinServiceImpl implements WeixinService {
 		// {"action_name": "QR_LIMIT_STR_SCENE", "action_info": {"scene": {"scene_str": "test"}}}
 		String url = "https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=" + accessToken.getAccess_token();
 
-		String body = "{\"expire_seconds\": 604800, \"action_name\": \"QR_SCENE\", \"action_info\": {\"scene\": {\"scene_str\": \"" + sceneStr + "\"}}}";
+		String body = "{\"expire_seconds\": " + expireSeconds + ", \"action_name\": \"QR_SCENE\", \"action_info\": {\"scene\": {\"scene_str\": \"" + sceneStr + "\"}}}";
 		// params.put("body", body);
 
 		// 2020-08-17 02:23:18.503 [main]leopard-test INFO io.leopard.boot.weixin.WeixinServiceImpl -
