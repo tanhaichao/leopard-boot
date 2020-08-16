@@ -5,22 +5,34 @@ import java.io.InputStream;
 
 import org.w3c.dom.Element;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 import io.leopard.boot.weixin.model.message.WeixinMessage;
 
 public class WeixinMessageParser {
 	public static final XmlMapper xmlMapper = new XmlMapper();
+	static {
+		xmlMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+		// XML标签名:使用骆驼命名的属性名，
+		xmlMapper.setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
+		xmlMapper.enable(MapperFeature.USE_STD_BEAN_NAMING);
+	}
 
 	public static String toJson(String xml) throws IOException {
+
 		JsonNode node = xmlMapper.readTree(xml.getBytes());
 
-		ObjectMapper jsonMapper = new ObjectMapper();
-		String json = jsonMapper.writeValueAsString(node);
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
+		mapper.setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
+		String json = mapper.writeValueAsString(node);
 		return json;
 	}
 

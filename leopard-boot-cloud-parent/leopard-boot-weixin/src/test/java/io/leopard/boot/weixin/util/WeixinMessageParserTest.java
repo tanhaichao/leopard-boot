@@ -25,9 +25,9 @@ public class WeixinMessageParserTest {
 		File file = new File("/tmp/weixin/test1.xml");
 		String xml = FileUtils.readFileToString(file, "UTF-8");
 		String json = WeixinMessageParser.toJson(xml);
-		VoiceWeixinMessage message = Json.toObject(json, VoiceWeixinMessage.class);
 		System.out.println(json);
 
+		VoiceWeixinMessage message = Json.toObject(json, VoiceWeixinMessage.class);
 		System.out.println("message:" + message.getToUserName());
 	}
 
