@@ -1,6 +1,7 @@
 package io.leopard.test;
 
 import org.junit.runner.RunWith;
+import org.springframework.boot.logging.LoggingSystem;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -12,5 +13,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 // @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class IntegrationTests {
+	static {
 
+		System.setProperty(LoggingSystem.class.getName(), LeopardTestLogbackLoggingSystem.class.getName());
+
+	}
 }
