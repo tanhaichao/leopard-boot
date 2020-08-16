@@ -13,8 +13,10 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import io.leopard.boot.weixin.form.TemplateMessageForm;
 import io.leopard.boot.weixin.model.AccessToken;
 import io.leopard.boot.weixin.model.JSCode2Session;
+import io.leopard.boot.weixin.model.Userinfo;
 import io.leopard.boot.weixin.model.WeixinMobile;
 import io.leopard.boot.weixin.model.WeixinUserinfo;
 import io.leopard.boot.weixin.util.WeixinUtil;
@@ -147,5 +149,51 @@ public class WeixinServiceImpl implements WeixinService {
 		// {"errcode":40002,"errmsg":"invalid grant_type rid: 5f386c70-441d34a9-7baebd7c"}
 		logger.info("getAccessToken:" + json);
 		return Json.toObject(json, AccessToken.class);
+	}
+
+	@Override
+	public void getQrcodeLimitStrScene(String sceneStr) {
+		AccessToken accessToken = this.getAccessToken();
+		Map<String, Object> params = new LinkedHashMap<>();
+
+		// {"action_name": "QR_LIMIT_STR_SCENE", "action_info": {"scene": {"scene_str": "test"}}}
+		String url = "https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=" + accessToken.getAccess_token();
+
+		String body = "{\"action_name\": \"QR_LIMIT_STR_SCENE\", \"action_info\": {\"scene\": {\"scene_str\": \"" + sceneStr + "\"}}}";
+		// params.put("body", body);
+
+		String json = Httpnb.doPost(url, proxy, params, body);
+		logger.info("getQrcodeLimitStrScene:" + json);
+
+		// https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=TICKET
+
+		// https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=TOKEN
+	}
+
+	public Userinfo getUserinfo() {
+
+		String url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
+
+		return null;
+	}
+
+	@Override
+	public void getAllPrivateTemplate() {
+		AccessToken accessToken = this.getAccessToken();
+		String url = "https://api.weixin.qq.com/cgi-bin/template/get_all_private_template?access_token=" + accessToken.getAccess_token();
+		String json = Httpnb.doGet(url);
+		logger.info("json:" + json);
+	}
+
+	@Override
+	public void sendTemplateMessage(TemplateMessageForm message) {
+		AccessToken accessToken = this.getAccessToken();
+		Map<String, Object> params = new LinkedHashMap<>();
+		// {"action_name": "QR_LIMIT_STR_SCENE", "action_info": {"scene": {"scene_str": "test"}}}
+		String url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=" + accessToken.getAccess_token();
+		String body = Json.toJson(message);
+		// params.put("body", body);
+		String json = Httpnb.doPost(url, proxy, params, body);
+		logger.info("getQrcodeLimitStrScene:" + json);
 	}
 }

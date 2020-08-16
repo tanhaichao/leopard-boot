@@ -3,6 +3,7 @@ package io.leopard.boot.weixin.mock;
 import org.springframework.util.StringUtils;
 
 import io.leopard.boot.weixin.WeixinService;
+import io.leopard.boot.weixin.form.TemplateMessageForm;
 import io.leopard.boot.weixin.model.AccessToken;
 import io.leopard.boot.weixin.model.JSCode2Session;
 import io.leopard.boot.weixin.model.WeixinMobile;
@@ -108,6 +109,24 @@ public class MockWeixinService implements WeixinService {
 	public AccessToken getAccessToken() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void getQrcodeLimitStrScene(String sceneStr) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void getAllPrivateTemplate() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void sendTemplateMessage(TemplateMessageForm message) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

@@ -1,5 +1,6 @@
 package io.leopard.boot.weixin;
 
+import io.leopard.boot.weixin.form.TemplateMessageForm;
 import io.leopard.boot.weixin.model.AccessToken;
 import io.leopard.boot.weixin.model.JSCode2Session;
 import io.leopard.boot.weixin.model.WeixinMobile;
@@ -22,4 +23,10 @@ public interface WeixinService {
 	String getUnionIdByUserinfo(String sessionKey, String encryptedData, String iv);
 
 	WeixinMobile getWeixinMobile(String sessionKey, String encryptedData, String iv);
+
+	void getQrcodeLimitStrScene(String sceneStr);
+
+	void getAllPrivateTemplate();
+
+	void sendTemplateMessage(TemplateMessageForm message);
 }
