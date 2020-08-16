@@ -196,4 +196,17 @@ public class WeixinServiceImpl implements WeixinService {
 		String json = Httpnb.doPost(url, proxy, params, body);
 		logger.info("getQrcodeLimitStrScene:" + json);
 	}
+
+	@Override
+	public void createMenu(String body) {
+		// https://developers.weixin.qq.com/doc/offiaccount/Custom_Menus/Creating_Custom-Defined_Menu.html
+		AccessToken accessToken = this.getAccessToken();
+		Map<String, Object> params = new LinkedHashMap<>();
+		// {"action_name": "QR_LIMIT_STR_SCENE", "action_info": {"scene": {"scene_str": "test"}}}
+		String url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=" + accessToken.getAccess_token();
+		// String body = Json.toJson(message);
+		// params.put("body", body);
+		String json = Httpnb.doPost(url, proxy, params, body);
+		logger.info("getQrcodeLimitStrScene:" + json);
+	}
 }
