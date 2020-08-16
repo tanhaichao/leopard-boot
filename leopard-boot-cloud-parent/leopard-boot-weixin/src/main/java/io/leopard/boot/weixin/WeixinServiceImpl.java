@@ -160,6 +160,9 @@ public class WeixinServiceImpl implements WeixinService {
 		if (sceneStr.length() > 64) {
 			throw new IllegalArgumentException("sceneStr不能超过64位.");
 		}
+		if (expireSeconds < 60) {
+			expireSeconds = 60;
+		}
 		if (expireSeconds > 2592000) {
 			expireSeconds = 2592000;
 		}
