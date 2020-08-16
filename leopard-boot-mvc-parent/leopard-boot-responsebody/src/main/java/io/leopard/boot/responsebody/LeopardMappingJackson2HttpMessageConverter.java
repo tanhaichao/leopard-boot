@@ -10,13 +10,12 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 public class LeopardMappingJackson2HttpMessageConverter extends MappingJackson2HttpMessageConverter {
 
 	public LeopardMappingJackson2HttpMessageConverter(ObjectMapper objectMapper) {
 		super(objectMapper);
-		logger.info("XmlMapper:" + XmlMapper.class.getName());
+		// logger.info("XmlMapper:" + XmlMapper.class.getName());
 		// setSupportedMediaTypes(Arrays.asList(MediaType.TEXT_HTML));
 	}
 
