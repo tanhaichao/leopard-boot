@@ -34,7 +34,6 @@
 	</logger>
 	<logger name="org.springframework.test.annotation" level="OFF">
 	</logger>
-
 	<logger name="org.springframework.boot.logging" level="WARN">
 		<appender-ref ref="STDOUT" />
 	</logger>
