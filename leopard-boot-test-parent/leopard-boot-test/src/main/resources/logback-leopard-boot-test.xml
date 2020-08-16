@@ -1,4 +1,6 @@
 <configuration>
+	<contextName>default</contextName>
+
 
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<!-- encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
@@ -6,57 +8,97 @@
 			<level>INFO</level>
 		</filter>
 		<encoder>
-			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %C - %msg%n</pattern>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread]leopard-test %-5level %C - %msg%n</pattern>
 		</encoder>
 	</appender>
-
-	<appender name="ALL_FILE" class="ch.qos.logback.core.FileAppender">
-		<file>/log/resin/all.log</file>
-		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-			<level>INFO</level>
-		</filter>
-		<append>true</append>
-
-		<encoder>
-			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %C - %msg%n</pattern>
-		</encoder>
-	</appender>
-
-
-	<appender name="ERROR_FILE" class="ch.qos.logback.core.FileAppender">
-		<file>/log/resin/error.log</file>
-		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-			<level>ERROR</level>
-		</filter>
-		<append>true</append>
-		<encoder>
-			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %C - %msg%n</pattern>
-		</encoder>
-	</appender>
-
-	<logger name="io.leopard.boot.requestmapping" level="OFF">
-	</logger>
-	<logger name="org.springframework.web.servlet.mvc.method" level="OFF">
-	</logger>
 
 
 	<logger name="com.vbp.chufang" level="OFF">
 	</logger>
 
-	<logger name="org.springframework.test.context.support" level="OFF">
+
+	<logger name="ch.qos.logback" level="OFF">
+	</logger>
+
+
+	<logger name="org.springframework.web.servlet.mvc.method" level="WARN">
+		<appender-ref ref="STDOUT" />
+	</logger>
+
+	<logger name="org.springframework.web.servlet.handler" level="WARN">
+		<appender-ref ref="STDOUT" />
+	</logger>
+
+
+
+
+	<logger name="org.springframework.core.env" level="OFF">
+	</logger>
+	<logger name="org.springframework.test.annotation" level="OFF">
+	</logger>
+
+	<logger name="org.springframework.boot.logging" level="WARN">
+		<appender-ref ref="STDOUT" />
+	</logger>
+
+	<logger name="org.springframework.boot.test.context" level="OFF">
+	</logger>
+	<logger name="org.springframework.test.context" level="OFF">
+	</logger>
+
+	<logger name="org.springframework.scheduling" level="OFF">
+	</logger>
+	<logger name="org.springframework.data" level="OFF">
+	</logger>
+	<logger name="org.springframework.beans" level="OFF">
+	</logger>
+	<logger name="ch.qos.logback.core.joran.action" level="OFF">
+	</logger>
+	<logger name="io.leopard.web.mvc.option" level="OFF">
+	</logger>
+	<logger name="io.leopard.boot.requestmapping" level="OFF">
+	</logger>
+	<logger name="com.mchange.v2" level="OFF">
+	</logger>
+
+	<logger name="org.hibernate.validator" level="WARN">
+	</logger>
+
+	<logger name="io.leopard.jdbc" level="WARN">
+	</logger>
+	<logger name="org.springframework.web.servlet" level="INFO">
+	</logger>
+
+
+
+	<logger name="org.springframework.context.support" level="WARN">
+	</logger>
+
+	<logger name="io.leopard.boot.responsebody" level="WARN">
+	</logger>
+
+
+
+	<logger name="org.springframework.context" level="OFF">
+	</logger>
+
+	<logger name="org.springframework.web.servlet.view.freemarker" level="OFF">
 	</logger>
 
 
 
 
 
+	<logger name="io.xiaoniu.boot.network_forwarding" level="OFF">
+	</logger>
 
 
-	<root>
-		<level value="INFO" />
+	<logger name="io.leopard.boot.weixin" level="OFF">
+	</logger>
+
+
+	<root level="INFO">
 		<appender-ref ref="STDOUT" />
-		<appender-ref ref="ALL_FILE" />
-		<appender-ref ref="ERROR_FILE" />
 	</root>
 
 </configuration>
