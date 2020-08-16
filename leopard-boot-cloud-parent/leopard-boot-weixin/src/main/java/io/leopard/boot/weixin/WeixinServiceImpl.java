@@ -138,11 +138,13 @@ public class WeixinServiceImpl implements WeixinService {
 	@Override
 	public AccessToken getAccessToken() {
 		Map<String, Object> params = new LinkedHashMap<>();
-		params.put("appId", "client_credential");
+		params.put("grant_type", "client_credential");
 		params.put("appId", appId);
 		params.put("secret", secret);
 		String url = "https://api.weixin.qq.com/cgi-bin/token";
 		String json = Httpnb.doGet(url, proxy, params);
+		// TODO 出错判断
+		// {"errcode":40002,"errmsg":"invalid grant_type rid: 5f386c70-441d34a9-7baebd7c"}
 		logger.info("getAccessToken:" + json);
 		return Json.toObject(json, AccessToken.class);
 	}
