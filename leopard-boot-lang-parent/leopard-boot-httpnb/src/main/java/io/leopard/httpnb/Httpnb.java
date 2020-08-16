@@ -172,7 +172,7 @@ public class Httpnb {
 				osw.write(body);
 				osw.flush();
 				osw.close();
-				os.close(); // don't forget to close the OutputStream
+				os.close();
 			}
 			return execute(conn, null);
 		}
