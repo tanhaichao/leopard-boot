@@ -1,15 +1,22 @@
-package io.leopard.boot.weixin.model;
+package io.leopard.boot.weixin.model.message;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class WeixinMessage {
 
+	@JsonProperty("ToUserName")
 	private String toUserName;
 
+	@JsonProperty("FromUserName")
 	private String fromUserName;
 
+	@JsonProperty("CreateTime")
 	private long createTime;
 
+	@JsonProperty("MsgType")
 	private String msgType;
 
+	@JsonProperty("Content")
 	private String content;
 
 	public String getToUserName() {

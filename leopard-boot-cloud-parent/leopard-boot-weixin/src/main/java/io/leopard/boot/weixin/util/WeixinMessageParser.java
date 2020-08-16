@@ -5,9 +5,28 @@ import java.io.InputStream;
 
 import org.w3c.dom.Element;
 
-import io.leopard.boot.weixin.model.WeixinMessage;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+
+import io.leopard.boot.weixin.model.message.WeixinMessage;
 
 public class WeixinMessageParser {
+	public static final XmlMapper xmlMapper = new XmlMapper();
+
+	public static String toJson(String xml) throws IOException {
+		JsonNode node = xmlMapper.readTree(xml.getBytes());
+
+		ObjectMapper jsonMapper = new ObjectMapper();
+		String json = jsonMapper.writeValueAsString(node);
+		return json;
+	}
+
+	public static WeixinMessage parse(String xml) throws JsonParseException, JsonMappingException, IOException {
+		return xmlMapper.readValue(xml, WeixinMessage.class);
+	}
 
 	public static WeixinMessage parseXml(InputStream input) throws IOException {
 		// Element element = XmlUtils.toRootElement(xml);

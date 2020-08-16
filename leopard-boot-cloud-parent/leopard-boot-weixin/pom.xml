@@ -14,6 +14,11 @@
 			<artifactId>junit</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-httpnb</artifactId>
 			<version>0.9.21-SNAPSHOT</version>
@@ -41,6 +46,10 @@
 			<groupId>org.bouncycastle</groupId>
 			<artifactId>bcpkix-jdk15on</artifactId>
 			<version>1.65</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
 		</dependency>
 	</dependencies>
 </project>
