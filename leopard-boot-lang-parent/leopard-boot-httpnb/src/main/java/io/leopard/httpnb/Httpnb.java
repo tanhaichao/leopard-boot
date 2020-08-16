@@ -6,6 +6,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
@@ -144,6 +146,14 @@ public class Httpnb {
 	}
 
 	public static String doPost(String url, Proxy proxy, long timeout, Map<String, Object> map) {
+		return doPost(url, proxy, timeout, map, null);
+	}
+
+	public static String doPost(String url, Proxy proxy, Map<String, Object> map, String body) {
+		return doPost(url, proxy, -1, map, body);
+	}
+
+	public static String doPost(String url, Proxy proxy, long timeout, Map<String, Object> map, String body) {
 		HttpHeader header = new HttpHeaderPostImpl(timeout);
 		header.setProxy(proxy);
 		Iterator<Entry<String, Object>> iterator = map.entrySet().iterator();
@@ -151,8 +161,17 @@ public class Httpnb {
 			Entry<String, Object> entry = iterator.next();
 			header.addParam(new Param(entry.getKey(), entry.getValue()));
 		}
+
 		try {
 			HttpURLConnection conn = header.openConnection(url);
+			if (body != null) {
+				OutputStream os = conn.getOutputStream();
+				OutputStreamWriter osw = new OutputStreamWriter(os, "UTF-8");
+				osw.write(body);
+				osw.flush();
+				osw.close();
+				os.close(); // don't forget to close the OutputStream
+			}
 			return execute(conn, null);
 		}
 		catch (IOException e) {
