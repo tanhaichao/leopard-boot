@@ -15,13 +15,26 @@ public class LoggingPostProcessor implements EnvironmentPostProcessor {
 
 	protected Log logger = LogFactory.getLog(this.getClass());
 
+	protected static boolean isJunit() {
+		// 改成判断是否web容器启动更好?RequestContextHolder.getRequestAttributes() == null?
+
+		// new Exception().printStackTrace();
+		StackTraceElement[] elements = Thread.currentThread().getStackTrace();
+		for (StackTraceElement element : elements) {
+			if (element.getClassName().equals("org.junit.runners.ParentRunner")) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	@Override
 	public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
-		if (!LogbackConfigurator.isJunit()) {
+		if (!isJunit()) {
 			return;
 		}
 		Map<String, Object> properties = new HashMap<String, Object>();
-		properties.put("logging.config", "classpath:logback-leopard-boot-web.xml");
+		properties.put("logging.config", "classpath:logback-leopard-boot-test.xml");
 
 		if (!properties.isEmpty()) {
 			PropertySource<?> propertySource = new MapPropertySource("LeopardBootTest", properties);
