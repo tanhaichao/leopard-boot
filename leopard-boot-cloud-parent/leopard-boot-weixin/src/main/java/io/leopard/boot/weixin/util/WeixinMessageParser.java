@@ -1,7 +1,6 @@
 package io.leopard.boot.weixin.util;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 import org.w3c.dom.Element;
 
@@ -40,11 +39,11 @@ public class WeixinMessageParser {
 		return xmlMapper.readValue(xml, WeixinMessage.class);
 	}
 
-	public static WeixinMessage parseXml(InputStream input) throws IOException {
-		// Element element = XmlUtils.toRootElement(xml);
+	public static WeixinMessage parseXml(String xml) throws IOException {
+		Element element = XmlUtils.toRootElement(xml);
 
-		Element element = XmlUtils.read(input).getDocumentElement();
-		input.close();
+		// Element element = XmlUtils.read(input).getDocumentElement();
+		// input.close();
 
 		String toUserName = element.getElementsByTagName("ToUserName").item(0).getTextContent();
 		String fromUserName = element.getElementsByTagName("FromUserName").item(0).getTextContent();
