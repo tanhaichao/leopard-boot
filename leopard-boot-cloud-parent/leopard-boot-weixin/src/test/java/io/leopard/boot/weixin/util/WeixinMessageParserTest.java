@@ -18,6 +18,9 @@ public class WeixinMessageParserTest {
 		String xml = FileUtils.readFileToString(file, "UTF-8");
 		WeixinMessage message = WeixinMessageParser.parse(xml);
 		Json.printFormat(message, "message");
+
+		String xml2 = WeixinMessageParser.toFormatXml(message);
+		System.out.println(xml2);
 	}
 
 	@Test
