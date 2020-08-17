@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -19,6 +21,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.multipart.MultipartFile;
 
 public class ExcelReader {
+
+	protected static Log logger = LogFactory.getLog(ExcelReader.class);
 
 	public static <E> List<E> toList(File file, Class<E> clazz, Map<String, String> columnMapping) throws IOException {
 		InputStream input = new FileInputStream(file);
@@ -59,6 +63,12 @@ public class ExcelReader {
 
 		List<E> list = new ArrayList<>();
 		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+			org.apache.poi.ss.usermodel.Row row = sheet.getRow(i);
+			boolean isValidRow = isValidRow(row, headerMapping);
+			if (!isValidRow) {
+				logger.warn("第" + i + "行不合法.");
+				continue;
+			}
 			E bean;
 			try {
 				bean = clazz.newInstance();
@@ -69,7 +79,6 @@ public class ExcelReader {
 			catch (IllegalAccessException e) {
 				throw new RuntimeException(e.getMessage(), e);
 			}
-			org.apache.poi.ss.usermodel.Row row = sheet.getRow(i);
 
 			for (Entry<String, String> entry : columnMapping.entrySet()) {
 				String fieldName = entry.getKey().trim();
@@ -100,6 +109,22 @@ public class ExcelReader {
 		input.close();
 
 		return list;
+	}
+
+	/**
+	 * 是否合法行
+	 * 
+	 * @param row
+	 * @return
+	 */
+	protected static boolean isValidRow(org.apache.poi.ss.usermodel.Row row, Map<String, Integer> headerMapping) {
+		for (Integer columnIndex : headerMapping.values()) {
+			Cell cell = row.getCell(columnIndex);
+			if (cell == null) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	public static Workbook open(String fileName, InputStream input) throws IOException {
