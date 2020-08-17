@@ -67,7 +67,7 @@ public class WeixinMessageParser {
 
 	public static <E> E parse(String xml, Class<E> clazz) throws JsonParseException, JsonMappingException, IOException {
 		String json = toJson(xml);
-		return Json.toObject(json, clazz);
+		return Json.toObject(json, clazz, true);
 	}
 
 	public static WeixinMessage parse(String xml) throws JsonParseException, JsonMappingException, IOException {
