@@ -1,7 +1,9 @@
 package io.leopard.boot.weixin.model.message;
 
-public class TextWeixinMessage extends WeixinMessage {
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlCData;
 
+public class TextWeixinMessage extends WeixinMessage {
+	@JacksonXmlCData(value = true)
 	private String Content;
 
 	public TextWeixinMessage() {
