@@ -1,95 +1,45 @@
 package io.leopard.boot.weixin.model.message;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+public class VoiceWeixinMessage extends WeixinMessage {
 
-public class VoiceWeixinMessage {
+	private String MediaId;
 
-	@JsonProperty("ToUserName")
-	private String toUserName;
+	private String Format;
 
-	@JsonProperty("FromUserName")
-	private String fromUserName;
+	private String MsgId;
 
-	@JsonProperty("CreateTime")
-	private long createTime;
-
-	@JsonProperty("MsgType")
-	private String msgType;
-
-	@JsonProperty("MediaId")
-	private String mediaId;
-
-	@JsonProperty("Format")
-	private String format;
-
-	@JsonProperty("MsgId")
-	private String msgId;
-
-	@JsonProperty("Recognition")
-	private String recognition;
-
-	public String getToUserName() {
-		return toUserName;
-	}
-
-	public void setToUserName(String toUserName) {
-		this.toUserName = toUserName;
-	}
-
-	public String getFromUserName() {
-		return fromUserName;
-	}
-
-	public void setFromUserName(String fromUserName) {
-		this.fromUserName = fromUserName;
-	}
-
-	public long getCreateTime() {
-		return createTime;
-	}
-
-	public void setCreateTime(long createTime) {
-		this.createTime = createTime;
-	}
-
-	public String getMsgType() {
-		return msgType;
-	}
-
-	public void setMsgType(String msgType) {
-		this.msgType = msgType;
-	}
+	private String Recognition;
 
 	public String getMediaId() {
-		return mediaId;
+		return MediaId;
 	}
 
 	public void setMediaId(String mediaId) {
-		this.mediaId = mediaId;
+		MediaId = mediaId;
 	}
 
 	public String getFormat() {
-		return format;
+		return Format;
 	}
 
 	public void setFormat(String format) {
-		this.format = format;
+		Format = format;
 	}
 
 	public String getMsgId() {
-		return msgId;
+		return MsgId;
 	}
 
 	public void setMsgId(String msgId) {
-		this.msgId = msgId;
+		MsgId = msgId;
 	}
 
 	public String getRecognition() {
-		return recognition;
+		return Recognition;
 	}
 
 	public void setRecognition(String recognition) {
-		this.recognition = recognition;
+		Recognition = recognition;
 	}
 
 }

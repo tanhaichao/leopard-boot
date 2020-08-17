@@ -1,62 +1,50 @@
 package io.leopard.boot.weixin.model.message;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE)
+@JsonDeserialize(using = WeixinMessageJsonDeserializer.class)
 public class WeixinMessage {
 
-	@JsonProperty("ToUserName")
-	private String toUserName;
+	private String ToUserName;
 
-	@JsonProperty("FromUserName")
-	private String fromUserName;
+	private String FromUserName;
 
-	@JsonProperty("CreateTime")
-	private long createTime;
+	private long CreateTime;
 
-	@JsonProperty("MsgType")
-	private String msgType;
-
-	@JsonProperty("Content")
-	private String content;
+	private String MsgType;
 
 	public String getToUserName() {
-		return toUserName;
+		return ToUserName;
 	}
 
 	public void setToUserName(String toUserName) {
-		this.toUserName = toUserName;
+		ToUserName = toUserName;
 	}
 
 	public String getFromUserName() {
-		return fromUserName;
+		return FromUserName;
 	}
 
 	public void setFromUserName(String fromUserName) {
-		this.fromUserName = fromUserName;
+		FromUserName = fromUserName;
 	}
 
 	public long getCreateTime() {
-		return createTime;
+		return CreateTime;
 	}
 
 	public void setCreateTime(long createTime) {
-		this.createTime = createTime;
+		CreateTime = createTime;
 	}
 
 	public String getMsgType() {
-		return msgType;
+		return MsgType;
 	}
 
 	public void setMsgType(String msgType) {
-		this.msgType = msgType;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
+		MsgType = msgType;
 	}
 
 }
