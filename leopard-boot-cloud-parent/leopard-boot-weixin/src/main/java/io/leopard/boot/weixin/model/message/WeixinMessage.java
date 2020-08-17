@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
+import io.leopard.boot.weixin.util.WeixinMessageParser;
+
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE)
 @JsonDeserialize(using = WeixinMessageJsonDeserializer.class)
 @JacksonXmlRootElement(localName = "xml")
@@ -56,4 +58,7 @@ public class WeixinMessage {
 		MsgType = msgType;
 	}
 
+	public String toResponseXml() {
+		return WeixinMessageParser.toFormatXml(this);
+	}
 }
