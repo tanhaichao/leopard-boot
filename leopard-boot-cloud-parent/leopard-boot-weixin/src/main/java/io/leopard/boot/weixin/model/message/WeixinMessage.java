@@ -1,5 +1,7 @@
 package io.leopard.boot.weixin.model.message;
 
+import java.util.Date;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
@@ -13,7 +15,7 @@ public class WeixinMessage {
 
 	private String FromUserName;
 
-	private long CreateTime;
+	private int CreateTime;
 
 	private String MsgType;
 
@@ -33,12 +35,17 @@ public class WeixinMessage {
 		FromUserName = fromUserName;
 	}
 
-	public long getCreateTime() {
+	public int getCreateTime() {
 		return CreateTime;
 	}
 
-	public void setCreateTime(long createTime) {
+	public void setCreateTime(int createTime) {
 		CreateTime = createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		int second = (int) (createTime.getTime() / 1000);
+		this.CreateTime = second;
 	}
 
 	public String getMsgType() {
