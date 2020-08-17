@@ -10,6 +10,10 @@ public class VoiceWeixinMessage extends WeixinMessage {
 
 	private String Recognition;
 
+	public VoiceWeixinMessage() {
+		this.setMsgType("voice");
+	}
+
 	public String getMediaId() {
 		return MediaId;
 	}

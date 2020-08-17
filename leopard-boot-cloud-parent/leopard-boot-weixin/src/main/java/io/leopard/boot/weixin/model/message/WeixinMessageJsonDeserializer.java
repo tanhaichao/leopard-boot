@@ -12,6 +12,8 @@ public class WeixinMessageJsonDeserializer extends SubclassJsonDeserializer<Weix
 	static {
 		CLAZZ_MAPPING.put("voice", VoiceWeixinMessage.class);
 		CLAZZ_MAPPING.put("event", EventWeixinMessage.class);
+		CLAZZ_MAPPING.put("text", TextWeixinMessage.class);
+		CLAZZ_MAPPING.put("image", ImageWeixinMessage.class);
 	}
 
 	@Override
