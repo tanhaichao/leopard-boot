@@ -265,7 +265,18 @@ public class WeixinServiceImpl implements WeixinService {
 		String body = Json.toJson(params);
 
 		String json = Httpnb.doPost(url, proxy, null, body);
-		logger.info("getQrcodeLimitStrScene:" + json);
+		logger.info("industry:" + json);
 
 	}
+
+	@Override
+	public void getIndustry() {
+		AccessToken accessToken = this.getAccessToken();
+		String url = "https://api.weixin.qq.com/cgi-bin/template/get_industry?access_token=" + accessToken.getAccess_token();
+
+		String json = Httpnb.doGet(url);
+		logger.info("getIndustry:" + json);
+
+	}
+
 }

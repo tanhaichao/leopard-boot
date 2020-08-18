@@ -42,4 +42,6 @@ public interface WeixinService {
 	 * @param industryId2
 	 */
 	void industry(String industryId1, String industryId2);
+
+	void getIndustry();
 }

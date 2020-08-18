@@ -146,4 +146,10 @@ public class MockWeixinService implements WeixinService {
 
 	}
 
+	@Override
+	public void getIndustry() {
+		// TODO Auto-generated method stub
+
+	}
+
 }

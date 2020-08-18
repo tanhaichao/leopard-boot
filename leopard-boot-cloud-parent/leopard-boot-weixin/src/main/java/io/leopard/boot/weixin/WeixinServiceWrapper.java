@@ -77,4 +77,9 @@ public class WeixinServiceWrapper implements WeixinService {
 	public void industry(String industryId1, String industryId2) {
 		weixinService.industry(industryId1, industryId2);
 	}
+
+	@Override
+	public void getIndustry() {
+		weixinService.getIndustry();
+	}
 }
