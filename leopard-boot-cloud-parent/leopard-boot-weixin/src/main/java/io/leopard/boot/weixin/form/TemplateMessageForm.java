@@ -16,6 +16,11 @@ public class TemplateMessageForm {
 
 	private Map<String, String> data;
 
+	public TemplateMessageForm(String touser, String templateId) {
+		this.touser = touser;
+		this.templateId = templateId;
+	}
+
 	public String getTouser() {
 		return touser;
 	}
