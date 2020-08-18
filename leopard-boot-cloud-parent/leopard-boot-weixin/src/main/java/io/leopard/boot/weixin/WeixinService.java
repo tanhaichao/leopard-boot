@@ -3,6 +3,7 @@ package io.leopard.boot.weixin;
 import io.leopard.boot.weixin.form.TemplateMessageForm;
 import io.leopard.boot.weixin.model.AccessToken;
 import io.leopard.boot.weixin.model.JSCode2Session;
+import io.leopard.boot.weixin.model.OffiaccountUserinfo;
 import io.leopard.boot.weixin.model.Qrcode;
 import io.leopard.boot.weixin.model.WeixinMobile;
 
@@ -49,4 +50,12 @@ public interface WeixinService {
 	void industry(String industryId1, String industryId2);
 
 	void getIndustry();
+
+	/**
+	 * 获取公众号个人资料
+	 * 
+	 * @param openId
+	 * @return
+	 */
+	OffiaccountUserinfo getUserinfo(String openId);
 }

@@ -17,8 +17,8 @@ import io.leopard.boot.util.AssertUtil;
 import io.leopard.boot.weixin.form.TemplateMessageForm;
 import io.leopard.boot.weixin.model.AccessToken;
 import io.leopard.boot.weixin.model.JSCode2Session;
+import io.leopard.boot.weixin.model.OffiaccountUserinfo;
 import io.leopard.boot.weixin.model.Qrcode;
-import io.leopard.boot.weixin.model.Userinfo;
 import io.leopard.boot.weixin.model.WeixinMobile;
 import io.leopard.boot.weixin.model.WeixinUserinfo;
 import io.leopard.boot.weixin.util.WeixinUtil;
@@ -213,11 +213,23 @@ public class WeixinServiceImpl implements WeixinService {
 		return Json.toObject(json, Qrcode.class);
 	}
 
-	public Userinfo getUserinfo() {
-
-		String url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
-
-		return null;
+	@Override
+	public OffiaccountUserinfo getUserinfo(String openId) {
+		// String url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
+		AccessToken accessToken = this.getAccessToken();
+		String url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=" + accessToken.getAccess_token();
+		Map<String, Object> params = new LinkedHashMap<>();
+		params.put("openid", openId);
+		params.put("lang", "zh_CN");
+		// params.put("body", body);
+		String json = Httpnb.doPost(url, proxy, params);
+		if (json.indexOf("\"errcode\"") != -1) {
+			logger.error("getUserinfo:" + json);
+			throw new RuntimeException("访问微信接口出错.");
+		}
+		logger.info("getUserinfo:" + json);
+		// TODO 错误判断
+		return Json.toObject(json, OffiaccountUserinfo.class, true);
 	}
 
 	@Override

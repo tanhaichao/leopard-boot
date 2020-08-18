@@ -5,6 +5,7 @@ import org.springframework.util.StringUtils;
 import io.leopard.boot.weixin.form.TemplateMessageForm;
 import io.leopard.boot.weixin.model.AccessToken;
 import io.leopard.boot.weixin.model.JSCode2Session;
+import io.leopard.boot.weixin.model.OffiaccountUserinfo;
 import io.leopard.boot.weixin.model.Qrcode;
 import io.leopard.boot.weixin.model.WeixinMobile;
 
@@ -150,6 +151,12 @@ public class MockWeixinService implements WeixinService {
 	public void getIndustry() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public OffiaccountUserinfo getUserinfo(String openId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

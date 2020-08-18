@@ -1,6 +1,7 @@
 package io.leopard.boot.weixin.model;
 
-public class Userinfo {
+@Deprecated
+class Userinfo {
 
 	private String nickname;
 
