@@ -249,7 +249,7 @@ public class WeixinServiceImpl implements WeixinService {
 		String body = Json.toJson(message);
 		// params.put("body", body);
 		String json = Httpnb.doPost(url, proxy, params, body);
-		logger.info("getQrcodeLimitStrScene:" + json);
+		logger.info("sendTemplateMessage:" + json);
 	}
 
 	@Override
