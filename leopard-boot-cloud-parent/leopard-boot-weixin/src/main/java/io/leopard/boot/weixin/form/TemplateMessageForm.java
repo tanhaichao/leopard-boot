@@ -3,12 +3,15 @@ package io.leopard.boot.weixin.form;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class TemplateMessageForm {
 	/**
 	 * OPENID
 	 */
 	private String touser;
 
+	@JsonProperty("template_id")
 	private String templateId;
 
 	private String url;
