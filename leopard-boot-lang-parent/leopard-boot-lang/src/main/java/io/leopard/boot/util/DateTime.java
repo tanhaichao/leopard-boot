@@ -14,9 +14,13 @@ import java.util.Date;
  */
 public class DateTime {
 	public static final long HOUR_MILLIS = 1000 * 60 * 60;
+
 	public static final long DAY_MILLIS = HOUR_MILLIS * 24;
+
 	public static final int EIGHT_HOUR_SECOND = 60 * 60 * 8;// 8小时
+
 	public static final int DAY_SECOND = 60 * 60 * 24;// 24小时
+
 	public static final long EIGHT_HOUR_MILLI_SECOND = EIGHT_HOUR_SECOND * 1000L;
 
 	/**
@@ -42,8 +46,7 @@ public class DateTime {
 	/**
 	 * 获取天数
 	 * 
-	 * @param date
-	 *            日期
+	 * @param date 日期
 	 * @return 天数
 	 */
 	public static int getDayCount(final Date date) {
@@ -53,8 +56,7 @@ public class DateTime {
 	/**
 	 * 获取天数
 	 * 
-	 * @param date
-	 *            日期
+	 * @param date 日期
 	 * @return 天数
 	 */
 	public static int getDayCount(final long time) {
@@ -65,8 +67,7 @@ public class DateTime {
 	/**
 	 * 获取天数
 	 * 
-	 * @param datetime
-	 *            日期
+	 * @param datetime 日期
 	 * @return 天数
 	 */
 	public static int getDayCount(final String datetime) {
@@ -86,10 +87,8 @@ public class DateTime {
 	/**
 	 * 获取两个日期之间相差的天数
 	 * 
-	 * @param date1
-	 *            开始日期
-	 * @param date2
-	 *            结束日期
+	 * @param date1 开始日期
+	 * @param date2 结束日期
 	 * @return 天数
 	 */
 	public static int getDayCount(final String date1, String date2) {
@@ -111,8 +110,7 @@ public class DateTime {
 	/**
 	 * 获取指定天数后的日期，格式为yyyy-MM-dd
 	 * 
-	 * @param daynum
-	 *            天数
+	 * @param daynum 天数
 	 * @return 日期字符串
 	 */
 	public static String getDate(final int daynum) {
@@ -124,8 +122,7 @@ public class DateTime {
 	/**
 	 * 获取指定天数后的日期，格式为yyyy-MM-dd
 	 * 
-	 * @param daynum
-	 *            天数
+	 * @param daynum 天数
 	 * @return 日期字符串
 	 */
 	public static String addDate(final int daynum) {
@@ -139,10 +136,8 @@ public class DateTime {
 	/**
 	 * 返回给定日期之后指定天数后的日期，格式为yyyy-MM-dd
 	 * 
-	 * @param date
-	 *            日期
-	 * @param daynum
-	 *            天数
+	 * @param date 日期
+	 * @param daynum 天数
 	 * @return 日期字符串
 	 */
 	public static String addDate(final String date, final int daynum) {
@@ -159,8 +154,7 @@ public class DateTime {
 	/**
 	 * 将时间或者日期转换成int数组
 	 * 
-	 * @param datetime
-	 *            时间
+	 * @param datetime 时间
 	 * @return int数组
 	 */
 	public static int[] parseDatetimeToArray(final String datetime) {
@@ -171,13 +165,12 @@ public class DateTime {
 		return new int[] { year, month, day };
 	}
 
-	private static final SimpleDateFormat GET_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+	// private static final SimpleDateFormat GET_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
 	/**
 	 * 毫秒数转换成日期，格式为yyyy-MM-dd
 	 * 
-	 * @param millis
-	 *            毫秒数
+	 * @param millis 毫秒数
 	 * @return 日期字符串
 	 */
 	public static synchronized String getDate(final long millis) {
@@ -185,7 +178,7 @@ public class DateTime {
 		if (millis > 0) {
 			date.setTime(millis);
 		}
-		return GET_DATE_FORMAT.format(date);
+		return new SimpleDateFormat("yyyy-MM-dd").format(date);
 	}
 
 	/**
@@ -240,8 +233,7 @@ public class DateTime {
 	/**
 	 * 获取当前时候后指定分钟数的毫秒数 long millis加上int minute 如int很大会出现被载断情况，得出的结果错误， 现将int转换成long后再进行计算. 如计算一年后的时间24*60*365*60*1000此数已超出int范围,截断后计算出错。
 	 * 
-	 * @param minute
-	 *            指定的分钟数
+	 * @param minute 指定的分钟数
 	 * @return 毫秒数
 	 */
 	public static String addTime(final int minute) {
@@ -253,10 +245,8 @@ public class DateTime {
 	/**
 	 * 获取给定时间后指定分钟数的毫秒数，格式为yyyy-MM-dd HH:mm:ss
 	 * 
-	 * @param time
-	 *            给定的时间
-	 * @param minute
-	 *            指定的分钟数
+	 * @param time 给定的时间
+	 * @param minute 指定的分钟数
 	 * @return 毫秒数
 	 */
 	public static String addTime(String time, int minute) {
@@ -265,13 +255,12 @@ public class DateTime {
 		return getTime(millis);
 	}
 
-	private static final SimpleDateFormat GET_TIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	// private static final SimpleDateFormat GET_TIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	/**
 	 * 根据秒数获取毫秒数，格式为yyyy-MM-dd HH:mm:ss
 	 * 
-	 * @param second
-	 *            秒数
+	 * @param second 秒数
 	 * @return 毫秒数
 	 */
 	public static String getTime(int second) {
@@ -282,8 +271,7 @@ public class DateTime {
 	/**
 	 * 根据日期返回毫秒数，格式为yyyy-MM-dd HH:mm:ss
 	 * 
-	 * @param date
-	 *            日期
+	 * @param date 日期
 	 * @return 毫秒数
 	 */
 	public static String getTime(Date date) {
@@ -309,24 +297,22 @@ public class DateTime {
 	/**
 	 * long型毫秒数转成yyyy-MM-dd HH:mm:ss类型的字符串型日期
 	 * 
-	 * @param millis
-	 *            毫秒数
+	 * @param millis 毫秒数
 	 * @return 日期
 	 */
-	public static synchronized String getTime(final long millis) {
+	public static String getTime(final long millis) {
 		Date date = new Date();
 		if (millis != 0) {
 			date.setTime(millis);
 		}
-		return GET_TIME_FORMAT.format(date);
+		return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
 	}
 
 	/**
 	 * 根据字符串获取时间戳
 	 * 
 	 * 
-	 * @param datetime
-	 *            字符串时间
+	 * @param datetime 字符串时间
 	 * @return
 	 */
 	public static long getTimestamp(final String datetime) {
@@ -381,8 +367,7 @@ public class DateTime {
 	/**
 	 * 根据字符串时间获取Unix下的时间戳
 	 * 
-	 * @param datetime
-	 *            字符串日期
+	 * @param datetime 字符串日期
 	 * @return 时间值，以毫秒为单位
 	 */
 	public static int getUnixTimestamp(String datetime) {
@@ -396,8 +381,7 @@ public class DateTime {
 	/**
 	 * 判断字符串是否为正确的日期格式
 	 * 
-	 * @param str
-	 *            字符串日期
+	 * @param str 字符串日期
 	 * @return 是否合法日期格式
 	 */
 	public static boolean isDate(final String date) {
@@ -413,8 +397,7 @@ public class DateTime {
 	/**
 	 * 判断字符串是否为正确的时间格式
 	 * 
-	 * @param time
-	 *            格式:10:10:10
+	 * @param time 格式:10:10:10
 	 * @return 是否合法时间格式
 	 */
 	public static boolean isTime(final String time) {
@@ -429,8 +412,7 @@ public class DateTime {
 	/**
 	 * 判断字符串是否为正确的日期 + 时间格式
 	 * 
-	 * @param datetime
-	 *            格式:2010-10-10 00:00:00
+	 * @param datetime 格式:2010-10-10 00:00:00
 	 * @return 是否合法日期 + 时间格式
 	 */
 	public static boolean isDateTime(final String datetime) {
@@ -443,8 +425,7 @@ public class DateTime {
 	/**
 	 * 根据字符串时间获取秒数
 	 * 
-	 * @param datetime
-	 *            字符串时间
+	 * @param datetime 字符串时间
 	 * @return 秒数
 	 */
 	public static int getSecond(final String datetime) {
@@ -484,8 +465,7 @@ public class DateTime {
 	/**
 	 * 根据字符串时间返回星期几
 	 * 
-	 * @param datetime
-	 *            字符串时间
+	 * @param datetime 字符串时间
 	 * @return 星期几
 	 */
 	public static String getWeekName(final String datetime) {
@@ -498,8 +478,7 @@ public class DateTime {
 	/**
 	 * 获取月份的天数
 	 * 
-	 * @param monthNum
-	 *            0:表示当前月份 负数：表示前n个月份 整数：表示后n个月份
+	 * @param monthNum 0:表示当前月份 负数：表示前n个月份 整数：表示后n个月份
 	 * @return 天数
 	 */
 	public static int getDayCountOfMonth(final int monthNum) {
@@ -513,8 +492,7 @@ public class DateTime {
 	/**
 	 * 获取月份的第一天，格式为yyyy-MM-dd
 	 * 
-	 * @param monthNum
-	 *            0:表示当前月份 负数：表示前n个月份 整数：表示后n个月份
+	 * @param monthNum 0:表示当前月份 负数：表示前n个月份 整数：表示后n个月份
 	 * @return 指定月份第一天的日期字符串
 	 */
 	public static String getFirstDayOfMonth(final int monthNum) {
@@ -527,10 +505,8 @@ public class DateTime {
 	/**
 	 * 根据给定的日期，返回指定monthNum个月后的月份的第一天，格式为yyyy-MM-dd
 	 * 
-	 * @param date
-	 *            日期
-	 * @param monthNum
-	 *            月数
+	 * @param date 日期
+	 * @param monthNum 月数
 	 * @return date指定monthNum个月后的月份第一天的日期字符串
 	 */
 	public static String getFirstDayOfMonth(final String date, final int monthNum) {
@@ -549,10 +525,8 @@ public class DateTime {
 	/**
 	 * 根据给定的日期，返回指定monthNum个月后的月份的最后一天，格式为yyyy-MM-dd
 	 * 
-	 * @param date
-	 *            日期
-	 * @param monthNum
-	 *            月数
+	 * @param date 日期
+	 * @param monthNum 月数
 	 * @return date指定monthNum个月后的月份第一天的日期字符串
 	 */
 	public static String getLastDayOfMonth(final String date, final int monthNum) {
@@ -592,8 +566,7 @@ public class DateTime {
 	/**
 	 * 判断传入的日期是否为今天
 	 * 
-	 * @param time
-	 *            字符串日期
+	 * @param time 字符串日期
 	 * @return boolean 若为今天则返回true
 	 */
 	public static boolean isToday(String time) {
@@ -608,16 +581,16 @@ public class DateTime {
 		return false;
 	}
 
-	private static final SimpleDateFormat GET_INT_TIME_FORMAT = new SimpleDateFormat("yyyyMMddHHmmss");
+	// private static final SimpleDateFormat GET_INT_TIME_FORMAT = new SimpleDateFormat("yyyyMMddHHmmss");
 
 	/**
 	 * 获取当前时间，格式为yyyyMMddHHmmss
 	 * 
 	 * @return 当前时间
 	 */
-	public static synchronized String getIntTime() {
+	public static String getIntTime() {
 		Date date = new Date();
-		return GET_INT_TIME_FORMAT.format(date);
+		return new SimpleDateFormat("yyyyMMddHHmmss").format(date);
 	}
 
 }
