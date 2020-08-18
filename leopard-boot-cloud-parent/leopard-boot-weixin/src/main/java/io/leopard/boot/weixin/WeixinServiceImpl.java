@@ -258,7 +258,7 @@ public class WeixinServiceImpl implements WeixinService {
 		AssertUtil.assertNotEmpty(industryId1, "industryId1不能为空");
 		AssertUtil.assertNotEmpty(industryId2, "industryId2不能为空");
 		AccessToken accessToken = this.getAccessToken();
-		String url = "https://api.weixin.qq.com/cgi-bin/api_set_industry?access_token=" + accessToken.getAccess_token();
+		String url = "https://api.weixin.qq.com/cgi-bin/template/api_set_industry?access_token=" + accessToken.getAccess_token();
 		Map<String, Object> params = new LinkedHashMap<>();
 		params.put("industry_id1", industryId1);
 		params.put("industry_id2", industryId2);
