@@ -40,6 +40,7 @@ public class SmsClientAliyunImpl implements SmsClient {
 
 	@Value("${aliyun.sms.signName}")
 	private String signName;
+
 	@Value("${leopard.proxy:}") // 默认为empty
 	private String proxy;// 格式 ip:port
 
@@ -82,12 +83,14 @@ public class SmsClientAliyunImpl implements SmsClient {
 	}
 
 	@Override
+	public boolean sendByTemplateId(String mobile, String templateId) {
+		return this.sendByTemplateId(mobile, templateId, null);
+	}
+
+	@Override
 	public boolean sendByTemplateId(String mobile, String templateId, Map<String, Object> data) {
 		logger.info("sendByTemplateId mobile:" + mobile + " templateId:" + templateId);
 
-		String code = (String) data.get("code");
-
-		String templateParam = "{\"code\":\"" + code + "\"}";
 		CommonRequest request = new CommonRequest();
 		request.setSysMethod(MethodType.POST);
 		request.setSysDomain("dysmsapi.aliyuncs.com");
@@ -97,7 +100,12 @@ public class SmsClientAliyunImpl implements SmsClient {
 		request.putQueryParameter("PhoneNumbers", mobile);
 		request.putQueryParameter("SignName", signName);
 		request.putQueryParameter("TemplateCode", templateId);
-		request.putQueryParameter("TemplateParam", templateParam);
+
+		if (data != null) {
+			String code = (String) data.get("code");
+			String templateParam = "{\"code\":\"" + code + "\"}";
+			request.putQueryParameter("TemplateParam", templateParam);
+		}
 		try {
 			CommonResponse response = client.getCommonResponse(request);
 			// {"Message":"OK","RequestId":"2AD6B746-C57C-4794-ACC4-62C943C2F3A4","BizId":"205500294640639892^0","Code":"OK"}

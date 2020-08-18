@@ -13,4 +13,6 @@ public interface SmsClient {
 	 * @return
 	 */
 	boolean sendByTemplateId(String mobile, String templateId, Map<String, Object> data);
+
+	boolean sendByTemplateId(String mobile, String templateId);
 }
