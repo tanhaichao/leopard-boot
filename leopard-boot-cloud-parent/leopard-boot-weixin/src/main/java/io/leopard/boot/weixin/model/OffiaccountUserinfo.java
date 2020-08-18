@@ -157,7 +157,8 @@ public class OffiaccountUserinfo {
 	}
 
 	public void setSubscribeSecondTime(int subscribeSecondTime) {
-		this.subscribeTime = new Date(subscribeSecondTime * 1000);
+		long time = subscribeSecondTime * 1000L;
+		this.subscribeTime = new Date(time);
 		this.subscribeSecondTime = subscribeSecondTime;
 	}
 
