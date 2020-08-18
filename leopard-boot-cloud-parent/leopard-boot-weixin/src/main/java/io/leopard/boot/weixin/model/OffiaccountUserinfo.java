@@ -54,8 +54,13 @@ public class OffiaccountUserinfo {
 	/**
 	 * 订阅时间
 	 */
-	@JsonProperty("subscribe_time")
 	private Date subscribeTime;
+
+	/**
+	 * 订阅时间
+	 */
+	@JsonProperty("subscribe_time")
+	private int subscribeSecondTime;
 
 	/**
 	 * 订阅场景
@@ -140,15 +145,20 @@ public class OffiaccountUserinfo {
 	}
 
 	public Date getSubscribeTime() {
-		return this.subscribeTime;
+		return subscribeTime;
 	}
 
 	public void setSubscribeTime(Date subscribeTime) {
 		this.subscribeTime = subscribeTime;
 	}
 
-	public void setSubscribeTime(int subscribeTime) {
-		this.subscribeTime = new Date(subscribeTime * 1000);
+	public int getSubscribeSecondTime() {
+		return subscribeSecondTime;
+	}
+
+	public void setSubscribeSecondTime(int subscribeSecondTime) {
+		this.subscribeTime = new Date(subscribeSecondTime * 1000);
+		this.subscribeSecondTime = subscribeSecondTime;
 	}
 
 	public String getSubscribeScene() {
