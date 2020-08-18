@@ -13,6 +13,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import io.leopard.boot.util.AssertUtil;
 import io.leopard.boot.weixin.form.TemplateMessageForm;
 import io.leopard.boot.weixin.model.AccessToken;
 import io.leopard.boot.weixin.model.JSCode2Session;
@@ -249,6 +250,22 @@ public class WeixinServiceImpl implements WeixinService {
 		// String body = Json.toJson(message);
 		// params.put("body", body);
 		String json = Httpnb.doPost(url, proxy, params, body);
+		logger.info("createMenu:" + json);
+	}
+
+	@Override
+	public void industry(String industryId1, String industryId2) {
+		AssertUtil.assertNotEmpty(industryId1, "industryId1不能为空");
+		AssertUtil.assertNotEmpty(industryId2, "industryId2不能为空");
+		AccessToken accessToken = this.getAccessToken();
+		String url = "https://api.weixin.qq.com/cgi-bin/api_set_industry?access_token=" + accessToken.getAccess_token();
+		Map<String, Object> params = new LinkedHashMap<>();
+		params.put("industry_id1", industryId1);
+		params.put("industry_id2", industryId2);
+		String body = Json.toJson(params);
+
+		String json = Httpnb.doPost(url, proxy, null, body);
 		logger.info("getQrcodeLimitStrScene:" + json);
+
 	}
 }

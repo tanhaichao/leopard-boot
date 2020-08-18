@@ -34,4 +34,12 @@ public interface WeixinService {
 	void createMenu(String body);
 
 	Qrcode getQrcodeStrScene(String sceneStr, int expireSeconds);
+
+	/**
+	 * 设置行业
+	 * 
+	 * @param industryId1
+	 * @param industryId2
+	 */
+	void industry(String industryId1, String industryId2);
 }

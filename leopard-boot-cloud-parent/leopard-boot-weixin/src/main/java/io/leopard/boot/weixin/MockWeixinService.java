@@ -140,4 +140,10 @@ public class MockWeixinService implements WeixinService {
 		return null;
 	}
 
+	@Override
+	public void industry(String industryId1, String industryId2) {
+		// TODO Auto-generated method stub
+
+	}
+
 }
