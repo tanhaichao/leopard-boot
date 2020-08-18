@@ -1,5 +1,7 @@
 package io.leopard.boot.weixin.form;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -61,11 +63,16 @@ public class TemplateMessageForm {
 		this.miniprogram = miniprogram;
 	}
 
-	public void setMiniprogram(String appid, String pagepath) {
-		this.miniprogram = new Miniprogram(appid, pagepath);
+	public void setMiniprogram(String appid, String path) {
+		this.miniprogram = new Miniprogram(appid, path);
 	}
 
 	public void addData(String key, String value) {
+		this.addData(key, value, "#173177");
+	}
+
+	public void addDateData(String key, Date date) {
+		String value = new SimpleDateFormat("yyyy年MM月dd HH:mm:ss").format(date);
 		this.addData(key, value, "#173177");
 	}
 
@@ -116,15 +123,15 @@ public class TemplateMessageForm {
 	public static class Miniprogram {
 		private String appid;
 
-		private String pagepath;
+		private String path;
 
 		public Miniprogram() {
 		}
 
-		public Miniprogram(String appid, String pagepath) {
+		public Miniprogram(String appid, String path) {
 			super();
 			this.appid = appid;
-			this.pagepath = pagepath;
+			this.path = path;
 		}
 
 		public String getAppid() {
@@ -135,12 +142,13 @@ public class TemplateMessageForm {
 			this.appid = appid;
 		}
 
-		public String getPagepath() {
-			return pagepath;
+		public String getPath() {
+			return path;
 		}
 
-		public void setPagepath(String pagepath) {
-			this.pagepath = pagepath;
+		public void setPath(String path) {
+			this.path = path;
 		}
+
 	}
 }
