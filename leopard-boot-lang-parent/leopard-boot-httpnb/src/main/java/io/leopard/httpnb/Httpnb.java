@@ -96,8 +96,12 @@ public class Httpnb {
 	}
 
 	public static InputStream doGetForInputStream(String url, long timeout) throws IOException {
-		HttpHeader header = new HttpHeaderGetImpl(timeout);
+		return doGetForInputStream(url, null, timeout);
+	}
 
+	public static InputStream doGetForInputStream(String url, Proxy proxy, long timeout) throws IOException {
+		HttpHeader header = new HttpHeaderGetImpl(timeout);
+		header.setProxy(proxy);
 		HttpURLConnection conn = header.openConnection(url);
 		InputStream input = conn.getInputStream();
 		// byte[] bytes = IOUtils.toByteArray(input);
