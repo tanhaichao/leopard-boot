@@ -71,6 +71,11 @@ public class TemplateMessageForm {
 		this.addData(key, value, "#173177");
 	}
 
+	public void addCurrencyData(String key, double num) {
+		String value = num + "元";
+		this.addData(key, value, "#173177");
+	}
+
 	public void addDateData(String key, Date date) {
 		String value = new SimpleDateFormat("yyyy年MM月dd HH:mm:ss").format(date);
 		this.addData(key, value, "#173177");
