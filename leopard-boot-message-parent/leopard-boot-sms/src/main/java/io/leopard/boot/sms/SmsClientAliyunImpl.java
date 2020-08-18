@@ -21,6 +21,8 @@ import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 import com.aliyuncs.utils.StringUtils;
 
+import io.leopard.json.Json;
+
 @Component
 @ConditionalOnProperty(prefix = "aliyun.sms", name = "accessKeyId")
 public class SmsClientAliyunImpl implements SmsClient {
@@ -102,8 +104,9 @@ public class SmsClientAliyunImpl implements SmsClient {
 		request.putQueryParameter("TemplateCode", templateId);
 
 		if (data != null) {
-			String code = (String) data.get("code");
-			String templateParam = "{\"code\":\"" + code + "\"}";
+			// String code = (String) data.get("code");
+			// String templateParam = "{\"code\":\"" + code + "\"}";
+			String templateParam = Json.toJson(data);
 			request.putQueryParameter("TemplateParam", templateParam);
 		}
 		try {
