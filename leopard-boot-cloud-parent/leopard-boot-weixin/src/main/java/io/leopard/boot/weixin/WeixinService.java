@@ -29,6 +29,11 @@ public interface WeixinService {
 
 	void getAllPrivateTemplate();
 
+	/**
+	 * 发送模板消息
+	 * 
+	 * @param message
+	 */
 	void sendTemplateMessage(TemplateMessageForm message);
 
 	void createMenu(String body);
