@@ -244,6 +244,7 @@ public class WeixinServiceImpl implements WeixinService {
 	public void sendTemplateMessage(TemplateMessageForm message) {
 		AccessToken accessToken = this.getAccessToken();
 		Map<String, Object> params = new LinkedHashMap<>();
+		logger.info("sendTemplateMessage:" + Json.toFormatJson(message));
 		// {"action_name": "QR_LIMIT_STR_SCENE", "action_info": {"scene": {"scene_str": "test"}}}
 		String url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=" + accessToken.getAccess_token();
 		String body = Json.toJson(message);
