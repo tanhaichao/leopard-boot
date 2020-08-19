@@ -77,7 +77,7 @@ public class TemplateMessageForm {
 	}
 
 	public void addDateData(String key, Date date) {
-		String value = new SimpleDateFormat("yyyy年MM月dd HH:mm:ss").format(date);
+		String value = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss").format(date);
 		this.addData(key, value, "#173177");
 	}
 
