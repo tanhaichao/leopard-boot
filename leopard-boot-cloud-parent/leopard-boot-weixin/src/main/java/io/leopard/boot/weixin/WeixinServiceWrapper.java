@@ -55,8 +55,8 @@ public class WeixinServiceWrapper implements WeixinService {
 	}
 
 	@Override
-	public Qrcode getQrcodeScene(int sceneId, int expireSeconds) {
-		return weixinService.getQrcodeScene(sceneId, expireSeconds);
+	public Qrcode getQrcodeStrScene(String sceneStr, int expireSeconds) {
+		return weixinService.getQrcodeStrScene(sceneStr, expireSeconds);
 	}
 
 	@Override

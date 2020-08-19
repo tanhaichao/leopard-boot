@@ -155,7 +155,7 @@ public class MockWeixinService implements WeixinService {
 	}
 
 	@Override
-	public Qrcode getQrcodeScene(int sceneId, int expireSeconds) {
+	public Qrcode getQrcodeStrScene(String sceneStr, int expireSeconds) {
 		// TODO Auto-generated method stub
 		return null;
 	}
