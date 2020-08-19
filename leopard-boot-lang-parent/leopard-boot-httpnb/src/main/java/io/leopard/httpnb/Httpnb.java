@@ -195,6 +195,23 @@ public class Httpnb {
 		}
 	}
 
+	public static String execute(String url, HttpHeader header, String body) {
+		try {
+			HttpURLConnection conn = header.openConnection(url);
+			if (body != null) {
+				OutputStream os = conn.getOutputStream();
+				OutputStreamWriter osw = new OutputStreamWriter(os, "UTF-8");
+				osw.write(body);
+				osw.flush();
+				osw.close();
+				os.close();
+			}
+			return execute(conn, null);
+		}
+		catch (IOException e) {
+			throw new HttpException(e, header);
+		}
+	}
 	// public static String doUpload(String url, String path) {
 	// HttpHeader header = new HttpHeaderPostImpl(-1);
 	// try {

@@ -21,6 +21,8 @@ public class AbstractHttpHeader implements HttpHeader {
 
 	private String userAgent = null;
 
+	private String contentType = null;
+
 	protected String authorization;
 
 	protected List<Param> paramList = new ArrayList<Param>();
@@ -78,7 +80,9 @@ public class AbstractHttpHeader implements HttpHeader {
 		if (userAgent != null && userAgent.length() > 0) {
 			conn.setRequestProperty("user-agent", userAgent);
 		}
-
+		if (contentType != null && contentType.length() > 0) {
+			conn.setRequestProperty("Content-Type", this.contentType);
+		}
 		conn.setRequestProperty("X-Real-IP", "127.0.0.1");// FIXME ahai 测试代码
 
 		return conn;
@@ -117,6 +121,16 @@ public class AbstractHttpHeader implements HttpHeader {
 	@Override
 	public void setProxy(Proxy proxy) {
 		this.proxy = proxy;
+	}
+
+	@Override
+	public String getContentType() {
+		return contentType;
+	}
+
+	@Override
+	public void setContentType(String contentType) {
+		this.contentType = contentType;
 	}
 
 }

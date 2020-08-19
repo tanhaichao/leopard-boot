@@ -23,4 +23,8 @@ public interface HttpHeader {
 	Proxy getProxy();
 
 	void setProxy(Proxy proxy);
+
+	String getContentType();
+
+	void setContentType(String contentType);
 }

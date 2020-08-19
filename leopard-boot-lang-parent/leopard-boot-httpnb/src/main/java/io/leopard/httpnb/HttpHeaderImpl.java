@@ -140,4 +140,16 @@ public class HttpHeaderImpl implements HttpHeader {
 		// TODO Auto-generated method stub
 
 	}
+
+	@Override
+	public String getContentType() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setContentType(String contentType) {
+		// TODO Auto-generated method stub
+
+	}
 }
