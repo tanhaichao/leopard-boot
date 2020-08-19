@@ -128,7 +128,7 @@ public class TemplateMessageForm {
 	public static class Miniprogram {
 		private String appid;
 
-		private String path;
+		private String pagepath;
 
 		public Miniprogram() {
 		}
@@ -136,7 +136,7 @@ public class TemplateMessageForm {
 		public Miniprogram(String appid, String path) {
 			super();
 			this.appid = appid;
-			this.path = path;
+			this.pagepath = path;
 		}
 
 		public String getAppid() {
@@ -147,12 +147,12 @@ public class TemplateMessageForm {
 			this.appid = appid;
 		}
 
-		public String getPath() {
-			return path;
+		public String getPagepath() {
+			return pagepath;
 		}
 
-		public void setPath(String path) {
-			this.path = path;
+		public void setPagepath(String pagepath) {
+			this.pagepath = pagepath;
 		}
 
 	}
