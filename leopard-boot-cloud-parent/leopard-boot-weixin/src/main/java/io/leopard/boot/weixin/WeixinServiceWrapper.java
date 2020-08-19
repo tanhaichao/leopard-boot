@@ -55,6 +55,11 @@ public class WeixinServiceWrapper implements WeixinService {
 	}
 
 	@Override
+	public Qrcode getQrcodeScene(int sceneId, int expireSeconds) {
+		return weixinService.getQrcodeScene(sceneId, expireSeconds);
+	}
+
+	@Override
 	public void getAllPrivateTemplate() {
 		weixinService.getAllPrivateTemplate();
 	}
@@ -67,11 +72,6 @@ public class WeixinServiceWrapper implements WeixinService {
 	@Override
 	public void createMenu(String body) {
 		weixinService.createMenu(body);
-	}
-
-	@Override
-	public Qrcode getQrcodeStrScene(String sceneStr, int expireSeconds) {
-		return weixinService.getQrcodeStrScene(sceneStr, expireSeconds);
 	}
 
 	@Override
