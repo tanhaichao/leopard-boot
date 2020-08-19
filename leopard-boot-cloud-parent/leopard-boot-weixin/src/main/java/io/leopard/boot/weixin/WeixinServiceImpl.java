@@ -178,6 +178,7 @@ public class WeixinServiceImpl implements WeixinService {
 
 		// 2020-08-17 02:23:18.503 [main]leopard-test INFO io.leopard.boot.weixin.WeixinServiceImpl -
 		// getQrcodeLimitStrScene:{"ticket":"gQHK8DwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyLUhQYTRxc3ZjbDMxMDAwME0wN1AAAgQz6jhfAwQAAAAA","url":"http:\/\/weixin.qq.com\/q\/02-HPa4qsvcl310000M07P"}
+		logger.info("getQrcodeStrScene sceneStr:" + sceneStr + " expireSeconds:" + expireSeconds);
 
 		String json = Httpnb.doPost(url, proxy, params, body);
 		logger.info("getQrcodeStrScene:" + json);
