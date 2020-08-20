@@ -283,6 +283,9 @@ public class Httpnb {
 	}
 
 	public static Proxy newHttpProxy(String hostAndPort) {
+		if (hostAndPort == null || hostAndPort.length() == 0) {
+			return null;
+		}
 		return new Proxy(Proxy.Type.HTTP, Httpnb.newInetSocketAddress(hostAndPort));
 	}
 
