@@ -91,6 +91,14 @@ public class Row {
 		return this;
 	}
 
+	public Row setCell(int column, Snum snum) {
+		String value = snum == null ? "" : snum.getDesc();
+		Cell cell = row.createCell(column);
+		cell.setCellStyle(style);
+		cell.setCellValue(value);
+		return this;
+	}
+
 	public Row addCell(Bnum bnum) {
 		String str = bnum == null ? "" : bnum.getDesc();
 		return this.addCell(str);
