@@ -140,6 +140,21 @@ public class EnumUtil {
 		return (E) map.get(key);
 	}
 
+	@SuppressWarnings("unchecked")
+	public static <E extends Enum<E>> E getByDesc(String desc, Class<E> clazz) {
+		// key = toLowerCase(key);
+		Map<Object, Enum<?>> map = cache.get(clazz.getName());
+		if (map == null) {
+			map = toMap(clazz);
+		}
+		for (Enum<?> e : map.values()) {
+			Onum<Object, String> onum = (Onum<Object, String>) e;
+			if (desc.equals(onum.getDesc())) {
+				return (E) e;
+			}
+		}
+		return null;
+	}
 	// public static synchronized <E extends Enum<E>> Map<Object, Enum<?>> toMap(Class<E> clazz) {
 	// return toMap(clazz.getName(), clazz);
 	// }
