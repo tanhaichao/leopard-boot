@@ -73,6 +73,15 @@ public class EnumUtil {
 		return inum;
 	}
 
+	public static <E extends Enum<E>> E toEnumByDesc(String desc, Class<E> clazz) {
+		E inum = getByDesc(desc, clazz);
+		if (inum == null) {
+			// System.err.println("key:" + key.getClass().getName());
+			throw new EnumConstantInvalidException("根据描述找不到枚举[" + clazz.getName() + "]元素[" + desc + "]");
+		}
+		return inum;
+	}
+
 	/**
 	 * 根据ID转换为枚举(元素不存在返回onum).
 	 * 
