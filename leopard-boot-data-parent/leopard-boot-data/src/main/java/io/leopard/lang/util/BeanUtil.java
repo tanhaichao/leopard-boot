@@ -19,6 +19,9 @@ public class BeanUtil {
 	}
 
 	public static <T> List<T> convert(List<?> list, Class<T> clazz) {
+		if (true) {
+			return convert2(list, clazz);
+		}
 		if (list == null) {
 			return null;
 		}
@@ -52,6 +55,9 @@ public class BeanUtil {
 	}
 
 	public static <T> T convert(Object obj, Class<T> clazz) {
+		if (true) {
+			return convert2(obj, clazz);
+		}
 		if (obj == null) {
 			return null;
 		}
