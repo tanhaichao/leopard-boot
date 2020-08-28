@@ -66,7 +66,7 @@ public class MailClientImpl implements MailClient {
 		email.setCharset("UTF-8");
 		email.addTo(to);
 		email.setAuthentication(user, password);
-		email.setFrom(user);
+		email.setFrom(from);
 		email.setSubject(subject);
 		email.setMsg(content);
 		// email.setSSLOnConnect(true);
