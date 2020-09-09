@@ -224,11 +224,11 @@ public class WeixinServiceImpl implements WeixinService {
 		params.put("lang", "zh_CN");
 		// params.put("body", body);
 		String json = Httpnb.doPost(url, proxy, params);
+		logger.info("getUserinfo openId:" + openId + " json:" + json);
 		if (json.indexOf("\"errcode\"") != -1) {
-			logger.error("getUserinfo:" + json);
-			throw new RuntimeException("访问微信接口出错.");
+			// logger.error("getUserinfo:" + json);
+			throw new RuntimeException("访问微信接口出错[" + openId + "].");
 		}
-		logger.info("getUserinfo:" + json);
 		// TODO 错误判断
 		return Json.toObject(json, OffiaccountUserinfo.class, true);
 	}
