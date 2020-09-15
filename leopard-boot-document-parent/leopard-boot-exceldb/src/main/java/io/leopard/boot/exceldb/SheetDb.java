@@ -110,7 +110,13 @@ public class SheetDb {
 				System.err.println(" rowIndex:" + rowIndex + " cell:" + column.getColumnIndex() + " is null.");
 			}
 			else {
-				value = cell.getStringCellValue();
+				Class<?> valueType = column.getColumnValueType();
+				if (valueType.equals(Long.class)) {
+					value = ((long) cell.getNumericCellValue()) + "";
+				}
+				else {
+					value = cell.getStringCellValue();
+				}
 			}
 			valueList.add("'" + value + "'");
 		}
