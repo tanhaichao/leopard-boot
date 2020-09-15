@@ -3,13 +3,18 @@ package io.leopard.boot.exceldb;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+
+import io.leopard.lang.inum.EnumUtil;
+import io.leopard.lang.inum.Onum;
 
 public class SheetDb {
 
@@ -51,16 +56,18 @@ public class SheetDb {
 	 * @param excelColumnName Excel列名
 	 * @param dbColumnName
 	 */
-	public void addColumn(String excelColumnName, String dbColumnName) {
-		this.addColumn(excelColumnName, dbColumnName, String.class);
+	public Column addColumn(String excelColumnName, String dbColumnName) {
+		return this.addColumn(excelColumnName, dbColumnName, String.class);
 	}
 
-	public void addColumn(String excelColumnName, String dbColumnName, Class<?> columnValueType) {
+	public Column addColumn(String excelColumnName, String dbColumnName, Class<?> columnValueType) {
 		int columnIndex = excelColumnNameList.indexOf(excelColumnName);
 		if (columnIndex == -1) {
 			throw new RuntimeException("列[" + excelColumnName + "]不存在.");
 		}
-		columnList.add(new Column(columnIndex, dbColumnName, columnValueType));
+		Column column = new Column(columnIndex, dbColumnName, columnValueType);
+		columnList.add(column);
+		return column;
 	}
 
 	public void test2() {
@@ -69,6 +76,62 @@ public class SheetDb {
 			Cell cell = row.getCell(i);
 			System.out.println(i + ":" + cell.getStringCellValue());
 		}
+	}
+
+	public List<Map<String, String>> toListMap() {
+		return toListMap(-1);
+	}
+
+	public List<Map<String, String>> toListMap(int rowCount) {
+		int lastRowNum = this.sheet.getLastRowNum();
+		if (rowCount > 0) {
+			if (rowCount < lastRowNum) {
+				lastRowNum = rowCount;
+			}
+		}
+		System.err.println("lastRowNum:" + lastRowNum);
+		List<Map<String, String>> list = new ArrayList<>();
+		for (int i = 1; i <= lastRowNum; i++) {
+			Row row = sheet.getRow(i);
+			Map<String, String> map = this.rowToMap(i, row);
+			list.add(map);
+		}
+		return list;
+	}
+
+	private Map<String, String> rowToMap(int rowIndex, Row row) {
+		Map<String, String> map = new LinkedHashMap<>();
+		for (int i = 0; i < columnList.size(); i++) {
+			Column column = columnList.get(i);
+			String value = this.getColumnValue(rowIndex, row, column);
+			map.put(column.getDbColumnName(), value);
+		}
+		return map;
+	}
+
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private String getColumnValue(int rowIndex, Row row, Column column) {
+		Cell cell = row.getCell(column.getColumnIndex());
+		String value;
+		if (cell == null) {
+			value = "";
+			System.err.println(" rowIndex:" + rowIndex + " cell:" + column.getColumnIndex() + " is null.");
+		}
+		else {
+			Class<?> valueType = column.getColumnValueType();
+			if (valueType.equals(Long.class)) {
+				value = ((long) cell.getNumericCellValue()) + "";
+			}
+			else {
+				value = cell.getStringCellValue();
+			}
+		}
+		if (column.getOnumClazz() != null) {// 枚举转换
+			// System.err.println("value:" + value + " rowIndex:" + rowIndex);
+			Onum onum = (Onum) EnumUtil.toEnumByDesc(value, (Class<Enum>) column.getOnumClazz());
+			value = (String) onum.getKey();
+		}
+		return value;
 	}
 
 	public String toInsertSql(String tableName) {
@@ -103,21 +166,23 @@ public class SheetDb {
 		List<String> valueList = new ArrayList<>();
 		for (int i = 0; i < columnList.size(); i++) {
 			Column column = columnList.get(i);
-			Cell cell = row.getCell(column.getColumnIndex());
-			String value;
-			if (cell == null) {
-				value = "";
-				System.err.println(" rowIndex:" + rowIndex + " cell:" + column.getColumnIndex() + " is null.");
-			}
-			else {
-				Class<?> valueType = column.getColumnValueType();
-				if (valueType.equals(Long.class)) {
-					value = ((long) cell.getNumericCellValue()) + "";
-				}
-				else {
-					value = cell.getStringCellValue();
-				}
-			}
+			String value = this.getColumnValue(rowIndex, row, column);
+			//
+			// Cell cell = row.getCell(column.getColumnIndex());
+			// String value;
+			// if (cell == null) {
+			// value = "";
+			// System.err.println(" rowIndex:" + rowIndex + " cell:" + column.getColumnIndex() + " is null.");
+			// }
+			// else {
+			// Class<?> valueType = column.getColumnValueType();
+			// if (valueType.equals(Long.class)) {
+			// value = ((long) cell.getNumericCellValue()) + "";
+			// }
+			// else {
+			// value = cell.getStringCellValue();
+			// }
+			// }
 			valueList.add("'" + value + "'");
 		}
 		return valueList;
@@ -132,13 +197,15 @@ public class SheetDb {
 		System.out.println("lastRowNum:" + lastRowNum);
 	}
 
-	private static class Column {
+	public static class Column {
 
 		private final String dbColumnName;
 
 		private final int columnIndex;
 
 		private final Class<?> columnValueType;// 默认为字符串
+
+		private Class<? extends Enum<?>> onumClazz;// 枚举
 
 		public Column(int columnIndex, String dbColumnName, Class<?> columnValueType) {
 			this.columnIndex = columnIndex;
@@ -156,6 +223,19 @@ public class SheetDb {
 
 		public Class<?> getColumnValueType() {
 			return columnValueType;
+		}
+
+		public Class<?> getOnumClazz() {
+			return onumClazz;
+		}
+
+		public void setOnumClazz(Class<? extends Enum<?>> onumClazz) {
+			this.onumClazz = onumClazz;
+		}
+
+		public Column onumClazz(Class<? extends Enum<?>> onumClazz) {
+			this.onumClazz = onumClazz;
+			return this;
 		}
 
 	}
