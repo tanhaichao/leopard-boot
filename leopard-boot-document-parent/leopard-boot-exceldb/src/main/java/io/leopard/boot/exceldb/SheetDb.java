@@ -52,11 +52,15 @@ public class SheetDb {
 	 * @param dbColumnName
 	 */
 	public void addColumn(String excelColumnName, String dbColumnName) {
+		this.addColumn(excelColumnName, dbColumnName, String.class);
+	}
+
+	public void addColumn(String excelColumnName, String dbColumnName, Class<?> columnValueType) {
 		int columnIndex = excelColumnNameList.indexOf(excelColumnName);
 		if (columnIndex == -1) {
 			throw new RuntimeException("列[" + excelColumnName + "]不存在.");
 		}
-		columnList.add(new Column(columnIndex, dbColumnName));
+		columnList.add(new Column(columnIndex, dbColumnName, columnValueType));
 	}
 
 	public void test2() {
@@ -126,11 +130,14 @@ public class SheetDb {
 
 		private final String dbColumnName;
 
-		private int columnIndex;
+		private final int columnIndex;
 
-		public Column(int columnIndex, String dbColumnName) {
+		private final Class<?> columnValueType;// 默认为字符串
+
+		public Column(int columnIndex, String dbColumnName, Class<?> columnValueType) {
 			this.columnIndex = columnIndex;
 			this.dbColumnName = dbColumnName;
+			this.columnValueType = columnValueType;
 		}
 
 		public String getDbColumnName() {
@@ -139,6 +146,10 @@ public class SheetDb {
 
 		public int getColumnIndex() {
 			return columnIndex;
+		}
+
+		public Class<?> getColumnValueType() {
+			return columnValueType;
 		}
 
 	}
