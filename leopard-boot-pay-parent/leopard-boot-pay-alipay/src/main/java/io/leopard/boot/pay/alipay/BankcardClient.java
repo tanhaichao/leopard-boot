@@ -58,6 +58,10 @@ public class BankcardClient {
 			// System.err.println("error:" + error.getClass().getName() + " error:" + error);
 			throw new RuntimeException("识别银行卡出错.");
 		}
+		boolean validated = (boolean) map.get("validated");
+		if (!validated) {
+			throw new RuntimeException("卡号无法验证[" + cardNo + "].");
+		}
 		System.out.println("messages:" + messages);
 		return Json.toObject(json, BankcardInfo.class, true);
 	}

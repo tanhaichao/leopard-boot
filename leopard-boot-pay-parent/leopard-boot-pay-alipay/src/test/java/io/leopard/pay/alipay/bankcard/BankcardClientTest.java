@@ -14,7 +14,7 @@ public class BankcardClientTest {
 	public void validateAndCacheCardInfo() {
 		BankcardInfo bankcardInfo = bankcardClient.validateAndCacheCardInfo("6222005865412565805");
 		// BankcardInfo bankcardInfo = bankcardClient.validateAndCacheCardInfo("622200586541256");
-		Json.printFormat(bankcardInfo, "bankcardInfo");
+		Json.print(bankcardInfo, "bankcardInfo");
 	}
 
 }
