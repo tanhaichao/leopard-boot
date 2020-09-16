@@ -1,4 +1,4 @@
-package io.leopard.boot.pay.alipay;
+package io.leopard.boot.pay.alipay.bankcard;
 
 import java.net.Proxy;
 import java.util.List;
@@ -15,6 +15,7 @@ import org.springframework.util.StringUtils;
 
 import io.leopard.httpnb.Httpnb;
 import io.leopard.json.Json;
+import io.leopard.lang.inum.EnumUtil;
 
 @Component
 public class BankcardClient {
@@ -62,7 +63,23 @@ public class BankcardClient {
 		if (!validated) {
 			throw new RuntimeException("卡号无法验证[" + cardNo + "].");
 		}
+		System.out.println("json:" + json);
+		BankcardInfo bankcardInfo = new BankcardInfo();
+
+		String key = (String) map.get("key");
+		String bankCode = (String) map.get("bank");
+		String cardType = (String) map.get("cardType");
+		String status = (String) map.get("stat");
+		if (!key.equals(cardNo)) {
+			throw new RuntimeException("接口返回的卡号[" + key + "]和传入的卡号[" + cardNo + "]不一致.");
+		}
+		BankcardType bankcardType = EnumUtil.toEnum(cardType, BankcardType.class);
+		BankcardStatus bankcardStatus = EnumUtil.toEnum(status, BankcardStatus.class);
+		bankcardInfo.setBankCode(bankCode);
+		bankcardInfo.setCardNo(key);
+		bankcardInfo.setCardType(bankcardType);
+		bankcardInfo.setStatus(bankcardStatus);
 		System.out.println("messages:" + messages);
-		return Json.toObject(json, BankcardInfo.class, true);
+		return bankcardInfo;
 	}
 }

@@ -2,8 +2,8 @@ package io.leopard.pay.alipay.bankcard;
 
 import org.junit.Test;
 
-import io.leopard.boot.pay.alipay.BankcardClient;
-import io.leopard.boot.pay.alipay.BankcardInfo;
+import io.leopard.boot.pay.alipay.bankcard.BankcardClient;
+import io.leopard.boot.pay.alipay.bankcard.BankcardInfo;
 import io.leopard.json.Json;
 
 public class BankcardClientTest {
