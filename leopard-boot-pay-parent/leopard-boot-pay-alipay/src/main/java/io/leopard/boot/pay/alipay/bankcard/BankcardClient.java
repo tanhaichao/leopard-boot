@@ -63,8 +63,7 @@ public class BankcardClient {
 		if (!validated) {
 			throw new RuntimeException("卡号无法验证[" + cardNo + "].");
 		}
-		System.out.println("json:" + json);
-		BankcardInfo bankcardInfo = new BankcardInfo();
+		System.out.println("validateAndCacheCardInfo json:" + json);
 
 		String key = (String) map.get("key");
 		String bankCode = (String) map.get("bank");
@@ -75,6 +74,8 @@ public class BankcardClient {
 		}
 		BankcardType bankcardType = EnumUtil.toEnum(cardType, BankcardType.class);
 		BankcardStatus bankcardStatus = EnumUtil.toEnum(status, BankcardStatus.class);
+
+		BankcardInfo bankcardInfo = new BankcardInfo();
 		bankcardInfo.setBankCode(bankCode);
 		bankcardInfo.setCardNo(key);
 		bankcardInfo.setCardType(bankcardType);
