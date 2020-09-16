@@ -33,6 +33,11 @@
 			<version>0.9.21-SNAPSHOT</version>
 		</dependency>
 		<dependency>
+			<groupId>io.leopard.boot</groupId>
+			<artifactId>leopard-boot-httpnb</artifactId>
+			<version>0.9.21-SNAPSHOT</version>
+		</dependency>
+		<dependency>
 			<groupId>com.alipay</groupId>
 			<artifactId>alipay-sdk-java</artifactId>
 			<version>20171123203126</version>
