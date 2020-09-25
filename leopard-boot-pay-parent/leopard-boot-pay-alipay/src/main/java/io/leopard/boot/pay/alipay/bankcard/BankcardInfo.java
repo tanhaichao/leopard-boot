@@ -29,6 +29,11 @@ public class BankcardInfo {
 	private String cardNo;
 
 	/**
+	 * key(丢失过的卡号会变成ID)
+	 */
+	private String key;
+
+	/**
 	 * 银行卡状态。值：ok，no。
 	 */
 	private BankcardStatus status;
@@ -63,6 +68,14 @@ public class BankcardInfo {
 
 	public void setStatus(BankcardStatus status) {
 		this.status = status;
+	}
+
+	public String getKey() {
+		return key;
+	}
+
+	public void setKey(String key) {
+		this.key = key;
 	}
 
 }
