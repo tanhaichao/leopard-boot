@@ -70,6 +70,7 @@ public class BankcardClient {
 		String cardType = (String) map.get("cardType");
 		String status = (String) map.get("stat");
 		if (!key.equals(cardNo)) {
+			// 丢失过的卡，会返回不正确的卡号，像是ID
 			logger.warn("接口返回的卡号[" + key + "]和传入的卡号[" + cardNo + "]不一致.");
 		}
 		BankcardType bankcardType = EnumUtil.toEnum(cardType, BankcardType.class);
