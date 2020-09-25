@@ -79,6 +79,7 @@ public class BankcardClient {
 		BankcardInfo bankcardInfo = new BankcardInfo();
 		bankcardInfo.setBankCode(bankCode);
 		bankcardInfo.setCardNo(cardNo);
+		bankcardInfo.setKey(key);
 		bankcardInfo.setCardType(bankcardType);
 		bankcardInfo.setStatus(bankcardStatus);
 		System.out.println("messages:" + messages);
