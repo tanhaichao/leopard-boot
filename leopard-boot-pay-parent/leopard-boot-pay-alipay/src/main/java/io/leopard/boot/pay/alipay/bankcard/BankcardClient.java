@@ -63,21 +63,21 @@ public class BankcardClient {
 		if (!validated) {
 			throw new RuntimeException("卡号无法验证[" + cardNo + "].");
 		}
-		System.out.println("validateAndCacheCardInfo json:" + json);
+		// System.out.println("validateAndCacheCardInfo json:" + json);
 
 		String key = (String) map.get("key");
 		String bankCode = (String) map.get("bank");
 		String cardType = (String) map.get("cardType");
 		String status = (String) map.get("stat");
 		if (!key.equals(cardNo)) {
-			throw new RuntimeException("接口返回的卡号[" + key + "]和传入的卡号[" + cardNo + "]不一致.");
+			logger.warn("接口返回的卡号[" + key + "]和传入的卡号[" + cardNo + "]不一致.");
 		}
 		BankcardType bankcardType = EnumUtil.toEnum(cardType, BankcardType.class);
 		BankcardStatus bankcardStatus = EnumUtil.toEnum(status, BankcardStatus.class);
 
 		BankcardInfo bankcardInfo = new BankcardInfo();
 		bankcardInfo.setBankCode(bankCode);
-		bankcardInfo.setCardNo(key);
+		bankcardInfo.setCardNo(cardNo);
 		bankcardInfo.setCardType(bankcardType);
 		bankcardInfo.setStatus(bankcardStatus);
 		System.out.println("messages:" + messages);
