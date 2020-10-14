@@ -26,6 +26,7 @@ import io.leopard.jdbc.onum.OnumResolver;
 import io.leopard.jdbc.onum.OnumResolverImpl;
 import io.leopard.json.Json;
 import io.leopard.json.JsonException;
+import io.leopard.lang.datatype.Month;
 import io.leopard.lang.inum.Bnum;
 import io.leopard.lang.inum.EnumConstantInvalidException;
 import io.leopard.lang.inum.EnumUtil;
@@ -163,6 +164,13 @@ public class LeopardBeanPropertyRowMapper<T> implements RowMapper<T> {
 		}
 		else if (java.sql.Timestamp.class.equals(requiredType) || java.util.Date.class.equals(requiredType)) {
 			value = rs.getTimestamp(index);
+		}
+		else if (Month.class.equals(requiredType)) {
+			String month = rs.getString(index);
+			if (StringUtils.isEmpty(month)) {
+				return null;
+			}
+			value = new Month(month);
 		}
 		else if (java.util.Date.class.isAssignableFrom(requiredType)) {
 			Timestamp timestamp = rs.getTimestamp(index);
