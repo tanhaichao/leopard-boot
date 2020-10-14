@@ -901,7 +901,14 @@ public class JdbcMysqlImpl implements Jdbc {
 			builder.setDouble(fieldName, (Double) obj);
 		}
 		else if (Month.class.equals(type)) {
-			builder.setString(fieldName, ((Month) obj).toString());
+			String month;
+			if (obj == null) {
+				month = null;
+			}
+			else {
+				month = ((Month) obj).toString();
+			}
+			builder.setString(fieldName, month);
 		}
 		else if (Date.class.equals(type)) {
 			builder.setDate(fieldName, (Date) obj);
