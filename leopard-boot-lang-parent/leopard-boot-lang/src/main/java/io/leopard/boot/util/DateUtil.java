@@ -231,6 +231,34 @@ public class DateUtil {
 	}
 
 	/**
+	 * 获取今天的日期
+	 * 
+	 * @return
+	 */
+	public static Date getLastTimeOfMonth() {
+		return getLastTimeOfMonth(new Date());
+	}
+
+	/**
+	 * 获取月份最后的时间
+	 * 
+	 * @param date
+	 * @return
+	 */
+	public static Date getLastTimeOfMonth(Date date) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		int lastDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+		cal.set(Calendar.DAY_OF_MONTH, lastDay);
+
+		cal.set(Calendar.HOUR_OF_DAY, 23);
+		cal.set(Calendar.MINUTE, 59);
+		cal.set(Calendar.SECOND, 59);
+		cal.set(Calendar.MILLISECOND, 999);
+		return new Date(cal.getTimeInMillis());
+	}
+
+	/**
 	 * 获取当前最后的时间
 	 * 
 	 * @return
