@@ -900,6 +900,9 @@ public class JdbcMysqlImpl implements Jdbc {
 		else if (double.class.equals(type) || Double.class.equals(type)) {
 			builder.setDouble(fieldName, (Double) obj);
 		}
+		else if (Month.class.equals(type)) {
+			builder.setString(fieldName, ((Month) obj).toString());
+		}
 		else if (Date.class.equals(type)) {
 			builder.setDate(fieldName, (Date) obj);
 		}
