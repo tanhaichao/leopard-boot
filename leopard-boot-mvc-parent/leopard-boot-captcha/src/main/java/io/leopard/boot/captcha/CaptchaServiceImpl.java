@@ -22,6 +22,8 @@ public class CaptchaServiceImpl implements CaptchaService {
 
 	protected Log logger = LogFactory.getLog(this.getClass());
 
+	private static final int DEFAULT_TIMEOUT_MINUTE = 10;
+
 	@Autowired
 	protected Jdbc jdbc;
 
@@ -152,7 +154,12 @@ public class CaptchaServiceImpl implements CaptchaService {
 
 	@Override
 	public String send(String account, CaptchaType type, String target) throws FrequencyException {
-		return this.send(account, type, target, "");
+		return this.send(account, type, target, DEFAULT_TIMEOUT_MINUTE);
+	}
+
+	@Override
+	public String send(String account, CaptchaType type, String target, int timeoutMinute) throws FrequencyException {
+		return this.send(account, type, target, "", timeoutMinute);
 	}
 
 	/**
@@ -174,6 +181,11 @@ public class CaptchaServiceImpl implements CaptchaService {
 	@Override
 	public String send(String account, CaptchaType type, String target, String content) throws FrequencyException {
 		return this.send(account, type, target, content, "");
+	}
+
+	@Override
+	public String send(String account, CaptchaType type, String target, String content, int timeoutMinute) throws FrequencyException {
+		return this.send(account, type, target, content, "", timeoutMinute);
 	}
 
 	@Override
