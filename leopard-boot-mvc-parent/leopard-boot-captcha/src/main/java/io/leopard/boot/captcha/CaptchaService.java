@@ -29,4 +29,8 @@ public interface CaptchaService {
 
 	String send(String account, CaptchaType type, String target, String content, String data, int timeoutMinute) throws FrequencyException;
 
+	String send(String account, CaptchaType type, String target, String content, int timeoutMinute) throws FrequencyException;
+
+	String send(String account, CaptchaType type, String target, int timeoutMinute) throws FrequencyException;
+
 }

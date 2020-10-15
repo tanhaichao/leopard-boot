@@ -180,7 +180,7 @@ public class CaptchaServiceImpl implements CaptchaService {
 
 	@Override
 	public String send(String account, CaptchaType type, String target, String content) throws FrequencyException {
-		return this.send(account, type, target, content, "");
+		return this.send(account, type, target, content, DEFAULT_TIMEOUT_MINUTE);
 	}
 
 	@Override
@@ -190,7 +190,7 @@ public class CaptchaServiceImpl implements CaptchaService {
 
 	@Override
 	public String send(String account, CaptchaType type, String target, String content, String data) throws FrequencyException {
-		return this.send(account, type, target, content, data, 10);
+		return this.send(account, type, target, content, data, DEFAULT_TIMEOUT_MINUTE);
 	}
 
 	@Override
