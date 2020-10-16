@@ -15,6 +15,7 @@ import io.leopard.jdbc.StatementParameter;
 import io.leopard.jdbc.builder.Orderby;
 import io.leopard.lang.Page;
 import io.leopard.lang.Paging;
+import io.leopard.lang.datatype.Month;
 import io.leopard.lang.datatype.Sort;
 import io.leopard.lang.datatype.TimeRange;
 import io.leopard.lang.inum.Inum;
@@ -123,6 +124,13 @@ public abstract class SearchBuilder {
 	public SearchBuilder addStringList(String fieldName, List<String> valueList) {
 		if (valueList != null && !valueList.isEmpty()) {
 			return this.addWhere(fieldName, valueList);
+		}
+		return this;
+	}
+
+	public SearchBuilder addMonth(String fieldName, Month month) {
+		if (month != null) {
+			this.addWhere(fieldName, month.toString());
 		}
 		return this;
 	}
