@@ -48,9 +48,26 @@ public class Month extends Date {
 		else if (DateTime.isDate(datetime)) {
 			return DateTime.getTimestamp(datetime + " 00:00:00");
 		}
+		else if (isTimestamp(datetime)) {
+			return Long.parseLong(datetime);
+		}
 		else {
 			throw new IllegalArgumentException("非法参数[" + datetime + "].");
 		}
+	}
+
+	// 1596211200000
+
+	private static final String IS_TIMESTAMP_REGEX = "^1[0-9]{12}$";
+
+	/**
+	 * 判断字符串是否为时间戳
+	 */
+	private static boolean isTimestamp(final String datetime) {
+		if (datetime == null || datetime.length() == 0) {
+			return false;
+		}
+		return datetime.matches(IS_TIMESTAMP_REGEX);
 	}
 
 	private static final SimpleDateFormat GET_TIME_FORMAT = new SimpleDateFormat("yyyy-MM");
