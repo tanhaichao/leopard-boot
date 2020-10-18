@@ -8,6 +8,8 @@ import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.util.CellRangeAddress;
 
+import io.leopard.lang.datatype.Month;
+import io.leopard.lang.datatype.OnlyDate;
 import io.leopard.lang.inum.Bnum;
 import io.leopard.lang.inum.Inum;
 import io.leopard.lang.inum.Snum;
@@ -170,6 +172,16 @@ public class Row {
 
 	public Row addCell(Date date) {
 		String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
+		return this.addCell(time);
+	}
+
+	public Row addCell(Month month) {
+		String time = month.toString();
+		return this.addCell(time);
+	}
+
+	public Row addCell(OnlyDate date) {
+		String time = date.toString();
 		return this.addCell(time);
 	}
 
