@@ -86,9 +86,11 @@ public class ExcelReader {
 				int columnIndex = headerMapping.get(fieldName);
 
 				Cell cell = row.getCell(columnIndex);
-				String value = cell.getStringCellValue();// FIXME 暂时只支持字符串
 				try {
 					Field field = clazz.getDeclaredField(fieldName);
+					Class<?> fieldType = field.getType();
+					Object value = getCellValue(cell, fieldType);
+
 					field.setAccessible(true);
 					field.set(bean, value);
 				}
@@ -109,6 +111,19 @@ public class ExcelReader {
 		input.close();
 
 		return list;
+	}
+
+	private static Object getCellValue(Cell cell, Class<?> type) {
+		if (String.class.equals(type)) {
+			return cell.getStringCellValue();
+		}
+		else if (type.equals(double.class)) {
+			return cell.getNumericCellValue();
+		}
+		else {
+			throw new RuntimeException("未支持该数据类型[" + type.getName() + "]。");
+		}
+
 	}
 
 	/**
