@@ -121,10 +121,10 @@ public class SheetDb {
 		else {
 			Class<?> valueType = column.getColumnValueType();
 			if (valueType.equals(Long.class)) {
-				System.err.println("column:" + column.getDbColumnName() + " rowIndex:" + rowIndex);
+				// System.err.println("column:" + column.getDbColumnName() + " rowIndex:" + rowIndex);
 				CellType cellType = cell.getCellType();
 				if (cellType == CellType.STRING) {
-					value = Long.parseLong(cell.getStringCellValue()) + "";
+					value = Long.parseLong(cell.getStringCellValue().trim()) + "";
 				}
 				else if (cellType == CellType.NUMERIC) {
 					value = ((long) cell.getNumericCellValue()) + "";
