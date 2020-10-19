@@ -9,6 +9,7 @@ import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -120,7 +121,17 @@ public class SheetDb {
 		else {
 			Class<?> valueType = column.getColumnValueType();
 			if (valueType.equals(Long.class)) {
-				value = ((long) cell.getNumericCellValue()) + "";
+				System.err.println("column:" + column.getDbColumnName() + " rowIndex:" + rowIndex);
+				CellType cellType = cell.getCellType();
+				if (cellType == CellType.STRING) {
+					value = Long.parseLong(cell.getStringCellValue()) + "";
+				}
+				else if (cellType == CellType.NUMERIC) {
+					value = ((long) cell.getNumericCellValue()) + "";
+				}
+				else {
+					throw new RuntimeException("未知单元格类型[" + cellType.name() + "].");
+				}
 			}
 			else {
 				value = cell.getStringCellValue();
