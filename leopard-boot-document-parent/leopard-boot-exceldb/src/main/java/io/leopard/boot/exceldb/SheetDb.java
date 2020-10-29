@@ -167,7 +167,8 @@ public class SheetDb {
 		for (int i = 1; i <= lastRowNum; i++) {
 			Row row = sheet.getRow(i);
 			if (row == null) {
-				throw new RuntimeException("row[" + i + "]为空.");
+				// throw new RuntimeException("row[" + i + "]为空.");
+				continue;
 			}
 			List<String> valueList = this.rowToValueList(i, row);
 			sb.append(names);
