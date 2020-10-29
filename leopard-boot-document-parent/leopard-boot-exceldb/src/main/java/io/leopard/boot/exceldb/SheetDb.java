@@ -177,6 +177,9 @@ public class SheetDb {
 		List<String> valueList = new ArrayList<>();
 		for (int i = 0; i < columnList.size(); i++) {
 			Column column = columnList.get(i);
+			if (column == null) {
+				throw new RuntimeException("column[" + i + "]不存在.");
+			}
 			String value = this.getColumnValue(rowIndex, row, column);
 			//
 			// Cell cell = row.getCell(column.getColumnIndex());
