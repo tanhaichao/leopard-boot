@@ -16,6 +16,14 @@ public class DateUtilTest {
 	}
 
 	@Test
+	public void test() {
+		long time = 1604740749000L;
+		Date date = new Date(1604740749000L);
+		System.out.println("date:" + DateTime.getTime(date));
+
+	}
+
+	@Test
 	public void getLastTimeOfMonth() {
 		System.out.println("lastTime:" + DateTime.getTime(DateUtil.getLastTimeOfMonth(new OnlyDate("2020-01-30"))));
 		System.out.println("lastTime:" + DateTime.getTime(DateUtil.getLastTimeOfMonth(new Month("2020-02"))));
