@@ -251,7 +251,14 @@ public class WeixinServiceImpl implements WeixinService {
 		String body = Json.toJson(message);
 		// params.put("body", body);
 		String json = Httpnb.doPost(url, proxy, params, body);
+		// {"errcode":40165,"errmsg":"invalid weapp pagepath rid: 5fac9bec-09551c12-23b1a813"}
 		logger.info("sendTemplateMessage:" + json);
+
+		Map<String, Object> result = Json.toMap(json);
+		Integer errcode = (Integer) result.get("errcode");
+		if (errcode != null && errcode != 0) {
+			logger.error("sendTemplateMessage:" + json);
+		}
 	}
 
 	@Override
