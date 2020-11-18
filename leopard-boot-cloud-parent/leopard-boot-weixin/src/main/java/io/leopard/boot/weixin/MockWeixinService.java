@@ -160,4 +160,10 @@ public class MockWeixinService implements WeixinService {
 		return null;
 	}
 
+	@Override
+	public Qrcode getWxaQrcode(String path, int width) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

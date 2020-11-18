@@ -58,4 +58,6 @@ public interface WeixinService {
 	 * @return
 	 */
 	OffiaccountUserinfo getUserinfo(String openId);
+
+	Qrcode getWxaQrcode(String path, int width);
 }

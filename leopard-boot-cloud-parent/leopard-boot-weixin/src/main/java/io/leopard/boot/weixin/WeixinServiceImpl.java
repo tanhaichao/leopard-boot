@@ -191,6 +191,25 @@ public class WeixinServiceImpl implements WeixinService {
 	}
 
 	@Override
+	public Qrcode getWxaQrcode(String path, int width) {
+		if (width <= 0) {
+			width = 430;
+		}
+		if (width > 1280) {
+			width = 1280;
+		}
+		Map<String, Object> params = new LinkedHashMap<>();
+		AccessToken accessToken = this.getAccessToken();
+
+		String url = "https://api.weixin.qq.com/cgi-bin/wxaapp/createwxaqrcode?access_token=" + accessToken.getAccess_token();
+
+		String json = Httpnb.doPost(url, proxy, params);
+		logger.info("getWxaQrcode:" + json);
+
+		return null;
+	}
+
+	@Override
 	public Qrcode getQrcodeLimitStrScene(String sceneStr) {
 		AccessToken accessToken = this.getAccessToken();
 		Map<String, Object> params = new LinkedHashMap<>();

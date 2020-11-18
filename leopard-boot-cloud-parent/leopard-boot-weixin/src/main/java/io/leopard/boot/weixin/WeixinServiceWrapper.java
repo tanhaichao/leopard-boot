@@ -88,4 +88,9 @@ public class WeixinServiceWrapper implements WeixinService {
 	public OffiaccountUserinfo getUserinfo(String openId) {
 		return weixinService.getUserinfo(openId);
 	}
+
+	@Override
+	public Qrcode getWxaQrcode(String path, int width) {
+		return weixinService.getWxaQrcode(path, width);
+	}
 }
