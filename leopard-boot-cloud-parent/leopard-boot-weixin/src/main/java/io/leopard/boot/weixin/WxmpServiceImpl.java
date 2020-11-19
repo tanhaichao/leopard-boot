@@ -10,28 +10,25 @@ import javax.annotation.PostConstruct;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import io.leopard.boot.weixin.model.AccessToken;
 import io.leopard.httpnb.Httpnb;
 import io.leopard.json.Json;
 
-@Service("leopardBootWxmpServiceImpl")
-@ConditionalOnProperty(prefix = "weixin.mp", name = "secret")
+//@Service("leopardBootWxmpServiceImpl")
+// @ConditionalOnProperty(prefix = "weixin.mp", name = "secret")
 public class WxmpServiceImpl implements WxmpService {
 
 	protected Log logger = LogFactory.getLog(this.getClass());
 
-	@Value("${weixin.appId}")
+	// @Value("${weixin.appId}")
 	private String appId;
 
-	@Value("${weixin.secret}")
+	// @Value("${weixin.secret}")
 	private String secret;
 
-	@Value("${leopard.proxy:}") // 默认为empty
+	// @Value("${leopard.proxy:}") // 默认为empty
 	private String proxyConfig;// 格式 ip:port
 
 	private Proxy proxy;
@@ -100,7 +97,8 @@ public class WxmpServiceImpl implements WxmpService {
 		String url = "https://api.weixin.qq.com/cgi-bin/wxaapp/createwxaqrcode?access_token=" + accessToken.getAccess_token();
 		String body = Json.toJson(params);
 		// String json = Httpnb.doPost(url, proxy, null, body);
-		InputStream input = Httpnb.doPostForInputStream(url, proxy, null, body);
+		Map<String, Object> params2 = null;
+		InputStream input = Httpnb.doPostForInputStream(url, proxy, params2, body);
 		return input;
 	}
 
@@ -124,8 +122,9 @@ public class WxmpServiceImpl implements WxmpService {
 		params.put("width", width);
 		String url = "https://api.weixin.qq.com/cgi-bin/wxaapp/createwxaqrcode?access_token=" + accessToken.getAccess_token();
 		String body = Json.toJson(params);
+		Map<String, Object> params2 = null;
 		// String json = Httpnb.doPost(url, proxy, null, body);
-		InputStream input = Httpnb.doPostForInputStream(url, proxy, null, body);
+		InputStream input = Httpnb.doPostForInputStream(url, proxy, params2, body);
 		return input;
 	}
 }
