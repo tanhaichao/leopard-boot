@@ -107,6 +107,9 @@ public class WxmpServiceImpl implements WxmpService {
 	@Override
 	public InputStream getUnlimitedWxaQrcode(String scene, String page, int width) throws IOException {
 		// https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/qr-code/wxacode.getUnlimited.html
+		if (page.startsWith("/")) {
+			throw new IllegalArgumentException("page不能以/开始");
+		}
 		if (width <= 0) {
 			width = 430;
 		}
@@ -117,7 +120,7 @@ public class WxmpServiceImpl implements WxmpService {
 
 		Map<String, Object> params = new LinkedHashMap<>();
 		params.put("scene", scene);
-		params.put("page", page);
+		params.put("path", page);
 		params.put("width", width);
 		String url = "https://api.weixin.qq.com/cgi-bin/wxaapp/createwxaqrcode?access_token=" + accessToken.getAccess_token();
 		String body = Json.toJson(params);
