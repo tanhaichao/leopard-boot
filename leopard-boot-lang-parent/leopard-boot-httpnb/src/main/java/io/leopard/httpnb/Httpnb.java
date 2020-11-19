@@ -185,6 +185,46 @@ public class Httpnb {
 		}
 	}
 
+	public static InputStream doPostForInputStream(String url, Proxy proxy, Map<String, Object> params, String body) throws IOException {
+		return doPostForInputStream(url, proxy, -1, params, body);
+	}
+
+	public static InputStream doPostForInputStream(String url, Proxy proxy, long timeout, Map<String, Object> params, String body) throws IOException {
+
+		HttpHeader header = new HttpHeaderPostImpl(timeout);
+		header.setProxy(proxy);
+		if (params != null) {
+			Iterator<Entry<String, Object>> iterator = params.entrySet().iterator();
+			while (iterator.hasNext()) {
+				Entry<String, Object> entry = iterator.next();
+				header.addParam(new Param(entry.getKey(), entry.getValue()));
+			}
+		}
+
+		HttpURLConnection conn = header.openConnection(url);
+		if (body != null) {
+			OutputStream os = conn.getOutputStream();
+			OutputStreamWriter osw = new OutputStreamWriter(os, "UTF-8");
+			osw.write(body);
+			osw.flush();
+			osw.close();
+			os.close();
+		}
+		InputStream input = conn.getInputStream();
+		// byte[] bytes = IOUtils.toByteArray(input);
+		ByteArrayOutputStream output = new ByteArrayOutputStream();
+		byte[] data = new byte[1024];
+		int count = -1;
+		while ((count = input.read(data, 0, 1024)) != -1) {
+			output.write(data, 0, count);
+		}
+		data = null;
+
+		input.close();
+		conn.disconnect();
+		return new ByteArrayInputStream(output.toByteArray());
+	}
+
 	public static String execute(String url, HttpHeader header) {
 		try {
 			HttpURLConnection conn = header.openConnection(url);
