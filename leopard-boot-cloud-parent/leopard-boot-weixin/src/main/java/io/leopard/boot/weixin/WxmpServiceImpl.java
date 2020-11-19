@@ -97,8 +97,7 @@ public class WxmpServiceImpl implements WxmpService {
 		String url = "https://api.weixin.qq.com/cgi-bin/wxaapp/createwxaqrcode?access_token=" + accessToken.getAccess_token();
 		String body = Json.toJson(params);
 		// String json = Httpnb.doPost(url, proxy, null, body);
-		Map<String, Object> params2 = null;
-		InputStream input = Httpnb.doPostForInputStream(url, proxy, params2, body);
+		InputStream input = Httpnb.doPostForInputStream(url, proxy, null, body);
 		return input;
 	}
 
@@ -122,9 +121,8 @@ public class WxmpServiceImpl implements WxmpService {
 		params.put("width", width);
 		String url = "https://api.weixin.qq.com/cgi-bin/wxaapp/createwxaqrcode?access_token=" + accessToken.getAccess_token();
 		String body = Json.toJson(params);
-		Map<String, Object> params2 = null;
 		// String json = Httpnb.doPost(url, proxy, null, body);
-		InputStream input = Httpnb.doPostForInputStream(url, proxy, params2, body);
+		InputStream input = Httpnb.doPostForInputStream(url, proxy, null, body);
 		return input;
 	}
 }
