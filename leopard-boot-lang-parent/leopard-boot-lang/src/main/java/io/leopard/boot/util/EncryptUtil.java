@@ -18,6 +18,20 @@ public class EncryptUtil {
 		return md5;
 	}
 
+	public static String md5(byte[] data) {
+		try {
+			MessageDigest alga = MessageDigest.getInstance("MD5");
+			alga.update(data);
+			byte digesta[] = alga.digest();
+			String hex = byte2hex(digesta);
+
+			return hex.toLowerCase();
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+	}
+
 	/**
 	 * sha1 加密
 	 * 
