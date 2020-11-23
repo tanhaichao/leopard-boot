@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.exc.MismatchedInputException;
 
 @Component
 @Order(0)
@@ -48,6 +49,10 @@ public class ErrorMessageFilterSystemImpl implements ErrorMessageFilter {
 		}
 		if (e instanceof SQLException) {
 			return "操作数据库出错，请稍后重试.";
+		}
+		if (e instanceof MismatchedInputException) {
+			String message = e.getMessage();
+			return "JSON序列化出错(原因:" + ErrorUtil.fillterDebugInfo(message) + ")";
 		}
 		if (e instanceof JsonMappingException) {
 			Throwable cause = e.getCause();
