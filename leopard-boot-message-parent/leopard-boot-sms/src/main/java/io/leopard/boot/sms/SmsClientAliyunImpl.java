@@ -90,6 +90,38 @@ public class SmsClientAliyunImpl implements SmsClient {
 	}
 
 	@Override
+	public boolean sendByTemplateId(String mobile, String templateId, boolean ignoreException) {
+		if (ignoreException) {
+			try {
+				return this.sendByTemplateId(mobile, templateId, null);
+			}
+			catch (Exception e) {
+				logger.error(e.getMessage(), e);
+				return false;
+			}
+		}
+		else {
+			return this.sendByTemplateId(mobile, templateId, null);
+		}
+	}
+
+	@Override
+	public boolean sendByTemplateId(String mobile, String templateId, Map<String, Object> data, boolean ignoreException) {
+		if (ignoreException) {
+			try {
+				return this.sendByTemplateId(mobile, templateId, data);
+			}
+			catch (Exception e) {
+				logger.error(e.getMessage(), e);
+				return false;
+			}
+		}
+		else {
+			return this.sendByTemplateId(mobile, templateId, data);
+		}
+	}
+
+	@Override
 	public boolean sendByTemplateId(String mobile, String templateId, Map<String, Object> data) {
 		logger.info("sendByTemplateId mobile:" + mobile + " templateId:" + templateId);
 
