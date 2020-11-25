@@ -77,6 +77,9 @@ public class TemplateMessageForm {
 	}
 
 	public void addDateData(String key, Date date) {
+		if (date == null) {
+			throw new IllegalArgumentException("时间不能为空。");
+		}
 		String value = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss").format(date);
 		this.addData(key, value, "#173177");
 	}
