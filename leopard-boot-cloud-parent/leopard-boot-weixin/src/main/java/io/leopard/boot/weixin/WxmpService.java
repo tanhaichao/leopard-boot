@@ -19,5 +19,5 @@ public interface WxmpService {
 
 	AccessToken getAccessToken();
 
-	InputStream getUnlimitedWxaQrcode(String scene, String page, int width) throws IOException;
+	InputStream getUnlimitedWxaQrcode(String path, int width) throws IOException;
 }

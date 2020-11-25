@@ -33,8 +33,8 @@ public class WxmpServiceWrapper implements WxmpService {
 	}
 
 	@Override
-	public InputStream getUnlimitedWxaQrcode(String scene, String page, int width) throws IOException {
-		return wxmpService.getUnlimitedWxaQrcode(scene, page, width);
+	public InputStream getUnlimitedWxaQrcode(String path, int width) throws IOException {
+		return wxmpService.getUnlimitedWxaQrcode(path, width);
 	}
 
 }
