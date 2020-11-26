@@ -146,7 +146,7 @@ public class SmsClientAliyunImpl implements SmsClient {
 			// {"Message":"OK","RequestId":"2AD6B746-C57C-4794-ACC4-62C943C2F3A4","BizId":"205500294640639892^0","Code":"OK"}
 			String json = response.getData();
 			if (json.indexOf("\"Code\":\"OK\"") == -1) {
-				logger.info("json:" + json);
+				logger.error("json:" + json);
 				throw new RuntimeException("短信接口出错.");
 			}
 			return true;
