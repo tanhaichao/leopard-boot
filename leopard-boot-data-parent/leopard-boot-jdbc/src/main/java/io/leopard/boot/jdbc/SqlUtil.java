@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.util.StringUtils;
 
@@ -218,6 +219,16 @@ public class SqlUtil {
 			String key = snum.getKey();
 			key = escapeSQLParam(key);
 			sb.append("'" + key + "',");
+		}
+		sb.deleteCharAt(sb.length() - 1);
+		return sb.toString();
+	}
+
+	public static String toIn(Set<String> list) {
+		StringBuilder sb = new StringBuilder();
+		for (String str : list) {
+			str = escapeSQLParam(str);
+			sb.append("'" + str + "',");
 		}
 		sb.deleteCharAt(sb.length() - 1);
 		return sb.toString();
