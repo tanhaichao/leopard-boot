@@ -212,7 +212,7 @@ public class SqlUtil {
 		return buf.toString();
 	}
 
-	public static String toInBySnum(List<Snum> list) {
+	public static String toInBySnum(List<? extends Snum> list) {
 		StringBuilder sb = new StringBuilder();
 		for (Snum snum : list) {
 			String key = snum.getKey();
