@@ -11,6 +11,7 @@ import io.leopard.jdbc.InvalidParamDataAccessException;
 import io.leopard.jdbc.StatementParameter;
 import io.leopard.lang.datatype.Month;
 import io.leopard.lang.datatype.OnlyDate;
+import io.leopard.lang.inum.Snum;
 
 /**
  * SQL工具类
@@ -209,6 +210,17 @@ public class SqlUtil {
 			}
 		}
 		return buf.toString();
+	}
+
+	public static String toInBySnum(List<Snum> list) {
+		StringBuilder sb = new StringBuilder();
+		for (Snum snum : list) {
+			String key = snum.getKey();
+			key = escapeSQLParam(key);
+			sb.append("'" + key + "',");
+		}
+		sb.deleteCharAt(sb.length() - 1);
+		return sb.toString();
 	}
 
 	public static String toIn(List<String> list) {
