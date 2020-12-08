@@ -166,4 +166,16 @@ public class MockWeixinService implements WeixinService {
 		return null;
 	}
 
+	@Override
+	public void sendTextMessage(String openId, String content) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void sendImageMessage(String openId, String mediaId) {
+		// TODO Auto-generated method stub
+
+	}
+
 }

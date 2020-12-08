@@ -60,4 +60,20 @@ public interface WeixinService {
 	OffiaccountUserinfo getUserinfo(String openId);
 
 	Qrcode getWxaQrcode(String path, int width);
+
+	/**
+	 * 发送文本信息
+	 * 
+	 * @param openId
+	 * @param content
+	 */
+	void sendTextMessage(String openId, String content);
+
+	/**
+	 * 发送图片消息
+	 * 
+	 * @param openId
+	 * @param mediaId 素材ID
+	 */
+	void sendImageMessage(String openId, String mediaId);
 }

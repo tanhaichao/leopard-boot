@@ -93,4 +93,14 @@ public class WeixinServiceWrapper implements WeixinService {
 	public Qrcode getWxaQrcode(String path, int width) {
 		return weixinService.getWxaQrcode(path, width);
 	}
+
+	@Override
+	public void sendTextMessage(String openId, String content) {
+		weixinService.sendTextMessage(openId, content);
+	}
+
+	@Override
+	public void sendImageMessage(String openId, String mediaId) {
+		weixinService.sendImageMessage(openId, mediaId);
+	}
 }

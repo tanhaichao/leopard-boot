@@ -281,6 +281,57 @@ public class WeixinServiceImpl implements WeixinService {
 	}
 
 	@Override
+	public void sendTextMessage(String openId, String content) {
+		// {
+		// "touser":"OPENID",
+		// "msgtype":"text",
+		// "text":
+		// {
+		// "content":"Hello World"
+		// }
+		// }
+		Map<String, Object> message = new LinkedHashMap<>();
+		this.sendCustomMessage(openId, "text", message);
+	}
+
+	@Override
+	public void sendImageMessage(String openId, String content) {
+		// {
+		// "touser":"OPENID",
+		// "msgtype":"image",
+		// "image":
+		// {
+		// "media_id":"MEDIA_ID"
+		// }
+		// }
+		Map<String, Object> message = new LinkedHashMap<>();
+		this.sendCustomMessage(openId, "text", message);
+	}
+
+	protected void sendCustomMessage(String openId, String msgtype, Map<String, Object> message) {
+		AccessToken accessToken = this.getAccessToken();
+		Map<String, Object> params = new LinkedHashMap<>();
+		Map<String, Object> messageParam = new LinkedHashMap<>();
+		messageParam.put("touser", openId);
+		messageParam.put("msgtype", msgtype);
+		messageParam.put(msgtype, message);
+		logger.info("sendTextMessage openId:" + openId + " msgtype:" + msgtype);
+		// {"action_name": "QR_LIMIT_STR_SCENE", "action_info": {"scene": {"scene_str": "test"}}}
+		String url = "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=" + accessToken.getAccess_token();
+		String body = Json.toJson(messageParam);
+		// params.put("body", body);
+		String json = Httpnb.doPost(url, proxy, params, body);
+		// {"errcode":40165,"errmsg":"invalid weapp pagepath rid: 5fac9bec-09551c12-23b1a813"}
+		logger.info("sendTextMessage:" + json);
+
+		Map<String, Object> result = Json.toMap(json);
+		Integer errcode = (Integer) result.get("errcode");
+		if (errcode != null && errcode != 0) {
+			logger.error("sendTemplateMessage:" + json);
+		}
+	}
+
+	@Override
 	public void createMenu(String body) {
 		// https://developers.weixin.qq.com/doc/offiaccount/Custom_Menus/Creating_Custom-Defined_Menu.html
 		AccessToken accessToken = this.getAccessToken();
