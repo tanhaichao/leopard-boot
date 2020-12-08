@@ -1,5 +1,7 @@
 package io.leopard.boot.weixin;
 
+import java.io.File;
+
 import io.leopard.boot.weixin.form.TemplateMessageForm;
 import io.leopard.boot.weixin.model.AccessToken;
 import io.leopard.boot.weixin.model.JSCode2Session;
@@ -76,4 +78,13 @@ public interface WeixinService {
 	 * @param mediaId 素材ID
 	 */
 	void sendImageMessage(String openId, String mediaId);
+
+	/**
+	 * 上传图片素材
+	 * 
+	 * @param file
+	 * @return
+	 * @throws Exception
+	 */
+	String uploadImageMedia(File file) throws Exception;
 }

@@ -1,5 +1,7 @@
 package io.leopard.boot.weixin;
 
+import java.io.File;
+
 import io.leopard.boot.weixin.form.TemplateMessageForm;
 import io.leopard.boot.weixin.model.AccessToken;
 import io.leopard.boot.weixin.model.JSCode2Session;
@@ -102,5 +104,10 @@ public class WeixinServiceWrapper implements WeixinService {
 	@Override
 	public void sendImageMessage(String openId, String mediaId) {
 		weixinService.sendImageMessage(openId, mediaId);
+	}
+
+	@Override
+	public String uploadImageMedia(File file) throws Exception {
+		return weixinService.uploadImageMedia(file);
 	}
 }

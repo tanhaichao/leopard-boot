@@ -1,5 +1,7 @@
 package io.leopard.boot.weixin;
 
+import java.io.File;
+
 import org.springframework.util.StringUtils;
 
 import io.leopard.boot.weixin.form.TemplateMessageForm;
@@ -176,6 +178,12 @@ public class MockWeixinService implements WeixinService {
 	public void sendImageMessage(String openId, String mediaId) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public String uploadImageMedia(File file) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

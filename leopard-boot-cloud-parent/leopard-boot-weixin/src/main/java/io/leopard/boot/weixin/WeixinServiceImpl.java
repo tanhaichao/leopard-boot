@@ -1,5 +1,6 @@
 package io.leopard.boot.weixin;
 
+import java.io.File;
 import java.net.Proxy;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -21,6 +22,7 @@ import io.leopard.boot.weixin.model.OffiaccountUserinfo;
 import io.leopard.boot.weixin.model.Qrcode;
 import io.leopard.boot.weixin.model.WeixinMobile;
 import io.leopard.boot.weixin.model.WeixinUserinfo;
+import io.leopard.boot.weixin.util.WeixinMediaUploadUtil;
 import io.leopard.boot.weixin.util.WeixinUtil;
 import io.leopard.httpnb.Httpnb;
 import io.leopard.json.Json;
@@ -281,6 +283,15 @@ public class WeixinServiceImpl implements WeixinService {
 	}
 
 	@Override
+	public String uploadImageMedia(File file) throws Exception {
+		AccessToken accessToken = this.getAccessToken();
+
+		// String accessToken = "40_Y-O_cz2JpQKKSuEfW9s-faH8-VRbQKlheP70o6UGTAoJxhT67siB55vsvLozZdQH1zr40kPy1Y34_krW_sbWANRM-odGNu9HqqL3FWlXrMCxiVkTaPkjHku5DkjTcemeyMXm6Ylhnp-hlO36MMMaAEAUUU";
+		String json = WeixinMediaUploadUtil.uploadImageMedia(accessToken.getAccess_token(), file);
+		return json;
+	}
+
+	@Override
 	public void sendTextMessage(String openId, String content) {
 		// {
 		// "touser":"OPENID",
@@ -291,11 +302,12 @@ public class WeixinServiceImpl implements WeixinService {
 		// }
 		// }
 		Map<String, Object> message = new LinkedHashMap<>();
+		message.put("content", content);
 		this.sendCustomMessage(openId, "text", message);
 	}
 
 	@Override
-	public void sendImageMessage(String openId, String content) {
+	public void sendImageMessage(String openId, String mediaId) {
 		// {
 		// "touser":"OPENID",
 		// "msgtype":"image",
@@ -305,7 +317,8 @@ public class WeixinServiceImpl implements WeixinService {
 		// }
 		// }
 		Map<String, Object> message = new LinkedHashMap<>();
-		this.sendCustomMessage(openId, "text", message);
+		message.put("media_id", mediaId);
+		this.sendCustomMessage(openId, "image", message);
 	}
 
 	protected void sendCustomMessage(String openId, String msgtype, Map<String, Object> message) {
@@ -327,7 +340,7 @@ public class WeixinServiceImpl implements WeixinService {
 		Map<String, Object> result = Json.toMap(json);
 		Integer errcode = (Integer) result.get("errcode");
 		if (errcode != null && errcode != 0) {
-			logger.error("sendTemplateMessage:" + json);
+			logger.error("sendTextMessage:" + json);
 		}
 	}
 
