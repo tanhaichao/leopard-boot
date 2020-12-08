@@ -148,6 +148,28 @@ public abstract class SearchBuilder {
 		return this;
 	}
 
+	public SearchBuilder addLongJsonContains(String fieldName, Collection<Long> list) {
+		if (list == null || list.isEmpty()) {
+			return this;
+		}
+		String json = Json.toJson(list);
+
+		String expression = "json_contains(`" + fieldName + "`,'" + StringUtil.escapeSQLParam(json) + "')";
+		this.addWhere(expression);
+		return this;
+	}
+
+	public SearchBuilder addIntJsonContains(String fieldName, Collection<Integer> list) {
+		if (list == null || list.isEmpty()) {
+			return this;
+		}
+		String json = Json.toJson(list);
+
+		String expression = "json_contains(`" + fieldName + "`,'" + StringUtil.escapeSQLParam(json) + "')";
+		this.addWhere(expression);
+		return this;
+	}
+
 	public SearchBuilder addString(String fieldName, String value) {
 		return this.addString(fieldName, value, false);
 	}
