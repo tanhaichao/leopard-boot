@@ -1,6 +1,7 @@
 package io.leopard.boot.jdbc.querybuilder;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,7 @@ import io.leopard.boot.util.StringUtil;
 import io.leopard.jdbc.Jdbc;
 import io.leopard.jdbc.StatementParameter;
 import io.leopard.jdbc.builder.Orderby;
+import io.leopard.json.Json;
 import io.leopard.lang.Page;
 import io.leopard.lang.Paging;
 import io.leopard.lang.datatype.Month;
@@ -132,6 +134,17 @@ public abstract class SearchBuilder {
 		if (month != null) {
 			this.addWhere(fieldName, month.toString());
 		}
+		return this;
+	}
+
+	public SearchBuilder addStringJsonContains(String fieldName, Collection<String> list) {
+		if (list == null || list.isEmpty()) {
+			return this;
+		}
+		String json = Json.toJson(list);
+
+		String expression = "json_contains(`" + fieldName + "`,'" + StringUtil.escapeSQLParam(json) + "')";
+		this.addWhere(expression);
 		return this;
 	}
 
