@@ -1,6 +1,8 @@
 package io.leopard.boot.weixin;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.Proxy;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -20,6 +22,7 @@ import io.leopard.boot.weixin.model.AccessToken;
 import io.leopard.boot.weixin.model.JSCode2Session;
 import io.leopard.boot.weixin.model.OffiaccountUserinfo;
 import io.leopard.boot.weixin.model.Qrcode;
+import io.leopard.boot.weixin.model.WeixinMedia;
 import io.leopard.boot.weixin.model.WeixinMobile;
 import io.leopard.boot.weixin.model.WeixinUserinfo;
 import io.leopard.boot.weixin.util.WeixinMediaUploadUtil;
@@ -283,12 +286,36 @@ public class WeixinServiceImpl implements WeixinService {
 	}
 
 	@Override
-	public String uploadImageMedia(File file) throws Exception {
+	public WeixinMedia uploadImageMedia(File file) throws IOException {
 		AccessToken accessToken = this.getAccessToken();
 
-		// String accessToken = "40_Y-O_cz2JpQKKSuEfW9s-faH8-VRbQKlheP70o6UGTAoJxhT67siB55vsvLozZdQH1zr40kPy1Y34_krW_sbWANRM-odGNu9HqqL3FWlXrMCxiVkTaPkjHku5DkjTcemeyMXm6Ylhnp-hlO36MMMaAEAUUU";
+		// String accessToken = "40_Y-O_cz2JpQKKSuEfW9s-faH8--odGNu9HqqL3FWlXrMCxiVkTaPkjHku5DkjTcemeyMXm6Ylhnp-hlO36MMMaAEAUUU";
 		String json = WeixinMediaUploadUtil.uploadImageMedia(accessToken.getAccess_token(), file);
-		return json;
+		{
+			Map<String, Object> result = Json.toMap(json);
+			Integer errcode = (Integer) result.get("errcode");
+			if (errcode != null && errcode != 0) {
+				throw new RuntimeException("上传素材出错。");
+			}
+		}
+		return Json.toObject(json, WeixinMedia.class);
+	}
+
+	@Override
+	public WeixinMedia uploadImageMedia(InputStream input, String fileName) throws IOException {
+		AccessToken accessToken = this.getAccessToken();
+
+		// String accessToken = "40_Y-O_cz2JpQKKSuEfW9s-faH8--odGNu9HqqL3FWlXrMCxiVkTaPkjHku5DkjTcemeyMXm6Ylhnp-hlO36MMMaAEAUUU";
+		String json = WeixinMediaUploadUtil.uploadImageMedia(accessToken.getAccess_token(), fileName, input);
+
+		{
+			Map<String, Object> result = Json.toMap(json);
+			Integer errcode = (Integer) result.get("errcode");
+			if (errcode != null && errcode != 0) {
+				throw new RuntimeException("上传素材出错。");
+			}
+		}
+		return Json.toObject(json, WeixinMedia.class);
 	}
 
 	@Override

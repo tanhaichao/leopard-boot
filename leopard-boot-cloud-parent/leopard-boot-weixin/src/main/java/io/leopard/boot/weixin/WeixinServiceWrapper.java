@@ -1,12 +1,15 @@
 package io.leopard.boot.weixin;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 import io.leopard.boot.weixin.form.TemplateMessageForm;
 import io.leopard.boot.weixin.model.AccessToken;
 import io.leopard.boot.weixin.model.JSCode2Session;
 import io.leopard.boot.weixin.model.OffiaccountUserinfo;
 import io.leopard.boot.weixin.model.Qrcode;
+import io.leopard.boot.weixin.model.WeixinMedia;
 import io.leopard.boot.weixin.model.WeixinMobile;
 
 public class WeixinServiceWrapper implements WeixinService {
@@ -107,7 +110,12 @@ public class WeixinServiceWrapper implements WeixinService {
 	}
 
 	@Override
-	public String uploadImageMedia(File file) throws Exception {
+	public WeixinMedia uploadImageMedia(File file) throws IOException {
 		return weixinService.uploadImageMedia(file);
+	}
+
+	@Override
+	public WeixinMedia uploadImageMedia(InputStream input, String fileName) throws IOException {
+		return weixinService.uploadImageMedia(input, fileName);
 	}
 }

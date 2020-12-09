@@ -6,6 +6,7 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.URL;
@@ -14,17 +15,29 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class WeixinMediaUploadUtil {
 
-	public static String uploadImageMedia(String accessToken, File file) throws Exception {
+	public static String uploadImageMedia(String accessToken, File file) throws IOException {
 		return uploadMedia(accessToken, "image", file);
 	}
 
-	public static String uploadMedia(String accessToken, String fileType, File file) throws Exception {
-		// 返回结果
-		String result = null;
-		// File file = new File(filePath);
+	public static String uploadImageMedia(String accessToken, String fileName, InputStream input) throws IOException {
+		return uploadMedia(accessToken, "image", fileName, input);
+	}
+
+	public static String uploadMedia(String accessToken, String fileType, File file) throws IOException {
 		if (!file.exists() || !file.isFile()) {
 			throw new IOException("文件不存在");
 		}
+		String fileName = file.getName();
+		InputStream input = new FileInputStream(file);
+		return uploadMedia(accessToken, fileType, fileName, input);
+	}
+
+	public static String uploadMedia(String accessToken, String fileType, String fileName, InputStream input) throws IOException {
+
+		// 返回结果
+		String result = null;
+		// File file = new File(filePath);
+
 		String urlString = "https://api.weixin.qq.com/cgi-bin/media/upload?access_token=" + accessToken + "&type=" + fileType;
 		URL url = new URL(urlString);
 		HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
@@ -44,7 +57,7 @@ public class WeixinMediaUploadUtil {
 		sb.append("--");// 必须多两条道
 		sb.append(BOUNDARY);
 		sb.append("\r\n");
-		sb.append("Content-Disposition: form-data;name=\"media\"; filename=\"" + file.getName() + "\"\r\n");
+		sb.append("Content-Disposition: form-data;name=\"media\"; filename=\"" + fileName + "\"\r\n");
 		sb.append("Content-Type:application/octet-stream\r\n\r\n");
 		System.out.println("sb:" + sb);
 
@@ -54,7 +67,7 @@ public class WeixinMediaUploadUtil {
 		out.write(sb.toString().getBytes("UTF-8"));
 		// 文件正文部分
 		// 把文件以流的方式 推送道URL中
-		DataInputStream din = new DataInputStream(new FileInputStream(file));
+		DataInputStream din = new DataInputStream(input);
 		int bytes = 0;
 		byte[] buffer = new byte[1024];
 		while ((bytes = din.read(buffer)) != -1) {

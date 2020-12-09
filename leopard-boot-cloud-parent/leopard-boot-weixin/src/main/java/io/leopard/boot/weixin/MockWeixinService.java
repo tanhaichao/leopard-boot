@@ -1,6 +1,8 @@
 package io.leopard.boot.weixin;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 import org.springframework.util.StringUtils;
 
@@ -9,6 +11,7 @@ import io.leopard.boot.weixin.model.AccessToken;
 import io.leopard.boot.weixin.model.JSCode2Session;
 import io.leopard.boot.weixin.model.OffiaccountUserinfo;
 import io.leopard.boot.weixin.model.Qrcode;
+import io.leopard.boot.weixin.model.WeixinMedia;
 import io.leopard.boot.weixin.model.WeixinMobile;
 
 public class MockWeixinService implements WeixinService {
@@ -181,7 +184,13 @@ public class MockWeixinService implements WeixinService {
 	}
 
 	@Override
-	public String uploadImageMedia(File file) throws Exception {
+	public WeixinMedia uploadImageMedia(File file) throws IOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public WeixinMedia uploadImageMedia(InputStream input, String fileName) throws IOException {
 		// TODO Auto-generated method stub
 		return null;
 	}
