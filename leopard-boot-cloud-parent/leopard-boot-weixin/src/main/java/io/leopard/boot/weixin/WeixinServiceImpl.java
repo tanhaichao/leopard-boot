@@ -291,6 +291,7 @@ public class WeixinServiceImpl implements WeixinService {
 
 		// String accessToken = "40_Y-O_cz2JpQKKSuEfW9s-faH8--odGNu9HqqL3FWlXrMCxiVkTaPkjHku5DkjTcemeyMXm6Ylhnp-hlO36MMMaAEAUUU";
 		String json = WeixinMediaUploadUtil.uploadImageMedia(accessToken.getAccess_token(), file);
+		logger.info("json:" + json);
 		{
 			Map<String, Object> result = Json.toMap(json);
 			Integer errcode = (Integer) result.get("errcode");
@@ -298,7 +299,7 @@ public class WeixinServiceImpl implements WeixinService {
 				throw new RuntimeException("上传素材出错。");
 			}
 		}
-		return Json.toObject(json, WeixinMedia.class);
+		return Json.toObject(json, WeixinMedia.class, true);
 	}
 
 	@Override
@@ -307,7 +308,7 @@ public class WeixinServiceImpl implements WeixinService {
 
 		// String accessToken = "40_Y-O_cz2JpQKKSuEfW9s-faH8--odGNu9HqqL3FWlXrMCxiVkTaPkjHku5DkjTcemeyMXm6Ylhnp-hlO36MMMaAEAUUU";
 		String json = WeixinMediaUploadUtil.uploadImageMedia(accessToken.getAccess_token(), fileName, input);
-
+		logger.info("json:" + json);
 		{
 			Map<String, Object> result = Json.toMap(json);
 			Integer errcode = (Integer) result.get("errcode");
@@ -315,7 +316,7 @@ public class WeixinServiceImpl implements WeixinService {
 				throw new RuntimeException("上传素材出错。");
 			}
 		}
-		return Json.toObject(json, WeixinMedia.class);
+		return Json.toObject(json, WeixinMedia.class, true);
 	}
 
 	@Override
