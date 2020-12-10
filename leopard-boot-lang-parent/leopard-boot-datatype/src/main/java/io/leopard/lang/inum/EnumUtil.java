@@ -41,6 +41,19 @@ public class EnumUtil {
 
 	// public static <E extends Enum<E>> EnumSet<E> of(E e) {
 
+	/**
+	 * 获取枚举元素的key
+	 * 
+	 * @param enumConstant 枚举元素
+	 * @return
+	 */
+	public static <KEYTYPE, E extends Onum<KEYTYPE, ?>> KEYTYPE getKey(E enumConstant) {
+		if (enumConstant == null) {
+			return null;
+		}
+		return enumConstant.getKey();
+	}
+
 	public static <E extends Enum<E>> String getDesc(Object key, Class<E> clazz) {
 		// Onum<KEYTYPE, VALUETYPE> obj = EnumUtil.toEnum(key, clazz);
 		E e = EnumUtil.get(key, clazz);
