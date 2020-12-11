@@ -2,6 +2,8 @@ package io.leopard.web.mvc.option;
 
 import java.util.Set;
 
+import io.leopard.spring.ServerEnv;
+
 /**
  * 服务器信息
  * 
@@ -18,7 +20,7 @@ public class ServerInfoVO {
 	/**
 	 * 当前环境
 	 */
-	private String env;
+	private ServerEnv env;
 
 	/**
 	 * profiles
@@ -33,11 +35,11 @@ public class ServerInfoVO {
 		this.serverIp = serverIp;
 	}
 
-	public String getEnv() {
+	public ServerEnv getEnv() {
 		return env;
 	}
 
-	public void setEnv(String env) {
+	public void setEnv(ServerEnv env) {
 		this.env = env;
 	}
 

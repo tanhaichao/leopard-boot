@@ -4,6 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import io.leopard.boot.util.ServerUtil;
+import io.leopard.spring.ServerEnv;
+import io.leopard.spring.SpringEnvUtil;
+
 /**
  * 服务器信息
  * 
@@ -19,7 +23,11 @@ public class EnvServerController {
 	@RequestMapping("serverInfo")
 	@ResponseBody
 	public ServerInfoVO serverInfo() {
+		String serverIp = ServerUtil.getServerIp();
+		ServerEnv env = SpringEnvUtil.getEnv();
 		ServerInfoVO serverInfo = new ServerInfoVO();
+		serverInfo.setServerIp(serverIp);
+		serverInfo.setEnv(env);
 		return serverInfo;
 	}
 
