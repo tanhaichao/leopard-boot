@@ -5,6 +5,8 @@ import java.util.Set;
 
 import org.springframework.context.ApplicationContext;
 
+import io.leopard.lang.inum.EnumUtil;
+
 /**
  * 环境变量
  * 
@@ -20,10 +22,19 @@ public class SpringEnvUtil {
 		applicationContext = context;
 		String[] profiles = context.getEnvironment().getActiveProfiles();
 
+		Set<ServerEnv> envSet = new LinkedHashSet<>();// 这里应该只有一个环境,或者为空（dev）
+
 		if (profiles != null) {
 			for (String profile : profiles) {
 				profileSet.add(profile);
+				ServerEnv env = EnumUtil.get(profile, ServerEnv.class);
+				if (env != null) {
+					envSet.add(env);
+				}
 			}
+		}
+		if (envSet.size() > 1) {
+			throw new RuntimeException("出现多个环境[" + envSet + "]，同时只允许一种环境[dev|test|pre|prod]。");
 		}
 	}
 
