@@ -39,6 +39,10 @@ public class SpringEnvUtil {
 		}
 	}
 
+	public static Set<String> getProfileSet() {
+		return profileSet;
+	}
+
 	public static ServerEnv getEnv() {
 		if (envList.isEmpty()) {
 			return ServerEnv.DEV;
