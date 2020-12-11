@@ -28,6 +28,7 @@ public class EnvServerController {
 		ServerInfoVO serverInfo = new ServerInfoVO();
 		serverInfo.setServerIp(serverIp);
 		serverInfo.setEnv(env);
+		serverInfo.setProfileSet(SpringEnvUtil.getProfileSet());
 		return serverInfo;
 	}
 

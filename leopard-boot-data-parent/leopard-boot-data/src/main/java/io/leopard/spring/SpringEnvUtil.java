@@ -53,7 +53,7 @@ public class SpringEnvUtil {
 	/**
 	 * 是否开发环境
 	 */
-	public static boolean isDev() {
+	public static boolean isDevEnv() {
 		return envList.isEmpty() || envList.contains(ServerEnv.DEV);
 	}
 
@@ -62,7 +62,7 @@ public class SpringEnvUtil {
 	 * 
 	 * @return
 	 */
-	public static boolean isTest() {
+	public static boolean isTestEnv() {
 		return envList.contains(ServerEnv.TEST);
 	}
 
@@ -71,7 +71,7 @@ public class SpringEnvUtil {
 	 * 
 	 * @return
 	 */
-	public static boolean isPre() {
+	public static boolean isPreEnv() {
 		return envList.contains(ServerEnv.PRE);
 	}
 
@@ -80,7 +80,7 @@ public class SpringEnvUtil {
 	 * 
 	 * @return
 	 */
-	public static boolean isProd() {
+	public static boolean isProdEnv() {
 		return envList.contains(ServerEnv.PROD);
 	}
 
