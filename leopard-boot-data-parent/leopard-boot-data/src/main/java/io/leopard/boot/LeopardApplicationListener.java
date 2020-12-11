@@ -9,6 +9,7 @@ import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 
 import io.leopard.spring.LeopardBeanFactoryAware;
+import io.leopard.spring.SpringEnvUtil;
 
 @Order(Ordered.LOWEST_PRECEDENCE - 1000) // 保证在ConfigFileApplicationListener后面初始化
 public class LeopardApplicationListener implements ApplicationListener<ApplicationEvent> {
@@ -24,6 +25,7 @@ public class LeopardApplicationListener implements ApplicationListener<Applicati
 		else if (event instanceof ApplicationPreparedEvent) {
 			ConfigurableApplicationContext context = ((ApplicationPreparedEvent) event).getApplicationContext();
 			LeopardBeanFactoryAware.setBeanFactory(context);
+			SpringEnvUtil.setApplicationContext(context);
 		}
 	}
 
