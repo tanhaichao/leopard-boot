@@ -1,5 +1,6 @@
 package io.leopard.web.mvc.option;
 
+import java.util.Date;
 import java.util.Set;
 
 import io.leopard.spring.ServerEnv;
@@ -21,7 +22,10 @@ public class ServerInfoVO {
 	 * 当前环境
 	 */
 	private ServerEnv env;
-
+	/**
+	 * 启动时间
+	 */
+	private Date startupTime;
 	/**
 	 * profiles
 	 */
@@ -41,6 +45,14 @@ public class ServerInfoVO {
 
 	public void setEnv(ServerEnv env) {
 		this.env = env;
+	}
+
+	public Date getStartupTime() {
+		return startupTime;
+	}
+
+	public void setStartupTime(Date startupTime) {
+		this.startupTime = startupTime;
 	}
 
 	public Set<String> getProfileSet() {
