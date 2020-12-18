@@ -8,11 +8,13 @@ import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import io.leopard.boot.weixin.model.AccessToken;
 
 @Component
+@Primary
 public class WeixinAccessTokenDaoCacheImpl implements WeixinAccessTokenDao {
 	protected Log logger = LogFactory.getLog(this.getClass());
 
