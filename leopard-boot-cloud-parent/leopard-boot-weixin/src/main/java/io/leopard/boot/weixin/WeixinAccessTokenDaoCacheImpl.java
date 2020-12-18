@@ -2,8 +2,6 @@ package io.leopard.boot.weixin;
 
 import java.net.Proxy;
 
-import javax.annotation.Resource;
-
 import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -18,8 +16,8 @@ import io.leopard.boot.weixin.model.AccessToken;
 public class WeixinAccessTokenDaoCacheImpl implements WeixinAccessTokenDao {
 	protected Log logger = LogFactory.getLog(this.getClass());
 
-	@Resource(name = "customWeixinAccessTokenDao")
-	private WeixinAccessTokenDao customWeixinAccessTokenDao;
+	@Autowired(required = false)
+	private CustomWeixinAccessTokenDao customWeixinAccessTokenDao;
 
 	@Autowired
 	private WeixinAccessTokenDaoHttpImpl weixinAccessTokenDaoHttpImpl;
