@@ -13,6 +13,7 @@ public class WeixinAccessTokenDaoCacheImpl implements WeixinAccessTokenDao {
 	@Autowired
 	private WeixinAccessTokenDao customWeixinAccessTokenDao;
 
+	@Autowired
 	private WeixinAccessTokenDaoHttpImpl weixinAccessTokenDaoHttpImpl;
 
 	@Override
