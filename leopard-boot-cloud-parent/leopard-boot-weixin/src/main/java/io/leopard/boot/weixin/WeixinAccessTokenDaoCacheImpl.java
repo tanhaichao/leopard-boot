@@ -23,7 +23,7 @@ public class WeixinAccessTokenDaoCacheImpl implements WeixinAccessTokenDao {
 			accessToken = this.weixinAccessTokenDaoHttpImpl.getAccessToken(appId, secret, proxy);
 			this.customWeixinAccessTokenDao.updateAccessToken(appId, accessToken);
 		}
-		return null;
+		return accessToken;
 	}
 
 	@Override
