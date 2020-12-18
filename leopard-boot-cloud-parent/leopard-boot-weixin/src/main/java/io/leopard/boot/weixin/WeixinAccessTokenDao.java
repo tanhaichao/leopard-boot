@@ -8,4 +8,5 @@ public interface WeixinAccessTokenDao {
 
 	AccessToken getAccessToken(String appId, String secret, Proxy proxy);
 
+	boolean updateAccessToken(String appId, AccessToken accessToken);
 }

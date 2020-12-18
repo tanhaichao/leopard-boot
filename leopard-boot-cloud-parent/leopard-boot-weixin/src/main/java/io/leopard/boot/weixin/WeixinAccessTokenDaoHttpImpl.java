@@ -4,6 +4,7 @@ import java.net.Proxy;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Component;
@@ -43,5 +44,10 @@ public class WeixinAccessTokenDaoHttpImpl implements WeixinAccessTokenDao {
 		// at [Source: {"errcode":40164,"errmsg":"invalid ip 47.99.65.160 ipv6 ::ffff:47.99.65.160, not in whitelist rid: 5fd1befd-7eeb5dbe-"
 		logger.info("getAccessToken:" + json);
 		return Json.toObject(json, AccessToken.class);
+	}
+
+	@Override
+	public boolean updateAccessToken(String appId, AccessToken accessToken) {
+		throw new NotImplementedException("not impl.");
 	}
 }
