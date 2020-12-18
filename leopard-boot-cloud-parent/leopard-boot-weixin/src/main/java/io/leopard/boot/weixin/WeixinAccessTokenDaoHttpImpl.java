@@ -17,14 +17,8 @@ public class WeixinAccessTokenDaoHttpImpl implements WeixinAccessTokenDao {
 
 	protected Log logger = LogFactory.getLog(this.getClass());
 
-	private Proxy proxy;
-	//
-	// public WeixinAccessTokenDaoHttpImpl(Proxy proxy) {
-	// this.proxy = proxy;
-	// }
-
 	@Override
-	public AccessToken getAccessToken(String appId, String secret) {
+	public AccessToken getAccessToken(String appId, String secret, Proxy proxy) {
 		Map<String, Object> params = new LinkedHashMap<>();
 		params.put("grant_type", "client_credential");
 		params.put("appId", appId);

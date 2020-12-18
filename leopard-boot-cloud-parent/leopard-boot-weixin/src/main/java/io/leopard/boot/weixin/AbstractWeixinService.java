@@ -11,7 +11,7 @@ import javax.annotation.PostConstruct;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
 import io.leopard.boot.util.AssertUtil;
@@ -28,64 +28,33 @@ import io.leopard.boot.weixin.util.WeixinUtil;
 import io.leopard.httpnb.Httpnb;
 import io.leopard.json.Json;
 
-//@Service("leopardBootWeixinServiceImpl")
-//@ConditionalOnProperty(prefix = "weixin", name = "secret")
-public class WeixinServiceImpl implements WeixinService {
+public abstract class AbstractWeixinService implements WeixinService {
 
 	protected Log logger = LogFactory.getLog(this.getClass());
 
-	@Value("${weixin.appId}")
+	@Autowired
+	private WeixinAccessTokenDao weixinAccessTokenDaoCacheImpl;
+
 	private String appId;
-
-	@Value("${weixin.secret}")
 	private String secret;
-
-	@Value("${leopard.proxy:}") // 默认为empty
-	private String proxyConfig;// 格式 ip:port
-
 	private Proxy proxy;
-
-	private WeixinAccessTokenDao weixinAccessTokenDao;
 
 	@Override
 	public String getAppId() {
 		return appId;
 	}
 
-	public void setAppId(String appId) {
-		this.appId = appId;
-	}
-
-	public String getSecret() {
-		return secret;
-	}
-
-	public void setSecret(String secret) {
-		this.secret = secret;
-	}
-
-	public String getProxyConfig() {
-		return proxyConfig;
-	}
-
-	public void setProxyConfig(String proxyConfig) {
-		this.proxyConfig = proxyConfig;
-	}
-
-	public WeixinAccessTokenDao getWeixinAccessTokenDao() {
-		return weixinAccessTokenDao;
-	}
-
-	public void setWeixinAccessTokenDao(WeixinAccessTokenDao weixinAccessTokenDao) {
-		this.weixinAccessTokenDao = weixinAccessTokenDao;
-	}
+	public abstract WeixinConfig createWeixinConfig();
 
 	@PostConstruct
 	public void init() {
-		logger.info("WeixinService proxy:" + this.proxyConfig);
+		WeixinConfig weixinConfig = this.createWeixinConfig();
+		this.appId = weixinConfig.getAppId();
+		this.secret = weixinConfig.getSecret();
 
-		if (!StringUtils.isEmpty(this.proxyConfig)) {
-			proxy = Httpnb.newHttpProxy(this.proxyConfig);
+		logger.info("WeixinService proxy:" + weixinConfig.getProxy());
+		if (!StringUtils.isEmpty(weixinConfig.getProxy())) {
+			proxy = Httpnb.newHttpProxy(weixinConfig.getProxy());
 		}
 	}
 
@@ -154,30 +123,31 @@ public class WeixinServiceImpl implements WeixinService {
 
 	@Override
 	public AccessToken getAccessToken() {
-		Map<String, Object> params = new LinkedHashMap<>();
-		params.put("grant_type", "client_credential");
-		params.put("appId", appId);
-		params.put("secret", secret);
-		String url = "https://api.weixin.qq.com/cgi-bin/token";
-		String json = Httpnb.doGet(url, proxy, params);
-		{
-			Map<String, Object> obj = Json.toMap(json);
-			Integer errCode = (Integer) obj.get("errcode");
-			if (errCode != null) {
-				logger.error("json:" + json);
-				if (errCode == 40164) {
-					throw new RuntimeException("当前IP无权访问微信接口。");
-				}
-				// json:{"errcode":40163,"errmsg":"code been used, hints: [ req_id: xxx ]"}
-				// String errmsg = (String) obj.get("errmsg");
-				throw new RuntimeException("微信接口请求失败，" + "errCode:" + errCode);
-			}
-		}
-		// TODO 出错判断
-		// {"errcode":40002,"errmsg":"invalid grant_type rid: 5f386c70-441d34a9-7baebd7c"}
-		// at [Source: {"errcode":40164,"errmsg":"invalid ip 47.99.65.160 ipv6 ::ffff:47.99.65.160, not in whitelist rid: 5fd1befd-7eeb5dbe-"
-		logger.info("getAccessToken:" + json);
-		return Json.toObject(json, AccessToken.class);
+		return weixinAccessTokenDaoCacheImpl.getAccessToken(appId, secret, proxy);
+		// Map<String, Object> params = new LinkedHashMap<>();
+		// params.put("grant_type", "client_credential");
+		// params.put("appId", appId);
+		// params.put("secret", secret);
+		// String url = "https://api.weixin.qq.com/cgi-bin/token";
+		// String json = Httpnb.doGet(url, proxy, params);
+		// {
+		// Map<String, Object> obj = Json.toMap(json);
+		// Integer errCode = (Integer) obj.get("errcode");
+		// if (errCode != null) {
+		// logger.error("json:" + json);
+		// if (errCode == 40164) {
+		// throw new RuntimeException("当前IP无权访问微信接口。");
+		// }
+		// // json:{"errcode":40163,"errmsg":"code been used, hints: [ req_id: xxx ]"}
+		// // String errmsg = (String) obj.get("errmsg");
+		// throw new RuntimeException("微信接口请求失败，" + "errCode:" + errCode);
+		// }
+		// }
+		// // TODO 出错判断
+		// // {"errcode":40002,"errmsg":"invalid grant_type rid: 5f386c70-441d34a9-7baebd7c"}
+		// // at [Source: {"errcode":40164,"errmsg":"invalid ip 47.99.65.160 ipv6 ::ffff:47.99.65.160, not in whitelist rid: 5fd1befd-7eeb5dbe-"
+		// logger.info("getAccessToken:" + json);
+		// return Json.toObject(json, AccessToken.class);
 	}
 
 	@Override
