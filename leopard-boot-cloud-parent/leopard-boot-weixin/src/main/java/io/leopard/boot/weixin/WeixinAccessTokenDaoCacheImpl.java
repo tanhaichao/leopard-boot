@@ -25,6 +25,9 @@ public class WeixinAccessTokenDaoCacheImpl implements WeixinAccessTokenDao {
 	@Override
 	public AccessToken getAccessToken(String appId, String secret, Proxy proxy) {
 		logger.info("getAccessToken:" + appId);
+		if (customWeixinAccessTokenDao == null) {
+			return this.weixinAccessTokenDaoHttpImpl.getAccessToken(appId, secret, proxy);
+		}
 		AccessToken accessToken = customWeixinAccessTokenDao.getAccessToken(appId, secret, proxy);
 		if (accessToken == null) {
 			accessToken = this.weixinAccessTokenDaoHttpImpl.getAccessToken(appId, secret, proxy);
