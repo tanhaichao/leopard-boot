@@ -33,6 +33,8 @@ public class WxmpServiceImpl implements WxmpService {
 
 	private Proxy proxy;
 
+	private WeixinAccessTokenDao weixinAccessTokenDao;
+
 	@Override
 	public String getAppId() {
 		return appId;
@@ -48,6 +50,14 @@ public class WxmpServiceImpl implements WxmpService {
 
 	public void setSecret(String secret) {
 		this.secret = secret;
+	}
+
+	public WeixinAccessTokenDao getWeixinAccessTokenDao() {
+		return weixinAccessTokenDao;
+	}
+
+	public void setWeixinAccessTokenDao(WeixinAccessTokenDao weixinAccessTokenDao) {
+		this.weixinAccessTokenDao = weixinAccessTokenDao;
 	}
 
 	public String getProxyConfig() {

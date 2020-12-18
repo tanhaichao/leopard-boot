@@ -31,10 +31,13 @@ public class WeixinServiceFactory {
 			throw new RuntimeException("WeixinServiceFactory未初始化");
 		}
 		logger.info("PROXY:" + PROXY);
-		return create(appId, secret, PROXY);
+		return create(appId, secret, PROXY, null);
 	}
 
-	public static WeixinService create(String appId, String secret, String proxy) {
+	public static WeixinService create(String appId, String secret, String proxy, WeixinAccessTokenDao weixinAccessTokenDao) {
+		if (weixinAccessTokenDao == null) {
+			weixinAccessTokenDao = new WeixinAccessTokenDaoHttpImpl();
+		}
 		WeixinServiceImpl weixinService = new WeixinServiceImpl();
 		weixinService.setAppId(appId);
 		weixinService.setSecret(secret);

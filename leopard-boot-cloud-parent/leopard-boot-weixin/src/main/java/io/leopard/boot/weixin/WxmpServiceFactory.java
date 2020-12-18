@@ -31,14 +31,18 @@ public class WxmpServiceFactory {
 			throw new RuntimeException("WxmpService未初始化");
 		}
 		logger.info("PROXY:" + PROXY);
-		return create(appId, secret, PROXY);
+		return create(appId, secret, PROXY, null);
 	}
 
-	public static WxmpService create(String appId, String secret, String proxy) {
+	public static WxmpService create(String appId, String secret, String proxy, WeixinAccessTokenDao weixinAccessTokenDao) {
+		if (weixinAccessTokenDao == null) {
+			weixinAccessTokenDao = new WeixinAccessTokenDaoHttpImpl();
+		}
 		WxmpServiceImpl weixinService = new WxmpServiceImpl();
 		weixinService.setAppId(appId);
 		weixinService.setSecret(secret);
 		weixinService.setProxyConfig(proxy);
+		weixinService.setWeixinAccessTokenDao(weixinAccessTokenDao);
 		weixinService.init();
 		return weixinService;
 	}

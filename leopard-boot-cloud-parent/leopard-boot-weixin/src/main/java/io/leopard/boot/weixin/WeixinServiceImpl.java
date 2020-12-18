@@ -46,6 +46,7 @@ public class WeixinServiceImpl implements WeixinService {
 	private String proxyConfig;// 格式 ip:port
 
 	private Proxy proxy;
+	private WeixinAccessTokenDao weixinAccessTokenDao;
 
 	@Override
 	public String getAppId() {
@@ -70,6 +71,14 @@ public class WeixinServiceImpl implements WeixinService {
 
 	public void setProxyConfig(String proxyConfig) {
 		this.proxyConfig = proxyConfig;
+	}
+
+	public WeixinAccessTokenDao getWeixinAccessTokenDao() {
+		return weixinAccessTokenDao;
+	}
+
+	public void setWeixinAccessTokenDao(WeixinAccessTokenDao weixinAccessTokenDao) {
+		this.weixinAccessTokenDao = weixinAccessTokenDao;
 	}
 
 	@PostConstruct
