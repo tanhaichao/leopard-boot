@@ -3,6 +3,8 @@ package io.leopard.web.mvc.option;
 import java.util.Date;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import io.leopard.spring.ServerEnv;
 
 /**
@@ -61,5 +63,10 @@ public class ServerInfoVO {
 
 	public void setProfileSet(Set<String> profileSet) {
 		this.profileSet = profileSet;
+	}
+
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	public Date getFormattedStartupTime() {
+		return this.startupTime;
 	}
 }
