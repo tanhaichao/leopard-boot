@@ -1,6 +1,7 @@
 package io.leopard.boot.weixin;
 
 import java.net.Proxy;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -25,6 +26,7 @@ public class WeixinAccessTokenDaoHttpImpl implements WeixinAccessTokenDao {
 		params.put("appId", appId);
 		params.put("secret", secret);
 		String url = "https://api.weixin.qq.com/cgi-bin/token";
+		Date startTime = new Date();
 		String json = Httpnb.doGet(url, proxy, params);
 		{
 			Map<String, Object> obj = Json.toMap(json);
@@ -43,7 +45,12 @@ public class WeixinAccessTokenDaoHttpImpl implements WeixinAccessTokenDao {
 		// {"errcode":40002,"errmsg":"invalid grant_type rid: 5f386c70-441d34a9-7baebd7c"}
 		// at [Source: {"errcode":40164,"errmsg":"invalid ip 47.99.65.160 ipv6 ::ffff:47.99.65.160, not in whitelist rid: 5fd1befd-7eeb5dbe-"
 		logger.info("getAccessToken:" + json);
-		return Json.toObject(json, AccessToken.class);
+		AccessToken accessToken = Json.toObject(json, AccessToken.class);
+		int seconds = accessToken.getExpires_in();
+		seconds -= 60;// 减去60秒，为了避免服务器时间不同步或微信接口请求需要耗时间的问题
+		Date expireTime = new Date(startTime.getTime() + seconds * 1000);
+		accessToken.setExpireTime(expireTime);
+		return accessToken;
 	}
 
 	@Override
