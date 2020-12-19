@@ -110,6 +110,7 @@
 		<module>leopard-boot-pay-parent</module>
 		<module>leopard-boot-message-parent</module>
 		<module>leopard-boot-dubbo-parent</module>
+		<module>leopard-boot-topnb</module>
 	</modules>
 
 
