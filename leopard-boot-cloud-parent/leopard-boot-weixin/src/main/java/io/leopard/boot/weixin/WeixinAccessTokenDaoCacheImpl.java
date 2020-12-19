@@ -20,7 +20,7 @@ public class WeixinAccessTokenDaoCacheImpl implements WeixinAccessTokenDao {
 	private CustomWeixinAccessTokenDao customWeixinAccessTokenDao;
 
 	@Autowired
-	private WeixinAccessTokenDaoHttpImpl weixinAccessTokenDaoHttpImpl;
+	private WeixinAccessTokenDao weixinAccessTokenDaoHttpImpl;
 
 	@Override
 	public AccessToken getAccessToken(String appId, String secret, Proxy proxy) {
