@@ -4,7 +4,7 @@ import java.net.Proxy;
 
 import io.leopard.boot.weixin.model.AccessToken;
 
-interface WeixinAccessTokenDao {
+public interface WeixinAccessTokenDao {
 
 	AccessToken getAccessToken(String appId, String secret, Proxy proxy);
 
