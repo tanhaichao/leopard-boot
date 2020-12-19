@@ -11,6 +11,8 @@ public interface MethodTimeService {
 
 	long getCount(String entryName);
 
+	void clear();
+
 	// int consume();
 
 }

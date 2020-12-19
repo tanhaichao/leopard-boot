@@ -133,10 +133,8 @@ public class MethodTimeHandlerImpl implements MethodTimeHandler {
 	/**
 	 * 每秒平均值.
 	 * 
-	 * @param count
-	 *            总数
-	 * @param time
-	 *            秒数
+	 * @param count 总数
+	 * @param time 秒数
 	 * @return 平均值
 	 */
 	public static long perSecondAvg(long count, long time) {
@@ -179,5 +177,10 @@ public class MethodTimeHandlerImpl implements MethodTimeHandler {
 			entryName = "全部入口";
 		}
 		return entryName;
+	}
+
+	@Override
+	public void clear() {
+		methodTimeService.clear();
 	}
 }

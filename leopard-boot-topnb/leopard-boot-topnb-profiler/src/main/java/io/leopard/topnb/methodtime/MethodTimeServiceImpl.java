@@ -15,9 +15,15 @@ public class MethodTimeServiceImpl implements MethodTimeService {
 	private EntranceData slowData = new EntranceData();
 
 	@Override
+	public void clear() {
+		allData.clear();
+		slowData.clear();
+	}
+
+	@Override
 	public boolean add(String methodName, long time) {
 		time = time / 1000;
-		double millis = (double) time / 1000D;
+		double millis = time / 1000D;
 
 		allData.add(methodName, millis, 1);
 		if (millis > 50) {

@@ -8,4 +8,5 @@ public interface MethodTimeHandler {
 
 	String getTypeName(String entryName);
 
+	void clear();
 }
