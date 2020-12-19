@@ -18,7 +18,7 @@ public class TopnbRequestServletRequestListener implements ServletRequestListene
 
 	@Override
 	public void requestInitialized(ServletRequestEvent sre) {
-		System.err.println("requestInitialized:" + sre);
+		// System.err.println("requestInitialized:" + sre);
 		START.set(System.nanoTime());
 
 		// methodtime
@@ -35,7 +35,7 @@ public class TopnbRequestServletRequestListener implements ServletRequestListene
 
 		HttpServletRequest request = (HttpServletRequest) sre.getServletRequest();
 		String url = request.getRequestURI();
-		System.err.println("add:" + url + " time:" + time);
+		// System.err.println("add:" + url + " time:" + time);
 		topService.add(url, time);
 	}
 
