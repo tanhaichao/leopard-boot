@@ -24,14 +24,15 @@ public class ServerInfoVO {
 	 * 当前环境
 	 */
 	private ServerEnv env;
-	/**
-	 * 启动时间
-	 */
-	private Date startupTime;
+
 	/**
 	 * profiles
 	 */
 	private Set<String> profileSet;
+	/**
+	 * 启动时间
+	 */
+	private Date startupTime;
 
 	public String getServerIp() {
 		return serverIp;
@@ -49,20 +50,20 @@ public class ServerInfoVO {
 		this.env = env;
 	}
 
-	public Date getStartupTime() {
-		return startupTime;
-	}
-
-	public void setStartupTime(Date startupTime) {
-		this.startupTime = startupTime;
-	}
-
 	public Set<String> getProfileSet() {
 		return profileSet;
 	}
 
 	public void setProfileSet(Set<String> profileSet) {
 		this.profileSet = profileSet;
+	}
+
+	public Date getStartupTime() {
+		return startupTime;
+	}
+
+	public void setStartupTime(Date startupTime) {
+		this.startupTime = startupTime;
 	}
 
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
