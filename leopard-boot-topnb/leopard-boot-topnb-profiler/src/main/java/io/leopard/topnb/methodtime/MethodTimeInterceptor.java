@@ -46,6 +46,7 @@ public class MethodTimeInterceptor extends BeanNameAutoProxyCreator implements M
 					, "*DaoImpl"//
 					, "*DaoMemoryImpl"//
 					, "*Service"//
+					, "*Biz"//
 					, "*ClientImpl"//
 					, "*Controller"//
 			};
