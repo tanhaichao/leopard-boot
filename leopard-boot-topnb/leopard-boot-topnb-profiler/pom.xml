@@ -32,19 +32,14 @@
 			<artifactId>spring-webmvc</artifactId>
 			<scope>provided</scope>
 		</dependency>
-<!-- 
-		<dependency>
-			<groupId>io.leopard.topnb</groupId>
-			<artifactId>topnb-web</artifactId>
-			<version>0.9.13-SNAPSHOT</version>
-		</dependency>
-		 -->
+		<!-- <dependency> <groupId>io.leopard.topnb</groupId> <artifactId>topnb-web</artifactId> 
+			<version>0.9.13-SNAPSHOT</version> </dependency> -->
 		<!-- test -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+
 	</dependencies>
 </project>
