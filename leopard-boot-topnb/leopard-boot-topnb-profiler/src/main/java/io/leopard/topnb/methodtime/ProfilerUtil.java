@@ -94,6 +94,9 @@ public class ProfilerUtil {
 		else if (simpleMethodName.indexOf("DaoOutsideImpl.") != -1) {
 			return PerformanceCategory.OUTSIDE.getDesc();
 		}
+		else if (simpleMethodName.indexOf("ClientImpl.") != -1) {
+			return PerformanceCategory.OUTSIDE.getDesc();
+		}
 		else if (simpleMethodName.indexOf("ServiceImpl.") != -1) {
 			return PerformanceCategory.SERVICE.getDesc();
 		}
