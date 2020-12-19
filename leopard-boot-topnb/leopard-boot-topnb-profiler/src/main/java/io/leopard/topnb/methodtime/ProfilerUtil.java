@@ -3,12 +3,17 @@ package io.leopard.topnb.methodtime;
 import java.text.DecimalFormat;
 import java.util.Date;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 /**
  * 
  * @author 阿海
  * 
  */
 public class ProfilerUtil {
+
+	protected static Log logger = LogFactory.getLog(ProfilerUtil.class);
 
 	protected static Date SYSTEM_START_TIME = new Date();// 系统启动时间
 
@@ -187,7 +192,7 @@ public class ProfilerUtil {
 	}
 
 	public static String getInterfaceName(String longMethodName) {
-		System.out.println("longMethodName:" + longMethodName);
+		// System.out.println("longMethodName:" + longMethodName);
 		String className = parseClassName(longMethodName);
 		String simpleClassName = parseSimpleClassName(longMethodName);
 		// System.out.println("simpleClassName:" + simpleClassName);
@@ -204,7 +209,7 @@ public class ProfilerUtil {
 			clazz = Class.forName(className);
 		}
 		catch (ClassNotFoundException e) {
-			System.err.println("longMethodName:" + longMethodName);
+			logger.warn("longMethodName:" + longMethodName + " className:" + className);
 			throw new RuntimeException(e.getMessage(), e);
 		}
 		Class<?>[] classes = clazz.getInterfaces();
