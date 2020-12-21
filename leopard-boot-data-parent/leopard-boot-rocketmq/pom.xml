@@ -28,5 +28,12 @@
 			<artifactId>spring-boot-autoconfigure</artifactId>
 			<version>${springboot.version}</version>
 		</dependency>
+		
+		
+		 <dependency>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-client</artifactId>
+            <version>4.5.1</version>
+        </dependency>
 	</dependencies>
 </project>
