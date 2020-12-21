@@ -27,6 +27,9 @@ public class RocketmqConsumer {
 	@Value("${rocketmq.consumerGroup}")
 	private String consumerGroup;
 
+	@Value("${rocketmq.env:}")
+	private String env;
+
 	private String server;
 	// /**
 	// * 消费者组
@@ -43,7 +46,7 @@ public class RocketmqConsumer {
 	}
 
 	public void subscribe(String consumerGroup, String topic, String tag, RocketmqMessageListener messageListener) throws MQClientException {
-		DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(consumerGroup);
+		DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(consumerGroup + env);
 		consumer.setNamesrvAddr(server);
 		// 消费模式:一个新的订阅组第一次启动从队列的最后位置开始消费 后续再启动接着上次消费的进度开始消费
 		consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_LAST_OFFSET);
