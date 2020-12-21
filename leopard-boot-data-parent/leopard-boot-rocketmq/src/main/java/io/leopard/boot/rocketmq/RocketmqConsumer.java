@@ -53,7 +53,6 @@ public class RocketmqConsumer {
 		consumer.registerMessageListener((MessageListenerConcurrently) (msgs, context) -> {
 			// msgs中只收集同一个topic，同一个tag，并且key相同的message
 			// 会把不同的消息分别放置到不同的队列中
-
 			for (Message msg : msgs) {
 				try {
 					messageListener.consumeMessage(msg);
