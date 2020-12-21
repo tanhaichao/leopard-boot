@@ -1,7 +1,5 @@
 package io.leopard.boot.rocketmq;
 
-import java.io.UnsupportedEncodingException;
-
 import javax.annotation.PostConstruct;
 
 import org.apache.commons.logging.Log;
@@ -40,11 +38,11 @@ public class RocketmqConsumer {
 		this.server = this.host + ":" + this.port;
 	}
 
-	public void subscribe(String topic, String tag) throws MQClientException {
-		this.subscribe(consumerGroup, topic, tag);
+	public void subscribe(String topic, String tag, RocketmqMessageListener messageListener) throws MQClientException {
+		this.subscribe(consumerGroup, topic, tag, messageListener);
 	}
 
-	public void subscribe(String consumerGroup, String topic, String tag) throws MQClientException {
+	public void subscribe(String consumerGroup, String topic, String tag, RocketmqMessageListener messageListener) throws MQClientException {
 		DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(consumerGroup);
 		consumer.setNamesrvAddr(server);
 		// 消费模式:一个新的订阅组第一次启动从队列的最后位置开始消费 后续再启动接着上次消费的进度开始消费
@@ -55,19 +53,19 @@ public class RocketmqConsumer {
 		consumer.registerMessageListener((MessageListenerConcurrently) (msgs, context) -> {
 			// msgs中只收集同一个topic，同一个tag，并且key相同的message
 			// 会把不同的消息分别放置到不同的队列中
-			try {
-				for (Message msg : msgs) {
 
-					// 消费者获取消息 这里只输出 不做后面逻辑处理
-					String body = new String(msg.getBody(), "utf-8");
-					logger.info("message body:" + body);
-					// logger.info("Consumer-获取消息-主题topic为={}, 消费消息为={}", msg.getTopic(), body);
+			for (Message msg : msgs) {
+				try {
+					messageListener.consumeMessage(msg);
 				}
+				catch (Exception e) {
+					logger.error(e.getMessage(), e);
+					return ConsumeConcurrentlyStatus.RECONSUME_LATER;
+				}
+				// 消费者获取消息 这里只输出 不做后面逻辑处理
+				// logger.info("Consumer-获取消息-主题topic为={}, 消费消息为={}", msg.getTopic(), body);
 			}
-			catch (UnsupportedEncodingException e) {
-				e.printStackTrace();
-				return ConsumeConcurrentlyStatus.RECONSUME_LATER;
-			}
+
 			return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
 		});
 
