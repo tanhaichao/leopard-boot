@@ -1,6 +1,7 @@
 package io.leopard.boot.responsebody;
 
 import java.util.List;
+import java.util.TimeZone;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -41,7 +42,7 @@ public class ReponseBodyAutoConfiguration extends WebMvcConfigurerAdapter {
 
 			// objectMapper.setAnnotationIntrospector(new ResponseBodyJsonSerializerIntrospector());
 		}
-
+		objectMapper.setTimeZone(TimeZone.getTimeZone("GMT+8"));
 		LeopardMappingJackson2HttpMessageConverter converter = new LeopardMappingJackson2HttpMessageConverter(objectMapper);
 		// requestMappingHandlerAdapter.setMessageConverters(Arrays.asList(converter));
 		return converter;
