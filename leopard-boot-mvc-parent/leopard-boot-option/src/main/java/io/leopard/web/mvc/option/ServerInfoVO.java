@@ -34,6 +34,11 @@ public class ServerInfoVO {
 	 */
 	private Date startupTime;
 
+	/**
+	 * 时区
+	 */
+	private String timeZoneId;
+
 	public String getServerIp() {
 		return serverIp;
 	}
@@ -56,6 +61,14 @@ public class ServerInfoVO {
 
 	public void setProfileSet(Set<String> profileSet) {
 		this.profileSet = profileSet;
+	}
+
+	public String getTimeZoneId() {
+		return timeZoneId;
+	}
+
+	public void setTimeZoneId(String timeZoneId) {
+		this.timeZoneId = timeZoneId;
 	}
 
 	public Date getStartupTime() {
