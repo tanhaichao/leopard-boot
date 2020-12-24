@@ -1,6 +1,7 @@
 package io.leopard.web.mvc.option;
 
 import java.util.Date;
+import java.util.TimeZone;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,8 @@ public class ServerInfoController {
 	@RequestMapping("serverInfo")
 	@ResponseBody
 	public ServerInfoVO serverInfo() {
+		TimeZone timeZone = TimeZone.getDefault();
+
 		String serverIp = ServerUtil.getServerIp();
 		ServerEnv env = SpringEnvUtil.getEnv();
 		ServerInfoVO serverInfo = new ServerInfoVO();
@@ -36,6 +39,7 @@ public class ServerInfoController {
 		serverInfo.setEnv(env);
 		serverInfo.setStartupTime(startupTime);
 		serverInfo.setProfileSet(SpringEnvUtil.getProfileSet());
+		serverInfo.setTimeZoneId(timeZone.getID());
 		return serverInfo;
 	}
 
