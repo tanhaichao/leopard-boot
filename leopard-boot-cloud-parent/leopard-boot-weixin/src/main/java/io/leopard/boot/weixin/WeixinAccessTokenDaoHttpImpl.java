@@ -8,13 +8,12 @@ import java.util.Map;
 import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.stereotype.Component;
 
 import io.leopard.boot.weixin.model.AccessToken;
 import io.leopard.httpnb.Httpnb;
 import io.leopard.json.Json;
 
-@Component
+//@Component
 public class WeixinAccessTokenDaoHttpImpl implements WeixinAccessTokenDao {
 
 	protected Log logger = LogFactory.getLog(this.getClass());
@@ -53,8 +52,13 @@ public class WeixinAccessTokenDaoHttpImpl implements WeixinAccessTokenDao {
 		return accessToken;
 	}
 
+	// @Override
+	// public boolean updateAccessToken(String appId, AccessToken accessToken) {
+	// throw new NotImplementedException("not impl.");
+	// }
+
 	@Override
-	public boolean updateAccessToken(String appId, AccessToken accessToken) {
+	public boolean refreshAccessToken(String appId, String secret, Proxy proxy) {
 		throw new NotImplementedException("not impl.");
 	}
 }
