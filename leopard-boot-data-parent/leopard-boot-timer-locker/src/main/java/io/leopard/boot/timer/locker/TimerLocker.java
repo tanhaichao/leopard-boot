@@ -58,12 +58,14 @@ public class TimerLocker {
 
 	protected void update(String serverIp) {
 		while (true) {
-			Long result = redis.expire(KEY, 60);
-			if (!NumberUtil.toBool(result)) {
+			Long result = redis.expire(KEY, 10);
+			boolean success = NumberUtil.toBool(result);
+			logger.info("update serverIp:" + serverIp + " success:" + success);
+			if (!success) {
 				break;
 			}
 			try {
-				Thread.sleep(10 * 1000);// 10秒钟执行一次
+				Thread.sleep(5 * 1000);// 5秒钟执行一次
 			}
 			catch (InterruptedException e) {
 				logger.error(e.getMessage(), e);
