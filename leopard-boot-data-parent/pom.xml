@@ -26,5 +26,6 @@
 		<module>leopard-boot-validator</module>
 		<module>leopard-boot-elasticsearch</module>
 		<module>leopard-boot-rocketmq</module>
+		<module>leopard-boot-timer-locker</module>
 	</modules>
 </project>
