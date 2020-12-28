@@ -47,6 +47,7 @@ public class TimerLocker {
 	 * 获取锁
 	 */
 	public boolean acquire() {
+		// FIXME 这里应该重试N次，旧服务器有可能还没有关闭，新服务器就启动
 		String serverIp = ServerIpUtil.getServerIp();
 		Long result = redis.setnx(KEY, serverIp);
 		boolean success = NumberUtil.toBool(result);
