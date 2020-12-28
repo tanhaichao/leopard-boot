@@ -37,4 +37,10 @@ public class WxmpServiceWrapper implements WxmpService {
 		return wxmpService.getUnlimitedWxaQrcode(path, width);
 	}
 
+	@Override
+	public boolean refreshAccessToken() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

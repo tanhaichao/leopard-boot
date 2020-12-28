@@ -118,4 +118,10 @@ public class WeixinServiceWrapper implements WeixinService {
 	public WeixinMedia uploadImageMedia(InputStream input, String fileName) throws IOException {
 		return weixinService.uploadImageMedia(input, fileName);
 	}
+
+	@Override
+	public boolean refreshAccessToken() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

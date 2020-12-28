@@ -135,4 +135,10 @@ public class WxmpServiceImpl implements WxmpService {
 		InputStream input = Httpnb.doPostForInputStream(url, proxy, null, body);
 		return input;
 	}
+
+	@Override
+	public boolean refreshAccessToken() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

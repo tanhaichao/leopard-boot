@@ -195,4 +195,10 @@ public class MockWeixinService implements WeixinService {
 		return null;
 	}
 
+	@Override
+	public boolean refreshAccessToken() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

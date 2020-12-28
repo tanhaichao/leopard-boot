@@ -92,4 +92,6 @@ public interface WeixinService {
 	WeixinMedia uploadImageMedia(File file) throws IOException;
 
 	WeixinMedia uploadImageMedia(InputStream input, String fileName) throws IOException;
+
+	boolean refreshAccessToken();
 }
