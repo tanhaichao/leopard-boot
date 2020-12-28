@@ -198,6 +198,11 @@
 			</dependency>
 			<dependency>
 				<groupId>io.leopard.boot</groupId>
+				<artifactId>leopard-boot-timer-locker</artifactId>
+				<version>0.9.21-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>io.leopard.boot</groupId>
 				<artifactId>leopard-boot-excel</artifactId>
 				<version>0.9.21-SNAPSHOT</version>
 			</dependency>
