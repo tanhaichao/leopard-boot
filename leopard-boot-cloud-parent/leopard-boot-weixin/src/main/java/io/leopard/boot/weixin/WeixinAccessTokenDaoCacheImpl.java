@@ -37,6 +37,10 @@ public class WeixinAccessTokenDaoCacheImpl implements WeixinAccessTokenDao {
 			if (accessToken == null) {
 				throw new RuntimeException("微信AccessToken未初始化[" + appId + "]。");
 			}
+			if (accessToken.getExpireTime().before(new Date())) { // 已过期
+				logger.info("getAccessToken:" + appId + " accessToken:" + Json.toJson(accessToken) + " 已过期");
+				return null;
+			}
 			return accessToken;
 		}
 	}
@@ -47,9 +51,25 @@ public class WeixinAccessTokenDaoCacheImpl implements WeixinAccessTokenDao {
 			return false;
 		}
 		AccessToken accessToken = customWeixinAccessTokenDao.getAccessToken(appId, secret, proxy);
-		if (accessToken == null) {
+		if (accessToken == null || this.isNeedRefresh(accessToken)) {
 			accessToken = this.getAccessTokenByHttp(appId, secret, proxy);
 			this.customWeixinAccessTokenDao.updateAccessToken(appId, accessToken);
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * 是否需要刷新
+	 * 
+	 * @param accessToken
+	 * @return
+	 */
+	protected boolean isNeedRefresh(AccessToken accessToken) {
+		long expireTime = accessToken.getExpireTime().getTime();
+		long time = expireTime - System.currentTimeMillis();
+		long seconds = time / 1000;
+		if (seconds < 600) {// 10分钟内失效或已失效
 			return true;
 		}
 		return false;
