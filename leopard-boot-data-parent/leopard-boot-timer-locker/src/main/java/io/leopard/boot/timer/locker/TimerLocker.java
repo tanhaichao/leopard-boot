@@ -51,6 +51,8 @@ public class TimerLocker {
 		String serverIp = ServerIpUtil.getServerIp();
 		Long result = redis.setnx(KEY, serverIp);
 		boolean success = NumberUtil.toBool(result);
+		logger.info("acquire serverIp:" + serverIp + " success:" + success);
+
 		if (!success) {
 			return false;
 		}
