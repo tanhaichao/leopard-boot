@@ -223,7 +223,7 @@ public abstract class AbstractWeixinService implements WeixinService {
 		String json = Httpnb.doPost(url, proxy, params, body);
 		logger.info("getQrcodeLimitStrScene:" + json);
 		if (json.indexOf("\"errcode\"") != -1) {
-			// logger.error("getUserinfo:" + json);
+			logger.error("appId:" + appId + " accessToken:" + Json.toJson(accessToken));
 			throw new RuntimeException("访问微信接口出错[" + this.appId + "].");
 		}
 		// https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=TICKET
