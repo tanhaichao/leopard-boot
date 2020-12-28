@@ -1,5 +1,7 @@
 package io.leopard.boot.timer.locker;
 
+import javax.annotation.PostConstruct;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +36,11 @@ public class TimerLocker {
 		String serverIp = ServerIpUtil.getServerIp();
 		String ip = redis.get(KEY);
 		return serverIp.equals(ip);
+	}
+
+	@PostConstruct
+	public void init() {
+		this.acquire();
 	}
 
 	/**
