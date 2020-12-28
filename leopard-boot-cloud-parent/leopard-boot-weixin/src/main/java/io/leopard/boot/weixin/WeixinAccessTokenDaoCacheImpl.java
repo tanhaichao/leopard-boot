@@ -33,7 +33,11 @@ public class WeixinAccessTokenDaoCacheImpl implements WeixinAccessTokenDao {
 			return this.getAccessTokenByHttp(appId, secret, proxy);
 		}
 		else {
-			return this.customWeixinAccessTokenDao.getAccessToken(appId, secret, proxy);
+			AccessToken accessToken = this.customWeixinAccessTokenDao.getAccessToken(appId, secret, proxy);
+			if (accessToken == null) {
+				throw new RuntimeException("微信AccessToken未初始化[" + appId + "]。");
+			}
+			return accessToken;
 		}
 	}
 
