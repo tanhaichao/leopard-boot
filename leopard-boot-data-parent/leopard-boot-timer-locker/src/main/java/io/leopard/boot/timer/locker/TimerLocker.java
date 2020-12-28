@@ -58,7 +58,7 @@ public class TimerLocker {
 
 	protected void update(String serverIp) {
 		while (true) {
-			Long result = redis.expire(KEY, 10);
+			Long result = redis.expire(KEY, 15);
 			boolean success = NumberUtil.toBool(result);
 			logger.info("update serverIp:" + serverIp + " success:" + success);
 			if (!success) {
