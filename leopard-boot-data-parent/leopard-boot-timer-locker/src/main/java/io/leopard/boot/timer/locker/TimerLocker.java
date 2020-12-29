@@ -51,7 +51,7 @@ public class TimerLocker {
 		String serverIp = ServerIpUtil.getServerIp();
 		Long result = redis.setnx(KEY, serverIp);
 		boolean success = NumberUtil.toBool(result);
-		logger.info("acquire serverIp:" + serverIp + " success:" + success);
+		// logger.info("acquire serverIp:" + serverIp + " success:" + success);
 
 		if (!success) {
 			return false;
@@ -70,7 +70,7 @@ public class TimerLocker {
 		while (true) {
 			Long result = redis.expire(KEY, 15);
 			boolean success = NumberUtil.toBool(result);
-			logger.info("update serverIp:" + serverIp + " success:" + success);
+			// logger.info("update serverIp:" + serverIp + " success:" + success);
 			if (!success) {
 				break;
 			}
