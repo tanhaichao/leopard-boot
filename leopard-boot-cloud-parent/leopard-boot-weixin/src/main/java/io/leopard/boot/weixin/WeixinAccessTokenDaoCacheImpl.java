@@ -59,6 +59,16 @@ public class WeixinAccessTokenDaoCacheImpl implements WeixinAccessTokenDao {
 		return false;
 	}
 
+	@Override
+	public boolean forceRefreshAccessToken(String appId, String secret, Proxy proxy) {
+		if (customWeixinAccessTokenDao == null) {
+			return false;
+		}
+		AccessToken accessToken = this.getAccessTokenByHttp(appId, secret, proxy);
+		this.customWeixinAccessTokenDao.updateAccessToken(appId, accessToken);
+		return true;
+	}
+
 	/**
 	 * 是否需要刷新
 	 * 

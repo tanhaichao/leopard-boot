@@ -61,4 +61,10 @@ public class WeixinAccessTokenDaoHttpImpl implements WeixinAccessTokenDao {
 	public boolean refreshAccessToken(String appId, String secret, Proxy proxy) {
 		throw new NotImplementedException("not impl.");
 	}
+
+	@Override
+	public boolean forceRefreshAccessToken(String appId, String secret, Proxy proxy) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

@@ -43,4 +43,10 @@ public class WxmpServiceWrapper implements WxmpService {
 		return false;
 	}
 
+	@Override
+	public boolean forceRefreshAccessToken() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

@@ -22,4 +22,6 @@ public interface WxmpService {
 	InputStream getUnlimitedWxaQrcode(String path, int width) throws IOException;
 
 	boolean refreshAccessToken();
+
+	boolean forceRefreshAccessToken();
 }

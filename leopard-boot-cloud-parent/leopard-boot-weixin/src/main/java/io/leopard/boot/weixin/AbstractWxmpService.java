@@ -65,6 +65,11 @@ public abstract class AbstractWxmpService implements WxmpService {
 	}
 
 	@Override
+	public boolean forceRefreshAccessToken() {
+		return this.weixinAccessTokenDaoCacheImpl.forceRefreshAccessToken(appId, secret, proxy);
+	}
+
+	@Override
 	public AccessToken getAccessToken() {
 		return weixinAccessTokenDaoCacheImpl.getAccessToken(appId, secret, proxy);
 		// Map<String, Object> params = new LinkedHashMap<>();

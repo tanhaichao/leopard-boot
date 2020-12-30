@@ -124,4 +124,10 @@ public class WeixinServiceWrapper implements WeixinService {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public boolean forceRefreshAccessToken() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

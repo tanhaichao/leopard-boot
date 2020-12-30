@@ -439,4 +439,10 @@ public class WeixinServiceImpl implements WeixinService {
 		return false;
 	}
 
+	@Override
+	public boolean forceRefreshAccessToken() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

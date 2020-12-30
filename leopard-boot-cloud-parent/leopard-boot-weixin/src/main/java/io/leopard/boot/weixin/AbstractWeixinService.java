@@ -63,6 +63,11 @@ public abstract class AbstractWeixinService implements WeixinService {
 		return this.weixinAccessTokenDaoCacheImpl.refreshAccessToken(appId, secret, proxy);
 	}
 
+	@Override
+	public boolean forceRefreshAccessToken() {
+		return this.weixinAccessTokenDaoCacheImpl.forceRefreshAccessToken(appId, secret, proxy);
+	}
+
 	/**
 	 * 获取微信小程序 用户信息
 	 * 

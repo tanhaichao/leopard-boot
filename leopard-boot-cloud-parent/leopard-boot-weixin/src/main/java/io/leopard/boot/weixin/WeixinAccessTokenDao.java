@@ -10,4 +10,6 @@ public interface WeixinAccessTokenDao {
 
 	boolean refreshAccessToken(String appId, String secret, Proxy proxy);
 
+	boolean forceRefreshAccessToken(String appId, String secret, Proxy proxy);
+
 }
