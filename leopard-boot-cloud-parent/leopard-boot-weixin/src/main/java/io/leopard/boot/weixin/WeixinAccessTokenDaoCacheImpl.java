@@ -85,7 +85,8 @@ public class WeixinAccessTokenDaoCacheImpl implements WeixinAccessTokenDao {
 		return false;
 	}
 
-	protected AccessToken getAccessTokenByHttp(String appId, String secret, Proxy proxy) {
+	@Override
+	public AccessToken getAccessTokenByHttp(String appId, String secret, Proxy proxy) {
 		Map<String, Object> params = new LinkedHashMap<>();
 		params.put("grant_type", "client_credential");
 		params.put("appId", appId);

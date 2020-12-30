@@ -96,4 +96,6 @@ public interface WeixinService {
 	boolean refreshAccessToken();
 
 	boolean forceRefreshAccessToken();
+
+	AccessToken getAccessTokenByHttp();
 }

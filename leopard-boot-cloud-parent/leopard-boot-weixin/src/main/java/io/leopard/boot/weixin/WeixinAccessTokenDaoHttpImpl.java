@@ -67,4 +67,10 @@ public class WeixinAccessTokenDaoHttpImpl implements WeixinAccessTokenDao {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public AccessToken getAccessTokenByHttp(String appId, String secret, Proxy proxy) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
