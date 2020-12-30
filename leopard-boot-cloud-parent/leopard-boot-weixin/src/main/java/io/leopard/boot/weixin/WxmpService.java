@@ -24,4 +24,6 @@ public interface WxmpService {
 	boolean refreshAccessToken();
 
 	boolean forceRefreshAccessToken();
+
+	AccessToken getAccessTokenByHttp();
 }

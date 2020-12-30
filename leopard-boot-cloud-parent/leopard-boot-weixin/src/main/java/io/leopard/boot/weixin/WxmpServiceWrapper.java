@@ -49,4 +49,10 @@ public class WxmpServiceWrapper implements WxmpService {
 		return false;
 	}
 
+	@Override
+	public AccessToken getAccessTokenByHttp() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
