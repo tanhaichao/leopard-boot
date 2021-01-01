@@ -237,15 +237,33 @@ public abstract class AbstractWeixinService implements WeixinService {
 
 		String json = Httpnb.doPost(url, proxy, params, body);
 		logger.info("getQrcodeLimitStrScene:" + json);
-		if (json.indexOf("\"errcode\"") != -1) {
-			logger.error("appId:" + appId + " accessToken:" + Json.toJson(accessToken));
-			throw new RuntimeException("访问微信接口出错[" + this.appId + "].");
+
+		this.checkResultStatus(json);
+		if (false) {
+			if (json.indexOf("\"errcode\"") != -1) {
+				// {"errcode":40001,"errmsg":"invalid credential, access_token is invalid or not latest rid: 5fef0f85-3dc91dca-6182adeb"}
+				logger.error("appId:" + appId + " accessToken:" + Json.toJson(accessToken));
+				throw new RuntimeException("访问微信接口出错[" + this.appId + "].");
+			}
 		}
 		// https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=TICKET
 
 		// https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=TOKEN
 
 		return Json.toObject(json, Qrcode.class);
+	}
+
+	protected void checkResultStatus(String json) {
+		if (json.indexOf("\"errcode\"") != -1) {
+			Map<String, Object> data = Json.toMap(json);
+			int errcode = (int) data.get("errcode");
+			if (errcode == 40001) {
+				throw new InvalidCredentialException("微信AccessToken已过期[" + this.appId + "]。");
+			}
+			// {"errcode":40001,"errmsg":"invalid credential, access_token is invalid or not latest rid: 5fef0f85-3dc91dca-6182adeb"}
+			// logger.error("appId:" + appId + " accessToken:" + Json.toJson(accessToken));
+			throw new RuntimeException("访问微信接口出错[" + this.appId + "].");
+		}
 	}
 
 	@Override
