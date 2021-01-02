@@ -1,4 +1,4 @@
 # Auto Configure
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-io.leopard.boot.rocketmq.aliyun.RocketmqAutoConfiguration
+io.leopard.boot.rocketmq.RocketmqAutoConfiguration
 
