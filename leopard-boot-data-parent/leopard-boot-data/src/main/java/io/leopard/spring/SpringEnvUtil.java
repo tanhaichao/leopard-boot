@@ -84,4 +84,12 @@ public class SpringEnvUtil {
 		return envList.contains(ServerEnv.PROD);
 	}
 
+	/**
+	 * 是否生产环境或pre环境
+	 * 
+	 * @return
+	 */
+	public static boolean isProdOrPreEnv() {
+		return envList.contains(ServerEnv.PROD);
+	}
 }
