@@ -46,6 +46,14 @@ public class SmsClientAliyunImpl implements SmsClient {
 	@Value("${leopard.proxy:}") // 默认为empty
 	private String proxy;// 格式 ip:port
 
+	public String getSignName() {
+		return signName;
+	}
+
+	public void setSignName(String signName) {
+		this.signName = signName;
+	}
+
 	@PostConstruct
 	public void init() {
 		DefaultProfile profile = DefaultProfile.getProfile(regionId, accessKeyId, accessSecret);
