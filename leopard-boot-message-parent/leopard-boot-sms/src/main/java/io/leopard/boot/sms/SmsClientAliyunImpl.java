@@ -131,7 +131,6 @@ public class SmsClientAliyunImpl implements SmsClient {
 
 	@Override
 	public boolean sendByTemplateId(String mobile, String templateId, Map<String, Object> data) {
-		logger.info("sendByTemplateId mobile:" + mobile + " templateId:" + templateId);
 
 		CommonRequest request = new CommonRequest();
 		request.setSysMethod(MethodType.POST);
@@ -152,7 +151,10 @@ public class SmsClientAliyunImpl implements SmsClient {
 		try {
 			CommonResponse response = client.getCommonResponse(request);
 			// {"Message":"OK","RequestId":"2AD6B746-C57C-4794-ACC4-62C943C2F3A4","BizId":"205500294640639892^0","Code":"OK"}
+
 			String json = response.getData();
+			logger.info("sendByTemplateId mobile:" + mobile + " templateId:" + templateId + " json:" + json);
+
 			if (json.indexOf("\"Code\":\"OK\"") == -1) {
 				logger.error("json:" + json);
 				throw new RuntimeException("短信接口出错.");
