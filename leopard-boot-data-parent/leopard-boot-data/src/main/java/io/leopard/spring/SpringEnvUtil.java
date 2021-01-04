@@ -90,6 +90,6 @@ public class SpringEnvUtil {
 	 * @return
 	 */
 	public static boolean isProdOrPreEnv() {
-		return envList.contains(ServerEnv.PROD);
+		return envList.contains(ServerEnv.PROD) || envList.contains(ServerEnv.PRE);
 	}
 }
