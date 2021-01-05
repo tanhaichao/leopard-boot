@@ -15,6 +15,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
+import io.leopard.boot.util.AssertUtil;
 import io.leopard.boot.weixin.model.AccessToken;
 import io.leopard.httpnb.Httpnb;
 import io.leopard.json.Json;
@@ -188,6 +189,7 @@ public abstract class AbstractWxmpService implements WxmpService {
 	}
 
 	public byte[] getUnlimitedWxaQrcodeData(String page, String scene, int width) throws IOException {
+		AssertUtil.assertNotEmpty(page, "page参数不能为空.");
 		InputStream input = this.getUnlimitedWxaQrcode(page, scene, width); // "pages/index/main"
 		byte[] data = IOUtils.toByteArray(input);
 		input.reset();
