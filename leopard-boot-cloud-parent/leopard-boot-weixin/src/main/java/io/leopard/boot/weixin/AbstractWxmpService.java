@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -127,10 +128,38 @@ public abstract class AbstractWxmpService implements WxmpService {
 		// params.put("scene", scene);
 		params.put("path", path);
 		params.put("width", width);
+		// 获取小程序二维码，适用于需要的码数量较少的业务场景。通过该接口生成的小程序码，永久有效，有数量限制，
 		String url = "https://api.weixin.qq.com/cgi-bin/wxaapp/createwxaqrcode?access_token=" + accessToken.getAccess_token();
 		String body = Json.toJson(params);
 		// String json = Httpnb.doPost(url, proxy, null, body);
 		InputStream input = Httpnb.doPostForInputStream(url, proxy, null, body);
 		return input;
+	}
+
+	public byte[] getUnlimitedWxaQrcodeData(String path, int width) throws IOException {
+		InputStream input = this.getUnlimitedWxaQrcode(path, width); // "pages/index/main"
+		byte[] data = IOUtils.toByteArray(input);
+		input.reset();
+
+		if (data.length < 500) {
+			String json = new String(data);
+			// {"errcode":45009,"errmsg":"reach max api daily quota limit rid: 5ff40105-180413a3-7d32d2a5"}
+			Map<String, Object> obj = Json.toMap(json);
+			Integer errCode = (Integer) obj.get("errcode");
+			if (errCode != null) {
+				logger.error("json:" + json);
+				// json:{"errcode":40163,"errmsg":"code been used, hints: [ req_id: xxx ]"}
+				if (errCode == 45009) {
+					throw new RuntimeException("获取小程序码次数超过上限。");
+				}
+				if (errCode == 40001) {
+					throw new InvalidCredentialException("微信AccessToken已过期[" + this.appId + "]。");
+				}
+				// {"errcode":40001,"errmsg":"invalid credential, access_token is invalid or not latest rid: 5fef0f85-3dc91dca-6182adeb"}
+				// logger.error("appId:" + appId + " accessToken:" + Json.toJson(accessToken));
+				throw new RuntimeException("访问微信接口出错[" + this.appId + "].");
+			}
+		}
+		return data;
 	}
 }
