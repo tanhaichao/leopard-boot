@@ -164,6 +164,8 @@ public abstract class AbstractWxmpService implements WxmpService {
 	@Override
 	public InputStream getUnlimitedWxaQrcode(String page, String scene, int width) throws IOException {
 		// https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/qr-code/wxacode.getUnlimited.html
+		AssertUtil.assertNotEmpty(page, "page参数不能为空.");
+		AssertUtil.assertNotEmpty(scene, "scene参数不能为空.");
 		if (page.startsWith("/")) {
 			throw new IllegalArgumentException("page不能以/开始");
 		}
@@ -190,6 +192,7 @@ public abstract class AbstractWxmpService implements WxmpService {
 
 	public byte[] getUnlimitedWxaQrcodeData(String page, String scene, int width) throws IOException {
 		AssertUtil.assertNotEmpty(page, "page参数不能为空.");
+		AssertUtil.assertNotEmpty(scene, "scene参数不能为空.");
 		InputStream input = this.getUnlimitedWxaQrcode(page, scene, width); // "pages/index/main"
 		byte[] data = IOUtils.toByteArray(input);
 		input.reset();
