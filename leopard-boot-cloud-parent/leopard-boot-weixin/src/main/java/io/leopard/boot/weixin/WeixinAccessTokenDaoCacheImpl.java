@@ -110,7 +110,7 @@ public class WeixinAccessTokenDaoCacheImpl implements WeixinAccessTokenDao {
 		// TODO 出错判断
 		// {"errcode":40002,"errmsg":"invalid grant_type rid: 5f386c70-441d34a9-7baebd7c"}
 		// at [Source: {"errcode":40164,"errmsg":"invalid ip 47.99.65.160 ipv6 ::ffff:47.99.65.160, not in whitelist rid: 5fd1befd-7eeb5dbe-"
-		logger.info("getAccessToken:" + json);
+		logger.info("getAccessTokenByHttp:" + json);
 		AccessToken accessToken = Json.toObject(json, AccessToken.class);
 		int seconds = accessToken.getExpires_in();
 		seconds -= 60;// 减去60秒，为了避免服务器时间不同步或微信接口请求需要耗时间的问题
