@@ -179,7 +179,8 @@ public abstract class AbstractWxmpService implements WxmpService {
 		params.put("page", page);
 		params.put("width", width);
 		// 获取小程序二维码，适用于需要的码数量较少的业务场景。通过该接口生成的小程序码，永久有效，有数量限制，
-		String url = "https://api.weixin.qq.com/cgi-bin/wxa/getwxacodeunlimit?access_token=" + accessToken.getAccess_token();
+		// https://api.weixin.qq.com/wxa/getwxacodeunlimit
+		String url = "https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token=" + accessToken.getAccess_token();
 		String body = Json.toJson(params);
 		// String json = Httpnb.doPost(url, proxy, null, body);
 		InputStream input = Httpnb.doPostForInputStream(url, proxy, null, body);
