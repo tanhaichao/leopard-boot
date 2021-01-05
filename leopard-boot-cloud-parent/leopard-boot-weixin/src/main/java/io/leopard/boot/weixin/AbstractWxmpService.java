@@ -155,9 +155,11 @@ public abstract class AbstractWxmpService implements WxmpService {
 				if (errCode == 40001) {
 					throw new InvalidCredentialException("微信AccessToken已过期[" + this.appId + "]。");
 				}
-				// {"errcode":40001,"errmsg":"invalid credential, access_token is invalid or not latest rid: 5fef0f85-3dc91dca-6182adeb"}
-				// logger.error("appId:" + appId + " accessToken:" + Json.toJson(accessToken));
-				throw new RuntimeException("访问微信接口出错[" + this.appId + "].");
+				else {
+					// {"errcode":40001,"errmsg":"invalid credential, access_token is invalid or not latest rid: 5fef0f85-3dc91dca-6182adeb"}
+					// logger.error("appId:" + appId + " accessToken:" + Json.toJson(accessToken));
+					throw new RuntimeException("访问微信接口出错[appId:" + this.appId + " errCode:" + errCode + "].");
+				}
 			}
 		}
 		return data;
