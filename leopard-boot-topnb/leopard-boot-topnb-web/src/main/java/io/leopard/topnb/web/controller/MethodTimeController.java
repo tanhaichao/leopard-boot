@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import io.leopard.boot.basicauth.BasicAuth;
 import io.leopard.topnb.TopnbBeanFactory;
 import io.leopard.topnb.methodtime.EntryService;
 import io.leopard.topnb.methodtime.MethodDto;
@@ -30,6 +31,7 @@ public class MethodTimeController {
 	private static EntryService entryService = TopnbBeanFactory.getEntryService();
 
 	@RequestMapping("/index.leo")
+	@BasicAuth
 	public ModelAndView index(String entryName, String order) {
 		// if (true) {
 		// super.output(response, "test");

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import io.leopard.boot.basicauth.BasicAuth;
 import io.leopard.topnb.TopnbBeanFactory;
 import io.leopard.topnb.thread.ThreadInfo;
 import io.leopard.topnb.thread.ThreadService;
@@ -23,6 +24,7 @@ public class ThreadController {
 	private static ThreadService threadService = TopnbBeanFactory.getThreadService();
 
 	@RequestMapping("thread.leo")
+	@BasicAuth
 	public ModelAndView thread() {
 		List<ThreadInfo> threadInfoList = threadService.listAll();
 		ModelAndView view = new ModelAndView("/topnb/thread");

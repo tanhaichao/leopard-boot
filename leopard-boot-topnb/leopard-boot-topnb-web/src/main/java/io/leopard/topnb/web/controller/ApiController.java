@@ -3,6 +3,7 @@ package io.leopard.topnb.web.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import io.leopard.boot.basicauth.BasicAuth;
 import io.leopard.topnb.TopnbBeanFactory;
 import io.leopard.topnb.methodtime.MethodTimeHandler;
 
@@ -18,6 +19,7 @@ public class ApiController {
 	 * @return
 	 */
 	@RequestMapping
+	@BasicAuth
 	public boolean clear() {
 		performanceHandler.clear();
 		return true;
