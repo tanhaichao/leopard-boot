@@ -29,5 +29,6 @@
 		<module>leopard-boot-view</module>
 		<module>leopard-boot-vhost</module>
 		<module>leopard-boot-translate</module>
+		<module>leopard-boot-basicauth</module>
 	</modules>
 </project>
