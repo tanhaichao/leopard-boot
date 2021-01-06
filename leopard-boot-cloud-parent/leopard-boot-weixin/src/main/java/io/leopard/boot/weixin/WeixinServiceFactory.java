@@ -39,6 +39,8 @@ public class WeixinServiceFactory {
 			}
 
 		};
+
+		weixinService.setWeixinAccessTokenDao(weixinAccessTokenDao);
 		weixinService.init();
 		return weixinService;
 	}

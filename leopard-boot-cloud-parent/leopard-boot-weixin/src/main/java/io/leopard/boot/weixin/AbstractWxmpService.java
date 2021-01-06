@@ -49,6 +49,10 @@ public abstract class AbstractWxmpService implements WxmpService {
 		this.secret = secret;
 	}
 
+	public void setWeixinAccessTokenDao(WeixinAccessTokenDao weixinAccessTokenDao) {
+		this.weixinAccessTokenDaoCacheImpl = weixinAccessTokenDao;
+	}
+
 	public abstract WeixinConfig createWeixinConfig();
 
 	@PostConstruct
