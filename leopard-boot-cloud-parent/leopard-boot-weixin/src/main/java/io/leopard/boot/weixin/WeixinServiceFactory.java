@@ -24,7 +24,7 @@ public class WeixinServiceFactory {
 		return create(appId, secret, null, new WeixinAccessTokenDaoCacheImpl());
 	}
 
-	public static AbstractWeixinService create(String appId, String secret, String proxy, WeixinAccessTokenDao weixinAccessTokenDao) {
+	public static WeixinService create(String appId, String secret, String proxy, WeixinAccessTokenDao weixinAccessTokenDao) {
 		// if (weixinAccessTokenDao == null) {
 		// weixinAccessTokenDao = new WeixinAccessTokenDaoHttpImpl();
 		// }
