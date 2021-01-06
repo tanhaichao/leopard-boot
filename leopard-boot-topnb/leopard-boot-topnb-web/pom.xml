@@ -40,5 +40,10 @@
 			<artifactId>leopard-boot-topnb-profiler</artifactId>
 			<version>0.9.21-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>io.leopard.boot</groupId>
+			<artifactId>leopard-boot-basicauth</artifactId>
+			<version>0.9.21-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 </project>
