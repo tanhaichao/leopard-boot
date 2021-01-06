@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 @Configuration
 @ComponentScan
-public class PassportAutoConfiguration extends WebMvcConfigurerAdapter {
+public class BasicAuthAutoConfiguration extends WebMvcConfigurerAdapter {
 
 	@Autowired
 	private BasicAuthInterceptor basicAuthInterceptor;
