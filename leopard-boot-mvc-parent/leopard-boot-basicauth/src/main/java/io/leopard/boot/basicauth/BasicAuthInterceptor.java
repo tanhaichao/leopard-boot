@@ -18,7 +18,7 @@ public class BasicAuthInterceptor implements HandlerInterceptor {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-
+		logger.info("preHandle uri:" + request.getRequestURI());
 		return true;
 	}
 
