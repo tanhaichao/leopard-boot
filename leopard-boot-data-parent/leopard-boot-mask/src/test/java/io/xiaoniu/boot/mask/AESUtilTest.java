@@ -1,4 +1,4 @@
-package io.leopard.boot.util;
+package io.xiaoniu.boot.mask;
 
 import org.junit.Test;
 

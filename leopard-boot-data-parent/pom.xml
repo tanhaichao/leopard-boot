@@ -28,5 +28,6 @@
 		<module>leopard-boot-rocketmq</module>
 		<module>leopard-boot-timer-locker</module>
 		<module>leopard-boot-rocketmq-aliyun</module>
+		<module>leopard-boot-mask</module>
 	</modules>
 </project>

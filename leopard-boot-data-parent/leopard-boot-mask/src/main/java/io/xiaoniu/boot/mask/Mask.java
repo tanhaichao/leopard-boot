@@ -1,4 +1,4 @@
-package io.leopard.boot.annotations;
+package io.xiaoniu.boot.mask;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

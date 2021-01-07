@@ -1,4 +1,4 @@
-package io.leopard.boot.util;
+package io.xiaoniu.boot.mask;
 
 import java.io.UnsupportedEncodingException;
 import java.security.Security;
