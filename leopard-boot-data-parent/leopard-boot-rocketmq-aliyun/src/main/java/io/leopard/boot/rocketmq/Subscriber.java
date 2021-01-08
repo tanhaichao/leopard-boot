@@ -8,7 +8,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Value;
 
+import com.aliyun.openservices.ons.api.Action;
+import com.aliyun.openservices.ons.api.ConsumeContext;
 import com.aliyun.openservices.ons.api.Consumer;
+import com.aliyun.openservices.ons.api.Message;
 import com.aliyun.openservices.ons.api.MessageListener;
 import com.aliyun.openservices.ons.api.ONSFactory;
 import com.aliyun.openservices.ons.api.PropertyKeyConst;
@@ -57,4 +60,18 @@ public abstract class Subscriber implements MessageListener {
 		logger.info("subscribe doctor_update...");
 	}
 
+	@Override
+	public Action consume(Message message, ConsumeContext context) {
+		try {
+			String json = new String(message.getBody(), "UTF-8");
+			this.consumeMessage(message, json);
+			return Action.CommitMessage;
+		}
+		catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			return Action.ReconsumeLater;
+		}
+	}
+
+	public abstract void consumeMessage(Message message, String json) throws Exception;
 }
