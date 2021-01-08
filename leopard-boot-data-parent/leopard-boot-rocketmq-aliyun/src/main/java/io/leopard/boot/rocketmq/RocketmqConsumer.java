@@ -19,7 +19,6 @@ import com.aliyun.openservices.ons.api.Message;
 import com.aliyun.openservices.ons.api.MessageListener;
 import com.aliyun.openservices.ons.api.PropertyKeyConst;
 import com.aliyun.openservices.ons.api.bean.ConsumerBean;
-import com.aliyun.openservices.shade.com.alibaba.rocketmq.client.exception.MQClientException;
 
 @Component("leopardBootRocketmqConsumer")
 @ConditionalOnProperty(prefix = "rocketmq", name = "host")
@@ -87,11 +86,11 @@ public class RocketmqConsumer {
 		return consumerBean;
 	}
 
-	// public void subscribe(String topic, String tag, RocketmqMessageListener messageListener) throws MQClientException {
+	// public void subscribe(String topic, String tag, RocketmqMessageListener messageListener) {
 	// this.subscribe(consumerGroup, topic, tag, messageListener);
 	// }
 
-	public void subscribe(String groupId, String topic, String tag, RocketmqMessageListener messageListener) throws MQClientException {
+	public void subscribe(String groupId, String topic, String tag, RocketmqMessageListener messageListener) {
 		ConsumerBean consumerBean = this.getConsumerBean(groupId);
 		consumerBean.subscribe(topic, tag, new MessageListener() {
 			@Override
