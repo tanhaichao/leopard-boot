@@ -1,7 +1,5 @@
 package io.leopard.boot.rocketmq;
 
-import javax.annotation.PostConstruct;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +11,6 @@ public abstract class AbstractSubscriber implements RocketmqMessageListener {
 
 	@Autowired
 	protected RocketmqConsumer rocketmqConsumer;
-
-	@PostConstruct
-	public void init() {
-		rocketmqConsumer.subscribe("GID_DOCTOR_UPDATE_CONSUMER", "doctor_update", "*", this);
-	}
 
 	@Override
 	public void consumeMessage(Message message) throws Exception {
