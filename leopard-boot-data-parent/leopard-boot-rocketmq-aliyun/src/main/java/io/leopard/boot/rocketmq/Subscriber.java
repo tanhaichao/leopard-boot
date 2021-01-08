@@ -35,7 +35,7 @@ public abstract class Subscriber implements MessageListener {
 
 	@PostConstruct
 	public void init() {
-		logger.info("subscribe start...");
+		logger.info("subscribe start:" + url);
 		Subscription subscription = this.getSubscription();
 		if (subscription == null) {
 			throw new RuntimeException("订阅信息不能为空.");
@@ -56,6 +56,7 @@ public abstract class Subscriber implements MessageListener {
 		properties.put(PropertyKeyConst.NAMESRV_ADDR, url);
 		// 集群订阅方式(默认)。
 		properties.put(PropertyKeyConst.MessageModel, PropertyValueConst.CLUSTERING);
+
 		this.consumer = ONSFactory.createConsumer(properties);
 		consumer.subscribe(topic, expression, this);
 		consumer.start();
