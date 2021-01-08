@@ -25,19 +25,19 @@ import com.aliyun.openservices.shade.com.alibaba.rocketmq.client.exception.MQCli
 @ConditionalOnProperty(prefix = "rocketmq", name = "host")
 public class RocketmqConsumer {
 	protected Log logger = LogFactory.getLog(this.getClass());
-	@Value("${rocketmq.url}")
+	@Value("${aliyun.rocketmq.namesrv_addr}")
 	private String url;
-
-	@Value("${rocketmq.accessKey}")
+	@Value("${aliyun.rocketmq.accessKeyId}")
 	private String accessKey;
-	@Value("${rocketmq.secretKey}")
+	@Value("${aliyun.rocketmq.secretAccessKey}")
 	private String secretKey;
 
-	private String consumerGroup;
-	@Value("${rocketmq.env:}")
-	private String env;
+	// private String consumerGroup;
 
-	private String server;
+	// @Value("${rocketmq.env:}")
+	// private String env;
+
+	// private String server;
 
 	private Map<String, ConsumerBean> groupMap = new ConcurrentHashMap<>();
 	// /**
@@ -87,9 +87,9 @@ public class RocketmqConsumer {
 		return consumerBean;
 	}
 
-	public void subscribe(String topic, String tag, RocketmqMessageListener messageListener) throws MQClientException {
-		this.subscribe(consumerGroup, topic, tag, messageListener);
-	}
+	// public void subscribe(String topic, String tag, RocketmqMessageListener messageListener) throws MQClientException {
+	// this.subscribe(consumerGroup, topic, tag, messageListener);
+	// }
 
 	public void subscribe(String groupId, String topic, String tag, RocketmqMessageListener messageListener) throws MQClientException {
 		ConsumerBean consumerBean = this.getConsumerBean(groupId);
