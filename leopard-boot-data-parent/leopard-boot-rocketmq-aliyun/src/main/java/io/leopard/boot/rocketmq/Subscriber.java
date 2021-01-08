@@ -3,6 +3,7 @@ package io.leopard.boot.rocketmq;
 import java.util.Properties;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -35,7 +36,7 @@ public abstract class Subscriber implements MessageListener {
 
 	@PostConstruct
 	public void init() {
-		logger.info("subscribe start:" + url);
+		logger.info("subscribe start...");
 		Subscription subscription = this.getSubscription();
 		if (subscription == null) {
 			throw new RuntimeException("订阅信息不能为空.");
@@ -63,7 +64,7 @@ public abstract class Subscriber implements MessageListener {
 		logger.info("subscribe " + topic + " subscription:" + Json.toJson(subscription));
 	}
 
-	@PostConstruct
+	@PreDestroy
 	public void destroy() {
 		if (consumer != null) {
 			consumer.shutdown();
