@@ -73,6 +73,7 @@ public abstract class Subscriber implements MessageListener {
 	public Action consume(Message message, ConsumeContext context) {
 		try {
 			String json = new String(message.getBody(), "UTF-8");
+			logger.info("consume json:" + json);
 			this.consumeMessage(message, json);
 			return Action.CommitMessage;
 		}
