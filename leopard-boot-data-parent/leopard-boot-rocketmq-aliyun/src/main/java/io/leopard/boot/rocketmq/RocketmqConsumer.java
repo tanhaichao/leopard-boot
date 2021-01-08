@@ -23,7 +23,7 @@ import com.aliyun.openservices.ons.api.bean.ConsumerBean;
 import com.aliyun.openservices.ons.api.bean.Subscription;
 
 @Component("leopardBootRocketmqConsumer")
-@ConditionalOnProperty(prefix = "aliyun.rocketmq", name = "host")
+@ConditionalOnProperty(prefix = "aliyun2.rocketmq", name = "host")
 public class RocketmqConsumer {
 	protected Log logger = LogFactory.getLog(this.getClass());
 	@Value("${aliyun.rocketmq.namesrv_addr}")
