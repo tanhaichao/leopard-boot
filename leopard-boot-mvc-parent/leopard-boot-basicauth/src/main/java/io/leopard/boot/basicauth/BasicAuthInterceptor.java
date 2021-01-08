@@ -34,15 +34,18 @@ public class BasicAuthInterceptor implements HandlerInterceptor {
 	 * @return
 	 */
 	public static boolean isNeedCheckBasicAuth(Object handler) {
-		if (!(handler instanceof HandlerMethod)) {
-			return true;
+		if (handler instanceof HandlerMethod) {
+			HandlerMethod method = (HandlerMethod) handler;
+			if (method.getMethodAnnotation(BasicAuth.class) != null) {
+				return true;
+			}
+
+			Class<?> beanType = method.getBeanType();
+			if (beanType.getAnnotation(BasicAuth.class) != null) {
+				return true;
+			}
 		}
-		HandlerMethod method = (HandlerMethod) handler;
-		BasicAuth basicAuth = method.getMethodAnnotation(BasicAuth.class);
-		if (basicAuth != null) {
-			return false;
-		}
-		return true;
+		return false;
 	}
 
 	@Override
