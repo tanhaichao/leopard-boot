@@ -6,6 +6,20 @@ public class Subscription {
 	private String topic;
 	private String expression;
 
+	public Subscription() {
+	}
+
+	public Subscription(String groupId, String topic) {
+		this.groupId = groupId;
+		this.topic = topic;
+	}
+
+	public Subscription(String groupId, String topic, String expression) {
+		this.groupId = groupId;
+		this.topic = topic;
+		this.expression = expression;
+	}
+
 	public String getGroupId() {
 		return groupId;
 	}

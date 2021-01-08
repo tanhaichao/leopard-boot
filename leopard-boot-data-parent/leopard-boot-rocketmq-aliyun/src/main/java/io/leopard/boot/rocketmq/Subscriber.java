@@ -29,6 +29,8 @@ public abstract class Subscriber implements MessageListener {
 
 	protected abstract Subscription getSubscription();
 
+	private Consumer consumer;
+
 	@PostConstruct
 	public void init() {
 		logger.info("subscribe start...");
@@ -54,10 +56,17 @@ public abstract class Subscriber implements MessageListener {
 		properties.put(PropertyKeyConst.NAMESRV_ADDR, url);
 		// 集群订阅方式(默认)。
 		properties.put(PropertyKeyConst.MessageModel, PropertyValueConst.CLUSTERING);
-		Consumer consumer = ONSFactory.createConsumer(properties);
+		this.consumer = ONSFactory.createConsumer(properties);
 		consumer.subscribe(topic, expression, this);
 		consumer.start();
-		logger.info("subscribe doctor_update...");
+		logger.info("subscribe " + topic + "...");
+	}
+
+	@PostConstruct
+	public void destroy() {
+		if (consumer != null) {
+			consumer.shutdown();
+		}
 	}
 
 	@Override
