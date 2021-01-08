@@ -74,7 +74,7 @@ public abstract class Subscriber implements MessageListener {
 		try {
 			String json = new String(message.getBody(), "UTF-8");
 			logger.info("consume json:" + json);
-			this.consumeMessage(message, json);
+			this.consumeMessage(message, context, json);
 			return Action.CommitMessage;
 		}
 		catch (Exception e) {
@@ -83,5 +83,5 @@ public abstract class Subscriber implements MessageListener {
 		}
 	}
 
-	public abstract void consumeMessage(Message message, String json) throws Exception;
+	public abstract void consumeMessage(Message message, ConsumeContext context, String json) throws Exception;
 }
