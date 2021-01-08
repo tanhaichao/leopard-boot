@@ -43,8 +43,6 @@ public abstract class Subscriber implements MessageListener {
 		String groupId = subscription.getGroupId();
 		String topic = subscription.getTopic();
 		String expression = subscription.getExpression();
-		// 医生更新操作的消息 topic: doctor_update groupid: GID_DOCTOR_UPDATE_CONSUMER
-		// 科室更新操作的消息 topic: department_operate groupid: GID_DEPARTMENT_OPERATE_CONSUMER
 		Properties properties = new Properties();
 		// 您在控制台创建的Group ID。
 		if (groupId != null) {

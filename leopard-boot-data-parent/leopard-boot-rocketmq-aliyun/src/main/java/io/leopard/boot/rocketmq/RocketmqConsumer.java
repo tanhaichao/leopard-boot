@@ -12,7 +12,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.stereotype.Component;
 
 import com.aliyun.openservices.ons.api.Action;
 import com.aliyun.openservices.ons.api.ConsumeContext;
@@ -22,7 +21,7 @@ import com.aliyun.openservices.ons.api.PropertyKeyConst;
 import com.aliyun.openservices.ons.api.bean.ConsumerBean;
 import com.aliyun.openservices.ons.api.bean.Subscription;
 
-@Component("leopardBootRocketmqConsumer")
+//@Component("leopardBootRocketmqConsumer")
 @ConditionalOnProperty(prefix = "aliyun2.rocketmq", name = "host")
 public class RocketmqConsumer {
 	protected Log logger = LogFactory.getLog(this.getClass());
