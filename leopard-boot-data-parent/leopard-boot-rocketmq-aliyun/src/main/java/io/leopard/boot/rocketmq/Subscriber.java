@@ -24,11 +24,11 @@ public abstract class Subscriber implements MessageListener {
 	protected Log logger = LogFactory.getLog(this.getClass());
 
 	@Value("${aliyun.rocketmq.namesrv_addr}")
-	private String url;
+	protected String url;
 	@Value("${aliyun.rocketmq.accessKeyId}")
-	private String accessKey;
+	protected String accessKey;
 	@Value("${aliyun.rocketmq.secretAccessKey}")
-	private String secretKey;
+	protected String secretKey;
 
 	protected abstract Subscription getSubscription();
 
