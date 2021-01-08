@@ -1,5 +1,6 @@
 package io.leopard.boot.rocketmq;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
@@ -19,6 +20,7 @@ import com.aliyun.openservices.ons.api.Message;
 import com.aliyun.openservices.ons.api.MessageListener;
 import com.aliyun.openservices.ons.api.PropertyKeyConst;
 import com.aliyun.openservices.ons.api.bean.ConsumerBean;
+import com.aliyun.openservices.ons.api.bean.Subscription;
 
 @Component("leopardBootRocketmqConsumer")
 @ConditionalOnProperty(prefix = "rocketmq", name = "host")
@@ -82,7 +84,9 @@ public class RocketmqConsumer {
 
 		ConsumerBean consumerBean = new ConsumerBean();
 		consumerBean.setProperties(properties);
-
+		Map<Subscription, MessageListener> subscriptionTable = new LinkedHashMap<>();
+		consumerBean.setSubscriptionTable(subscriptionTable);
+		consumerBean.start();
 		return consumerBean;
 	}
 
@@ -106,9 +110,9 @@ public class RocketmqConsumer {
 			}
 		});
 
-		if (!consumerBean.isStarted()) {
-			consumerBean.start();
-		}
+		// if (!consumerBean.isStarted()) {
+		// consumerBean.start();
+		// }
 		logger.info("消费者[groupId:" + groupId + " topic:" + topic + "] 启动成功=======");
 	}
 }
