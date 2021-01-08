@@ -17,6 +17,8 @@ import com.aliyun.openservices.ons.api.ONSFactory;
 import com.aliyun.openservices.ons.api.PropertyKeyConst;
 import com.aliyun.openservices.ons.api.PropertyValueConst;
 
+import io.leopard.json.Json;
+
 public abstract class Subscriber implements MessageListener {
 	protected Log logger = LogFactory.getLog(this.getClass());
 
@@ -59,7 +61,7 @@ public abstract class Subscriber implements MessageListener {
 		this.consumer = ONSFactory.createConsumer(properties);
 		consumer.subscribe(topic, expression, this);
 		consumer.start();
-		logger.info("subscribe " + topic + "...");
+		logger.info("subscribe " + topic + " subscription:" + Json.toJson(subscription));
 	}
 
 	@PostConstruct
