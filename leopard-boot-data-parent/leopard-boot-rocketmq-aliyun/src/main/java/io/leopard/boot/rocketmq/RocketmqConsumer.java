@@ -82,7 +82,7 @@ public class RocketmqConsumer {
 
 		ConsumerBean consumerBean = new ConsumerBean();
 		consumerBean.setProperties(properties);
-		consumerBean.start();
+
 		return consumerBean;
 	}
 
@@ -105,6 +105,10 @@ public class RocketmqConsumer {
 				}
 			}
 		});
+
+		if (!consumerBean.isStarted()) {
+			consumerBean.start();
+		}
 		logger.info("消费者[groupId:" + groupId + " topic:" + topic + "] 启动成功=======");
 	}
 }
