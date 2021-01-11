@@ -43,7 +43,13 @@ public abstract class AbstractOssClient implements OssClient {
 			}
 		}
 		checkExtname(fileName, extnameSet);
-		return this.add(file.getInputStream(), dir, fileName, file.getSize());
+		InputStream input = file.getInputStream();
+		try {
+			return this.add(input, dir, fileName, file.getSize());
+		}
+		finally {
+			input.close();
+		}
 	}
 
 	@Override
