@@ -5,8 +5,13 @@ import java.io.IOException;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpHost;
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.client.CredentialsProvider;
 import org.apache.http.client.config.RequestConfig.Builder;
+import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.nio.client.HttpAsyncClientBuilder;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestClientBuilder;
@@ -23,7 +28,10 @@ public abstract class AbstractESClient implements ESClient {
 
 	@Value("${elasticsearch.port}")
 	private int port = 9200;
-
+	@Value("${elasticsearch.username:}")
+	private String username;
+	@Value("${elasticsearch.password:}")
+	private String password;
 	protected String clusterName;
 
 	////
@@ -63,6 +71,12 @@ public abstract class AbstractESClient implements ESClient {
 		builder = RestClient.builder(httpHost);
 		setConnectTimeOutConfig();
 		setMutiConnectConfig();
+
+		if (StringUtils.isNotEmpty(username)) {
+			CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
+			credentialsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials(username, password));
+			builder.setHttpClientConfigCallback(f -> f.setDefaultCredentialsProvider(credentialsProvider));
+		}
 		restClient = new RestHighLevelClient(builder);
 	}
 
