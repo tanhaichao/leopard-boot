@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Map;
 
 import org.elasticsearch.action.get.GetResponse;
+import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.search.SearchHits;
@@ -75,5 +76,7 @@ public interface ESClient {
 	boolean deleteIndex(String indexName) throws IOException;
 
 	boolean createIndex(String indexName, Map<String, Object> mapping) throws IOException;
+
+	IndexResponse index(IndexRequest request, String json) throws IOException;
 
 }

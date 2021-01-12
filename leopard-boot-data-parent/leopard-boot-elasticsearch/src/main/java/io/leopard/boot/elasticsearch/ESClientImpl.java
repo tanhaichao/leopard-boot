@@ -77,6 +77,12 @@ public class ESClientImpl extends AbstractESClient {
 	}
 
 	@Override
+	public IndexResponse index(IndexRequest request, String json) throws IOException {
+		request.source(json, XContentType.JSON);
+		return this.restClient.index(request, RequestOptions.DEFAULT);
+	}
+
+	@Override
 	public GetResponse get(String indexName, String type, long id) throws IOException {
 		return this.get(indexName, type, Long.toString(id));
 	}
