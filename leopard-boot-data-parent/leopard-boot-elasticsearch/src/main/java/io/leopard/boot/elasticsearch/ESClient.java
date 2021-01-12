@@ -7,6 +7,7 @@ import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.search.SearchHits;
+import org.elasticsearch.search.sort.SortOrder;
 
 public interface ESClient {
 
@@ -55,6 +56,8 @@ public interface ESClient {
 	String delete(String indexName, String type, long id) throws IOException;
 
 	SearchHits search(String indexName, QueryBuilder query, String orderField, int start, int size) throws IOException;
+
+	SearchHits search(String indexName, QueryBuilder query, String orderField, SortOrder order, int start, int size) throws IOException;
 
 	String add(String indexName, String type, long id, String json) throws IOException;
 

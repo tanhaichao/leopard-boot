@@ -94,12 +94,20 @@ public class ESClientImpl extends AbstractESClient {
 
 	@Override
 	public SearchHits search(String indexName, QueryBuilder query, String orderField, int start, int size) throws IOException {
+		return this.search(indexName, query, orderField, null, start, size);
+	}
+
+	@Override
+	public SearchHits search(String indexName, QueryBuilder query, String orderField, SortOrder order, int start, int size) throws IOException {
 		// SearchResponse response = client.prepareSearch().setQuery(query).addSort(orderField, SortOrder.DESC).setFrom(start).setSize(size).execute().actionGet();
 		// return response.getHits();
 		SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
 		sourceBuilder.query(query);
 		if (orderField != null) {
-			sourceBuilder.sort(orderField, SortOrder.DESC);
+			if (order == null) {
+				order = SortOrder.DESC;
+			}
+			sourceBuilder.sort(orderField, order);
 		}
 		sourceBuilder.from(start);
 		sourceBuilder.size(size);
