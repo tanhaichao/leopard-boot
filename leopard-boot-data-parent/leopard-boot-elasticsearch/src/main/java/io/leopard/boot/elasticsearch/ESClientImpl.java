@@ -13,6 +13,7 @@ import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.RequestOptions;
+import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.client.indices.CreateIndexRequest;
 import org.elasticsearch.client.indices.GetIndexRequest;
 import org.elasticsearch.common.settings.Settings;
@@ -21,6 +22,7 @@ import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.reindex.DeleteByQueryRequest;
 import org.elasticsearch.search.SearchHits;
+import org.elasticsearch.search.aggregations.AggregationBuilder;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -105,6 +107,12 @@ public class ESClientImpl extends AbstractESClient {
 
 	@Override
 	public SearchHits search(String indexName, QueryBuilder query, String orderField, SortOrder order, int start, int size) throws IOException {
+		AggregationBuilder aggregation = null;
+		return this.search(indexName, query, orderField, order, aggregation, start, size);
+	}
+
+	@Override
+	public SearchHits search(String indexName, QueryBuilder query, String orderField, SortOrder order, AggregationBuilder aggregation, int start, int size) throws IOException {
 		// SearchResponse response = client.prepareSearch().setQuery(query).addSort(orderField, SortOrder.DESC).setFrom(start).setSize(size).execute().actionGet();
 		// return response.getHits();
 		SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
@@ -115,12 +123,27 @@ public class ESClientImpl extends AbstractESClient {
 			}
 			sourceBuilder.sort(orderField, order);
 		}
+		if (aggregation != null) {
+			sourceBuilder.aggregation(aggregation);
+		}
 		sourceBuilder.from(start);
 		sourceBuilder.size(size);
 		SearchRequest request = new SearchRequest(indexName);
 		request.source(sourceBuilder);
 		SearchResponse response = this.restClient.search(request, RequestOptions.DEFAULT);
 
+		return response.getHits();
+	}
+
+	@Override
+	public RestHighLevelClient getRestClient() {
+		return restClient;
+	}
+
+	@Override
+	public SearchHits search(SearchRequest searchRequest) throws IOException {
+
+		SearchResponse response = this.restClient.search(searchRequest, RequestOptions.DEFAULT);
 		return response.getHits();
 	}
 

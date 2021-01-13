@@ -6,8 +6,11 @@ import java.util.Map;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
+import org.elasticsearch.action.search.SearchRequest;
+import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.search.SearchHits;
+import org.elasticsearch.search.aggregations.AggregationBuilder;
 import org.elasticsearch.search.sort.SortOrder;
 
 public interface ESClient {
@@ -78,5 +81,11 @@ public interface ESClient {
 	boolean createIndex(String indexName, Map<String, Object> mapping) throws IOException;
 
 	IndexResponse index(IndexRequest request, String json) throws IOException;
+
+	SearchHits search(SearchRequest searchRequest) throws IOException;
+
+	SearchHits search(String indexName, QueryBuilder query, String orderField, SortOrder order, AggregationBuilder aggregation, int start, int size) throws IOException;
+
+	RestHighLevelClient getRestClient();
 
 }
