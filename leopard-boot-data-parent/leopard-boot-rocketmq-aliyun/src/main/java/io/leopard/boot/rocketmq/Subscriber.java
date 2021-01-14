@@ -39,7 +39,9 @@ public abstract class Subscriber implements MessageListener {
 		logger.info("subscribe start...");
 		Subscription subscription = this.getSubscription();
 		if (subscription == null) {
-			throw new RuntimeException("订阅信息不能为空.");
+			logger.warn("订阅消息为空.");
+			return;
+			// throw new RuntimeException("订阅信息不能为空.");
 		}
 		String groupId = subscription.getGroupId();
 		String topic = subscription.getTopic();
