@@ -30,4 +30,29 @@ public class SearchUtil {
 		}
 		return sb.toString();
 	}
+
+	public static String getWildcardKeyword(String name) {
+		name = name.replace("*", "");
+		if (StringUtils.isEmpty(name)) {
+			return null;
+		}
+		StringBuilder sb = new StringBuilder("*");
+		for (char c : name.toCharArray()) {
+			sb.append(c);
+			sb.append("*");
+		}
+		return sb.toString();
+	}
+
+	public static String getLikeKeyword(String name) {
+		if (StringUtils.isEmpty(name)) {
+			return null;
+		}
+		StringBuilder sb = new StringBuilder("*");
+		for (char c : name.toCharArray()) {
+			sb.append(c);
+		}
+		sb.append("*");
+		return sb.toString();
+	}
 }
