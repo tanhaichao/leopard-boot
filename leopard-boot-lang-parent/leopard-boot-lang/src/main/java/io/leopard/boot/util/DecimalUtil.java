@@ -289,6 +289,14 @@ public class DecimalUtil {
 		return new BigDecimal(decimal).toString();
 	}
 
+	public static double sum(List<Double> numList) {
+		double sum = 0;
+		for (double num : numList) {
+			sum = add(sum, num);
+		}
+		return sum;
+	}
+
 	public static <T> double sumDouble(List<T> list, ToDoubleFunction<? super T> mapper) {
 		return list.stream().mapToDouble(mapper).sum();
 	}
