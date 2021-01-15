@@ -298,16 +298,20 @@ public class DecimalUtil {
 	}
 
 	/**
-	 * 获取百分比.
+	 * 获取比率.
 	 * 
 	 * @param current 分子
 	 * @param total 分母
-	 * @return 百分比
+	 * @param scale 精度
+	 * @return 比率
 	 */
-	public static double percent(double current, double total) {
-		double avg = divide(current, total);
-		double percent = multiply(avg, 100);
-		return percent;
+	public static double rate(double current, double total) {
+		return rate(current, total, 2);
+	}
+
+	public static double rate(double current, double total, int scale) {
+		double rate = divide(current, total);
+		return new BigDecimal(rate).setScale(scale, java.math.BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 
 	public static <T> double sumDouble(List<T> list, ToDoubleFunction<? super T> mapper) {

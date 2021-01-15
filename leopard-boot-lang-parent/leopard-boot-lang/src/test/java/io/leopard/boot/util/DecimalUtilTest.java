@@ -25,9 +25,9 @@ public class DecimalUtilTest {
 	}
 
 	@Test
-	public void percent() {
-		double percent = DecimalUtil.percent(12.51, 25.24);
-		System.err.println("percent:" + percent);
+	public void rate() {
+		double rate = DecimalUtil.rate(12.51, 25.24);
+		System.err.println("rate:" + rate);
 	}
 
 }
