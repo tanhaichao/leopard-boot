@@ -44,12 +44,13 @@ public class SearchUtil {
 		return sb.toString();
 	}
 
-	public static String getLikeKeyword(String name) {
-		if (StringUtils.isEmpty(name)) {
+	public static String getLikeKeyword(String keyword) {
+		keyword = keyword.replace("*", "");
+		if (StringUtils.isEmpty(keyword)) {
 			return null;
 		}
 		StringBuilder sb = new StringBuilder("*");
-		for (char c : name.toCharArray()) {
+		for (char c : keyword.toCharArray()) {
 			sb.append(c);
 		}
 		sb.append("*");
