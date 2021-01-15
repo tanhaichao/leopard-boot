@@ -24,4 +24,10 @@ public class DecimalUtilTest {
 		DecimalUtil.toIntFee(100.012, 2);
 	}
 
+	@Test
+	public void percent() {
+		double percent = DecimalUtil.percent(12.51, 25.24);
+		System.err.println("percent:" + percent);
+	}
+
 }

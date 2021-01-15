@@ -297,6 +297,19 @@ public class DecimalUtil {
 		return sum;
 	}
 
+	/**
+	 * 获取百分比.
+	 * 
+	 * @param current 分子
+	 * @param total 分母
+	 * @return 百分比
+	 */
+	public static double percent(double current, double total) {
+		double avg = divide(current, total);
+		double percent = multiply(avg, 100);
+		return percent;
+	}
+
 	public static <T> double sumDouble(List<T> list, ToDoubleFunction<? super T> mapper) {
 		return list.stream().mapToDouble(mapper).sum();
 	}
