@@ -88,4 +88,6 @@ public interface ESClient {
 
 	RestHighLevelClient getRestClient();
 
+	long deleteByQuery(String indexName, QueryBuilder query) throws IOException;
+
 }

@@ -20,6 +20,7 @@ import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.xcontent.XContentType;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.index.reindex.BulkByScrollResponse;
 import org.elasticsearch.index.reindex.DeleteByQueryRequest;
 import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.aggregations.AggregationBuilder;
@@ -187,4 +188,11 @@ public class ESClientImpl extends AbstractESClient {
 		return response.getId();
 	}
 
+	@Override
+	public long deleteByQuery(String indexName, QueryBuilder query) throws IOException {
+		DeleteByQueryRequest request = new DeleteByQueryRequest();
+		request.setQuery(query);
+		BulkByScrollResponse response = this.restClient.deleteByQuery(request, RequestOptions.DEFAULT);
+		return response.getDeleted();
+	}
 }
