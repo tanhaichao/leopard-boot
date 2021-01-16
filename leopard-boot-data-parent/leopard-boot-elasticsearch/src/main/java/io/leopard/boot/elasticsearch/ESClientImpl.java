@@ -190,7 +190,7 @@ public class ESClientImpl extends AbstractESClient {
 
 	@Override
 	public long deleteByQuery(String indexName, QueryBuilder query) throws IOException {
-		DeleteByQueryRequest request = new DeleteByQueryRequest("indexName");
+		DeleteByQueryRequest request = new DeleteByQueryRequest(indexName);
 		request.setQuery(query);
 		BulkByScrollResponse response = this.restClient.deleteByQuery(request, RequestOptions.DEFAULT);
 		return response.getDeleted();
