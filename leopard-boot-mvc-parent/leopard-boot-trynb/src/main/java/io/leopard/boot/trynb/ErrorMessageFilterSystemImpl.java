@@ -59,12 +59,20 @@ public class ErrorMessageFilterSystemImpl implements ErrorMessageFilter {
 			String message = cause.getMessage();
 			return "JSON序列化出错(原因:" + ErrorUtil.fillterDebugInfo(message) + ")";
 		}
+
 		if (e instanceof MethodArgumentTypeMismatchException) {
 			Exception exception = (Exception) e.getCause().getCause();
+			String message;
 			if (exception == null) {
-				return e.getCause().getMessage();
+				message = e.getCause().getMessage();
 			}
-			return exception.getMessage();
+			else {
+				message = exception.getMessage();
+			}
+
+			MethodArgumentTypeMismatchException e2 = (MethodArgumentTypeMismatchException) e;
+			String parameterName = e2.getParameter().getParameterName();
+			return "参数(" + parameterName + ")解析出错，原因:" + message;
 		}
 		return null;
 	}
