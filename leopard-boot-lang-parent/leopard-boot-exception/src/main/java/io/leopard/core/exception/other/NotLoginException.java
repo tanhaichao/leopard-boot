@@ -8,7 +8,8 @@ import io.leopard.core.exception.LeopardRuntimeException;
  * @author 阿海
  * 
  */
-public class NotLoginException extends LeopardRuntimeException {
+@Deprecated
+class NotLoginException extends LeopardRuntimeException {
 
 	private static final long serialVersionUID = 1L;
 
