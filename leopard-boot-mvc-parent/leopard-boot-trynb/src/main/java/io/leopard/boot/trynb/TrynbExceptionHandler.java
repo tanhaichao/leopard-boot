@@ -23,6 +23,7 @@ import io.leopard.boot.responsebody.ResponseEntity;
  */
 // @ControllerAdvice
 // @ResponseBody
+// @Component
 public class TrynbExceptionHandler {
 	protected Log logger = LogFactory.getLog(this.getClass());
 
