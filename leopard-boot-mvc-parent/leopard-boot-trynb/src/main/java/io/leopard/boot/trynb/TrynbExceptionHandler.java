@@ -1,5 +1,6 @@
 package io.leopard.boot.trynb;
 
+import java.util.Enumeration;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,9 +11,7 @@ import javax.validation.ValidationException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import io.leopard.boot.responsebody.ResponseEntity;
 
@@ -22,8 +21,8 @@ import io.leopard.boot.responsebody.ResponseEntity;
  * @author 谭海潮
  *
  */
-@ControllerAdvice
-@ResponseBody
+// @ControllerAdvice
+// @ResponseBody
 public class TrynbExceptionHandler {
 	protected Log logger = LogFactory.getLog(this.getClass());
 
@@ -33,6 +32,13 @@ public class TrynbExceptionHandler {
 	@ExceptionHandler(Exception.class)
 	// @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	public ResponseEntity handlerException(HttpServletRequest request, Exception e) {
+		if (true) {
+			Enumeration<String> names = request.getAttributeNames();
+			while (names.hasMoreElements()) {
+				String name = names.nextElement();
+				System.err.println("handler name:" + name);
+			}
+		}
 		request.setAttribute("exception", e);
 		// e.printStackTrace();// TODO
 		logger.error(e.getMessage(), e);// TODO 这里要区分日志级别？
@@ -55,7 +61,7 @@ public class TrynbExceptionHandler {
 
 			if (!violations.isEmpty()) {
 				ConstraintViolation<?> violation = violations.iterator().next();
-				String message = violation.getMessage();
+				String message = ErrorUtil.fillterDebugInfo(violation.getMessage());
 				ResponseEntity entity = new ResponseEntity();
 				entity.setStatus("IllegalArgumentException");
 				entity.setMessage(message);
