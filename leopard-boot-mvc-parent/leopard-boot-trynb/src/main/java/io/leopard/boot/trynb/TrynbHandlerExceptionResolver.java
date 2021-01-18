@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.logging.LogLevel;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.HandlerMethod;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -35,12 +36,12 @@ public class TrynbHandlerExceptionResolver implements HandlerExceptionResolver {
 		// System.err.println("handler:" + handler);
 		// e.printStackTrace();
 		// logger.error("resolveException:" + exception.toString());
-		if (!(handler instanceof HandlerMethod)) {
-			return null;
-		}
-		HandlerMethod method = (HandlerMethod) handler;
 
-		this.printLog(method, e);
+		if (e instanceof MethodArgumentTypeMismatchException) {
+			logger.error("参数解析出错:" + request.getRequestURI() + "?" + request.getQueryString());
+		}
+
+		this.printLog(handler, e);
 		// TODO 未支持HTML页面错误提示
 
 		// String uri = request.getRequestURI();
@@ -77,7 +78,16 @@ public class TrynbHandlerExceptionResolver implements HandlerExceptionResolver {
 		return new TrynbView(entity);
 	}
 
-	protected void printLog(HandlerMethod method, Exception e) {
+	protected void printLog(Object handler, Exception e) {
+
+		if (!(handler instanceof HandlerMethod)) {
+			logger.error(e.getMessage(), e);
+			return;
+		}
+		HandlerMethod method = (HandlerMethod) handler;
+
+		this.printLog(method, e);
+
 		Trynb trynb = this.getTrynb(method, e);
 		if (trynb == null) {
 			logger.error(e.getMessage(), e);
