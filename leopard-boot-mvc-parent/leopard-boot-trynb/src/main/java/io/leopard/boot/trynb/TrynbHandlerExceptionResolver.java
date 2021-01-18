@@ -164,7 +164,7 @@ public class TrynbHandlerExceptionResolver implements HandlerExceptionResolver {
 				if (value.equals(clazz)) {
 					return trynb;
 				}
-				System.err.println("trynb value:" + trynb.value().getName() + " level:" + trynb.level() + " print:" + trynb.printStackTrace() + " message:" + trynb.message());
+				// System.err.println("trynb value:" + trynb.value().getName() + " level:" + trynb.level() + " print:" + trynb.printStackTrace() + " message:" + trynb.message());
 			}
 		}
 		return null;
