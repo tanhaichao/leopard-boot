@@ -61,14 +61,14 @@ public class ErrorMessageFilterSystemImpl implements ErrorMessageFilter {
 		}
 
 		if (e instanceof MethodArgumentTypeMismatchException) {
-			Exception exception = (Exception) e.getCause().getCause();
-			String message;
-			if (exception == null) {
-				message = e.getCause().getMessage();
-			}
-			else {
-				message = exception.getMessage();
-			}
+			// Exception exception = (Exception) e.getCause().getCause();
+			// String message;
+			// if (exception == null) {
+			// message = e.getCause().getMessage();
+			// }
+			// else {
+			// message = exception.getMessage();
+			// }
 
 			MethodArgumentTypeMismatchException e2 = (MethodArgumentTypeMismatchException) e;
 			String parameterName = e2.getParameter().getParameterName();

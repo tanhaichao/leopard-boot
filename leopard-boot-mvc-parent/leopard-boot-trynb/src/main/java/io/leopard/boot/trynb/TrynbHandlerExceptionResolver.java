@@ -42,7 +42,7 @@ public class TrynbHandlerExceptionResolver implements HandlerExceptionResolver {
 		if (e instanceof MethodArgumentTypeMismatchException) {
 			MethodArgumentTypeMismatchException e2 = (MethodArgumentTypeMismatchException) e;
 			String parameterName = e2.getParameter().getParameterName();
-			logger.error("参数[" + parameterName + "]解析出错 url:" + request.getRequestURI() + "?" + request.getQueryString());
+			logger.error("参数[" + parameterName + "]解析出错 url:" + request.getRequestURI() + "?" + request.getQueryString() + " message:" + e.getMessage());
 		}
 
 		this.printLog(handler, e);
