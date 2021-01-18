@@ -72,7 +72,9 @@ public class ErrorMessageFilterSystemImpl implements ErrorMessageFilter {
 
 			MethodArgumentTypeMismatchException e2 = (MethodArgumentTypeMismatchException) e;
 			String parameterName = e2.getParameter().getParameterName();
-			return "参数(" + parameterName + ")解析出错，原因:" + message;
+			// return "参数(" + parameterName + ")解析出错，原因:" + message;
+			// 这里不能输出原因，错误message可能会出现安全漏洞
+			return "参数(" + parameterName + ")解析出错";
 		}
 		return null;
 	}
