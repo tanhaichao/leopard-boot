@@ -70,13 +70,23 @@ public class PrimitiveMethodArgumentResolver extends AbstractNamedValueMethodArg
 		// }
 		HttpServletRequest request = (HttpServletRequest) webRequest.getNativeRequest();
 		// Object value = request.getParameter(name);
-		Object value = RequestBodyParser.getParameter(request, name);
+		String value = RequestBodyParser.getParameter(request, name);
 		if (value == null) {
-			value = this.getDefaultValue(parameter);
+
+			return this.getDefaultValue(parameter);
 		}
 		// logger.info("resolveName name:" + name + " clazz:" + parameter.getParameterType());
-
-		return value;
+		else {
+			if (true) {// TODO 测试
+				Class<?> clazz = parameter.getParameterType();
+				if (clazz.equals(long.class)) {
+					if (value.length() == 0) {
+						return 0L;
+					}
+				}
+			}
+			return value;
+		}
 	}
 
 	protected Object getDefaultValue(MethodParameter parameter) {
