@@ -101,44 +101,44 @@ public class TrynbHandlerExceptionResolver implements HandlerExceptionResolver {
 			boolean printStackTrace = trynb.printStackTrace();
 			if (level == LogLevel.ERROR) {
 				if (printStackTrace) {
-					logger.error(e.getMessage());
+					logger.error(e.getMessage(), e);
 				}
 				else {
-					logger.error(e.getMessage(), e);
+					logger.error(e.getMessage());
 				}
 			}
 			else if (level == LogLevel.WARN) {
 				if (printStackTrace) {
-					logger.warn(e.getMessage());
+					logger.warn(e.getMessage(), e);
 				}
 				else {
-					logger.warn(e.getMessage(), e);
+					logger.warn(e.getMessage());
 				}
 			}
 			else if (level == LogLevel.INFO) {
 				if (printStackTrace) {
-					logger.info(e.getMessage());
+					logger.info(e.getMessage(), e);
 				}
 				else {
-					logger.info(e.getMessage(), e);
+					logger.info(e.getMessage());
 				}
 			}
 			else if (level == LogLevel.DEBUG) {
 				if (printStackTrace) {
-					logger.debug(e.getMessage());
+					logger.debug(e.getMessage(), e);
 				}
 				else {
-					logger.debug(e.getMessage(), e);
+					logger.debug(e.getMessage());
 				}
 			}
 			else if (level == LogLevel.OFF) {// 关闭日志
 			}
 			else if (level == LogLevel.FATAL) {
 				if (printStackTrace) {
-					logger.fatal(e.getMessage());
+					logger.fatal(e.getMessage(), e);
 				}
 				else {
-					logger.fatal(e.getMessage(), e);
+					logger.fatal(e.getMessage());
 				}
 			}
 			else {
