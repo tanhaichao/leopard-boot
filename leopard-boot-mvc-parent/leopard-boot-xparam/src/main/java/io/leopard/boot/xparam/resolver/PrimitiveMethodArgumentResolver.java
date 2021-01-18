@@ -77,7 +77,7 @@ public class PrimitiveMethodArgumentResolver extends AbstractNamedValueMethodArg
 		}
 		// logger.info("resolveName name:" + name + " clazz:" + parameter.getParameterType());
 		else {
-			if (true) {// TODO 测试
+			if (false) {// 不启用，让它报错
 				Class<?> clazz = parameter.getParameterType();
 				if (clazz.equals(long.class)) {
 					if (value.length() == 0) {
