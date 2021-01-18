@@ -86,7 +86,7 @@ public class TrynbHandlerExceptionResolver implements HandlerExceptionResolver {
 		}
 		HandlerMethod method = (HandlerMethod) handler;
 
-		this.printLog(method, e);
+		// this.printLog(method, e);
 
 		Trynb trynb = this.getTrynb(method, e);
 		if (trynb == null) {
