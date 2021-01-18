@@ -11,7 +11,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.logging.LogLevel;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.HandlerExceptionResolver;
@@ -20,9 +20,11 @@ import org.springframework.web.servlet.ModelAndView;
 import io.leopard.boot.responsebody.ResponseEntity;
 import io.leopard.boot.trynb.annotations.Trynb;
 
-@Configuration
+//@Configuration
+@Component
 public class TrynbHandlerExceptionResolver implements HandlerExceptionResolver {
 	protected Log logger = LogFactory.getLog(this.getClass());
+
 	@Autowired
 	private ErrorMessageFilter errorMessageFilter;
 
