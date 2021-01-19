@@ -15,7 +15,6 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import io.leopard.boot.servlet.util.RequestUtil;
-import io.leopard.boot.trynb.ErrorMessageFilter;
 import io.leopard.boot.trynb.ErrorUtil;
 
 @Component
@@ -26,8 +25,6 @@ public class BasicAuthHandlerInterceptor implements HandlerInterceptor {
 
 	@Autowired
 	private AuthService authService;
-	@Autowired
-	private ErrorMessageFilter errorMessageFilter;
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -41,6 +38,10 @@ public class BasicAuthHandlerInterceptor implements HandlerInterceptor {
 					this.showAuthBox(request, response, "需要登录才能访问");
 				}
 			}
+			catch (BasicAuthNotEnabledException e) {
+				this.notEnabled(request, response, e.getMessage());
+				autherized = false;
+			}
 			catch (Exception e) {
 				this.showAuthBox(request, response, e.getMessage());
 				autherized = false;
@@ -48,6 +49,16 @@ public class BasicAuthHandlerInterceptor implements HandlerInterceptor {
 			return autherized;
 		}
 		return true;
+	}
+
+	@SuppressWarnings("deprecation")
+	protected void notEnabled(HttpServletRequest request, HttpServletResponse response, String message) throws IOException {
+		String proxyIp = RequestUtil.getProxyIp(request);
+		logger.info("showAuthBox:" + request.getRequestURI() + " proxyIp:" + proxyIp + " message:" + message);
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		response.setStatus(403, "未启用认证!");// 发送状态码 401, 不能使用 sendError，坑
+		response.getWriter().append("<meta charset=\"utf-8\" />未启用认证!");
 	}
 
 	@SuppressWarnings("deprecation")
