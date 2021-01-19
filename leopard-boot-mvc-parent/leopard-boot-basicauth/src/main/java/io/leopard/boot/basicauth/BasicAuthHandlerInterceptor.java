@@ -13,22 +13,23 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Component
 @Order(0) // 数字小优先
-public class BasicAuthInterceptor implements HandlerInterceptor {
+public class BasicAuthHandlerInterceptor implements HandlerInterceptor {
 
 	protected Log logger = LogFactory.getLog(this.getClass());
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		boolean isNeedCheckBasicAuth = isNeedCheckBasicAuth(handler);
+		// logger.info("preHandle uri:" + request.getRequestURI() + " isNeedCheckBasicAuth:" + isNeedCheckBasicAuth);
 		if (isNeedCheckBasicAuth) {
-			logger.info("preHandle uri:" + request.getRequestURI());
+			logger.info("preHandle auth:" + request.getRequestURI());
 
 		}
 		return true;
 	}
 
 	/**
-	 * 判断handler是否需要登录检查.
+	 * 判断handler是否需要认证
 	 * 
 	 * @param handler
 	 * @return
@@ -36,6 +37,7 @@ public class BasicAuthInterceptor implements HandlerInterceptor {
 	public static boolean isNeedCheckBasicAuth(Object handler) {
 		if (handler instanceof HandlerMethod) {
 			HandlerMethod method = (HandlerMethod) handler;
+			System.err.println("method:" + method);
 			if (method.getMethodAnnotation(BasicAuth.class) != null) {
 				return true;
 			}

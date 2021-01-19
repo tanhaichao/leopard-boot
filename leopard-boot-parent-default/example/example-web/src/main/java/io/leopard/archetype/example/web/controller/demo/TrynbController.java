@@ -1,4 +1,4 @@
-package io.leopard.archetype.example.web.controller;
+package io.leopard.archetype.example.web.controller.demo;
 
 import org.springframework.boot.logging.LogLevel;
 import org.springframework.stereotype.Controller;

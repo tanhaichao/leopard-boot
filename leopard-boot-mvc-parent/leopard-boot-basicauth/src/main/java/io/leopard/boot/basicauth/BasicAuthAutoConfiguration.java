@@ -11,10 +11,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 public class BasicAuthAutoConfiguration extends WebMvcConfigurerAdapter {
 
 	@Autowired
-	private BasicAuthInterceptor basicAuthInterceptor;
+	private BasicAuthHandlerInterceptor basicAuthHandlerInterceptor;
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(basicAuthInterceptor);
+		registry.addInterceptor(basicAuthHandlerInterceptor);
 	}
 }
