@@ -54,7 +54,7 @@ public class BasicAuthHandlerInterceptor implements HandlerInterceptor {
 	@SuppressWarnings("deprecation")
 	protected void notEnabled(HttpServletRequest request, HttpServletResponse response, String message) throws IOException {
 		String proxyIp = RequestUtil.getProxyIp(request);
-		logger.info("showAuthBox:" + request.getRequestURI() + " proxyIp:" + proxyIp + " message:" + message);
+		logger.info("basicAuthNotEnabled:" + request.getRequestURI() + " proxyIp:" + proxyIp + " message:" + message);
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		response.setStatus(403, "未启用认证!");// 发送状态码 401, 不能使用 sendError，坑
