@@ -39,13 +39,11 @@ public class AuthService {
 	 * @return 是否合法登录
 	 */
 	public boolean checkAuth(HttpServletRequest request) {
-		if (StringUtils.isEmpty(username)) {
-			throw new RuntimeException("未启用认证@");
-		}
 		if (!this.isEnableAuth()) {
-			throw new RuntimeException("未启用认证!");
+			throw new BasicAuthNotEnabledException("未启用认证!");
 		}
-		return checkAuth(request.getHeader("Authorization"), username, password);
+		String authorization = request.getHeader("Authorization");
+		return checkAuth(authorization, username, password);
 	}
 
 	/**
@@ -68,23 +66,27 @@ public class AuthService {
 	 */
 	protected boolean checkAuth(String authorization, String username, String password) {
 		if (StringUtils.isEmpty(authorization)) {
-			return false;
+			throw new IllegalArgumentException("authorization不能为空!");
+		}
+		if (StringUtils.isEmpty(username)) {
+			throw new IllegalArgumentException("username不能为空!");
+		}
+		if (StringUtils.isEmpty(password)) {
+			throw new IllegalArgumentException("password不能为空!");
 		}
 
 		String[] basicArray = authorization.split("\\s+");
 		if (isBadArray(basicArray)) {
-			return false;
+			throw new IllegalArgumentException("非法authorization[" + authorization + "].!");
 		}
-
 		String idpass = Base64.decode(basicArray[1]);
-
 		// String idpass = Encode.base64Decode(basicArray[1]);
-		if (StringUtils.isEmpty(idpass))
-			return false;
-
+		if (StringUtils.isEmpty(idpass)) {
+			throw new IllegalArgumentException("非法authorization[" + idpass + "].!");
+		}
 		String[] idpassArray = idpass.split(":");
 		if (isBadArray(idpassArray)) {
-			return false;
+			throw new IllegalArgumentException("非法authorization[" + idpass + "].!");
 		}
 		return username.equalsIgnoreCase(idpassArray[0]) && password.equalsIgnoreCase(idpassArray[1]);
 	}
