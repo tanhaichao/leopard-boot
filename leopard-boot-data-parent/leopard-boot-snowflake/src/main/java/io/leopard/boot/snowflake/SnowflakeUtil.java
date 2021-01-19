@@ -2,6 +2,8 @@ package io.leopard.boot.snowflake;
 
 public class SnowflakeUtil {
 
+	// workerId 机器ID(0-31)
+
 	private static SnowflakeIdWorker idWorker = new SnowflakeIdWorker(1);// TODO 不同机器不同编号
 
 	public static long generateId() {
