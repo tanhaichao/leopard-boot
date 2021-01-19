@@ -103,8 +103,14 @@ public class ErrorUtil {
 		if (message == null) {
 			return message;
 		}
-		message = message.replaceAll("\\[[^\\[]*?\\]", "");
-		return message.replaceAll("\\[.*?\\]", "");
-		// return message;
+		String msg = message;
+
+		msg = msg.replaceAll("\\[[^\\[]*?\\]", "");
+		msg = msg.replaceAll("\\[.*?\\]", "");
+		if (msg.indexOf("[") != -1 || msg.indexOf("]") != -1) {
+			logger.error("解析错误消息出错:" + message);
+			return "解析错误消息出错";
+		}
+		return msg;
 	}
 }
