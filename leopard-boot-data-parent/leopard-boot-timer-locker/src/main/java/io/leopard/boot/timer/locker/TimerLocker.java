@@ -1,7 +1,5 @@
 package io.leopard.boot.timer.locker;
 
-import javax.annotation.PostConstruct;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,10 +36,10 @@ public class TimerLocker {
 		return serverIp.equals(ip);
 	}
 
-	@PostConstruct
-	public void init() {
-		this.acquire();
-	}
+	// @PostConstruct
+	// public void init() {
+	// this.acquire();
+	// }
 
 	/**
 	 * 获取锁
