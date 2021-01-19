@@ -1,10 +1,13 @@
 package io.leopard.boot.basicauth;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
@@ -17,15 +20,36 @@ public class BasicAuthHandlerInterceptor implements HandlerInterceptor {
 
 	protected Log logger = LogFactory.getLog(this.getClass());
 
+	@Autowired
+	private AuthService authService;
+
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		boolean isNeedCheckBasicAuth = isNeedCheckBasicAuth(handler);
 		// logger.info("preHandle uri:" + request.getRequestURI() + " isNeedCheckBasicAuth:" + isNeedCheckBasicAuth);
 		if (isNeedCheckBasicAuth) {
 			logger.info("preHandle auth:" + request.getRequestURI());
-
+			boolean autherized = authService.checkAuth(request);
+			if (!autherized) {
+				this.showAuthBox(response);
+				return false;
+			}
 		}
 		return true;
+	}
+
+	@SuppressWarnings("deprecation")
+	protected void showAuthBox(HttpServletResponse response) throws IOException {
+		String msg = "\"请登录\""; // 如果认证失败,则要求认证 ，不能输入中文
+
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		response.setStatus(401, "Authentication Required");// 发送状态码 401, 不能使用 sendError，坑
+		response.setHeader("WWW-Authenticate", "Basic realm=" + msg);// 发送要求输入认证信息,则浏览器会弹出输入框
+		// response.setCharacterEncoding("utf-8");
+		response.getWriter().append("<meta charset=\"utf-8\" />需要登录才能访问!");
+
+		logger.info("HTTP BasicAuth 登录失败！");
 	}
 
 	/**

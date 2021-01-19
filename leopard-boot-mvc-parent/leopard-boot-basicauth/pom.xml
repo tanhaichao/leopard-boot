@@ -20,7 +20,8 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
-		</dependency>		<dependency>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 		</dependency>
@@ -33,6 +34,11 @@
 			<groupId>io.leopard.boot</groupId>
 			<artifactId>leopard-boot-lang</artifactId>
 			<version>0.9.21-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>io.leopard.boot</groupId>
