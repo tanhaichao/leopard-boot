@@ -38,6 +38,10 @@ public class MailClientImpl implements MailClient {
 	@Value("${mail.password}")
 	private String password;
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	@Override
 	public boolean sendText(String to, String subject, String content) throws EmailException {
 		SimpleEmail email = new SimpleEmail();
