@@ -9,6 +9,7 @@ import org.apache.commons.mail.SimpleEmail;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import freemarker.template.TemplateException;
 
@@ -28,6 +29,12 @@ public class MailClientImpl implements MailClient {
 	@Value("${mail.port}")
 	private int port;
 
+	/**
+	 * 发件人名称
+	 */
+	@Value("${mail.name:}")
+	private String name;
+
 	@Value("${mail.password}")
 	private String password;
 
@@ -38,7 +45,13 @@ public class MailClientImpl implements MailClient {
 		email.setHostName(host);// 设置使用发电子邮件的邮件服务器
 		email.addTo(to);
 		email.setAuthentication(user, password);
-		email.setFrom(from);
+		if (StringUtils.isEmpty(this.name)) {
+			email.setFrom(from);
+		}
+		else {
+			email.setFrom(from, this.name);
+		}
+
 		email.setSubject(subject);
 		email.setMsg(content);
 		if (port == 465) {
@@ -66,7 +79,12 @@ public class MailClientImpl implements MailClient {
 		email.setCharset("UTF-8");
 		email.addTo(to);
 		email.setAuthentication(user, password);
-		email.setFrom(from);
+		if (StringUtils.isEmpty(this.name)) {
+			email.setFrom(from);
+		}
+		else {
+			email.setFrom(from, this.name);
+		}
 		email.setSubject(subject);
 		email.setMsg(content);
 		// email.setSSLOnConnect(true);
