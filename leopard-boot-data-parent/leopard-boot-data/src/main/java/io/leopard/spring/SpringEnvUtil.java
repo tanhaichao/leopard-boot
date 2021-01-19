@@ -85,6 +85,15 @@ public class SpringEnvUtil {
 	}
 
 	/**
+	 * 是否定时器环境
+	 * 
+	 * @return
+	 */
+	public static boolean isJobEnv() {
+		return envList.contains(ServerEnv.JOB);
+	}
+
+	/**
 	 * 是否生产环境或pre环境
 	 * 
 	 * @return
