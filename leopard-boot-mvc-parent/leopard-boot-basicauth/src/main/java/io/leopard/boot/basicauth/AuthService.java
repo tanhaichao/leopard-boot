@@ -22,6 +22,16 @@ public class AuthService {
 	@Value("${auth.password:}")
 	private String password;
 
+	public boolean isEnableAuth() {
+		if (StringUtils.isEmpty(username)) {
+			return false;
+		}
+		if (StringUtils.isEmpty(this.password)) {
+			return false;
+		}
+		return true;
+	}
+
 	/**
 	 * 检查是否合法登录
 	 * 
@@ -29,6 +39,12 @@ public class AuthService {
 	 * @return 是否合法登录
 	 */
 	public boolean checkAuth(HttpServletRequest request) {
+		if (StringUtils.isEmpty(username)) {
+			throw new RuntimeException("未启用认证@");
+		}
+		if (!this.isEnableAuth()) {
+			throw new RuntimeException("未启用认证!");
+		}
 		return checkAuth(request.getHeader("Authorization"), username, password);
 	}
 
@@ -50,7 +66,7 @@ public class AuthService {
 	 * @param password 密码
 	 * @return true = 认证成功/ false = 需要认证
 	 */
-	public boolean checkAuth(String authorization, String username, String password) {
+	protected boolean checkAuth(String authorization, String username, String password) {
 		if (StringUtils.isEmpty(authorization)) {
 			return false;
 		}
