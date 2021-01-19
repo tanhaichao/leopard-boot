@@ -3,6 +3,8 @@ package io.leopard.boot.basicauth;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -10,6 +12,9 @@ import io.leopard.boot.util.Base64;
 
 @Component("leopardBasicAuthService")
 public class AuthService {
+
+	protected Log logger = LogFactory.getLog(this.getClass());
+
 	/**
 	 * 登录名
 	 */
@@ -23,6 +28,7 @@ public class AuthService {
 	private String password;
 
 	public boolean isEnableAuth() {
+		logger.info("isEnableAuth username:" + username + " password:" + password);
 		if (StringUtils.isEmpty(username)) {
 			return false;
 		}
@@ -40,7 +46,7 @@ public class AuthService {
 	 */
 	public boolean checkAuth(HttpServletRequest request) {
 		if (!this.isEnableAuth()) {
-			throw new BasicAuthException("未启用认证!");
+			throw new BasicAuthNotEnabledException("未启用认证!");
 		}
 		String authorization = request.getHeader("Authorization");
 		if (StringUtils.isEmpty(authorization)) {
@@ -69,27 +75,27 @@ public class AuthService {
 	 */
 	protected boolean checkAuth(String authorization, String username, String password) {
 		if (StringUtils.isEmpty(authorization)) {
-			throw new IllegalArgumentException("authorization不能为空!");
+			throw new BasicAuthException("authorization不能为空!");
 		}
 		if (StringUtils.isEmpty(username)) {
-			throw new IllegalArgumentException("username不能为空!");
+			throw new BasicAuthException("username不能为空!");
 		}
 		if (StringUtils.isEmpty(password)) {
-			throw new IllegalArgumentException("password不能为空!");
+			throw new BasicAuthException("password不能为空!");
 		}
 
 		String[] basicArray = authorization.split("\\s+");
 		if (isBadArray(basicArray)) {
-			throw new IllegalArgumentException("非法authorization[" + authorization + "].!");
+			throw new BasicAuthException("非法authorization[" + authorization + "].!");
 		}
 		String idpass = Base64.decode(basicArray[1]);
 		// String idpass = Encode.base64Decode(basicArray[1]);
 		if (StringUtils.isEmpty(idpass)) {
-			throw new IllegalArgumentException("非法authorization[" + idpass + "].!");
+			throw new BasicAuthException("非法authorization[" + idpass + "].!");
 		}
 		String[] idpassArray = idpass.split(":");
 		if (isBadArray(idpassArray)) {
-			throw new IllegalArgumentException("非法authorization[" + idpass + "].!");
+			throw new BasicAuthException("非法authorization[" + idpass + "].!");
 		}
 		boolean authenticated = username.equalsIgnoreCase(idpassArray[0]) && password.equalsIgnoreCase(idpassArray[1]);
 		if (!authenticated) {

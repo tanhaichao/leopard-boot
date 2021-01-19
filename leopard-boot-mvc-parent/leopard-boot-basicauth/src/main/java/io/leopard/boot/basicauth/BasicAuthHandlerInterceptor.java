@@ -15,6 +15,8 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import io.leopard.boot.servlet.util.RequestUtil;
+import io.leopard.boot.trynb.ErrorMessageFilter;
+import io.leopard.boot.trynb.ErrorUtil;
 
 @Component
 @Order(0) // 数字小优先
@@ -24,6 +26,8 @@ public class BasicAuthHandlerInterceptor implements HandlerInterceptor {
 
 	@Autowired
 	private AuthService authService;
+	@Autowired
+	private ErrorMessageFilter errorMessageFilter;
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -56,7 +60,9 @@ public class BasicAuthHandlerInterceptor implements HandlerInterceptor {
 		response.setStatus(401, "Authentication Required");// 发送状态码 401, 不能使用 sendError，坑
 		response.setHeader("WWW-Authenticate", "Basic realm=" + msg);// 发送要求输入认证信息,则浏览器会弹出输入框
 		// response.setCharacterEncoding("utf-8");
-		// response.getWriter().append("<meta charset=\"utf-8\" />需要登录才能访问!");
+
+		String filteredMessage = ErrorUtil.fillterDebugInfo(message);
+		response.getWriter().append("<meta charset=\"utf-8\" />" + filteredMessage);
 
 		// logger.info("HTTP BasicAuth 登录失败！");
 	}
