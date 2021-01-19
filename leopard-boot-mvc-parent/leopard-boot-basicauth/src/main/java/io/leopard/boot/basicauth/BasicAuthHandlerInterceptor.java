@@ -58,7 +58,7 @@ public class BasicAuthHandlerInterceptor implements HandlerInterceptor {
 		// response.setCharacterEncoding("utf-8");
 		// response.getWriter().append("<meta charset=\"utf-8\" />需要登录才能访问!");
 
-		logger.info("HTTP BasicAuth 登录失败！");
+		// logger.info("HTTP BasicAuth 登录失败！");
 	}
 
 	/**

@@ -40,9 +40,12 @@ public class AuthService {
 	 */
 	public boolean checkAuth(HttpServletRequest request) {
 		if (!this.isEnableAuth()) {
-			throw new BasicAuthNotEnabledException("未启用认证!");
+			throw new BasicAuthException("未启用认证!");
 		}
 		String authorization = request.getHeader("Authorization");
+		if (StringUtils.isEmpty(authorization)) {
+			return false;
+		}
 		return checkAuth(authorization, username, password);
 	}
 
@@ -88,6 +91,10 @@ public class AuthService {
 		if (isBadArray(idpassArray)) {
 			throw new IllegalArgumentException("非法authorization[" + idpass + "].!");
 		}
-		return username.equalsIgnoreCase(idpassArray[0]) && password.equalsIgnoreCase(idpassArray[1]);
+		boolean authenticated = username.equalsIgnoreCase(idpassArray[0]) && password.equalsIgnoreCase(idpassArray[1]);
+		if (!authenticated) {
+			throw new BasicAuthException("账号或密码不正确[username:" + idpassArray[0] + " password:" + idpassArray[1] + "].");
+		}
+		return true;
 	}
 }
