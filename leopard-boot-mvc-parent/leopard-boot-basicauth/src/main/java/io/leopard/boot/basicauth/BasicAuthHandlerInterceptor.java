@@ -70,7 +70,7 @@ public class BasicAuthHandlerInterceptor implements HandlerInterceptor {
 	public static boolean isNeedCheckBasicAuth(Object handler) {
 		if (handler instanceof HandlerMethod) {
 			HandlerMethod method = (HandlerMethod) handler;
-			System.err.println("method:" + method);
+			// System.err.println("method:" + method);
 			if (method.getMethodAnnotation(BasicAuth.class) != null) {
 				return true;
 			}
