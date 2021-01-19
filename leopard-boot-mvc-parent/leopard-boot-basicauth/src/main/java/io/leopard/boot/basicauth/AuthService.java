@@ -3,6 +3,7 @@ package io.leopard.boot.basicauth;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import io.leopard.boot.util.Base64;
@@ -10,14 +11,16 @@ import io.leopard.boot.util.Base64;
 @Component("leopardBasicAuthService")
 public class AuthService {
 	/**
-	 * 登录名，写死只有一个用户 admin
+	 * 登录名
 	 */
-	private static final String username = "admin";
+	@Value("${auth.username:}")
+	private String username;
 
 	/**
 	 * 登录密码
 	 */
-	private static String password = "123123";
+	@Value("${auth.password:}")
+	private String password;
 
 	/**
 	 * 检查是否合法登录
