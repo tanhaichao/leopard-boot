@@ -10,6 +10,7 @@ public class SnowflakeUtil {
 		return idWorker.nextId();
 	}
 
+	// 15
 	private static SequenceIdWorker sequenceIdWorker = new SequenceIdWorker(1);// TODO 不同机器不同编号
 
 	/**
