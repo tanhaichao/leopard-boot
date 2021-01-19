@@ -9,7 +9,7 @@ import io.leopard.lang.inum.Snum;
  *
  */
 public enum ServerEnv implements Snum {
-	DEV("dev", "开发环境"), TEST("test", "测试环境"), PRE("pre", "预发布环境"), PROD("prod", "生产环境");
+	DEV("dev", "开发环境"), TEST("test", "测试环境"), PRE("pre", "预发布环境"), PROD("prod", "生产环境"), JOB("job", "定时器环境");
 
 	private String key;
 	private String desc;
