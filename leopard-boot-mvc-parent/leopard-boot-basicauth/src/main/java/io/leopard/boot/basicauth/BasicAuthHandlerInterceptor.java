@@ -14,6 +14,8 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import io.leopard.boot.servlet.util.RequestUtil;
+
 @Component
 @Order(0) // 数字小优先
 public class BasicAuthHandlerInterceptor implements HandlerInterceptor {
@@ -28,26 +30,33 @@ public class BasicAuthHandlerInterceptor implements HandlerInterceptor {
 		boolean isNeedCheckBasicAuth = isNeedCheckBasicAuth(handler);
 		// logger.info("preHandle uri:" + request.getRequestURI() + " isNeedCheckBasicAuth:" + isNeedCheckBasicAuth);
 		if (isNeedCheckBasicAuth) {
-			logger.info("preHandle auth:" + request.getRequestURI());
-			boolean autherized = authService.checkAuth(request);
-			if (!autherized) {
-				this.showAuthBox(response);
-				return false;
+			boolean autherized;
+			try {
+				autherized = authService.checkAuth(request);
+				if (!autherized) {
+					this.showAuthBox(request, response, "需要登录才能访问");
+				}
 			}
+			catch (Exception e) {
+				this.showAuthBox(request, response, e.getMessage());
+				autherized = false;
+			}
+			return autherized;
 		}
 		return true;
 	}
 
 	@SuppressWarnings("deprecation")
-	protected void showAuthBox(HttpServletResponse response) throws IOException {
+	protected void showAuthBox(HttpServletRequest request, HttpServletResponse response, String message) throws IOException {
+		String proxyIp = RequestUtil.getProxyIp(request);
+		logger.info("showAuthBox:" + request.getRequestURI() + " proxyIp:" + proxyIp + " message:" + message);
 		String msg = "\"请登录\""; // 如果认证失败,则要求认证 ，不能输入中文
-
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		response.setStatus(401, "Authentication Required");// 发送状态码 401, 不能使用 sendError，坑
 		response.setHeader("WWW-Authenticate", "Basic realm=" + msg);// 发送要求输入认证信息,则浏览器会弹出输入框
 		// response.setCharacterEncoding("utf-8");
-		response.getWriter().append("<meta charset=\"utf-8\" />需要登录才能访问!");
+		// response.getWriter().append("<meta charset=\"utf-8\" />需要登录才能访问!");
 
 		logger.info("HTTP BasicAuth 登录失败！");
 	}
