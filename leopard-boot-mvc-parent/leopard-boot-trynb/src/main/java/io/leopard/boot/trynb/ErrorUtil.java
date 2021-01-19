@@ -104,7 +104,6 @@ public class ErrorUtil {
 			return message;
 		}
 		String msg = message;
-
 		msg = msg.replaceAll("\\[[^\\[]*?\\]", "");
 		msg = msg.replaceAll("\\[.*?\\]", "");
 		if (msg.indexOf("[") != -1 || msg.indexOf("]") != -1) {
