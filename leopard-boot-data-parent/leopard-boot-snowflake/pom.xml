@@ -18,5 +18,10 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>io.leopard.boot</groupId>
+			<artifactId>leopard-boot-redis</artifactId>
+			<version>0.9.21-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 </project>

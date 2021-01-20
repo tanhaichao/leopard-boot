@@ -7,6 +7,10 @@ import java.util.Set;
 import org.junit.Test;
 
 public class SequenceIdWorkerTest {
+	@Test
+	public void test() {
+		new SequenceIdWorker(15);
+	}
 
 	@Test
 	public void nextId() throws InterruptedException {

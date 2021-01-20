@@ -8,4 +8,6 @@ public interface SnowflakeIdService {
 	 * @return
 	 */
 	long generateId();
+
+	long generate53BitId();
 }
