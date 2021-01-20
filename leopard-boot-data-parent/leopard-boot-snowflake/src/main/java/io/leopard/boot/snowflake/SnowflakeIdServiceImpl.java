@@ -15,16 +15,22 @@ public class SnowflakeIdServiceImpl implements SnowflakeIdService {
 	private SnowflakeIdWorker idWorker;
 	private SequenceIdWorker sequenceIdWorker;
 
+	private int workerId;
 	@Autowired
 	private Redis redis;
 
 	@PostConstruct
 	public void init() {
 		int workerIdMax = 15;
-		int workerId = this.getWorkerId(workerIdMax);
+		workerId = this.getWorkerId(workerIdMax);
 
 		idWorker = new SnowflakeIdWorker(workerId);
 		sequenceIdWorker = new SequenceIdWorker(workerId);
+	}
+
+	@Override
+	public int getWorkerId() {
+		return workerId;
 	}
 
 	protected int getWorkerId(int workerIdMax) {

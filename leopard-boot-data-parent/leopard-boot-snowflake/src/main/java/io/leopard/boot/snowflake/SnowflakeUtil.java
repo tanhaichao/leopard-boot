@@ -30,4 +30,8 @@ public class SnowflakeUtil {
 	public static long generate53BitId() {
 		return snowflakeIdService.generate53BitId();
 	}
+
+	public static long getWorkerId() {
+		return snowflakeIdService.getWorkerId();
+	}
 }

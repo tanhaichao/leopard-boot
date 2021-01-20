@@ -10,4 +10,11 @@ public interface SnowflakeIdService {
 	long generateId();
 
 	long generate53BitId();
+
+	/**
+	 * 获取workerId
+	 * 
+	 * @return
+	 */
+	int getWorkerId();
 }
