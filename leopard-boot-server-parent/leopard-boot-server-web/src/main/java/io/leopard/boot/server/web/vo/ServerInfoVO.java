@@ -29,6 +29,11 @@ public class ServerInfoVO {
 	 * profiles
 	 */
 	private Set<String> profileSet;
+
+	/**
+	 * 雪花ID算法workerId
+	 */
+	private long workerId;
 	/**
 	 * 启动时间
 	 */
@@ -82,5 +87,13 @@ public class ServerInfoVO {
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	public Date getFormattedStartupTime() {
 		return this.startupTime;
+	}
+
+	public long getWorkerId() {
+		return workerId;
+	}
+
+	public void setWorkerId(long workerId) {
+		this.workerId = workerId;
 	}
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import io.leopard.boot.server.web.vo.ServerInfoVO;
+import io.leopard.boot.snowflake.SnowflakeUtil;
 import io.leopard.boot.util.ServerUtil;
 import io.leopard.spring.ServerEnv;
 import io.leopard.spring.SpringEnvUtil;
@@ -36,12 +37,16 @@ public class ServerInfoController {
 
 		String serverIp = ServerUtil.getServerIp();
 		ServerEnv env = SpringEnvUtil.getEnv();
+
+		int workerId = SnowflakeUtil.getWorkerId();
+
 		ServerInfoVO serverInfo = new ServerInfoVO();
 		serverInfo.setServerIp(serverIp);
 		serverInfo.setEnv(env);
 		serverInfo.setStartupTime(startupTime);
 		serverInfo.setProfileSet(SpringEnvUtil.getProfileSet());
 		serverInfo.setTimeZoneId(timeZone.getID());
+		serverInfo.setWorkerId(workerId);
 		return serverInfo;
 	}
 
