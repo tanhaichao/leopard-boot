@@ -1,4 +1,4 @@
-package io.leopard.web.mvc.option;
+package io.leopard.boot.server.web.vo;
 
 import java.util.Date;
 import java.util.Set;
