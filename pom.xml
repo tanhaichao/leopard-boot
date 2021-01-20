@@ -124,6 +124,7 @@
 		<module>leopard-boot-message-parent</module>
 		<module>leopard-boot-dubbo-parent</module>
 		<module>leopard-boot-topnb</module>
+		<module>leopard-boot-server-parent</module>
 	</modules>
 
 
