@@ -2,14 +2,9 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>io.leopard.boot</groupId>
-    <artifactId>leopard-boot</artifactId>
+    <artifactId>leopard-boot-server-parent</artifactId>
     <version>0.9.21-SNAPSHOT</version>
   </parent>
-  <artifactId>leopard-boot-server-parent</artifactId>
-  <packaging>pom</packaging>
-  <description>服务器信息</description>
-  <modules>
-  	<module>leopard-boot-server-web</module>
-  	<module>leopard-boot-server-heartbeat</module>
-  </modules>
+  <artifactId>leopard-boot-server-heartbeat</artifactId>
+  <name>服务器心跳数据</name>
 </project>
