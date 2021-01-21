@@ -14,4 +14,12 @@ public class SnowflakeIdServiceImplTest {
 		System.out.println("id:" + id);
 	}
 
+	@Test
+	public void getWorkerId() {
+		int workerIdMax = 15;
+		long lastWorkerId = 16;
+		int workerId = (int) (lastWorkerId % workerIdMax);
+		System.err.println("workerId:" + workerId);
+	}
+
 }
