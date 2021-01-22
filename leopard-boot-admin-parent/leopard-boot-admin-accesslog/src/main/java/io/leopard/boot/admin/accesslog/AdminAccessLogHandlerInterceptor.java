@@ -41,6 +41,13 @@ public class AdminAccessLogHandlerInterceptor implements HandlerInterceptor {
 
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+		String uri = request.getRequestURI();
+		uri = uri.replaceAll("/+", "/");
+
+		if (!uri.startsWith("/api/admin/")) {// TODO 改成配置文件
+			return;
+		}
+
 		try {
 			save(request, response, handler, ex);
 		}
