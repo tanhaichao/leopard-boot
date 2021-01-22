@@ -47,6 +47,7 @@ public class AdminAccessLogHandlerInterceptor implements HandlerInterceptor {
 		if (!uri.startsWith("/api/admin/")) {// TODO 改成配置文件
 			return;
 		}
+		logger.info("uri:" + uri);
 
 		try {
 			save(request, response, handler, ex);
