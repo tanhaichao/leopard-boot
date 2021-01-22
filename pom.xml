@@ -125,6 +125,7 @@
 		<module>leopard-boot-dubbo-parent</module>
 		<module>leopard-boot-topnb</module>
 		<module>leopard-boot-server-parent</module>
+		<module>leopard-boot-admin-parent</module>
 	</modules>
 
 
