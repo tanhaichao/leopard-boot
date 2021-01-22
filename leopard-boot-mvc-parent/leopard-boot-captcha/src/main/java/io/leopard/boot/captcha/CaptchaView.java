@@ -27,8 +27,7 @@ public class CaptchaView extends ModelAndView {
 	private Class<? extends CaptchaEngine> engineClazz;
 
 	public CaptchaView(String captchaGroupId) {
-		this();
-		this.captchaGroupId = captchaGroupId;
+		this(captchaGroupId, 200, 70);
 	}
 
 	public CaptchaView() {
@@ -36,13 +35,19 @@ public class CaptchaView extends ModelAndView {
 	}
 
 	public CaptchaView(int width, int height) {
-		this(width, height, CaptchaEngineImpl.class);
+		this(null, width, height);
 	}
 
-	public CaptchaView(int width, int height, Class<? extends CaptchaEngine> engineClazz) {
+	public CaptchaView(String captchaGroupId, int width, int height) {
+		this(captchaGroupId, width, height, CaptchaEngineImpl.class);
+	}
+
+	public CaptchaView(String captchaGroupId, int width, int height, Class<? extends CaptchaEngine> engineClazz) {
 		super.setView(view);
 		this.width = width;
 		this.height = height;
+		this.captchaGroupId = captchaGroupId;
+
 		this.engineClazz = engineClazz;
 	}
 
