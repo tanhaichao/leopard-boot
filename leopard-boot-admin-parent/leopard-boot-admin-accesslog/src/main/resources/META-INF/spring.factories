@@ -1,4 +1,4 @@
 # Auto Configure
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-io.leopard.boot.basicauth.BasicAuthAutoConfiguration
+io.leopard.boot.admin.accesslog.AdminAccessLogAutoConfiguration
 
