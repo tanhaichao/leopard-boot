@@ -1,5 +1,7 @@
 package io.leopard.boot.admin.accesslog.model;
 
+import java.util.Date;
+
 /**
  * 访问日志
  * 
@@ -47,6 +49,8 @@ public class AccessLog {
 	 * 异常堆栈
 	 */
 	private String exception;
+
+	private Date posttime;
 
 	public long getAccessLogId() {
 		return accessLogId;
@@ -134,5 +138,13 @@ public class AccessLog {
 
 	public void setHandlerName(String handlerName) {
 		this.handlerName = handlerName;
+	}
+
+	public Date getPosttime() {
+		return posttime;
+	}
+
+	public void setPosttime(Date posttime) {
+		this.posttime = posttime;
 	}
 }
