@@ -26,11 +26,27 @@ public class AccessLog {
 	 */
 	private String proxyIp;
 
+	/**
+	 * 请求地址
+	 */
+	private String url;
+
+	/**
+	 * 请求方法
+	 */
+	private String requestMethod;
+
+	private String handlerName;
 	private String parameters;
 
 	private String requestBody;
 
 	private String responseBody;
+
+	/**
+	 * 异常堆栈
+	 */
+	private String exception;
 
 	public long getAccessLogId() {
 		return accessLogId;
@@ -86,5 +102,37 @@ public class AccessLog {
 
 	public void setResponseBody(String responseBody) {
 		this.responseBody = responseBody;
+	}
+
+	public String getException() {
+		return exception;
+	}
+
+	public void setException(String exception) {
+		this.exception = exception;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public String getRequestMethod() {
+		return requestMethod;
+	}
+
+	public void setRequestMethod(String requestMethod) {
+		this.requestMethod = requestMethod;
+	}
+
+	public String getHandlerName() {
+		return handlerName;
+	}
+
+	public void setHandlerName(String handlerName) {
+		this.handlerName = handlerName;
 	}
 }
