@@ -90,8 +90,8 @@ public class AdminAccessLogHandlerInterceptor implements HandlerInterceptor {
 			return;
 		}
 		String handlerName = method.getBeanType().getName() + "." + method.getMethod().getName();
-		long roleId = 0;
-		long adminId = 0;
+		long adminId = AccessLogUtil.getSessAdminId(request);
+		long roleId = AccessLogUtil.getSessRoleId(request);
 
 		String exception = AccessLogUtil.toExceptionString(ex);
 		String proxyIp = RequestUtil.getProxyIp(request);

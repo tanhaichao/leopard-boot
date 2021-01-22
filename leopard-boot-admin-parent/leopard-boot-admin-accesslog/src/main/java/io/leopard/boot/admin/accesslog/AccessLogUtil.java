@@ -17,6 +17,22 @@ import io.leopard.boot.admin.accesslog.model.Pair;
 
 public class AccessLogUtil {
 
+	public static long getSessRoleId(HttpServletRequest request) {
+		Number sessRoleId = (Number) request.getSession().getAttribute("sessRoleId");
+		if (sessRoleId == null || sessRoleId.longValue() <= 0) {
+			return 0L;
+		}
+		return sessRoleId.longValue();
+	}
+
+	public static long getSessAdminId(HttpServletRequest request) {
+		Number sessAdminId = (Number) request.getSession().getAttribute("sessAdminId");
+		if (sessAdminId == null || sessAdminId.longValue() <= 0) {
+			return 0L;
+		}
+		return sessAdminId.longValue();
+	}
+
 	public static String getRequestBody(HttpServletRequest request) throws IOException {
 		ServletInputStream input = request.getInputStream();
 		byte[] bytes = IOUtils.toByteArray(input);
