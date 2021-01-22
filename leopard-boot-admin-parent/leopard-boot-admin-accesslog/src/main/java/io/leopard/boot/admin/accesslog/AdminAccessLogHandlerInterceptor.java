@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import io.leopard.boot.admin.accesslog.model.AccessLog;
 import io.leopard.boot.servlet.util.RequestUtil;
+import io.leopard.json.Json;
 
 /**
  * 管理后台日志.
@@ -94,8 +95,8 @@ public class AdminAccessLogHandlerInterceptor implements HandlerInterceptor {
 
 		String exception = AccessLogUtil.toExceptionString(ex);
 		String proxyIp = RequestUtil.getProxyIp(request);
-		String parameters = null;
-		String requestBody = null;
+		String parameters = Json.toJson(AccessLogUtil.getParameters(request));
+		String requestBody = AccessLogUtil.getRequestBody(request);
 		String responseBody = null;
 
 		AccessLog accessLog = new AccessLog();
