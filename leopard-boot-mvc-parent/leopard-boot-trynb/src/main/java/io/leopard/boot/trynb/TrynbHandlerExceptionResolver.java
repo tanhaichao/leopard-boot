@@ -73,7 +73,7 @@ public class TrynbHandlerExceptionResolver implements HandlerExceptionResolver {
 			// }
 		}
 		else {
-			message = errorMessageFilter.parseMessage(request, e);// ErrorUtil.parseMessage(e);
+			message = errorMessageFilter.parseMessage(e);// ErrorUtil.parseMessage(e);
 			entity.setStatus(e.getClass().getSimpleName());
 
 		}

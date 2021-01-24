@@ -1,7 +1,5 @@
 package io.leopard.boot.trynb;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.core.annotation.Order;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
@@ -15,7 +13,7 @@ import io.leopard.boot.trynb.message.MessageParserImpl;
 public class ErrorMessageFilterMysqlImpl implements ErrorMessageFilter {
 
 	@Override
-	public String parseMessage(HttpServletRequest request, Throwable e) {
+	public String parseMessage(Throwable e) {
 		if (e instanceof DataIntegrityViolationException) {
 			Exception exception = (Exception) e.getCause();
 			if (exception instanceof MysqlDataTruncation) {

@@ -1,7 +1,5 @@
 package io.leopard.boot.trynb;
 
-import javax.servlet.http.HttpServletRequest;
-
 /**
  * 错误消息过滤器
  * 
@@ -10,5 +8,5 @@ import javax.servlet.http.HttpServletRequest;
  */
 public interface ErrorMessageFilter {
 
-	String parseMessage(HttpServletRequest request, Throwable e);
+	String parseMessage(Throwable e);
 }

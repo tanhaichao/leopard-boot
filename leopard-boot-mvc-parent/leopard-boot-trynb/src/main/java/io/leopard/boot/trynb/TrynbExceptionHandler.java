@@ -44,7 +44,7 @@ public class TrynbExceptionHandler {
 		// e.printStackTrace();// TODO
 		logger.error(e.getMessage(), e);// TODO 这里要区分日志级别？
 
-		String message = errorMessageFilter.parseMessage(request, e);// ErrorUtil.parseMessage(e);
+		String message = errorMessageFilter.parseMessage(e);// ErrorUtil.parseMessage(e);
 
 		ResponseEntity entity = new ResponseEntity();
 		entity.setStatus(e.getClass().getSimpleName());

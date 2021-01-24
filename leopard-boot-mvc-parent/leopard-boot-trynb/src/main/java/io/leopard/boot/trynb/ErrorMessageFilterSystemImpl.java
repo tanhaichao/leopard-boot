@@ -5,8 +5,6 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
@@ -33,7 +31,7 @@ public class ErrorMessageFilterSystemImpl implements ErrorMessageFilter {
 	}
 
 	@Override
-	public String parseMessage(HttpServletRequest request, Throwable e) {
+	public String parseMessage(Throwable e) {
 		{
 			String className = e.getClass().getName();
 			String message = MESSAGE_MAP.get(className);
