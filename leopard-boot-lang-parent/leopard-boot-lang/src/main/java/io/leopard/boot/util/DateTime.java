@@ -302,10 +302,12 @@ public class DateTime {
 	 */
 	public static String getTime(final long millis) {
 		Date date = new Date();
-		if (millis != 0) {
-			date.setTime(millis);
-		}
-		return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
+		// if (millis != 0) {
+		date.setTime(millis);
+		// }
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		// format.setTimeZone(TimeZone.getTimeZone("GMT"));
+		return format.format(date);
 	}
 
 	/**

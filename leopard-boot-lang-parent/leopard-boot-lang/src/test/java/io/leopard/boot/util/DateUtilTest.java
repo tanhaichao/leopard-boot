@@ -2,6 +2,7 @@ package io.leopard.boot.util;
 
 import java.util.Date;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import io.leopard.lang.datatype.Month;
@@ -34,6 +35,12 @@ public class DateUtilTest {
 		System.out.println("lastTime:" + DateTime.getTime(DateUtil.getLastTimeOfMonth(new Month("2020-07"))));
 		System.out.println("lastTime:" + DateTime.getTime(DateUtil.getLastTimeOfMonth(new Month("2020-08"))));
 		System.out.println("lastTime:" + DateTime.getTime(DateUtil.getLastTimeOfMonth(new Month("2020-09"))));
+	}
+
+	@Test
+	public void toDate() {
+		Assert.assertEquals("1970-01-01 08:00:00", DateTime.getTime(DateUtil.toDate("1970-01-01 08:00:00")));
+		Assert.assertEquals("1970-01-01 07:00:00", DateTime.getTime(DateUtil.toDate("1970-01-01 07:00:00")));
 	}
 
 }

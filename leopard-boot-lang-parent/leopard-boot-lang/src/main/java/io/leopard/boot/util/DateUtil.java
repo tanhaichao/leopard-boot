@@ -342,7 +342,7 @@ public class DateUtil {
 	 * @return 日期Date
 	 */
 	public static Date toDate(Long time) {
-		if (time == null || time <= 0) {
+		if (time == null) {// || time <= 0
 			return null;
 		}
 		return new Date(time);
@@ -369,9 +369,9 @@ public class DateUtil {
 			return null;
 		}
 		long time = DateTime.getTimestamp(datetime);
-		if (time == 0) {
-			throw new IllegalArgumentException("非法日期[" + datetime + "]");
-		}
+		// if (time == 0) {
+		// throw new IllegalArgumentException("非法日期[" + datetime + "]");
+		// }
 		return new Date(time);
 	}
 
