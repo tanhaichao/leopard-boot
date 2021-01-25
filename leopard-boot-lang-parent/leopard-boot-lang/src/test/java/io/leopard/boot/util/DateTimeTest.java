@@ -9,6 +9,7 @@ public class DateTimeTest {
 
 	@Test
 	public void getDate() {
+		Assert.assertEquals("1970-01-01", DateTime.getDate(0L));
 
 	}
 

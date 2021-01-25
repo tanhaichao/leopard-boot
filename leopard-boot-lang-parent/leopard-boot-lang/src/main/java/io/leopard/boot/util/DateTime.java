@@ -175,9 +175,9 @@ public class DateTime {
 	 */
 	public static synchronized String getDate(final long millis) {
 		Date date = new Date();
-		if (millis > 0) {
-			date.setTime(millis);
-		}
+		// if (millis > 0) {
+		date.setTime(millis);
+		// }
 		return new SimpleDateFormat("yyyy-MM-dd").format(date);
 	}
 
