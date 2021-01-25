@@ -26,22 +26,25 @@ public class DateConverter implements Converter<String, Date> {
 			return null;
 		}
 		else if (DateTime.isDateTime(source)) {
-			if ("1970-01-01 08:00:00".equals(source)) {
-				return new Date(1);
-			}
-			else {
-				return DateUtil.toDate(source);
-			}
+			// if ("1970-01-01 08:00:00".equals(source)) {
+			// return new Date(1);
+			// }
+			// else {
+			return DateUtil.toDate(source);
+			// }
 		}
 		else if (DateTime.isDate(source)) {
 			return DateUtil.toDate(source + " 00:00:00");
 		}
-		long time = Long.parseLong(source);
-		if (time > 0) {
-			return new Date(time);
-		}
 		else {
-			throw new IllegalArgumentException("非法时间戳[" + time + "].");
+			long time = Long.parseLong(source);
+			// if (time == 0) {
+			// return new Date(1);
+			// }
+			// else {
+			return new Date(time);
+			// throw new IllegalArgumentException("非法时间戳[" + time + "].");
+			// }
 		}
 	}
 }
