@@ -18,7 +18,7 @@ public class DateConverter implements Converter<String, Date> {
 
 	@Override
 	public Date convert(String source) {
-		logger.info("MonthConverter source:" + source);
+		// logger.info("MonthConverter source:" + source);
 		if (StringUtils.isEmpty(source)) {
 			return null;
 		}
