@@ -3,6 +3,7 @@ package io.leopard.boot.sms;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -90,6 +91,13 @@ public class SmsClientAliyunImpl implements SmsClient {
 
 		// TemplateParam String 否 {"code":"1111"}
 
+	}
+
+	@PreDestroy
+	public void destroy() {
+		if (this.client != null) {
+			this.client.shutdown();
+		}
 	}
 
 	@Override
