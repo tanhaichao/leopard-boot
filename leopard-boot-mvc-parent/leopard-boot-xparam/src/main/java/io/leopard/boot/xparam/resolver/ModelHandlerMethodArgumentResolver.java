@@ -222,10 +222,14 @@ public class ModelHandlerMethodArgumentResolver extends AbstractNamedValueMethod
 			return new OnlyDate(value);
 		}
 		else if (Date.class.equals(type)) {
-			long time = NumberUtils.toLong(value);
-			if (time <= 0) {
+			// long time = NumberUtils.toLong(value);
+			// if (time <= 0) {
+			// return null;
+			// }
+			if (StringUtils.isEmpty(value)) {
 				return null;
 			}
+			long time = Long.parseLong(value);
 			return new Date(time);
 		}
 		else if (DynamicEnum.class.isAssignableFrom(type)) {
