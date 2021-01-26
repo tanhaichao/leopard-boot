@@ -11,8 +11,10 @@ import java.lang.annotation.Target;
 @Documented
 public @interface CaptchaGroup {
 
+	// FIXME value改成默认必填
 	String value() default "";
 
+	// FIXME uri有啥用？
 	String uri() default "";
 
 }
