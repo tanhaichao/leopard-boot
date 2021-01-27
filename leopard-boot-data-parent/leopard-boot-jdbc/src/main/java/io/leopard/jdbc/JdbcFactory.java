@@ -6,7 +6,7 @@ import io.leopard.jdbc.datasource.MysqlDsnDataSource;
 
 public class JdbcFactory {
 
-	public static void inject(Object bean, Jdbc jdbc) {
+	public static void injectField(Object bean, Jdbc jdbc) {
 		try {
 			Field field = bean.getClass().getDeclaredField("jdbc");
 			field.setAccessible(true);
