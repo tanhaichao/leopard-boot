@@ -1,9 +1,21 @@
 package io.leopard.jdbc;
 
-import io.leopard.jdbc.JdbcMysqlImpl;
+import java.lang.reflect.Field;
+
 import io.leopard.jdbc.datasource.MysqlDsnDataSource;
 
 public class JdbcFactory {
+
+	public static void inject(Object bean, Jdbc jdbc) {
+		try {
+			Field field = bean.getClass().getDeclaredField("jdbc");
+			field.setAccessible(true);
+			field.set(bean, jdbc);
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+	}
 
 	public static JdbcMysqlImpl creaeJdbcMysqlImpl(String host, String database, String user, String password) {
 		return creaeJdbcMysqlImpl(host, database, user, password, 0);
