@@ -38,6 +38,8 @@ import io.leopard.jdbc.datasource.JdbcDataSource;
 import io.leopard.jdbc.logger.JdbcLogger;
 import io.leopard.jdbc.logger.JdbcLoggerImpl;
 import io.leopard.jdbc.mapper.CountResultSetExtractor;
+import io.leopard.jdbc.traverse.TraverseResultSetExtractor;
+import io.leopard.jdbc.traverse.Traverser;
 import io.leopard.json.Json;
 import io.leopard.lang.Page;
 import io.leopard.lang.PageImpl;
@@ -966,5 +968,10 @@ public class JdbcMysqlImpl implements Jdbc {
 		catch (EmptyResultDataAccessException e) {
 			return new LinkedHashMap<>();
 		}
+	}
+
+	@Override
+	public <T> int traverse(String sql, Traverser<T> traverser) {
+		return this.getJdbcTemplate().query(sql, new TraverseResultSetExtractor<T>(traverser));
 	}
 }

@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import io.leopard.jdbc.builder.InsertBuilder;
 import io.leopard.jdbc.builder.ReplaceBuilder;
 import io.leopard.jdbc.builder.SqlBuilder;
+import io.leopard.jdbc.traverse.Traverser;
 import io.leopard.lang.Page;
 import io.leopard.lang.Paging;
 
@@ -677,4 +678,13 @@ public interface Jdbc {
 	 * @return
 	 */
 	<K, V extends Number> Map<K, V> countForMap(String sql, Class<V> keyClazz, Class<V> valueClazz, Object... params);
+
+	/**
+	 * 遍历
+	 * 
+	 * @param sql
+	 * @param traverser
+	 * @return 返回记录条数
+	 */
+	<T> int traverse(String sql, Traverser<T> traverser);
 }

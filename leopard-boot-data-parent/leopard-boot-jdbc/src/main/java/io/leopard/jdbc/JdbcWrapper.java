@@ -13,6 +13,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import io.leopard.jdbc.builder.InsertBuilder;
 import io.leopard.jdbc.builder.ReplaceBuilder;
 import io.leopard.jdbc.builder.SqlBuilder;
+import io.leopard.jdbc.traverse.Traverser;
 import io.leopard.lang.Page;
 import io.leopard.lang.Paging;
 
@@ -407,6 +408,11 @@ public class JdbcWrapper implements Jdbc {
 	@Override
 	public List<Long> queryForLongs(String sql, Object... params) {
 		return this.getJdbc().queryForLongs(sql, params);
+	}
+
+	@Override
+	public <T> int traverse(String sql, Traverser<T> traverser) {
+		return this.getJdbc().traverse(sql, traverser);
 	}
 
 }
