@@ -31,4 +31,12 @@ public class JsonJacksonImplTest {
 		List<User> list2 = jackson.toListObject(json, User.class);
 	}
 
+	@Test
+	public void toListObject2() {
+		String json = "[21,129]";
+		JsonJacksonImpl jackson = new JsonJacksonImpl();
+
+		List<Long> list = jackson.toListObject(json, Long.class);
+		System.out.println("list:" + list);
+	}
 }
