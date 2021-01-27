@@ -29,7 +29,7 @@ public class TraverseResultSetExtractor<T> implements ResultSetExtractor<Integer
 		// this.mappedClass ;
 		ParameterizedType type = (ParameterizedType) traverser.getClass().getGenericInterfaces()[0];
 		this.mappedClass = (Class<T>) type.getActualTypeArguments()[0];
-		System.out.println("name:" + mappedClass.getName());
+		// System.out.println("name:" + mappedClass.getName());
 		this.rowMapper = new LeopardBeanPropertyRowMapper<T>(mappedClass);
 		this.traverser = traverser;
 	}
