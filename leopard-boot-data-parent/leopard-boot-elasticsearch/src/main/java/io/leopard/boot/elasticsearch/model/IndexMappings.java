@@ -6,6 +6,14 @@ public class IndexMappings extends LinkedHashMap<String, Object> {
 
 	private static final long serialVersionUID = 1L;
 
+	public void addKeywordField(String name) {
+		this.addField(new KeywordField(name));
+	}
+
+	public void addKeywordField(String name, int ignoreAbove) {
+		this.addField(new KeywordField(name, ignoreAbove));
+	}
+
 	public void addTextField(String name) {
 		this.addField(new TextField(name));
 	}
