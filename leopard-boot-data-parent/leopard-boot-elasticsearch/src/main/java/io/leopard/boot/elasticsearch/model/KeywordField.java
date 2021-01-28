@@ -17,7 +17,7 @@ public class KeywordField extends Field {
 	public KeywordField(String name, int ignoreAbove) {
 		super(name);
 		this.put("type", "keyword");
-		this.put("ignore_above", "ignoreAbove");
+		this.put("ignore_above", ignoreAbove);
 	}
 
 }
