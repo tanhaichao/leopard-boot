@@ -6,7 +6,8 @@ public class ScoreTest {
 
 	protected double log(int displayOrder) {
 		// 0.9767073907678475
-		return Math.log(1 + displayOrder) / 22d / 10;
+		// return Math.log(1 + displayOrder) / 22d / 10;
+		return Math.log(1 + displayOrder) * 100 / 22d;
 	}
 
 	@Test
