@@ -34,6 +34,9 @@ public class AccessLogUtil {
 	}
 
 	public static String getRequestBody(HttpServletRequest request) throws IOException {
+		if (true) {
+			return "";// TODO 暂时禁用
+		}
 		ServletInputStream input = request.getInputStream();
 		byte[] bytes = IOUtils.toByteArray(input);
 		input.close();
