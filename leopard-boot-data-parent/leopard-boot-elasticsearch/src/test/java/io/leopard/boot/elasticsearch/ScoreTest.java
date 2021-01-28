@@ -1,0 +1,17 @@
+package io.leopard.boot.elasticsearch;
+
+import org.junit.Test;
+
+public class ScoreTest {
+
+	protected double log(int displayOrder) {
+		// 0.9767073907678475
+		return Math.log(1 + displayOrder) / 22d / 10;
+	}
+
+	@Test
+	public void displayOrder() {
+		System.out.println("num:" + log(1));
+		System.out.println("num:" + log(Integer.MAX_VALUE - 1));
+	}
+}
