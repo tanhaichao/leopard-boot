@@ -12,7 +12,7 @@ public class ScoreTest {
 
 	@Test
 	public void displayOrder() {
-		System.out.println("num:" + log(1));
+		System.out.println("num:" + log(111111));
 		System.out.println("num:" + log(Integer.MAX_VALUE - 1));
 	}
 }
