@@ -576,6 +576,14 @@ public interface Jdbc {
 	long insertForLastId(String sql, StatementParameter param);
 
 	/**
+	 * 批量执行sql
+	 * 
+	 * @param sqlList
+	 * @return
+	 */
+	List<Integer> batchUpdate(List<String> sqlList);
+
+	/**
 	 * 批量执行sql.
 	 * 
 	 * @param sqls

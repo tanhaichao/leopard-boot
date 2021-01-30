@@ -297,6 +297,11 @@ public class JdbcWrapper implements Jdbc {
 	}
 
 	@Override
+	public List<Integer> batchUpdate(List<String> sqlList) {
+		return this.getJdbc().batchUpdate(sqlList);
+	}
+
+	@Override
 	public int[] batchUpdate(String[] sqls) {
 		return this.getJdbc().batchUpdate(sqls);
 	}

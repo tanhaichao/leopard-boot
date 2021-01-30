@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -108,6 +109,18 @@ public class JdbcMysqlImpl implements Jdbc {
 	@Override
 	public String getSQL(String sql, StatementParameter param) {
 		return SqlUtil.getSQL(sql, param);
+	}
+
+	@Override
+	public List<Integer> batchUpdate(List<String> sqlList) {
+		String[] sqls = new String[sqlList.size()];
+		sqlList.toArray(sqls);
+		int[] counts = this.getJdbcTemplate().batchUpdate(sqls);
+		List<Integer> countList = new ArrayList<>();
+		for (int count : counts) {
+			countList.add(count);
+		}
+		return countList;
 	}
 
 	@Override
