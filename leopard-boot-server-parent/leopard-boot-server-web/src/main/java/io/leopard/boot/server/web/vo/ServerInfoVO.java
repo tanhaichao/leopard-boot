@@ -34,6 +34,7 @@ public class ServerInfoVO {
 	 * 雪花ID算法workerId
 	 */
 	private long workerId;
+
 	/**
 	 * 启动时间
 	 */
@@ -43,6 +44,11 @@ public class ServerInfoVO {
 	 * 时区
 	 */
 	private String timeZoneId;
+
+	/**
+	 * Job服务器IP
+	 */
+	private String jobServerIp;
 
 	public String getServerIp() {
 		return serverIp;
@@ -95,5 +101,13 @@ public class ServerInfoVO {
 
 	public void setWorkerId(long workerId) {
 		this.workerId = workerId;
+	}
+
+	public String getJobServerIp() {
+		return jobServerIp;
+	}
+
+	public void setJobServerIp(String jobServerIp) {
+		this.jobServerIp = jobServerIp;
 	}
 }
