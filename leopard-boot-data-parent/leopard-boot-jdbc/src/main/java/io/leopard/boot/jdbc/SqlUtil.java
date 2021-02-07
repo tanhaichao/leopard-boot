@@ -198,6 +198,14 @@ public class SqlUtil {
 				buf.append('\\');
 				buf.append('\'');
 				break;
+			case '?':
+				buf.append('\\');
+				buf.append('?');
+				break;
+			case '#':
+				buf.append('\\');
+				buf.append('#');
+				break;
 			case '"': /* Better safe than sorry */
 				buf.append('\\');
 				buf.append('"');
