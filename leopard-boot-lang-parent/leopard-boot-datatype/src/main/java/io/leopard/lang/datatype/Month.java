@@ -77,4 +77,11 @@ public class Month extends Date {
 		return GET_TIME_FORMAT.format(this);
 	}
 
+	public static Month addMonth(final int month) {
+		Calendar cal = Calendar.getInstance();
+		// cal.setTime(dat);
+		cal.add(Calendar.MONTH, month);
+		long time = cal.getTimeInMillis();
+		return new Month(time);
+	}
 }
