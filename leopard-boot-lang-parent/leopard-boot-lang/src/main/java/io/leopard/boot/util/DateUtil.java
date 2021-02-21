@@ -190,6 +190,19 @@ public class DateUtil {
 	}
 
 	/**
+	 * 添加多少月
+	 * 
+	 * @param month 月数量
+	 * @return 日期字符串
+	 */
+	public static Date addMonth(final Date date, final int month) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		cal.add(Calendar.MONTH, month);
+		return new Date(cal.getTimeInMillis());
+	}
+
+	/**
 	 * 添加多少年
 	 * 
 	 * @param daynum 天数
