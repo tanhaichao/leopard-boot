@@ -18,12 +18,19 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class ListUtil {
 
-	public static boolean contains(@SuppressWarnings("rawtypes") List list, Object element) {
+	public static <T> boolean contains(List<T> list, T element) {
 		if (list == null) {
 			return false;
 		}
 		return list.contains(element);
 	}
+
+	// public static boolean contains(@SuppressWarnings("rawtypes") List list, Object element) {
+	// if (list == null) {
+	// return false;
+	// }
+	// return list.contains(element);
+	// }
 
 	/**
 	 * 返回list的size,如果list等于null，返回0</br>
