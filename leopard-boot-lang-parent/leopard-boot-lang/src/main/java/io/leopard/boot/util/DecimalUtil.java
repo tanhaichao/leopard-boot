@@ -191,6 +191,12 @@ public class DecimalUtil {
 		return new BigDecimal(num).setScale(2, java.math.BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 
+	/**
+	 * 保留2位小数点
+	 * 
+	 * @param num
+	 * @return
+	 */
 	public static double scaleRoundFloor(double num) {
 		return new BigDecimal(num).setScale(2, java.math.BigDecimal.ROUND_FLOOR).doubleValue();
 	}
