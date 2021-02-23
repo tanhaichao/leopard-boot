@@ -55,6 +55,9 @@ public class TrynbHandlerExceptionResolver implements HandlerExceptionResolver {
 		ResponseEntity entity = new ResponseEntity();
 		String message;
 		if (e instanceof ConstraintViolationException) {
+			if (true) {
+				logger.error(e.getMessage(), e);
+			}
 			ConstraintViolationException exs = (ConstraintViolationException) e;
 			Set<ConstraintViolation<?>> violations = exs.getConstraintViolations();
 			// entity.setStatus("IllegalArgumentException");
