@@ -30,4 +30,10 @@ public class DecimalUtilTest {
 		System.err.println("rate:" + rate);
 	}
 
+	@Test
+	public void scaleRoundFloor() {
+		double num = DecimalUtil.scaleRoundFloor(0.018);
+		System.out.println("num:" + num);
+	}
+
 }

@@ -191,6 +191,10 @@ public class DecimalUtil {
 		return new BigDecimal(num).setScale(2, java.math.BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 
+	public static double scaleRoundFloor(double num) {
+		return new BigDecimal(num).setScale(2, java.math.BigDecimal.ROUND_FLOOR).doubleValue();
+	}
+
 	/**
 	 * 4舍5入，保留4位小数点
 	 * 
