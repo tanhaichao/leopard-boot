@@ -446,6 +446,22 @@ public class NumberUtil {
 		return num > 0;
 	}
 
+	public static boolean isNotEmpty(Integer num) {
+		return num != null && num > 0;
+	}
+
+	public static boolean isNotEmpty(Long num) {
+		return num != null && num > 0;
+	}
+
+	public static boolean isEmpty(Integer num) {
+		return num == null || num <= 0;
+	}
+
+	public static boolean isEmpty(Long num) {
+		return num == null || num <= 0;
+	}
+
 	/**
 	 * 格式化十进制数，分隔千位
 	 * 
