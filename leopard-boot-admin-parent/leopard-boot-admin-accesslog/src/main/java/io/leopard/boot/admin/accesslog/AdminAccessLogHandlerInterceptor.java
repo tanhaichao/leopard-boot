@@ -45,6 +45,7 @@ public class AdminAccessLogHandlerInterceptor implements HandlerInterceptor {
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
 		String uri = request.getRequestURI();
 		if (StringUtils.isEmpty(uri)) {
+
 			RuntimeException e = new RuntimeException("uri怎么会为空[" + request.getServerName() + "]?");
 			logger.error(e.getMessage(), e);
 			return;
