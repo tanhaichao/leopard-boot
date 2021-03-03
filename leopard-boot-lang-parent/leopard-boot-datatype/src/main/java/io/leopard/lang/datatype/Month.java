@@ -70,11 +70,11 @@ public class Month extends Date {
 		return datetime.matches(IS_TIMESTAMP_REGEX);
 	}
 
-	private static final SimpleDateFormat GET_TIME_FORMAT = new SimpleDateFormat("yyyy-MM");
+	// private static final SimpleDateFormat GET_TIME_FORMAT = new SimpleDateFormat("yyyy-MM");
 
 	@Override
 	public String toString() {
-		return GET_TIME_FORMAT.format(this);
+		return new SimpleDateFormat("yyyy-MM").format(this);
 	}
 
 	public static Month addMonth(final int month) {
