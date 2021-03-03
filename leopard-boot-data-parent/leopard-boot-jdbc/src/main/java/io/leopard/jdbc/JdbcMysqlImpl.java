@@ -523,7 +523,7 @@ public class JdbcMysqlImpl implements Jdbc {
 				param.setDate(((OnlyDate) p));
 			}
 			else if (p instanceof Month) {
-				System.out.println("month:" + ((Month) p).toString());
+				// System.out.println("month:" + ((Month) p).toString());
 				param.setString(((Month) p).toString());
 			}
 			else if (p instanceof Date) {// 这个必须在自定义的Date类型后面
