@@ -23,6 +23,41 @@ public class ExcelReader {
 
 	protected static Log logger = LogFactory.getLog(ExcelReader.class);
 
+	public static List<String> getStringList(File file, String columnName) throws IOException {
+		InputStream input = new FileInputStream(file);
+		String fileName = file.getName();
+		Workbook workbook = open(fileName, input);
+		Sheet sheet = workbook.getSheetAt(0);
+		org.apache.poi.ss.usermodel.Row header = sheet.getRow(0);
+		int columnIndex = findColumnIndex(header, columnName);
+		if (columnIndex == -1) {
+			throw new IllegalArgumentException("列名[" + columnName + "]不存在.");
+		}
+		List<String> list = new ArrayList<>();
+		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+			org.apache.poi.ss.usermodel.Row row = sheet.getRow(i);
+			Cell cell = row.getCell(columnIndex);
+			if (cell == null) {
+				logger.warn("第" + i + "行不合法.");
+				continue;
+			}
+			String value = cell.getStringCellValue();
+			list.add(value);
+		}
+		return list;
+	}
+
+	private static int findColumnIndex(org.apache.poi.ss.usermodel.Row row, String columnName) {
+		for (int i = 0; i < row.getLastCellNum(); i++) {
+			Cell cell = row.getCell(i);
+			String _columnName = cell.getStringCellValue().trim();
+			if (columnName.equals(_columnName)) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
 	public static <E> List<E> toList(File file, Class<E> clazz, Map<String, String> columnMapping) throws IOException {
 		InputStream input = new FileInputStream(file);
 		String fileName = file.getName();
