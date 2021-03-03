@@ -19,6 +19,8 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import io.leopard.lang.datatype.Month;
+
 public class ExcelReader {
 
 	protected static Log logger = LogFactory.getLog(ExcelReader.class);
@@ -58,6 +60,31 @@ public class ExcelReader {
 		return -1;
 	}
 
+	public static <E> List<E> toList(File file, Class<E> clazz) throws IOException {
+		Map<String, String> columnMapping = parseColumnMapping(clazz);
+		return toList(file, clazz, columnMapping);
+	}
+
+	public static Map<String, String> parseColumnMapping(Class<?> pojo) {
+		Map<String, String> columnMapping = new LinkedHashMap<>();
+		for (Field field : pojo.getDeclaredFields()) {
+			ColumnMapping column = field.getAnnotation(ColumnMapping.class);
+			if (column == null) {
+				continue;
+			}
+			String fieldName = field.getName();
+			String columnName = column.value();
+			if (columnName == null || columnName.length() == 0) {
+				throw new RuntimeException("列名[" + fieldName + "]不能为空.");
+			}
+			columnMapping.put(fieldName, columnName);
+		}
+		if (columnMapping.isEmpty()) {
+			throw new IllegalArgumentException("columnMapping不能为空.");
+		}
+		return columnMapping;
+	}
+
 	public static <E> List<E> toList(File file, Class<E> clazz, Map<String, String> columnMapping) throws IOException {
 		InputStream input = new FileInputStream(file);
 		String fileName = file.getName();
@@ -71,6 +98,9 @@ public class ExcelReader {
 	// }
 
 	public static <E> List<E> toList(String fileName, InputStream input, Class<E> clazz, Map<String, String> columnMapping) throws IOException {
+		if (columnMapping == null || columnMapping.isEmpty()) {
+			throw new IllegalArgumentException("columnMapping不能为空.");
+		}
 		Workbook workbook = open(fileName, input);
 		Sheet sheet = workbook.getSheetAt(0);
 
@@ -153,6 +183,14 @@ public class ExcelReader {
 		}
 		else if (type.equals(double.class)) {
 			return cell.getNumericCellValue();
+		}
+		else if (type.equals(long.class)) {
+			Double number = cell.getNumericCellValue();
+			return number.longValue();
+		}
+		else if (type.equals(Month.class)) {
+			String datetime = cell.getStringCellValue();
+			return new Month(datetime);
 		}
 		else {
 			throw new RuntimeException("未支持该数据类型[" + type.getName() + "]。");
