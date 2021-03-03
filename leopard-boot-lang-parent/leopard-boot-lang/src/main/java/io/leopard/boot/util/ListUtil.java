@@ -706,4 +706,25 @@ public class ListUtil {
 		}
 		return list;
 	}
+
+	public static void print(List<?> list) {
+		print(list, false);
+	}
+
+	/**
+	 * 打印到控制台
+	 * 
+	 * @param list
+	 * @param lineNumber 是否输出行号
+	 */
+	public static void print(List<?> list, boolean lineNumber) {
+		int rowNumber = 0;
+		for (Object element : list) {
+			if (lineNumber) {
+				System.out.print(rowNumber);
+			}
+			System.out.println(element);
+			rowNumber++;
+		}
+	}
 }
