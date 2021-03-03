@@ -266,13 +266,13 @@ public class SetUtil {
 	 * 打印到控制台
 	 * 
 	 * @param list
-	 * @param lineNumber 是否输出行号
+	 * @param indexNumber 是否输出行号
 	 */
-	public static void print(Set<?> list, boolean lineNumber) {
+	public static void print(Set<?> list, boolean indexNumber) {
 		int rowNumber = 0;
 		for (Object element : list) {
-			if (lineNumber) {
-				System.out.print(rowNumber);
+			if (indexNumber) {
+				System.out.print(rowNumber + ":");
 			}
 			System.out.println(element);
 			rowNumber++;
