@@ -18,7 +18,6 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.springframework.web.multipart.MultipartFile;
 
 public class ExcelReader {
 
@@ -30,11 +29,11 @@ public class ExcelReader {
 		return toList(fileName, input, clazz, columnMapping);
 	}
 
-	public static <E> List<E> toList(MultipartFile file, Class<E> clazz, Map<String, String> columnMapping) throws IOException {
-		InputStream input = file.getInputStream();
-		String fileName = file.getOriginalFilename();
-		return toList(fileName, input, clazz, columnMapping);
-	}
+	// public static <E> List<E> toList(MultipartFile file, Class<E> clazz, Map<String, String> columnMapping) throws IOException {
+	// InputStream input = file.getInputStream();
+	// String fileName = file.getOriginalFilename();
+	// return toList(fileName, input, clazz, columnMapping);
+	// }
 
 	public static <E> List<E> toList(String fileName, InputStream input, Class<E> clazz, Map<String, String> columnMapping) throws IOException {
 		Workbook workbook = open(fileName, input);
