@@ -541,9 +541,6 @@ public class StatementParameter implements Serializable {
 		else if (type.equals(Integer.class)) {
 			return Types.INTEGER;
 		}
-		else if (type.equals(Integer.class)) {
-			return Types.INTEGER;
-		}
 		else if (type.equals(Long.class)) {
 			return Types.BIGINT;
 		}
