@@ -25,7 +25,15 @@ public class ExcelReader {
 
 	protected static Log logger = LogFactory.getLog(ExcelReader.class);
 
+	public static List<Long> getLongList(File file, String columnName) throws IOException {
+		return getColumnList(file, columnName, Long.class);
+	}
+
 	public static List<String> getStringList(File file, String columnName) throws IOException {
+		return getColumnList(file, columnName, String.class);
+	}
+
+	protected static <T> List<T> getColumnList(File file, String columnName, Class<T> fieldType) throws IOException {
 		InputStream input = new FileInputStream(file);
 		String fileName = file.getName();
 		Workbook workbook = open(fileName, input);
@@ -35,7 +43,7 @@ public class ExcelReader {
 		if (columnIndex == -1) {
 			throw new IllegalArgumentException("列名[" + columnName + "]不存在.");
 		}
-		List<String> list = new ArrayList<>();
+		List<T> list = new ArrayList<>();
 		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
 			org.apache.poi.ss.usermodel.Row row = sheet.getRow(i);
 			Cell cell = row.getCell(columnIndex);
@@ -43,7 +51,10 @@ public class ExcelReader {
 				logger.warn("第" + i + "行不合法.");
 				continue;
 			}
-			String value = cell.getStringCellValue();
+			@SuppressWarnings("unchecked")
+			T value = (T) getCellValue(cell, fieldType);
+
+			// String value = cell.getStringCellValue();
 			list.add(value);
 		}
 		return list;
@@ -181,10 +192,10 @@ public class ExcelReader {
 		if (String.class.equals(type)) {
 			return cell.getStringCellValue();
 		}
-		else if (type.equals(double.class)) {
+		else if (type.equals(double.class) || type.equals(Double.class)) {
 			return cell.getNumericCellValue();
 		}
-		else if (type.equals(long.class)) {
+		else if (type.equals(long.class) || type.equals(Long.class)) {
 			Double number = cell.getNumericCellValue();
 			return number.longValue();
 		}
