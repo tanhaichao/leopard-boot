@@ -28,7 +28,7 @@ public class AuthService {
 	private String password;
 
 	public boolean isEnableAuth() {
-		logger.info("isEnableAuth username:" + username + " password:" + password);
+		// logger.info("isEnableAuth username:" + username + " password:" + password);
 		if (StringUtils.isEmpty(username)) {
 			return false;
 		}
