@@ -95,6 +95,11 @@ public class ServerInfoVO {
 		return this.startupTime;
 	}
 
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	public Date getNow() {
+		return new Date();
+	}
+
 	public long getWorkerId() {
 		return workerId;
 	}
