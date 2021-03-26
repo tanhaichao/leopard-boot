@@ -8,7 +8,7 @@ import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Service;
 
 /**
- * 获取当前页码.
+ * 获取分页记录条数
  * 
  * @author 阿海
  * 
