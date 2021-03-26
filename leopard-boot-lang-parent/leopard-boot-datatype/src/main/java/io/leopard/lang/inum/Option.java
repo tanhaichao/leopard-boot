@@ -18,7 +18,7 @@ import java.lang.annotation.Target;
 public @interface Option {
 
 	/**
-	 * URL值
+	 * 枚举ID
 	 * 
 	 * @return
 	 */
