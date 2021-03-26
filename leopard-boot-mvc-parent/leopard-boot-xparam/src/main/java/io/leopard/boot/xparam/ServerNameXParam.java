@@ -6,7 +6,7 @@ import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Service;
 
 /**
- * 访问来源
+ * 获取request的serverName
  * 
  * @author 阿海
  * 

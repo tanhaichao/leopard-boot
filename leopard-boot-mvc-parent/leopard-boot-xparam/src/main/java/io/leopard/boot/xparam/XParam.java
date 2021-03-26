@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.core.MethodParameter;
 
 /**
- * 页面特殊参数.
+ * 请求特殊参数.
  * 
  * @author 阿海
  * 
