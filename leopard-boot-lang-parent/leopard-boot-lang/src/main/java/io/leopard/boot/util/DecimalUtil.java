@@ -211,6 +211,16 @@ public class DecimalUtil {
 		return new BigDecimal(num).setScale(4, java.math.BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 
+	public static double sum(double v1, double... nums) {
+		BigDecimal b1 = new BigDecimal(Double.toString(v1));
+		BigDecimal sum = b1;
+		for (double num : nums) {
+			BigDecimal b2 = new BigDecimal(Double.toString(num));
+			sum = b1.add(b2);
+		}
+		return sum.doubleValue();
+	}
+
 	/**
 	 * 提供精确的加法运算。
 	 * 

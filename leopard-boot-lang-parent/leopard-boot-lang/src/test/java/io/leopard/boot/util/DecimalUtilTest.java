@@ -3,6 +3,11 @@ package io.leopard.boot.util;
 import org.junit.Test;
 
 public class DecimalUtilTest {
+	@Test
+	public void sum() {
+		double sum = DecimalUtil.sum(1.1, 1.2, 1.3111);
+		System.out.println("sum:" + sum);
+	}
 
 	@Test
 	public void isSecure() {
