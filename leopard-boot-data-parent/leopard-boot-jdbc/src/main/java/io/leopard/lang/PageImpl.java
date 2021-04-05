@@ -117,6 +117,9 @@ public class PageImpl<E> implements Page<E> {
 			if (diff > 0) {
 				pageCount++;
 			}
+			if (pageCount < 1) {
+				return 1;
+			}
 			return pageCount;
 		}
 		return this.pageCount;
