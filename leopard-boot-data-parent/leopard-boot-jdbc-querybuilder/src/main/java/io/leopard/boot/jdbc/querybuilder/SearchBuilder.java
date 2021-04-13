@@ -135,6 +135,7 @@ public abstract class SearchBuilder {
 	 */
 	public InQueryBuilder addIn(String fieldName, String inTableFieldName, String inTableName) {
 		InQueryBuilder builder = new InQueryBuilder(inTableName, inTableFieldName);
+		this.inTableMap.put(fieldName, builder);
 		return builder;
 	}
 
@@ -478,7 +479,7 @@ public abstract class SearchBuilder {
 			if (!entry.getValue().hasWhere()) {
 				continue;
 			}
-			String value = entry.getValue().generateWhereSQL(param);
+			String value = entry.getValue().generateSelectSQL(param);
 			if (whereSQL.length() > 0) {
 				whereSQL.append(" and ");
 			}
