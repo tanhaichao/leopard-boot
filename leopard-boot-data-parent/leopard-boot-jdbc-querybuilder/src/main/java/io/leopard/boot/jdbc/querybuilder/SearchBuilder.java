@@ -113,9 +113,28 @@ public abstract class SearchBuilder {
 		return this;
 	}
 
+	/**
+	 * 添加子表查询
+	 * 
+	 * @param fieldName
+	 * @param inTableName
+	 * @return
+	 */
+	public InQueryBuilder addIn(String fieldName, String inTableName) {
+		String inTableFieldName = fieldName;
+		return this.addIn(fieldName, inTableFieldName, inTableName);
+	}
+
+	/**
+	 * 添加子表查询
+	 * 
+	 * @param fieldName
+	 * @param inTableFieldName
+	 * @param inTableName
+	 * @return
+	 */
 	public InQueryBuilder addIn(String fieldName, String inTableFieldName, String inTableName) {
 		InQueryBuilder builder = new InQueryBuilder(inTableName, inTableFieldName);
-
 		return builder;
 	}
 
