@@ -36,11 +36,11 @@ public abstract class SearchBuilder {
 	 */
 	protected String tableAlias = "";
 
-	private String rangeStartFieldName;
+	protected String rangeStartFieldName;
 
-	private String rangeEndFieldName;
+	protected String rangeEndFieldName;
 
-	private TimeRange range;
+	protected TimeRange range;
 
 	private String groupbyFieldName;
 
@@ -50,11 +50,13 @@ public abstract class SearchBuilder {
 
 	private Integer limitSize;
 
-	private Map<String, Object> whereMap = new LinkedHashMap<String, Object>();
+	protected Map<String, Object> whereMap = new LinkedHashMap<String, Object>();
 
-	private List<String> whereExpressionList = new ArrayList<String>();
+	protected List<String> whereExpressionList = new ArrayList<String>();
 
-	private Map<String, String> likeMap = new LinkedHashMap<String, String>();
+	protected Map<String, String> likeMap = new LinkedHashMap<String, String>();
+
+	protected Map<String, InQueryBuilder> inTableMap = new LinkedHashMap<String, InQueryBuilder>();
 
 	public SearchBuilder range(String fieldName, TimeRange range) {
 		return this.range(fieldName, fieldName, range);
@@ -109,6 +111,12 @@ public abstract class SearchBuilder {
 			this.addString(fieldName, snum.getKey());
 		}
 		return this;
+	}
+
+	public InQueryBuilder addIn(String fieldName, String inTableFieldName, String inTableName) {
+		InQueryBuilder builder = new InQueryBuilder(inTableName, inTableFieldName);
+
+		return builder;
 	}
 
 	// TODO
@@ -444,6 +452,23 @@ public abstract class SearchBuilder {
 		return whereSQL.toString();
 	}
 
+	protected String getInTableSQL(StatementParameter param) {
+		StringBuilder whereSQL = new StringBuilder();
+		for (Entry<String, InQueryBuilder> entry : this.inTableMap.entrySet()) {
+			String fieldName = entry.getKey();
+			if (!entry.getValue().hasWhere()) {
+				continue;
+			}
+			String value = entry.getValue().generateWhereSQL(param);
+			if (whereSQL.length() > 0) {
+				whereSQL.append(" and ");
+			}
+			whereSQL.append(this.tableAlias + columnName(fieldName)).append(" in (" + value + ")");
+		}
+
+		return whereSQL.toString();
+	}
+
 	protected String columnName(String fieldName) {
 		return "`" + fieldName + "`";
 	}
@@ -545,6 +570,15 @@ public abstract class SearchBuilder {
 			}
 			{
 				String whereSQL = this.getLikeSQL(param);
+				if (whereSQL.length() > 0) {
+					if (where.length() > 0) {
+						where.append(" and ");
+					}
+					where.append(whereSQL);
+				}
+			}
+			{
+				String whereSQL = this.getInTableSQL(param);
 				if (whereSQL.length() > 0) {
 					if (where.length() > 0) {
 						where.append(" and ");
