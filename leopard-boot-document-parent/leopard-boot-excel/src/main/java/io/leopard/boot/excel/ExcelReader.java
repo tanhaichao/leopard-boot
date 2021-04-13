@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -202,6 +203,9 @@ public class ExcelReader {
 		else if (type.equals(Month.class)) {
 			String datetime = cell.getStringCellValue();
 			return new Month(datetime);
+		}
+		else if (type.equals(Date.class)) {
+			return cell.getDateCellValue();
 		}
 		else {
 			throw new RuntimeException("未支持该数据类型[" + type.getName() + "]。");
