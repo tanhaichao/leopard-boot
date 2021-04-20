@@ -11,6 +11,7 @@ public class MergeQueryBuilderTest {
 		String contractNo = "aa";
 
 		MergeQueryBuilder builder = new MergeQueryBuilder("contractId", "contractNo", "type", "posttime", "firstEnterpriseId", "secondEnterpriseId");
+		builder = new MergeQueryBuilder(AllContractVO.class);
 		builder.addTable("procurement_contract").literal("type", ContractType.PROCUREMENT); // 采购合同
 		builder.addTable("transport_contract").literal("type", ContractType.TRANSPORT); // 运输合同
 		builder.addTable("sales_customer_contract").literal("type", ContractType.SALES_CUSTOMER); // 融资客户合同(销售)
