@@ -1,5 +1,6 @@
 package io.leopard.boot.jdbc.querybuilder.merge;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,20 +17,29 @@ public class MergeQueryBuilder extends SearchBuilder {
 
 	private static final String UNION_TABLE_ALIAS = "a";// 表别名
 
-	private List<String> columnNameList;
-
-	public MergeQueryBuilder(String... columnNames) {
-		this.tableAlias = UNION_TABLE_ALIAS + ".";
-		columnNameList = new ArrayList<>();
-		for (String columnName : columnNames) {
-			columnNameList.add(columnName);
-		}
-	}
-
+	protected final List<String> columnNameList = new ArrayList<>();
 	/**
 	 * 表查询列表
 	 */
 	private List<TableQuery> tableQueryList = new ArrayList<>();
+
+	public MergeQueryBuilder() {
+		this.tableAlias = UNION_TABLE_ALIAS + ".";
+	}
+
+	public MergeQueryBuilder(Class<?> pojoClazz) {
+		// FIXME 暂时不支持父类属性
+		for (Field field : pojoClazz.getDeclaredFields()) {
+			String columnName = field.getName();
+			columnNameList.add(columnName);
+		}
+	}
+
+	public MergeQueryBuilder(String... columnNames) {
+		for (String columnName : columnNames) {
+			columnNameList.add(columnName);
+		}
+	}
 
 	public TableQuery addTable(String tableName) {
 		TableQuery table = new TableQuery(tableName, columnNameList);
