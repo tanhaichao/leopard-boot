@@ -1,5 +1,6 @@
 package io.leopard.boot.util;
 
+import io.leopard.core.exception.invalid.MobileInvalidException;
 import io.leopard.core.exception.invalid.PassportInvalidException;
 import io.leopard.core.exception.invalid.UidInvalidException;
 import io.leopard.core.exception.invalid.UsernameInvalidException;
@@ -65,6 +66,17 @@ public class LeopardCheckUtil {
 	public static void isValidUid(long uid) {
 		if (!LeopardValidUtil.isValidUid(uid)) {
 			throw new UidInvalidException(uid);
+		}
+	}
+
+	/**
+	 * 是否合法的手机号
+	 * 
+	 * @param mobile
+	 */
+	public static void isMobile(String mobile) {
+		if (!LeopardValidUtil.isMobile(mobile)) {
+			throw new MobileInvalidException(mobile);
 		}
 	}
 }

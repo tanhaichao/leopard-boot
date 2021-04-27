@@ -1,5 +1,7 @@
 package io.leopard.boot.util;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -127,5 +129,66 @@ public class LeopardValidUtil {
 			return true;
 		}
 		return uuid.matches(ID_REGEX);
+	}
+
+	private static Set<String> MOBILE_PREFIX_SET = new HashSet<String>();
+	static {
+		MOBILE_PREFIX_SET.add("134");
+		MOBILE_PREFIX_SET.add("135");
+		MOBILE_PREFIX_SET.add("136");
+
+		MOBILE_PREFIX_SET.add("137");
+		MOBILE_PREFIX_SET.add("138");
+		MOBILE_PREFIX_SET.add("139");
+
+		MOBILE_PREFIX_SET.add("133");
+		MOBILE_PREFIX_SET.add("132");
+		MOBILE_PREFIX_SET.add("131");
+		MOBILE_PREFIX_SET.add("130");
+
+		MOBILE_PREFIX_SET.add("147");
+
+		MOBILE_PREFIX_SET.add("150");
+		MOBILE_PREFIX_SET.add("151");
+		MOBILE_PREFIX_SET.add("152");
+		MOBILE_PREFIX_SET.add("153");
+		MOBILE_PREFIX_SET.add("155");
+		MOBILE_PREFIX_SET.add("156");
+		MOBILE_PREFIX_SET.add("157");
+		MOBILE_PREFIX_SET.add("158");
+		MOBILE_PREFIX_SET.add("159");
+
+		MOBILE_PREFIX_SET.add("176");
+		MOBILE_PREFIX_SET.add("177");
+		MOBILE_PREFIX_SET.add("178");
+		MOBILE_PREFIX_SET.add("179");// 这个有吗?
+
+		MOBILE_PREFIX_SET.add("180");
+		MOBILE_PREFIX_SET.add("181");
+		MOBILE_PREFIX_SET.add("182");
+		MOBILE_PREFIX_SET.add("183");
+		MOBILE_PREFIX_SET.add("185");
+		MOBILE_PREFIX_SET.add("186");
+		MOBILE_PREFIX_SET.add("187");
+		MOBILE_PREFIX_SET.add("188");
+		MOBILE_PREFIX_SET.add("189");
+
+		MOBILE_PREFIX_SET.add("145");
+	}
+
+	public static boolean isMobile(String mobile) {
+		if (StringUtils.isEmpty(mobile)) {
+			return false;
+		}
+		boolean matches = mobile.matches("^[0-9]{11}$");
+		if (!matches) {
+			return false;
+		}
+
+		String prefix = mobile.substring(0, 3);
+		if (MOBILE_PREFIX_SET.contains(prefix)) {
+			return true;
+		}
+		return false;
 	}
 }
