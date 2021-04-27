@@ -19,6 +19,6 @@ import io.leopard.boot.validator.PasswordValidator;
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = PasswordValidator.class)
 public @interface Password {
-	String message() default "身份证号码不合法";
+	String message() default "密码不合法";
 
 }
