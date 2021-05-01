@@ -10,4 +10,6 @@ import java.lang.annotation.Target;
 public @interface As {
 
 	Class<?> value();
+
+	String fieldName() default "";
 }
