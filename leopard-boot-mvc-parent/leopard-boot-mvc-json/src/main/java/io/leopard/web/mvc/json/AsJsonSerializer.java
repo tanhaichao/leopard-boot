@@ -73,7 +73,10 @@ public abstract class AsJsonSerializer<T> extends AbstractJsonSerializer<Object>
 			Object element = this._get((T) value, gen, field);
 			data = BeanUtil.convert(element, asClazz);
 		}
-		String newFieldName = this.getFieldName(fieldName);
+		String newFieldName = as.fieldName();
+		if (StringUtils.isEmpty(newFieldName)) {
+			newFieldName = this.getFieldName(fieldName);
+		}
 		gen.writeFieldName(newFieldName);
 		gen.writeObject(data);
 	}
