@@ -102,14 +102,24 @@ public class SmsClientAliyunImpl implements SmsClient {
 
 	@Override
 	public boolean sendByTemplateId(String mobile, String templateId) {
-		return this.sendByTemplateId(mobile, templateId, null);
+		return this.sendByTemplateId(mobile, templateId, (Map<String, Object>) null);
+	}
+
+	@Override
+	public boolean sendByTemplateId(String mobile, String templateId, String signName) {
+		return this.sendByTemplateId(mobile, templateId, (Map<String, Object>) null, signName);
 	}
 
 	@Override
 	public boolean sendByTemplateId(String mobile, String templateId, boolean ignoreException) {
+		return this.sendByTemplateId(mobile, templateId, (String) null, ignoreException);
+	}
+
+	@Override
+	public boolean sendByTemplateId(String mobile, String templateId, String signName, boolean ignoreException) {
 		if (ignoreException) {
 			try {
-				return this.sendByTemplateId(mobile, templateId, null);
+				return this.sendByTemplateId(mobile, templateId, (Map<String, Object>) null);
 			}
 			catch (Exception e) {
 				logger.error(e.getMessage(), e);
@@ -117,7 +127,7 @@ public class SmsClientAliyunImpl implements SmsClient {
 			}
 		}
 		else {
-			return this.sendByTemplateId(mobile, templateId, null);
+			return this.sendByTemplateId(mobile, templateId, (Map<String, Object>) null);
 		}
 	}
 
@@ -138,8 +148,31 @@ public class SmsClientAliyunImpl implements SmsClient {
 	}
 
 	@Override
-	public boolean sendByTemplateId(String mobile, String templateId, Map<String, Object> data) {
+	public boolean sendByTemplateId(String mobile, String templateId, Map<String, Object> data, String signName, boolean ignoreException) {
+		if (ignoreException) {
+			try {
+				return this.sendByTemplateId(mobile, templateId, data, signName);
+			}
+			catch (Exception e) {
+				logger.error(e.getMessage(), e);
+				return false;
+			}
+		}
+		else {
+			return this.sendByTemplateId(mobile, templateId, data, signName);
+		}
+	}
 
+	@Override
+	public boolean sendByTemplateId(String mobile, String templateId, Map<String, Object> data) {
+		return this.sendByTemplateId(mobile, templateId, data, null);
+	}
+
+	@Override
+	public boolean sendByTemplateId(String mobile, String templateId, Map<String, Object> data, String signName) {
+		if (StringUtils.isEmpty(signName)) {
+			signName = this.signName;
+		}
 		CommonRequest request = new CommonRequest();
 		request.setSysMethod(MethodType.POST);
 		request.setSysDomain("dysmsapi.aliyuncs.com");

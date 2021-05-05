@@ -14,9 +14,18 @@ public interface SmsClient {
 	 */
 	boolean sendByTemplateId(String mobile, String templateId, Map<String, Object> data);
 
+	boolean sendByTemplateId(String mobile, String templateId, Map<String, Object> data, String signName);
+
+	boolean sendByTemplateId(String mobile, String templateId, Map<String, Object> data, boolean ignoreException);
+
+	boolean sendByTemplateId(String mobile, String templateId, Map<String, Object> data, String signName, boolean ignoreException);
+
 	boolean sendByTemplateId(String mobile, String templateId);
+
+	boolean sendByTemplateId(String mobile, String templateId, String signName);
 
 	boolean sendByTemplateId(String mobile, String templateId, boolean ignoreException);
 
-	boolean sendByTemplateId(String mobile, String templateId, Map<String, Object> data, boolean ignoreException);
+	boolean sendByTemplateId(String mobile, String templateId, String signName, boolean ignoreException);
+
 }
