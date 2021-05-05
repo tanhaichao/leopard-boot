@@ -34,10 +34,25 @@ public class StatementParameter implements Serializable {
 
 	private final List<Class<?>> type = new ArrayList<Class<?>>();
 
+	private boolean allowNull = false;// 是否允许null
+
+	public boolean isAllowNull() {
+		return allowNull;
+	}
+
+	public void setAllowNull(boolean allowNull) {
+		this.allowNull = allowNull;
+	}
+
 	protected void checkNull(Object value) {
 		// AssertUtil.assertNotNull(value, "参数值[" + list.size() + "]不能为NULL.");
-		if (value == null) {
-			throw new ParameterNotNullException(list.size());
+		if (allowNull) {
+
+		}
+		else {
+			if (value == null) {
+				throw new ParameterNotNullException(list.size());
+			}
 		}
 	}
 
@@ -616,23 +631,49 @@ public class StatementParameter implements Serializable {
 
 	protected void setValues(PreparedStatement pstmt, int i, Class<?> type) throws SQLException {
 		Object value = this.getArg(i - 1);
+
 		if (type.equals(String.class)) {
 			pstmt.setString(i, (String) value);
 		}
 		else if (type.equals(Boolean.class)) {
-			pstmt.setInt(i, (Integer) value);
+			if (value == null && this.allowNull) {
+				pstmt.setNull(i, Types.TINYINT);
+			}
+			else {
+				pstmt.setInt(i, (Integer) value);
+			}
 		}
 		else if (type.equals(Integer.class)) {
-			pstmt.setInt(i, (Integer) value);
+			if (value == null && this.allowNull) {
+				pstmt.setNull(i, Types.INTEGER);
+			}
+			else {
+				pstmt.setInt(i, (Integer) value);
+			}
 		}
 		else if (type.equals(Long.class)) {
-			pstmt.setLong(i, (Long) value);
+			if (value == null && this.allowNull) {
+				pstmt.setNull(i, Types.BIGINT);
+			}
+			else {
+				pstmt.setLong(i, (Long) value);
+			}
 		}
 		else if (type.equals(Float.class)) {
-			pstmt.setFloat(i, (Float) value);
+			if (value == null && this.allowNull) {
+				pstmt.setNull(i, Types.DECIMAL);
+			}
+			else {
+				pstmt.setFloat(i, (Float) value);
+			}
 		}
 		else if (type.equals(Double.class)) {
-			pstmt.setDouble(i, (Double) value);
+			if (value == null && this.allowNull) {
+				pstmt.setNull(i, Types.DECIMAL);
+			}
+			else {
+				pstmt.setDouble(i, (Double) value);
+			}
 		}
 		// else if (type.equals(OnlyDate.class)) {
 		// pstmt.setDate(i, (java.sql.Date) value);
