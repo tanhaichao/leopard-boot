@@ -20,5 +20,6 @@
 		<module>leopard-boot-httpnb</module>
 		<module>leopard-boot-annotations</module>
 		<module>leopard-boot-spring-util</module>
+		<module>leopard-boot-qrcode</module>
 	</modules>
 </project>
