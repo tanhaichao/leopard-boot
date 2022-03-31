@@ -17,7 +17,7 @@
 
 	<properties>
 		<leopard.version>0.9.16-SNAPSHOT</leopard.version>
-		<springboot.version>1.5.22.RELEASE</springboot.version>
+		<springboot.version>2.5.12</springboot.version>
 		<spring.version>4.3.29.RELEASE</spring.version>
 		<elasticsearch.version>6.8.11</elasticsearch.version>
 		<tomcat.version>8.5.57</tomcat.version>
